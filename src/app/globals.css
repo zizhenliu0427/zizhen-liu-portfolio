@@ -24,3 +24,136 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/*
+ * Authentic Windows 7 "Aero" glass. The effect combines a lightly blurred
+ * backdrop, a transparent tint, diagonal reflections, subtle striations, and a
+ * bright rim.
+ */
+.aero-glass {
+  background-color: rgba(225, 238, 250, 0.08);
+  background-image: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.5),
+      transparent 130px
+    ),
+    linear-gradient(225deg, rgba(255, 255, 255, 0.5), transparent 130px),
+    linear-gradient(
+      158deg,
+      transparent 32%,
+      rgba(255, 255, 255, 0.16) 46%,
+      rgba(255, 255, 255, 0.16) 50%,
+      transparent 60%
+    ),
+    repeating-linear-gradient(
+      128deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0) 70px,
+      rgba(255, 255, 255, 0.06) 76px,
+      rgba(255, 255, 255, 0) 82px,
+      rgba(255, 255, 255, 0) 150px
+    ),
+    repeating-linear-gradient(
+      128deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0) 44px,
+      rgba(255, 255, 255, 0.035) 49px,
+      rgba(255, 255, 255, 0) 54px,
+      rgba(255, 255, 255, 0) 96px
+    );
+  background-repeat: no-repeat;
+  background-attachment: scroll, scroll, scroll, fixed, fixed;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.aero-glass-frame {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 30px rgba(13, 55, 120, 0.4);
+}
+
+@media (prefers-color-scheme: dark) {
+  .aero-glass {
+    background-color: rgba(20, 30, 50, 0.28);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  }
+
+  .aero-glass-frame {
+    border-color: rgba(255, 255, 255, 0.28);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Frutiger Aero background bubbles. The bubble itself owns the backdrop filter,
+ * so the browser samples the real background once instead of compositing a
+ * copied wallpaper layer over the original.
+ */
+.aero-bubble {
+  animation-name: aero-rise;
+  animation-timing-function: ease-in;
+  animation-iteration-count: infinite;
+  isolation: isolate;
+  overflow: hidden;
+  will-change: transform;
+  background: rgba(255, 255, 255, 0.001);
+  border: 1px solid rgba(235, 250, 255, 0.58);
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.22),
+    inset 0 0 22px rgba(130, 215, 255, 0.16),
+    0 3px 12px rgba(80, 90, 160, 0.12);
+}
+
+.aero-bubble__rim,
+.aero-bubble__shine {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+.aero-bubble__rim {
+  inset: 0;
+  z-index: 1;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 200deg,
+    rgba(110, 205, 255, 0.8),
+    rgba(120, 255, 205, 0.72),
+    rgba(180, 135, 255, 0.88),
+    rgba(255, 140, 215, 0.8),
+    rgba(255, 215, 130, 0.62),
+    rgba(140, 195, 255, 0.8),
+    rgba(110, 205, 255, 0.8)
+  );
+  -webkit-mask: radial-gradient(circle, transparent 62%, #000 82%);
+  mask: radial-gradient(circle, transparent 62%, #000 82%);
+}
+
+.aero-bubble__shine {
+  top: 15%;
+  left: 15%;
+  z-index: 2;
+  width: 46%;
+  height: 12%;
+  border-radius: 50%;
+  transform: rotate(-16deg);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.97),
+    rgba(255, 255, 255, 0.5) 45%,
+    rgba(255, 255, 255, 0) 75%
+  );
+}
+
+@keyframes aero-rise {
+  0% {
+    transform: translateY(0) scale(0.9);
+  }
+
+  100% {
+    transform: translateY(-110vh) scale(1.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aero-bubble {
+    animation: none;
+  }
+}
