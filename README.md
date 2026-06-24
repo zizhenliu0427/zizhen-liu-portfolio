@@ -19,7 +19,7 @@ Personal portfolio website built to showcase my software engineering skills and 
 
 ## Design
 
-Frutiger Aero / Glassmorphism aesthetic inspired by Windows Aero (Longhorn - Vista - 7) and macOS Tahoe's liquid glass. Key visual elements include translucent frosted-glass cards, backdrop blur effects, subtle gradients, and soft lighting — with full support for both light and dark themes.
+Frutiger Aero / Glassmorphism aesthetic mainly inspired by Windows Aero (Longhorn - Vista - 7), and Mac OS X's Aqua / macOS Tahoe's Liquid Glass. Key visual elements include translucent frosted-glass cards, backdrop blur effects, subtle gradients, and soft lighting — with full support for both light and dark themes.
 
 ## Getting Started
 

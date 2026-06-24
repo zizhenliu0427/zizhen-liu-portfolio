@@ -5,11 +5,17 @@ import AeroBackground from "./AeroBackground";
 import GlassCard from "./GlassCard";
 
 const WALLPAPERS = [
+  { src: "aurora", label: "Aurora" },
   { src: "/bg-hill1.jpg", label: "Hill 1" },
   { src: "/bg-hill2.jpg", label: "Hill 2" },
   { src: "/bg-hill3.jpg", label: "Hill 3" },
   { src: "/bg-hill4.jpg", label: "Hill 4" },
 ];
+
+const AURORA_THUMB =
+  "radial-gradient(60% 80% at 38% 62%, #15d8c8, transparent 70%)," +
+  "radial-gradient(55% 70% at 74% 40%, #2a86ff, transparent 70%)," +
+  "linear-gradient(165deg, #021a2b, #02101b)";
 
 /**
  * Aero background plus a wallpaper picker styled after the Windows Vista/7
@@ -50,7 +56,11 @@ export default function WallpaperSwitcher() {
                   {/* landscape preview with a glossy Aero sheen */}
                   <span
                     className="relative block h-10 w-16 overflow-hidden rounded-[3px] bg-cover bg-center ring-1 ring-black/25"
-                    style={{ backgroundImage: `url('${w.src}')` }}
+                    style={
+                      w.src === "aurora"
+                        ? { background: AURORA_THUMB }
+                        : { backgroundImage: `url('${w.src}')` }
+                    }
                   >
                     <span className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/40 to-transparent" />
                   </span>

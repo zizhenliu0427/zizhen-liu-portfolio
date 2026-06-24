@@ -157,3 +157,208 @@ body {
     animation: none;
   }
 }
+
+/*
+ * Windows 7 progress bar, faithful to the 7.css recipe (used by AeroProgress):
+ * a glossy grey track plus a vivid gel fill whose 3D look comes from a bright
+ * top highlight band (first 6px), a bottom sheen, and darkening at both ends.
+ */
+.aero-pg {
+  height: 15px;
+  overflow: hidden;
+  border: 1px solid rgba(120, 130, 140, 0.5);
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px #f3f3f388, 0 0 0 1px #eaeaea88;
+  background: radial-gradient(circle at 0 50%, #0000001f 10px, transparent 30px),
+    radial-gradient(circle at 100% 50%, #0000001f 10px, transparent 30px),
+    linear-gradient(
+      to bottom,
+      #f3f3f3cc,
+      #fcfcfccc 3px,
+      #dbdbdbcc 6px,
+      #cacacacc 6px,
+      #d5d5d5cc
+    ),
+    #e3e3e3;
+}
+
+.aero-pg__fill {
+  height: 100%;
+  overflow: hidden;
+  transition: width 0.5s ease;
+  box-shadow: inset 0 0 0 1px #ffffff1f;
+  background-color: #0bd82c;
+  background-image: linear-gradient(
+      to bottom,
+      #f3f3f3af,
+      #fcfcfcaf 3px,
+      #dbdbdbaf 6px,
+      transparent 6px
+    ),
+    radial-gradient(circle at 0 50%, #0000002f 10px, transparent 30px),
+    radial-gradient(circle at 100% 50%, #0000002f 10px, transparent 30px),
+    linear-gradient(to bottom, transparent 65%, #ffffff55),
+    linear-gradient(to bottom, transparent 6px, #cacaca33 6px, #d5d5d533);
+}
+
+.aero-pg__fill--green {
+  background-color: #0bd82c;
+}
+.aero-pg__fill--yellow {
+  background-color: #e6df1b;
+}
+.aero-pg__fill--red {
+  background-color: #ef0000;
+}
+.aero-pg__fill--blue {
+  background-color: #1c9beb;
+}
+
+/* "animate" = a shine sweeping across the fill; "marquee" = indeterminate. */
+.aero-pg__fill.is-animate::before,
+.aero-pg.is-marquee::before {
+  content: "";
+  display: block;
+  height: 100%;
+  background: linear-gradient(to right, transparent, #ffffff80, transparent 40%);
+  animation: aero-pg-shine 3s linear infinite;
+}
+.aero-pg.is-marquee::before {
+  opacity: 0.5;
+  background: linear-gradient(to right, transparent, #0bd82c, transparent 35%);
+}
+
+@keyframes aero-pg-shine {
+  0% {
+    transform: translateX(-40%);
+  }
+  60% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aero-pg__fill.is-animate::before,
+  .aero-pg.is-marquee::before {
+    animation: none;
+  }
+}
+
+/*
+ * Windows Vista-style aurora background — deep teal/navy base with slow drifting
+ * ribbons of cyan/green/blue light (screen-blended glows). Pure CSS, no media.
+ */
+.aurora {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: radial-gradient(120% 90% at 50% 115%, #0c4a5e 0%, transparent 55%),
+    linear-gradient(165deg, #021a2b 0%, #06314a 45%, #02101b 100%);
+}
+
+.aurora__layer {
+  position: absolute;
+  inset: -25%;
+  mix-blend-mode: screen;
+  filter: blur(45px);
+  will-change: transform;
+}
+.aurora__layer--1 {
+  background: radial-gradient(38% 55% at 30% 50%, #15d8c8cc, transparent 70%);
+  animation: aurora-drift-1 26s ease-in-out infinite;
+}
+.aurora__layer--2 {
+  background: radial-gradient(42% 50% at 68% 42%, #2a86ffbb, transparent 70%);
+  animation: aurora-drift-2 33s ease-in-out infinite;
+}
+.aurora__layer--3 {
+  background: radial-gradient(48% 48% at 52% 72%, #2fe39abb, transparent 70%);
+  animation: aurora-drift-3 40s ease-in-out infinite;
+}
+/* a couple of thin diagonal light ribbons */
+.aurora__ribbon {
+  position: absolute;
+  inset: -30%;
+  mix-blend-mode: screen;
+  filter: blur(30px);
+  background: linear-gradient(
+    115deg,
+    transparent 38%,
+    #5ff0e066 46%,
+    #8fd0ff44 50%,
+    transparent 58%
+  );
+  animation: aurora-ribbon 30s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes aurora-drift-1 {
+  0%,
+  100% {
+    transform: translate(-4%, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate(10%, -8%) rotate(8deg) scale(1.25);
+  }
+}
+@keyframes aurora-drift-2 {
+  0%,
+  100% {
+    transform: translate(5%, 5%) rotate(0deg) scale(1.15);
+  }
+  50% {
+    transform: translate(-9%, -6%) rotate(-10deg) scale(1);
+  }
+}
+@keyframes aurora-drift-3 {
+  0%,
+  100% {
+    transform: translate(0, 7%) scale(1);
+  }
+  50% {
+    transform: translate(7%, -7%) scale(1.3);
+  }
+}
+@keyframes aurora-ribbon {
+  0%,
+  100% {
+    transform: translateX(-8%) rotate(0deg);
+  }
+  50% {
+    transform: translateX(8%) rotate(4deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora__layer,
+  .aurora__ribbon {
+    animation: none;
+  }
+}
+
+/* Content-tier glass: a brighter, more opaque frost so text/content stays
+ * readable on dark backgrounds (the aurora). Use via <GlassCard tone="content">. */
+.aero-glass--content {
+  background-color: rgba(14, 28, 46, 0.5);
+}
+
+/* Windows 7 "default" button breathing cyan glow (AeroButton `glow`). */
+.aero-btn-glow {
+  animation: aero-btn-pulse 1.2s ease-in-out infinite alternate;
+}
+@keyframes aero-btn-pulse {
+  from {
+    box-shadow: inset 0 0 3px 1px #34deffdd, 0 1px 3px rgba(13, 55, 120, 0.25);
+  }
+  to {
+    box-shadow: inset 0 0 1px 1px #34deffaa, 0 1px 3px rgba(13, 55, 120, 0.25);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aero-btn-glow {
+    animation: none;
+  }
+}

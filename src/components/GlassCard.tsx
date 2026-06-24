@@ -4,6 +4,8 @@ type GlassCardProps = HTMLAttributes<HTMLDivElement> & {
   children: ReactNode;
   /** Blur strength of the frosted glass. Defaults to "md". */
   blur?: "sm" | "md" | "lg";
+  /** "content" = brighter, more opaque frost for readable panels on dark bg. */
+  tone?: "default" | "content";
 };
 
 // Aero/Liquid-Glass uses a very LIGHT blur — the glassiness comes from edge
@@ -31,6 +33,7 @@ const BLUR_PX: Record<NonNullable<GlassCardProps["blur"]>, number> = {
 export default function GlassCard({
   children,
   blur = "md",
+  tone = "default",
   className = "",
   ...props
 }: GlassCardProps) {
@@ -49,7 +52,12 @@ export default function GlassCard({
           } as CSSProperties
         }
       />
-      <div aria-hidden className="aero-glass absolute inset-0 rounded-xl" />
+      <div
+        aria-hidden
+        className={`aero-glass absolute inset-0 rounded-xl ${
+          tone === "content" ? "aero-glass--content" : ""
+        }`}
+      />
       <div className="relative">{children}</div>
     </div>
   );

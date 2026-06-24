@@ -20,12 +20,23 @@ export default function AeroBackground({
 }: {
   wallpaper?: string;
 }) {
+  const isAurora = wallpaper === "aurora";
+
   return (
     <div aria-hidden className="fixed inset-0 overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url('${wallpaper}')` }}
-      />
+      {isAurora ? (
+        <div className="aurora">
+          <div className="aurora__layer aurora__layer--1" />
+          <div className="aurora__layer aurora__layer--2" />
+          <div className="aurora__layer aurora__layer--3" />
+          <div className="aurora__ribbon" />
+        </div>
+      ) : (
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('${wallpaper}')` }}
+        />
+      )}
       {BUBBLES.map((b, i) => (
         <span
           key={i}

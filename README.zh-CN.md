@@ -17,7 +17,7 @@
 
 ## 设计风格
 
-采用 Frutiger Aero / 玻璃拟态设计风格，灵感来自 Windows Aero 和 macOS Tahoe 的 liquid glass。视觉元素包括半透明毛玻璃卡片、背景模糊效果、柔和渐变和光效，同时支持深色和浅色主题。
+采用 Frutiger Aero / 玻璃拟态设计风格，灵感主要来自 Windows Aero (Longhorn - Vista - 7) ，其次是 Mac OS X 的 Aqua / macOS Tahoe 的 Liquid Glass。视觉元素包括半透明毛玻璃卡片、背景模糊效果、柔和渐变和光效，同时支持深色和浅色主题。
 
 ## 本地运行
 
