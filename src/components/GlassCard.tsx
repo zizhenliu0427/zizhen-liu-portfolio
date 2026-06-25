@@ -2,15 +2,22 @@ import type { CSSProperties, HTMLAttributes, ReactNode } from "react";
 
 type GlassCardProps = HTMLAttributes<HTMLDivElement> & {
   children: ReactNode;
-  /** Blur strength of the frosted glass. Defaults to "md". */
-  blur?: "sm" | "md" | "lg";
+  /** Blur strength of the frosted glass. Defaults to "md". `false` drops the
+   *  backdrop-filter entirely (a translucent tinted panel, no blur) — use it for
+   *  large, resizable panels where any backdrop-filter triggers Chromium's
+   *  resize compositing glitch (the embedded OOBE). */
+  blur?: "sm" | "md" | "lg" | false;
   /** "content" = brighter, more opaque frost for readable panels on dark bg. */
   tone?: "default" | "content";
+  /** SVG edge-refraction. Default true. Disable for large panels over an
+   *  animated backdrop (e.g. the embedded OOBE), where the SVG filter
+   *  re-rasterises every frame and flickers — plain blur stays stable. */
+  refract?: boolean;
 };
 
 // Aero/Liquid-Glass uses a very LIGHT blur — the glassiness comes from edge
 // refraction, not heavy frosting.
-const BLUR_PX: Record<NonNullable<GlassCardProps["blur"]>, number> = {
+const BLUR_PX: Record<"sm" | "md" | "lg", number> = {
   sm: 1,
   md: 2,
   lg: 4,
@@ -34,24 +41,30 @@ export default function GlassCard({
   children,
   blur = "md",
   tone = "default",
+  refract = true,
   className = "",
   ...props
 }: GlassCardProps) {
-  const px = BLUR_PX[blur];
-  const filter = `url(#aero-refract) blur(${px}px) saturate(1.8) brightness(1.1)`;
+  const hasBlur = blur !== false;
+  const px = hasBlur ? BLUR_PX[blur] : 0;
+  const filter = `${
+    refract ? "url(#aero-refract) " : ""
+  }blur(${px}px) saturate(1.8) brightness(1.1)`;
 
   return (
     <div className={`aero-glass-frame relative rounded-xl ${className}`} {...props}>
-      <div
-        aria-hidden
-        className="absolute inset-0 rounded-xl"
-        style={
-          {
-            backdropFilter: filter,
-            WebkitBackdropFilter: `blur(${px}px) saturate(1.8) brightness(1.1)`,
-          } as CSSProperties
-        }
-      />
+      {hasBlur && (
+        <div
+          aria-hidden
+          className="absolute inset-0 rounded-xl"
+          style={
+            {
+              backdropFilter: filter,
+              WebkitBackdropFilter: `blur(${px}px) saturate(1.8) brightness(1.1)`,
+            } as CSSProperties
+          }
+        />
+      )}
       <div
         aria-hidden
         className={`aero-glass absolute inset-0 rounded-xl ${

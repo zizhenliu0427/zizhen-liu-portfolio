@@ -259,6 +259,21 @@ body {
     linear-gradient(165deg, #021a2b 0%, #06314a 45%, #02101b 100%);
 }
 
+/* A STATIC aurora wallpaper: the same teal/blue/green glow as the animated
+ * version, but baked into soft radial gradients on one element — no animated
+ * layers and no blur() filter, so it costs nothing to repaint while a window
+ * resizes (the animated aurora flickers the compositor at large sizes). */
+.aurora-static {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(48% 58% at 27% 38%, rgba(60, 240, 224, 0.62), transparent 74%),
+    radial-gradient(50% 54% at 72% 34%, rgba(74, 160, 255, 0.55), transparent 74%),
+    radial-gradient(58% 58% at 54% 82%, rgba(74, 240, 175, 0.5), transparent 74%),
+    radial-gradient(120% 90% at 50% 115%, #115c72 0%, transparent 58%),
+    linear-gradient(165deg, #06314a 0%, #0a4a68 45%, #04202f 100%);
+}
+
 .aurora__layer {
   position: absolute;
   inset: -25%;
@@ -359,6 +374,106 @@ body {
 }
 @media (prefers-reduced-motion: reduce) {
   .aero-btn-glow {
+    animation: none;
+  }
+}
+
+/* Windows 7 window/menu animations: fade + scale/slide with an ease-out curve
+ * (non-linear), like Aero's DWM open/close transitions. */
+.win7-open {
+  animation: win7-open 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes win7-open {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.win7-menu-open {
+  transform-origin: bottom left;
+  animation: win7-menu 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes win7-menu {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* minimize: shrink + fade down toward the taskbar */
+.win7-min {
+  animation: win7-min 0.18s cubic-bezier(0.4, 0, 1, 1) both;
+}
+@keyframes win7-min {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.65) translateY(80px);
+  }
+}
+
+/* close: fade out + slight shrink (the reverse of the open zoom), like Win7's DWM */
+.win7-close {
+  animation: win7-close 0.18s cubic-bezier(0.4, 0, 1, 1) both;
+}
+@keyframes win7-close {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}
+
+/* inactive (unfocused) windows: desaturate/lighten the Aero title bar, like Win7 */
+.win7 .window:not(.active) > .title-bar {
+  filter: saturate(0.4) brightness(1.12);
+}
+
+/* 7.css gives every button a position:absolute ::before/::after hover glow. Our
+   taskbar buttons use `all: unset` (→ position: static), so that glow escapes the
+   button and fills the whole taskbar on hover (lighting the bar white). Suppress
+   the pseudo-elements for buttons inside the taskbar. */
+.win7 .win7-taskbar button::before,
+.win7 .win7-taskbar button::after {
+  content: none;
+}
+
+/* Window title bar = its OWN Aero glass: a translucent tint + a real
+   backdrop-filter on the title bar element itself, so it directly frosts the
+   wallpaper behind it. (Stock 7.css frosts a ::after that hides BEHIND the title
+   bar's own background, so the title bar only reveals the SHARP wallpaper — it
+   reads as plain transparency. Filtering the title bar element fixes that.) */
+.win7 .window.glass > .title-bar {
+  background: linear-gradient(
+    to bottom,
+    rgba(235, 245, 253, 0.42),
+    rgba(180, 212, 238, 0.3)
+  ) !important;
+  /* 7.css stock is blur(4px); a touch of saturate keeps the Aero glassiness */
+  -webkit-backdrop-filter: blur(2px) saturate(1.2) !important;
+  backdrop-filter: blur(2px) saturate(1.2) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .win7-open,
+  .win7-menu-open,
+  .win7-min,
+  .win7-close {
     animation: none;
   }
 }

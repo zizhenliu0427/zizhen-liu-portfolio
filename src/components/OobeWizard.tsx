@@ -37,9 +37,9 @@ const SKILLS = [
   { label: "Node / Python / REST APIs", value: 75 },
 ];
 
-type Step = { id: string; label: string; title: string; content: ReactNode };
+export type Step = { id: string; label: string; title: string; content: ReactNode };
 
-const STEPS: Step[] = [
+export const STEPS: Step[] = [
   {
     id: "welcome",
     label: "Welcome",
@@ -179,7 +179,14 @@ const STEPS: Step[] = [
  * any step. Mobile-first: the rail collapses to top chips and the panel goes
  * full-width.
  */
-export default function OobeWizard() {
+export default function OobeWizard({
+  embedded = false,
+}: {
+  /** When embedded in a desktop window, listen on our own element (not the
+   *  whole page) and pin the status bar to this container instead of the
+   *  viewport, so the same wizard works standalone or inside a window. */
+  embedded?: boolean;
+} = {}) {
   const [i, setI] = useState(0);
   const step = STEPS[i];
   const first = i === 0;
@@ -188,6 +195,7 @@ export default function OobeWizard() {
   // Wheel / arrow keys advance the wizard (the page itself never scrolls).
   // Debounced so one scroll flick = one step.
   const lock = useRef(false);
+  const rootRef = useRef<HTMLElement>(null);
   useEffect(() => {
     const go = (dir: number) => {
       if (lock.current) return;
@@ -208,16 +216,26 @@ export default function OobeWizard() {
         go(-1);
       }
     };
-    window.addEventListener("wheel", onWheel, { passive: true });
-    window.addEventListener("keydown", onKey);
+    const target: EventTarget =
+      embedded && rootRef.current ? rootRef.current : window;
+    target.addEventListener("wheel", onWheel as EventListener, {
+      passive: true,
+    });
+    target.addEventListener("keydown", onKey as EventListener);
     return () => {
-      window.removeEventListener("wheel", onWheel);
-      window.removeEventListener("keydown", onKey);
+      target.removeEventListener("wheel", onWheel as EventListener);
+      target.removeEventListener("keydown", onKey as EventListener);
     };
-  }, []);
+  }, [embedded]);
 
   return (
-    <main className="relative flex min-h-dvh items-center justify-center p-4 pb-28 sm:p-8 sm:pb-28">
+    <main
+      ref={rootRef}
+      tabIndex={embedded ? 0 : undefined}
+      className={`relative flex items-center justify-center p-4 pb-28 outline-none sm:p-8 sm:pb-28 ${
+        embedded ? "h-full min-h-full" : "min-h-dvh"
+      }`}
+    >
       {/* centred Aero wizard window */}
       <GlassCard tone="content" className="relative w-full max-w-2xl">
         {/* round Aero back button, top-left */}
@@ -258,8 +276,11 @@ export default function OobeWizard() {
       </GlassCard>
 
       {/* Windows Vista-style bottom status bar: a green progress line plus big
-          numbered phases, pinned to the bottom edge of the whole screen. */}
-      <div className="fixed inset-x-0 bottom-0 z-40">
+          numbered phases, pinned to the bottom edge (of the viewport standalone,
+          or of the window container when embedded). */}
+      <div
+        className={`${embedded ? "absolute" : "fixed"} inset-x-0 bottom-0 z-40`}
+      >
         <AeroProgress
           value={((i + 1) / STEPS.length) * 100}
           color="green"
