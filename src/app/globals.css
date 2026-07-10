@@ -469,11 +469,220 @@ body {
   backdrop-filter: blur(2px) saturate(1.2) !important;
 }
 
+/* Aero Peek (Show Desktop): open windows turn into glassy outlines so the
+   desktop shows through. Children fade out; the frame stays as a thin glow. */
+.win7 .window.win7-peek,
+.win7 .window.win7-peek > * {
+  transition: opacity 0.16s ease;
+}
+.win7 .window.win7-peek > * {
+  opacity: 0;
+  pointer-events: none;
+}
+.win7 .window.win7-peek {
+  background: transparent !important;
+  border-color: rgba(255, 255, 255, 0.55) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.5),
+    inset 0 0 26px rgba(180, 220, 255, 0.12) !important;
+}
+.win7 .window.win7-peek::before,
+.win7 .window.win7-peek::after {
+  opacity: 0 !important;
+}
+
+/* Aero Flip 3D: a tilted, receding 3D stack of the open windows. */
+.flip3d-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  perspective: 1050px;
+  perspective-origin: 50% 40%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(
+    120% 100% at 50% 38%,
+    rgba(10, 32, 58, 0.5),
+    rgba(2, 10, 22, 0.84)
+  );
+  animation: flip3d-in 0.22s ease-out both;
+}
+@keyframes flip3d-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.flip3d-stage {
+  position: relative;
+  width: 460px;
+  height: 300px;
+  transform-style: preserve-3d;
+}
+.flip3d-card {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border-radius: 7px 7px 4px 4px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+  background: #f6f9fc;
+  transform-style: preserve-3d;
+  /* Win7 Flip 3D has a floor reflection under each window */
+  -webkit-box-reflect: below 1px
+    linear-gradient(transparent 45%, rgba(255, 255, 255, 0.45));
+  transition:
+    transform 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.34s ease;
+}
+.flip3d-card__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #123;
+  background: linear-gradient(to bottom, #eaf6fd, #bee6fd 45%, #a7d9f5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+.flip3d-card__body {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: #fff;
+  color: #1a2a38;
+}
+/* live window content, cropped like a real Flip 3D thumbnail */
+.flip3d-card__content {
+  display: block;
+  padding: 12px 14px;
+  font-size: 11px;
+  line-height: 1.45;
+  height: 100%;
+}
+.flip3d-card__content :where(p, li) {
+  margin: 0 0 6px;
+}
+.flip3d-card__content ul {
+  padding-left: 16px;
+}
+/* fade the cropped content out at the bottom */
+.flip3d-card__body::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 38px;
+  background: linear-gradient(transparent, #fff);
+  pointer-events: none;
+}
+.flip3d-card__hero {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 10px;
+  height: 100%;
+  color: #eaf6ff;
+  background:
+    radial-gradient(60% 80% at 30% 40%, rgba(60, 240, 224, 0.5), transparent 70%),
+    radial-gradient(60% 70% at 75% 65%, rgba(74, 160, 255, 0.5), transparent 70%),
+    linear-gradient(160deg, #06314a, #04202f);
+}
+.flip3d-hint {
+  position: fixed;
+  bottom: 64px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.82);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .win7-open,
   .win7-menu-open,
   .win7-min,
-  .win7-close {
+  .win7-close,
+  .flip3d-bg {
+    animation: none;
+  }
+  .flip3d-card {
+    transition: none;
+  }
+}
+
+/* Rotate-to-landscape gate: the desktop lab is a fixed window-manager canvas
+ * that needs width, not height. Hidden by default; a pure media query (no JS
+ * orientation listener) shows it only for touch-primary devices — hover:none
+ * + pointer:coarse — held in portrait, so a narrow desktop browser window is
+ * never affected. */
+.rotate-gate {
+  display: none;
+}
+
+@media (orientation: portrait) and (hover: none) and (pointer: coarse) {
+  .rotate-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+    background: radial-gradient(120% 90% at 50% 20%, #0c4a5e 0%, transparent 55%),
+      linear-gradient(165deg, #021a2b 0%, #06314a 45%, #02101b 100%);
+  }
+}
+
+.rotate-gate__card {
+  max-width: 320px;
+  padding: 30px 26px;
+  color: #eaf6ff;
+  text-align: center;
+}
+
+.rotate-gate__icon {
+  margin-bottom: 14px;
+  font-size: 40px;
+  line-height: 1;
+  animation: rotate-gate-spin 2.6s ease-in-out infinite;
+}
+
+.rotate-gate__card h2 {
+  margin: 0 0 10px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.rotate-gate__card p {
+  margin: 0;
+  color: rgba(234, 246, 255, 0.78);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+@keyframes rotate-gate-spin {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(90deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rotate-gate__icon {
     animation: none;
   }
 }
