@@ -1,0 +1,9 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "zizhen-liu-portfolio",
+	"compatibility_date": "2026-07-10",
+	"assets": {
+		"directory": "out",
+		"not_found_handling": "404-page"
+	}
+}
