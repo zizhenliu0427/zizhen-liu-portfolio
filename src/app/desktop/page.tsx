@@ -3,8 +3,9 @@ import type { Metadata } from "next";
 import Win7Desktop from "@/components/Win7Desktop";
 
 export const metadata: Metadata = {
-  title: "Zizhen Liu — Desktop",
-  description: "Portfolio as a Windows 7 desktop.",
+  title: "Zizhen Liu — Aero Lab",
+  description:
+    "A hand-built Frutiger Aero, Y2K-era desktop lab. Windows 7 is the first build; XP and 98 are next.",
 };
 
 export default function DesktopPage() {

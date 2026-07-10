@@ -2,12 +2,24 @@
 
 import {
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   type CSSProperties,
   type PointerEvent,
   type ReactNode,
 } from "react";
+import {
+  FLIP_AX,
+  FLIP_AY,
+  FLIP_DEPTH,
+  FLIP_DX,
+  FLIP_DY,
+  FLIP_FORE,
+  FLIP_H,
+  FLIP_SKEW,
+  FLIP_W,
+} from "./flip3d";
 
 type Win7WindowProps = {
   title: ReactNode;
@@ -26,6 +38,15 @@ type Win7WindowProps = {
   /** Drop the white body padding and let the child fill the body edge-to-edge
    *  (e.g. an embedded iframe). */
   bare?: boolean;
+  /** Aero Peek: render the window as a glass outline so the desktop shows
+   *  through (Show Desktop hover). */
+  peek?: boolean;
+  /** Aero Flip 3D: lift the REAL window into the tilted 3D stack. `flipP` is its
+   *  depth (0 = front); `onFlipSelect` fires when it's clicked in Flip view. */
+  flip?: boolean;
+  flipP?: number;
+  flipCount?: number;
+  onFlipSelect?: () => void;
   onFocus: () => void;
   onMove: (x: number, y: number) => void;
   onMinimize: () => void;
@@ -50,6 +71,11 @@ export default function Win7Window({
   defaultWidth = 400,
   defaultHeight,
   bare = false,
+  peek = false,
+  flip = false,
+  flipP = 0,
+  flipCount = 1,
+  onFlipSelect,
   onFocus,
   onMove,
   onMinimize,
@@ -66,6 +92,19 @@ export default function Win7Window({
     w: defaultWidth,
     h: defaultHeight ?? null,
   });
+
+  // Measured pixel height of the rendered window, kept in state so the Flip 3D
+  // geometry can use it during render without reading the ref directly (which
+  // violates react-hooks/refs). Measured in a layout effect after every render
+  // that could change the window size. The guard (next !== measuredH) makes this
+  // self-stabilising: once the DOM height matches state, no further updates fire.
+  const [measuredH, setMeasuredH] = useState(300);
+  useLayoutEffect(() => {
+    const node = winRef.current;
+    if (!node) return;
+    const next = node.offsetHeight;
+    if (next > 0 && next !== measuredH) setMeasuredH(next);
+  }, [measuredH]);
 
   // Play the Aero open animation only briefly on mount, then drop the class. The
   // animation transforms the window (fill: both), which makes it a backdrop-root
@@ -139,18 +178,57 @@ export default function Win7Window({
   }
 
   const ease = "cubic-bezier(0.22, 1, 0.36, 1)";
+
+  // Flip 3D: translate the real window to the screen centre, then offset/tilt it
+  // into the receding stack by its depth (flipP). Animated via the transform
+  // transition below, so windows fly in/out and re-stack as you cycle.
+  let flipTransform: string | undefined;
+  let flipZ: number | undefined;
+  if (flip && typeof window !== "undefined") {
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    // EFFECTIVE on-screen rect — a maximised window's real size is the screen,
+    // not its stored `size`, so use that or the stack drifts.
+    const ew = maximized ? vw : size.w;
+    const eh = maximized ? vh - 40 : (size.h ?? measuredH);
+    const ex = maximized ? 0 : x;
+    const ey = maximized ? 0 : y;
+    const p = flipP;
+    // Normalise every window to ONE card width (maximised → same size as a small
+    // window) and align by the BOTTOM-LEFT corner to a common anchor + per-card
+    // offset, so different sizes stack identically. The tilt is an AFFINE
+    // parallelogram (scaleX + skewY) — no perspective, so no trapezoid.
+    const sc = Math.min(FLIP_W / ew, FLIP_H / eh) * (1 - p * FLIP_DEPTH);
+    // target CENTRE on the diagonal conveyor (front lower-right, recede up-left)
+    const tcx = vw / 2 + FLIP_AX - p * FLIP_DX;
+    const tcy = (vh - 40) / 2 + FLIP_AY - p * FLIP_DY;
+    const tx = tcx - (ex + ew / 2);
+    const ty = tcy - (ey + eh / 2);
+    flipTransform =
+      `translate(${tx}px, ${ty}px) scaleX(${FLIP_FORE}) ` +
+      `skewY(${FLIP_SKEW}deg) scale(${sc})`;
+    flipZ = 100000 + (flipCount - flipP);
+  }
+
   const style: CSSProperties = {
     position: "absolute",
-    zIndex: z,
+    zIndex: flipZ ?? z,
     display: "flex",
     flexDirection: "column",
     ...(maximized
       ? { left: 0, top: 0, width: "100%", height: "calc(100% - 40px)" }
       : { left: x, top: y, width: size.w, height: size.h ?? undefined }),
-    transition: transitioning
-      ? `left .28s ${ease}, top .28s ${ease}, width .28s ${ease}, height .28s ${ease}`
-      : undefined,
-  };
+    transform: flipTransform,
+    // promote the (heavy) window to its own GPU layer during Flip 3D so the
+    // transform/transition composites instead of re-rasterising every frame
+    willChange: flip ? "transform" : undefined,
+    cursor: flip ? "pointer" : undefined,
+    transition:
+      `transform 0.42s ${ease}` +
+      (transitioning
+        ? `, left .28s ${ease}, top .28s ${ease}, width .28s ${ease}, height .28s ${ease}`
+        : ""),
+  } as CSSProperties;
 
   const bodyStyle: CSSProperties = size.h
     ? { flex: "1 1 0", minHeight: 0, overflow: bare ? "hidden" : "auto" }
@@ -166,21 +244,28 @@ export default function Win7Window({
   return (
     <div
       ref={winRef}
-      className={`window glass ${active ? "active" : ""} ${
-        minimizing
-          ? "win7-min"
-          : closing
-            ? "win7-close"
-            : opening
-              ? "win7-open"
-              : ""
+      className={`window ${flip ? "" : "glass"} ${peek ? "win7-peek" : ""} ${
+        active ? "active" : ""
+      } ${
+        flip
+          ? ""
+          : minimizing
+            ? "win7-min"
+            : closing
+              ? "win7-close"
+              : opening
+                ? "win7-open"
+                : ""
       }`}
       style={style}
-      onPointerDown={onFocus}
+      onPointerDown={() => (flip ? onFlipSelect?.() : onFocus())}
     >
       <div
         className="title-bar"
-        onPointerDown={onPointerDown}
+        onPointerDown={(e) => {
+          if (flip) return;
+          onPointerDown(e);
+        }}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onDoubleClick={(e) => {
@@ -205,8 +290,8 @@ export default function Win7Window({
       >
         {children}
       </div>
-      {/* bottom-right resize grip (hidden while maximized) */}
-      {!maximized && (
+      {/* bottom-right resize grip (hidden while maximized or in Flip 3D) */}
+      {!maximized && !flip && (
         <div
           aria-hidden
           onPointerDown={onResizeDown}
