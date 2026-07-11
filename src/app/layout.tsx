@@ -16,15 +16,17 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   ),
-  title: "Zizhen Liu (Lance) — Frontend Engineer",
+  title: "Zizhen Liu (Lance) — Full-Stack Engineer",
   description:
-    "Sydney-based frontend engineer building responsive React, TypeScript and data-rich product interfaces.",
+    "Sydney-based full-stack engineer building complete products — React interfaces, data and AI backends, and GPU-level systems code.",
   keywords: [
     "Zizhen Liu",
     "Lance Liu",
-    "Frontend Engineer",
+    "Full-Stack Engineer",
     "React Developer",
     "TypeScript",
+    "Python",
+    "C++",
     "Sydney",
   ],
   authors: [{ name: "Zizhen Liu" }],
@@ -32,22 +34,22 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_AU",
-    title: "Zizhen Liu — Frontend Engineer",
+    title: "Zizhen Liu — Full-Stack Engineer",
     description:
-      "Responsive React, TypeScript and data-rich product interfaces, engineered in Sydney.",
+      "Complete products engineered in Sydney: React interfaces, data and AI backends, GPU-level systems code.",
     images: [
       {
         url: "/og.png",
         width: 1733,
         height: 907,
-        alt: "Zizhen Liu — Frontend Engineer",
+        alt: "Zizhen Liu — Full-Stack Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zizhen Liu — Frontend Engineer",
-    description: "Frontend systems, data UI and interaction engineering.",
+    title: "Zizhen Liu — Full-Stack Engineer",
+    description: "Interface to metal: web, AI and systems engineering.",
     images: ["/og.png"],
   },
 };

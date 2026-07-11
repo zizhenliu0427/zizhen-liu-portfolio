@@ -391,6 +391,14 @@
   color: #9fefbf;
 }
 
+.tagline {
+  margin: 16px 0 0;
+  color: #5f8169;
+  font: 650 clamp(9px, 0.9vw, 12px)/1 var(--font-geist-mono), monospace;
+  letter-spacing: 0.34em;
+  animation: heroIn 600ms 380ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
 .heroStatement {
   max-width: 640px;
   margin: 34px 0 0;
@@ -951,6 +959,38 @@
 
 .caseStudyPending {
   color: #51715a !important;
+}
+
+.archiveLink {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 44px;
+}
+
+.archiveLink a {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 48px;
+  padding: 0 18px;
+  color: var(--green-soft);
+  border: 1px solid rgba(70, 255, 127, 0.3);
+  background: rgba(4, 12, 7, 0.72);
+  font: 700 10px/1 var(--font-geist-mono), monospace;
+  letter-spacing: 0.1em;
+  clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 9px 100%, 0 calc(100% - 9px));
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.archiveLink a::before {
+  color: var(--green);
+  content: ">_";
+  text-shadow: 0 0 8px rgba(70, 255, 127, 0.6);
+}
+
+.archiveLink a:hover {
+  border-color: rgba(70, 255, 127, 0.55);
+  box-shadow: 0 0 24px rgba(70, 255, 127, 0.14);
 }
 
 .projectVisual {
@@ -1688,6 +1728,12 @@
   margin: 7px 0 0;
   color: #769683;
   font-size: 12px;
+}
+
+.educationList .courses {
+  color: #51715a;
+  font: 500 9px/1.6 var(--font-geist-mono), monospace;
+  letter-spacing: 0.04em;
 }
 
 .labSection {

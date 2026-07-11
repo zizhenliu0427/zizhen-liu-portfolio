@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  archive,
   capabilities,
   education,
   experience,
@@ -164,9 +165,11 @@ export default function Home() {
 
         <nav className={styles.nav} aria-label="Primary navigation">
           <a href="#work"><span>01</span> Work</a>
-          <a href="#experience"><span>02</span> Experience</a>
-          <a href="#lab"><span>03</span> Lab</a>
-          <a href="#contact"><span>04</span> Contact</a>
+          <Link href="/projects"><span>02</span> Projects</Link>
+          <a href="#experience"><span>03</span> Experience</a>
+          <a href="#lab"><span>04</span> Lab</a>
+          <Link href="/about"><span>05</span> About</Link>
+          <a href="#contact"><span>06</span> Contact</a>
         </nav>
 
         <div className={styles.availability}>
@@ -188,9 +191,11 @@ export default function Home() {
           </h1>
 
           <div className={styles.roleLine}>
-            <span>FRONTEND</span>
+            <span>FULL-STACK</span>
             <span>ENGINEER</span>
           </div>
+
+          <p className={styles.tagline}>{profile.tagline}</p>
 
           <p className={styles.heroStatement}>{profile.statement}</p>
 
@@ -229,17 +234,17 @@ export default function Home() {
             <div><span className={styles.lineNo}>01</span><code><b>const</b> candidate = &#123;</code></div>
             <div><span className={styles.lineNo}>02</span><code>&nbsp;&nbsp;name: <em>&quot;{profile.name}&quot;</em>,</code></div>
             <div><span className={styles.lineNo}>03</span><code>&nbsp;&nbsp;alias: <em>&quot;{profile.preferredName}&quot;</em>,</code></div>
-            <div><span className={styles.lineNo}>04</span><code>&nbsp;&nbsp;focus: [</code></div>
-            <div><span className={styles.lineNo}>05</span><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>&quot;React&quot;</em>, <em>&quot;TypeScript&quot;</em>,</code></div>
-            <div><span className={styles.lineNo}>06</span><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>&quot;Data visualisation&quot;</em>,</code></div>
+            <div><span className={styles.lineNo}>04</span><code>&nbsp;&nbsp;stack: [</code></div>
+            <div><span className={styles.lineNo}>05</span><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>&quot;React&quot;</em>, <em>&quot;FastAPI&quot;</em>,</code></div>
+            <div><span className={styles.lineNo}>06</span><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>&quot;PyTorch&quot;</em>, <em>&quot;C++ / CUDA&quot;</em>,</code></div>
             <div><span className={styles.lineNo}>07</span><code>&nbsp;&nbsp;],</code></div>
             <div><span className={styles.lineNo}>08</span><code>&nbsp;&nbsp;available: <strong>true</strong>,</code></div>
             <div><span className={styles.lineNo}>09</span><code>&#125;;</code></div>
           </div>
           <div className={styles.panelTelemetry}>
-            <div><span>UI SYSTEMS</span><i><b /></i><em>92</em></div>
-            <div><span>DATA UI</span><i><b /></i><em>88</em></div>
-            <div><span>PRODUCT THINKING</span><i><b /></i><em>84</em></div>
+            <div><span>INTERFACE</span><i><b /></i><em>92</em></div>
+            <div><span>SERVER & DATA</span><i><b /></i><em>88</em></div>
+            <div><span>SYSTEMS / METAL</span><i><b /></i><em>84</em></div>
           </div>
           <div className={styles.panelFooter}>
             <span><i /> BUILD READY</span>
@@ -264,7 +269,7 @@ export default function Home() {
       </div>
 
       <section className={styles.section} id="work">
-        <SectionHeading index="01" eyebrow="SELECTED_WORK" title="Interfaces built for real complexity." />
+        <SectionHeading index="01" eyebrow="SELECTED_WORK" title="Products built end to end." />
         <div className={styles.projects}>
           {projects.map((project) => (
             <article className={styles.project} key={project.id}>
@@ -289,7 +294,9 @@ export default function Home() {
                       View live project <span aria-hidden="true">↗</span>
                     </a>
                   ) : (
-                    <span className={styles.caseStudyPending}>CASE STUDY / INCOMING</span>
+                    <span className={styles.caseStudyPending}>
+                      {"access" in project ? project.access : "CASE STUDY / INCOMING"}
+                    </span>
                   )}
                 </div>
               </div>
@@ -297,14 +304,20 @@ export default function Home() {
             </article>
           ))}
         </div>
+        <div className={styles.archiveLink}>
+          <Link href="/projects">
+            OPEN PROJECT_ARCHIVE — {archive.length} ENTRIES <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
       </section>
 
       <section className={`${styles.section} ${styles.experienceSection}`} id="experience">
         <SectionHeading index="02" eyebrow="EXPERIENCE_LOG" title="From requirements to shipped UI." />
         <div className={styles.experienceLayout}>
           <p className={styles.sectionIntro}>
-            A frontend-focused engineer with a software engineering foundation,
-            product analysis experience and a habit of learning through ambitious interfaces.
+            A full-stack engineer with a software engineering foundation,
+            product analysis experience and a habit of learning by building
+            across the whole stack.
           </p>
           <div className={styles.timeline}>
             {experience.map((item, index) => (
@@ -329,7 +342,7 @@ export default function Home() {
       </section>
 
       <section className={styles.section} id="capabilities">
-        <SectionHeading index="03" eyebrow="CAPABILITY_MATRIX" title="Code, craft and product thinking." />
+        <SectionHeading index="03" eyebrow="STACK_MAP" title="Interface to metal, one engineer." />
         <div className={styles.capabilityGrid}>
           {capabilities.map((group) => (
             <article key={group.index} className={styles.capabilityCard}>
@@ -353,7 +366,11 @@ export default function Home() {
             {education.map((item) => (
               <article key={item.school}>
                 <span>{item.period}</span>
-                <div><h4>{item.school}</h4><p>{item.degree}</p></div>
+                <div>
+                  <h4>{item.school}</h4>
+                  <p>{item.degree}</p>
+                  <p className={styles.courses}>{item.courses.join(" · ")}</p>
+                </div>
               </article>
             ))}
           </div>

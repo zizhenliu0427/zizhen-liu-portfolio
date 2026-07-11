@@ -1,16 +1,17 @@
 export const profile = {
   name: "Zizhen Liu",
   preferredName: "Lance",
-  role: "Graduate / Junior Frontend Engineer",
+  role: "Full-Stack Engineer",
+  tagline: "WEB · AI · SYSTEMS",
   location: "Sydney, Australia",
   email: "lzz288898@gmail.com",
   github: "https://github.com/zizhenliu0427",
   githubSecondary: "https://github.com/Fairchild2333",
   linkedin: "https://www.linkedin.com/in/zizhen-liu-580a40258/",
   workRights: "485 visa · full working rights",
-  availability: "Open to frontend opportunities across Australia",
+  availability: "Open to software opportunities across Australia",
   statement:
-    "I build fast, responsive interfaces that turn complex data into clear, usable products.",
+    "I build complete products — responsive interfaces, data and AI backends, and systems code all the way down to the GPU.",
 } as const;
 
 export const projects = [
@@ -19,32 +20,33 @@ export const projects = [
     index: "01",
     year: "2025",
     title: "Conversational AI for Building Sensor Data",
-    type: "UNSW Capstone · Data product",
+    type: "UNSW Capstone · End-to-end data product",
     summary:
-      "A seven-page analytics workspace that lets building managers query and visualise live IoT sensor data in natural language.",
+      "An IoT analytics platform where building managers query live sensor data in natural language — built across the React front end, the FastAPI/Kafka backend and the RAG pipeline behind the conversation.",
     highlights: [
-      "Web Workers for CSV / Excel parsing",
-      "Context state across 16 components",
-      "22-endpoint typed fetch service",
+      "React 19 SPA · Web Workers for CSV/Excel parsing",
+      "Kafka ingestion + PostgreSQL UPSERT batch pipeline",
+      "RAG with Qdrant + local LLMs (Ollama) and NL2SQL",
     ],
-    stack: ["React 19", "TypeScript", "ECharts", "Web Workers", "Vitest"],
-    metric: "7 PAGE SPA",
+    stack: ["React 19", "TypeScript", "FastAPI", "Kafka", "PostgreSQL", "Qdrant"],
+    metric: "FULL-STACK + AI",
     visual: "sensor",
+    access: "UNI PROJECT / CODE PRIVATE",
   },
   {
     id: "cmo",
     index: "02",
     year: "2023—24",
     title: "CMO-DB",
-    type: "Personal team · Bilingual database",
+    type: "Personal team · Live full-stack product",
     summary:
-      "A responsive, wiki-like equipment database with bilingual routing, lazy rendering and a custom directional sensor visualisation.",
+      "A responsive, wiki-like equipment database — bilingual routing and D3 visuals up front, a serverless Node/Express + Sequelize backend answering 6-table joins across 29,000+ records behind it.",
     highlights: [
-      "29,000+ searchable records",
-      "English / Chinese URL routing",
-      "Custom D3 sensor-arc visualisation",
+      "29,000+ records · parameterised multi-table JOINs",
+      "Serverless migration to Vercel, zero-maintenance infra",
+      "English / Chinese URL routing · custom D3 sensor arcs",
     ],
-    stack: ["JavaScript", "D3.js", "i18next", "Handlebars", "Bootstrap"],
+    stack: ["JavaScript", "Node.js", "Express", "Sequelize", "D3.js", "i18next"],
     metric: "29K+ RECORDS",
     visual: "database",
     href: "https://www.cmo-db.com/",
@@ -54,17 +56,153 @@ export const projects = [
     index: "03",
     year: "2023",
     title: "CTV Violence Detection",
-    type: "UTS team project · Monitoring UI",
+    type: "UTS team project · Full-stack + computer vision",
     summary:
-      "A secure frontend for real-time YOLO video analysis, designed around configurable multi-camera monitoring and protected workflows.",
+      "A real-time monitoring platform: YOLOv8 trained on 10,025 hand-annotated frames, served through a Django REST + MJPEG streaming backend into a multi-camera React dashboard.",
     highlights: [
-      "1 / 2 / 4 / 6 camera layouts",
-      "JWT-protected nested routes",
-      "Reusable video and auth hooks",
+      "YOLOv8 trained to 85% mAP50 on an RTX 4090",
+      "Sub-200ms OpenCV → MJPEG live streaming pipeline",
+      "JWT-secured React SPA with 1/2/4/6 camera layouts",
     ],
-    stack: ["React 18", "React Router", "MUI", "Fetch API", "JWT"],
-    metric: "LIVE MONITORING",
+    stack: ["React 18", "Django REST", "PyTorch", "YOLOv8", "OpenCV", "MySQL"],
+    metric: "85% mAP50 LIVE",
     visual: "camera",
+    access: "TEAM PROJECT / CODE PRIVATE",
+  },
+] as const;
+
+export type ArchiveAccess =
+  | { kind: "live"; href: string }
+  | { kind: "github"; href: string }
+  | { kind: "nda" }
+  | { kind: "private" }
+  | { kind: "wip"; href?: string }
+  | { kind: "here" }
+  | { kind: "none" };
+
+export type ArchiveEntry = {
+  year: string;
+  title: string;
+  domains: readonly string[];
+  summary: string;
+  stack: readonly string[];
+  access: ArchiveAccess;
+};
+
+export const archive: readonly ArchiveEntry[] = [
+  {
+    year: "2026",
+    title: "sdr2hdr — GPU SDR-to-HDR / Super-Resolution Pipeline",
+    domains: ["SYSTEMS"],
+    summary:
+      "Fully GPU-resident video pipeline (NVDEC → CUDA → RTX TrueHDR/VSR → NVENC) sustaining ~120fps real-time 4K HDR conversion, with hand-written colour-space kernels, HDR10 metadata signalling and a bilingual CLI.",
+    stack: ["C++17", "CUDA", "NVENC/NVDEC", "RTX Video SDK", "FFmpeg"],
+    access: { kind: "private" },
+  },
+  {
+    year: "2026",
+    title: "This portfolio — Matrix CRT terminal + Aero OS lab",
+    domains: ["WEB"],
+    summary:
+      "The site you are reading: a Next.js static build with a canvas code-rain, CRT ambient layers and a hand-built Windows 7 Aero window manager living at /desktop.",
+    stack: ["Next.js", "TypeScript", "Canvas", "CSS Modules", "Cloudflare"],
+    access: { kind: "here" },
+  },
+  {
+    year: "2026",
+    title: "Multi-Graphics-API GPU Compute Benchmark",
+    domains: ["SYSTEMS"],
+    summary:
+      "C++17 benchmark with five backends — Vulkan, DX12, DX11, OpenGL, Metal — profiling 10+ AMD and NVIDIA GPUs, including six generations of AMD architectures; a headless compute mode uncovered 12x hidden throughput. 2,300-line technical report.",
+    stack: ["C++17", "Vulkan", "DirectX 12", "Metal", "RenderDoc", "Python"],
+    access: {
+      kind: "github",
+      href: "https://github.com/Fairchild2333/Multi-Graphics-API-GPU-Benchmark",
+    },
+  },
+  {
+    year: "2025",
+    title: "Conversational AI for Building Sensor Data",
+    domains: ["WEB", "AI/ML"],
+    summary:
+      "End-to-end IoT analytics: React 19 SPA, FastAPI + Kafka ingestion, TFT time-series forecasting with quantile regression, and a RAG/NL2SQL conversational layer over Qdrant with local LLMs.",
+    stack: ["React 19", "FastAPI", "Kafka", "PostgreSQL", "Qdrant", "PyTorch"],
+    access: { kind: "private" },
+  },
+  {
+    year: "2025",
+    title: "GDWG — Generic Directed Weighted Graph Library",
+    domains: ["SYSTEMS"],
+    summary:
+      "Modern C++20 generic graph container with value semantics, a polymorphic edge hierarchy, deterministic ordering and full Catch2 unit-test coverage.",
+    stack: ["C++20", "STL", "Templates", "Catch2"],
+    access: { kind: "private" },
+  },
+  {
+    year: "2024",
+    title: "Skin Lesion Classification — ISIC2018",
+    domains: ["AI/ML"],
+    summary:
+      "Fine-tuned DenseNet/EfficientNet/ResNet backbones with a hand-implemented Squeeze-and-Excitation attention module, reaching 83% macro F1 on severely imbalanced dermoscopy data; Grad-CAM interpretability.",
+    stack: ["PyTorch", "Albumentations", "scikit-learn", "OpenCV"],
+    access: { kind: "private" },
+  },
+  {
+    year: "2023",
+    title: "CTV — Real-Time Violence Detection",
+    domains: ["WEB", "AI/ML"],
+    summary:
+      "YOLOv8 trained on a self-annotated 10,025-frame dataset (85% mAP50), served via Django REST with sub-200ms MJPEG streaming into a JWT-secured multi-camera React dashboard.",
+    stack: ["PyTorch", "YOLOv8", "Django REST", "React 18", "OpenCV"],
+    access: { kind: "private" },
+  },
+  {
+    year: "2023—24",
+    title: "CMO-DB — Bilingual Equipment Database",
+    domains: ["WEB"],
+    summary:
+      "Wiki-like database serving 29,000+ records: serverless Node/Express + Sequelize backend, bilingual URL routing, deferred rendering and custom D3 sensor-arc visualisations.",
+    stack: ["Node.js", "Express", "Sequelize", "D3.js", "i18next", "Vercel"],
+    access: { kind: "live", href: "https://www.cmo-db.com/" },
+  },
+  {
+    year: "2023",
+    title: "FPGA Audio Capture & Gain EQ — AMD Kria KV260",
+    domains: ["HARDWARE"],
+    summary:
+      "VHDL I2S receiver in programmable logic streaming 48kHz/24-bit audio through AXI4-Stream + DMA into Linux, with Device Tree integration and an AXI-Lite controlled gain/EQ stage.",
+    stack: ["VHDL", "Vivado", "AXI4 / DMA", "PetaLinux", "C/C++"],
+    access: { kind: "private" },
+  },
+  {
+    year: "2023",
+    title: "Good360 Donation App — Real-Time Chat Module",
+    domains: ["MOBILE"],
+    summary:
+      "Kotlin/MVVM chat feature for Good360 Australia's donation app: multi-type RecyclerView messaging, Firebase Realtime sync, image messages and deterministic chat-room IDs.",
+    stack: ["Kotlin", "MVVM", "Firebase", "RecyclerView"],
+    access: { kind: "nda" },
+  },
+  {
+    year: "ONGOING",
+    title: "Budget Manage App",
+    domains: ["MOBILE"],
+    summary:
+      "Personal-finance Android app for tracking daily spending — in active development.",
+    stack: ["Android", "Kotlin"],
+    access: {
+      kind: "wip",
+      href: "https://github.com/Fairchild2333/Budge-Manage-App",
+    },
+  },
+  {
+    year: "ONGOING",
+    title: "Home Lab — Server, NAS & Device Restoration",
+    domains: ["LAB"],
+    summary:
+      "Windows Server 2025 + Active Directory lab in VMware WorkStation, a Synology NAS with remote access and IPv6, and low-level device work: Hackintosh EFI/ACPI bring-up, kext injection and Android custom-ROM recovery.",
+    stack: ["Windows Server", "Active Directory", "Synology", "EFI/ACPI", "ADB"],
+    access: { kind: "none" },
   },
 ] as const;
 
@@ -75,9 +213,9 @@ export const experience = [
     location: "Sydney, Australia",
     role: "IT / Business Analysis Intern",
     bullets: [
-      "Translated requirements into high-fidelity Figma flows and responsive interfaces.",
-      "Worked through Jira and Confluence in Agile delivery, verifying React components during sprint reviews.",
-      "Built Python scrapers to aggregate and normalise web data for analysis.",
+      "Built Python scrapers and Pandas ETL pipelines to collect, validate and normalise semi-structured web data for downstream features.",
+      "Translated business requirements into user stories and API contracts, verifying React components in Agile sprint reviews via Jira/Confluence.",
+      "Produced and validated data-dashboard wireframes, supporting responsive implementation across the frontend/backend boundary.",
     ],
   },
   {
@@ -86,48 +224,77 @@ export const experience = [
     location: "Chongqing, China",
     role: "IT Support Intern",
     bullets: [
-      "Maintained a Vue.js corporate site and delivered responsive UI improvements.",
-      "Diagnosed workstation hardware and configured operating systems and creative software.",
+      "Maintained a Vue.js corporate site in production, shipping responsive UI and content updates safely.",
+      "Diagnosed workstation hardware and configured operating systems and creative software for heavy-workload use.",
     ],
   },
 ] as const;
 
 export const capabilities = [
   {
-    index: "A",
-    title: "Frontend systems",
-    description: "Component architecture, routing and state for product interfaces.",
-    items: ["React", "Next.js", "TypeScript", "Context API", "React Router"],
+    index: "01",
+    title: "Interface",
+    description: "Product surfaces across web and mobile.",
+    items: ["React 19", "Next.js", "TypeScript", "Tailwind CSS", "ECharts / D3", "Android (Kotlin)"],
   },
   {
-    index: "B",
-    title: "Interface craft",
-    description: "Responsive, accessible layouts with deliberate visual detail.",
-    items: ["Tailwind CSS", "CSS Grid", "Flexbox", "MUI", "Figma"],
+    index: "02",
+    title: "Server & data",
+    description: "APIs, pipelines and the models behind them.",
+    items: ["FastAPI", "Django REST", "Node.js / Express", "PostgreSQL / MySQL", "Kafka", "RAG / Qdrant", "PyTorch"],
   },
   {
-    index: "C",
-    title: "Data & browser APIs",
-    description: "Making dense information feel immediate and understandable.",
-    items: ["ECharts", "D3.js", "Web Workers", "Intersection Observer", "Fetch"],
+    index: "03",
+    title: "Metal",
+    description: "Systems code where performance is the product.",
+    items: ["C++17/20", "CUDA", "Vulkan / DX12 / Metal", "NVENC / NVDEC", "VHDL / FPGA", "Linux"],
   },
   {
-    index: "D",
+    index: "04",
     title: "Delivery",
-    description: "Practical tooling from prototype through production deployment.",
-    items: ["Vite", "Vitest", "Git", "Vercel", "REST APIs", "Node.js"],
+    description: "From prototype to deployed, tested software.",
+    items: ["Docker", "Git", "Vercel / Cloudflare", "Vitest / Catch2", "Jira / Confluence", "Agile"],
   },
 ] as const;
 
 export const education = [
   {
-    school: "UNSW Sydney",
+    school: "University of New South Wales",
     degree: "Master of Information Technology",
     period: "2024 — 2025",
+    courses: ["Capstone Project (85)", "Artificial Intelligence (81)", "Advanced C++ (81)"],
   },
   {
     school: "University of Technology Sydney",
     degree: "Bachelor of Software Engineering (Honours)",
     period: "2021 — 2024",
+    courses: ["Database Fundamentals (94)", "Systems Testing & QM (90)", "Data Structures & Algorithms (84)"],
+  },
+] as const;
+
+export const interests = [
+  {
+    id: "hardware",
+    title: "Hardware & home lab",
+    body:
+      "Building PCs since age 14. Today the lab runs a Windows Server 2025 + Active Directory environment in VMware, a Synology DS923+ NAS with remote access, and a history of Hackintosh EFI/ACPI bring-ups, kext injection and Android custom-ROM rescue work.",
+  },
+  {
+    id: "photography",
+    title: "Photography",
+    body:
+      "Landscape and HDR photography — a gallery is planned for this site once the selects are curated.",
+  },
+  {
+    id: "automotive",
+    title: "Automotive",
+    body:
+      "Owner of a Honda Civic Type R (FK8), running ADVAN GT Beyond wheels and Neova AD09 tyres. Manual, of course.",
+  },
+  {
+    id: "culture",
+    title: "Languages & culture",
+    body:
+      "Native Mandarin, proficient English, beginner Japanese — studying it alongside a long-running interest in Japanese culture and anime.",
   },
 ] as const;

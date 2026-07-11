@@ -144,16 +144,31 @@ more important than spectacle.
 
 ## Priority 2 — more resume, projects, work and personal story
 
+> 2026-07-11: first major P2 pass landed. All 14 domain resumes were extracted
+> and synthesised; positioning moved from "Frontend Engineer" to full-stack
+> ("interface → server & data → metal"). New pages: `/projects` (12-entry
+> archive with honest access labels — LIVE / SOURCE / NDA / CODE PRIVATE /
+> IN DEVELOPMENT) and `/about` (home lab, photography, automotive, languages,
+> education records). IT-support career content deliberately stays off the
+> site; its home-lab side lives on `/about`.
+> Same day: `/projects` gained a domain filter (ALL/WEB/AI-ML/SYSTEMS/
+> HARDWARE/MOBILE/LAB) — the picked domain's entries pin to the top, the rest
+> dim below; deep-linkable via URL hash (`/projects#web`, `#ai-ml`, …).
+
 ### Source material and data
 
-- [ ] Add the latest resume PDF and confirm the real GitHub, LinkedIn, email,
-      live-project and source-code URLs.
-- [ ] Expand the shared typed content model for `profile`, `projects`,
+- [~] Add the latest resume PDF and confirm the real GitHub, LinkedIn, email,
+      live-project and source-code URLs. (GitHub ×2 + LinkedIn confirmed and
+      live; resume PDF still pending — owner to choose which version.)
+- [~] Expand the shared typed content model for `profile`, `projects`,
       `experience`, `internships`, `education`, `skills`, `interests` and
       `photography` instead of duplicating copy in presentation components.
-- [ ] Verify dates, titles, locations, qualifications, metrics and publication
-      permission before making them public.
-- [ ] Keep the schema translation-ready, but do not block this content milestone
+      (`archive`, `interests`, `education.courses`, `profile.tagline/linkedin`
+      added; `photography` gallery data still pending real photos.)
+- [~] Verify dates, titles, locations, qualifications, metrics and publication
+      permission before making them public. (All content sourced from the
+      owner's own resumes; NDA projects labelled, no confidential code linked.)
+- [x] Keep the schema translation-ready, but do not block this content milestone
       on the later i18n implementation.
 
 ### Professional content
