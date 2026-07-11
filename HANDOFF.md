@@ -1,9 +1,11 @@
 # Portfolio direction handoff
 
-> Updated: 2026-07-10  
-> Status: the technology portfolio is implemented and the user has added more
-> Win7/mobile/deployment work. This direction pass changes planning documents
-> only; no portfolio or lab feature code is changed.
+> Updated: 2026-07-11  
+> Status: Priority 1 (Matrix CRT reskin) is complete on desktop-browser
+> evidence — only real-device iOS/Android checks remain. Priority 2 has landed
+> its first passes: full-stack repositioning, `/projects` (19 entries, synced
+> with both GitHub accounts) and `/about`. All work is committed up to
+> `74b2385`.
 
 ## 1. Current decision
 
@@ -25,6 +27,20 @@ The exact implementation order is:
 
 Quality and worktree-preservation checks apply continuously. They are safety
 gates, not permission to reorder the four product workstreams.
+
+### Progress as of 2026-07-11
+
+- Priority 1 shipped in three passes (palette/code-rain → boot intro + decode
+  headings → CRT operator terminal), then closed out with motion/spacing
+  tokens (`--t-*`, `--ease*`, `--gutter*`) and a regenerated 1200×630 phosphor
+  OG image. Outstanding: real iOS Safari / Android Chrome verification.
+- Priority 2 so far: full-stack positioning, `/projects` domain-filter archive
+  synced against both GitHub accounts (19 entries; stale CODE PRIVATE labels
+  fixed, sdr2hdr + this site now link SOURCE) and `/about`. Next: resume PDF
+  (a TeX `resume` repo exists under Fairchild2333), case studies, project
+  screenshots, photography gallery.
+- Checkpoints: `dbb05f4` (P2 pages) and `74b2385` (P1 close-out + GitHub
+  sync).
 
 ## 2. Boundaries that must not be broken
 
@@ -63,6 +79,8 @@ should generally update tokens, surfaces, decoration and component treatments
 instead of deleting the working information architecture.
 
 ### Recent user work
+
+> 2026-07-11: the work below has since been committed; kept for context.
 
 The current worktree cannot precisely separate every user edit from earlier
 generated work because the technology portfolio has not been checkpointed. File
@@ -285,14 +303,14 @@ Only after the four product priorities:
 
 ## 10. Next implementation-session checklist
 
-1. Read `git status`, the current diff and all new/untracked files. Do not start
-   from an earlier snapshot.
-2. Capture the current `/` at desktop, tablet and mobile widths and perform a
-   focused Matrix visual audit.
-3. Propose the black/green tokens and two or three treatment options before a
-   broad CSS rewrite.
-4. Implement Priority 1 in small slices while preserving the current semantic
-   structure and shared data.
-5. Re-run the responsive matrix and regress `/desktop`, `/oobe` and `/demo`.
+1. Read `git status`, the current diff and all new/untracked files. Do not
+   start from an earlier snapshot.
+2. Run the outstanding P1 real-device checks (iOS Safari, Android Chrome) when
+   hardware is available and log the result in TODO.md.
+3. Continue Priority 2: pick the resume PDF (TeX source exists), define the
+   case-study structure, collect screenshots and photography selects.
+4. Then open Priority 3 with the `/labs` index; keep XP.css/98.css
+   route-scoped.
+5. Regress `/desktop`, `/oobe` and `/demo` after any global change.
 
 The active task list in [TODO.md](TODO.md) is authoritative for execution order.
