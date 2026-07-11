@@ -4,7 +4,9 @@ export const profile = {
   role: "Graduate / Junior Frontend Engineer",
   location: "Sydney, Australia",
   email: "lzz288898@gmail.com",
-  github: "https://github.com/liufeng0519-stack",
+  github: "https://github.com/zizhenliu0427",
+  githubSecondary: "https://github.com/Fairchild2333",
+  linkedin: "https://www.linkedin.com/in/zizhen-liu-580a40258/",
   workRights: "485 visa · full working rights",
   availability: "Open to frontend opportunities across Australia",
   statement:

@@ -1,6 +1,7 @@
 "use client";
 
 import { memo, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { profile } from "@/data/portfolio";
 import {
   FLIP_AX,
   FLIP_AY,
@@ -166,9 +167,17 @@ const APPS: App[] = [
     title: "Contact",
     content: (
       <ul>
-        <li>✉ lzz288898@gmail.com</li>
+        <li>✉ {profile.email}</li>
         <li>☎ +61 432 354 832</li>
-        <li>in LinkedIn · Sydney, Australia</li>
+        <li>
+          in <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a> · Sydney, Australia
+        </li>
+        <li>
+          ◉ <a href={profile.github} target="_blank" rel="noreferrer">GitHub · zizhenliu0427</a>
+        </li>
+        <li>
+          ◉ <a href={profile.githubSecondary} target="_blank" rel="noreferrer">GitHub · Fairchild2333</a>
+        </li>
         <li>485 Temporary Graduate Visa — full working rights</li>
       </ul>
     ),

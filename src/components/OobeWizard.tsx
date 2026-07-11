@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { profile } from "@/data/portfolio";
 import AeroButton from "./AeroButton";
 import AeroProgress from "./AeroProgress";
 import GlassCard from "./GlassCard";
@@ -163,9 +164,17 @@ export const STEPS: Step[] = [
       <div className="space-y-3 text-slate-200">
         <p>Open to graduate / junior frontend roles across Australia.</p>
         <ul className="space-y-1 text-sm">
-          <li>✉ lzz288898@gmail.com</li>
+          <li>✉ {profile.email}</li>
           <li>☎ +61 432 354 832</li>
-          <li>in LinkedIn · Sydney, Australia</li>
+          <li>
+            in <a className="text-sky-300 hover:underline" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a> · Sydney, Australia
+          </li>
+          <li>
+            ◉ <a className="text-sky-300 hover:underline" href={profile.github} target="_blank" rel="noreferrer">GitHub · zizhenliu0427</a>
+          </li>
+          <li>
+            ◉ <a className="text-sky-300 hover:underline" href={profile.githubSecondary} target="_blank" rel="noreferrer">GitHub · Fairchild2333</a>
+          </li>
         </ul>
       </div>
     ),

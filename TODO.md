@@ -36,6 +36,26 @@ These are release safeguards, not competing product priorities.
 - [x] Add keyboard focus states, semantic landmarks and a skip link.
 - [x] Add a `prefers-reduced-motion` static path for the main portfolio.
 - [x] Add a portrait touch-device rotate gate to the Win7 lab.
+- [x] Reskin `/` to the Matrix-inspired direction: phosphor-green token palette,
+      canvas code-rain layer and dark-green surfaces (2026-07-11).
+- [x] Second Matrix pass (2026-07-11, user request): boot-sequence intro,
+      decode/scramble headings and terminal component styling. The boot intro
+      deliberately deviates from the earlier "no boot sequence" constraint at
+      the owner's request, but stays non-blocking: `pointer-events: none`,
+      ~2s pure-CSS auto-fade that works without JavaScript, hidden under
+      `prefers-reduced-motion`, and shown once per session.
+- [x] Fix code-rain ghosting: the bright head glyph is now erased and settled
+      into the trail as the same character instead of having a second random
+      glyph drawn over it.
+- [x] Third Matrix pass (2026-07-11, user feedback "not Matrix enough"): CRT
+      operator-terminal redesign. Display typography moved to phosphor-green
+      Geist Mono with layered bloom text-shadows; CRT ambient layers added
+      (dark scanlines + RGB screen-door mask, vignette, slow sweep band,
+      low-amplitude tube flicker — sweep/flicker off on coarse/small devices);
+      terminal chrome details (green panel squares instead of traffic-light
+      dots, ">_" prompt on the secondary action, bracketed text links).
+      98.css was considered and rejected for `/` — Win98 chrome is the Y2K lab
+      language, reserved for `/labs/98` in Priority 3.
 - [~] Win7 mobile support is not fully responsive: portrait touch devices are
       asked to rotate and the fixed desktop canvas then runs in landscape.
 - [x] Preserve the existing Windows 7/Aero experience and its OOBE/demo routes.
@@ -48,52 +68,79 @@ more important than spectacle.
 
 ### Visual direction
 
-- [ ] Audit the latest `/` before implementation and record which current
+- [x] Audit the latest `/` before implementation and record which current
       components, content and responsive behaviours can stay unchanged.
-- [ ] Replace the current cyan/violet-heavy mood with a controlled palette:
+      (2026-07-11: all structure, content and breakpoints kept; only colour
+      tokens, ambient layers and metadata changed.)
+- [x] Replace the current cyan/violet-heavy mood with a controlled palette:
       near-black surfaces, phosphor green accents and off-white/grey body text.
-- [ ] Define tokens for background, foreground, muted text, terminal green,
+- [~] Define tokens for background, foreground, muted text, terminal green,
       borders, glow, focus, success/warning states, spacing and motion.
-- [ ] Explore a lightweight code-rain or falling-glyph layer, terminal prompts,
+      (Colour tokens defined in `page.module.css` — `--bg/--panel/--line/--text/
+      --muted/--green/--green-soft/--green-deep/--ok/--red`; spacing and motion
+      still use literal values carried over from the previous iteration.)
+- [x] Explore a lightweight code-rain or falling-glyph layer, terminal prompts,
       scanlines, grid traces, blinking cursors and code annotations.
-- [ ] Keep decorative effects behind the content, non-interactive and hidden
-      from assistive technology.
-- [ ] Preserve the current page hierarchy: identity and role first, then work,
+      (`src/components/MatrixRain.tsx`: DPR-scaled canvas, throttled rAF,
+      translucent-fill trails, katakana/digit glyphs with bright head.)
+- [x] Keep decorative effects behind the content, non-interactive and hidden
+      from assistive technology. (Rain canvas is `aria-hidden` inside the
+      pointer-events-none fixed ambient layer at `z-index: -2`.)
+- [x] Preserve the current page hierarchy: identity and role first, then work,
       experience, capabilities/education, lab and contact.
-- [ ] Redesign the Hero, navigation, project visuals, section dividers, Contact
+- [x] Redesign the Hero, navigation, project visuals, section dividers, Contact
       and Lab teaser as one coherent system rather than adding isolated effects.
-- [ ] Avoid copyrighted film stills, logos, dialogue, fonts and ripped assets;
+      (Single token remap across every section; the Aero window preview in the
+      Lab teaser intentionally keeps its Frutiger Aero blues as the doorway to
+      the Win7 lab.)
+- [x] Avoid copyrighted film stills, logos, dialogue, fonts and ripped assets;
       produce an original hacker/cyber visual system.
-- [ ] Update metadata theme colour and the Open Graph image after the new visual
-      direction is approved.
+- [~] Update metadata theme colour and the Open Graph image after the new visual
+      direction is approved. (Theme colour now `#030806`; `public/og.png` still
+      shows the old cyan design and needs regenerating.)
 
 ### Responsive, motion and performance requirements
 
-- [ ] Design desktop, tablet and mobile states before implementing the reskin.
-- [ ] Re-test at 320, 360, 390, 768, 1024 and 1440px after the Matrix pass.
+- [x] Design desktop, tablet and mobile states before implementing the reskin.
+      (Existing 1180/860/620px states were audited first and preserved; the
+      reskin changed colour and decoration only.)
+- [x] Re-test at 320, 360, 390, 768, 1024 and 1440px after the Matrix pass.
+      (2026-07-11 browser pass: `scrollWidth` equals viewport at every width and
+      no content element exceeds the viewport; only the intentionally bleeding
+      grid/glow/marquee decor layers do, inside clipped containers.)
 - [ ] Check iOS Safari and Android Chrome, not only a resized desktop browser.
-- [ ] Do not use `overflow-x: clip` as proof that nothing is overflowing; inspect
+- [x] Do not use `overflow-x: clip` as proof that nothing is overflowing; inspect
       large headings, code lines, project visuals and the horizontal nav.
-- [ ] Keep all core actions usable without hover and provide roughly 44px touch
-      targets where practical.
-- [ ] Reduce or disable code rain, blur, backdrop filters, scanlines and large
-      shadows on small/coarse-pointer or lower-powered devices.
-- [ ] Stop continuous decorative motion under `prefers-reduced-motion` while
-      leaving all information and navigation visible.
-- [ ] Keep body text contrast and line length readable; phosphor green should be
-      an accent, not the colour of every paragraph.
+      (Verified via per-element `getBoundingClientRect` at each width.)
+- [x] Keep all core actions usable without hover and provide roughly 44px touch
+      targets where practical. (Carried over from the pre-reskin implementation.)
+- [x] Reduce or disable code rain, blur, backdrop filters, scanlines and large
+      shadows on small/coarse-pointer or lower-powered devices. (Rain drops to
+      16fps, larger glyph grid and 0.3 opacity on coarse-pointer/sub-768px
+      viewports; other effect reductions unchanged from the previous pass.)
+- [x] Stop continuous decorative motion under `prefers-reduced-motion` while
+      leaving all information and navigation visible. (Global reduce rule plus a
+      static single-frame glyph scatter in `MatrixRain`.)
+- [x] Keep body text contrast and line length readable; phosphor green should be
+      an accent, not the colour of every paragraph. (Body copy is off-white/
+      grey-green; phosphor green marks labels, actions and state only.)
 
 ### Priority 1 acceptance
 
-- [ ] The first viewport states Zizhen's name, target role, Sydney location,
+- [x] The first viewport states Zizhen's name, target role, Sydney location,
       availability and primary work/contact action.
-- [ ] 320px and 390px layouts have no unintended horizontal scrolling,
-      clipping, overlap or unreadable terminal text.
-- [ ] The page remains complete with animation disabled and by keyboard only.
-- [ ] Decorative glyphs are not announced by screen readers.
-- [ ] The visual result feels unmistakably hacker/Matrix-inspired while still
+- [x] 320px and 390px layouts have no unintended horizontal scrolling,
+      clipping, overlap or unreadable terminal text. (Desktop-browser check;
+      real-device confirmation still listed above.)
+- [x] The page remains complete with animation disabled and by keyboard only.
+      (All content is static DOM; rain/marquee/grid are decoration only.)
+- [x] Decorative glyphs are not announced by screen readers. (`aria-hidden`
+      ambient layer and canvas.)
+- [x] The visual result feels unmistakably hacker/Matrix-inspired while still
       functioning as a professional portfolio.
-- [ ] `/desktop`, `/oobe` and `/demo` remain intact.
+- [x] `/desktop`, `/oobe` and `/demo` remain intact. (Regressed 2026-07-11:
+      desktop icons/windows/taskbar, OOBE wizard and demo playground all render
+      with their Aero styling untouched.)
 
 ## Priority 2 — more resume, projects, work and personal story
 

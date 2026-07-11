@@ -6,6 +6,9 @@ import {
   profile,
   projects,
 } from "@/data/portfolio";
+import BootScreen from "@/components/BootScreen";
+import Decode from "@/components/Decode";
+import MatrixRain from "@/components/MatrixRain";
 import styles from "./page.module.css";
 
 function SectionHeading({
@@ -24,7 +27,18 @@ function SectionHeading({
         <span aria-hidden="true">{"//"}</span>
         <span>{eyebrow}</span>
       </div>
-      <h2>{title}</h2>
+      <h2>
+        <Decode text={title} />
+      </h2>
+    </div>
+  );
+}
+
+function VisualChrome() {
+  return (
+    <div className={styles.visualChrome} aria-hidden="true">
+      <span>PHOSPHOR // P31</span>
+      <span>SYNC 60.00HZ</span>
     </div>
   );
 }
@@ -59,6 +73,7 @@ function ProjectVisual({ visual }: { visual: (typeof projects)[number]["visual"]
           <span>Compare energy usage across the last 30 days</span>
           <i />
         </div>
+        <VisualChrome />
       </div>
     );
   }
@@ -90,6 +105,7 @@ function ProjectVisual({ visual }: { visual: (typeof projects)[number]["visual"]
           <span />
           <b>16</b>
         </div>
+        <VisualChrome />
       </div>
     );
   }
@@ -113,6 +129,7 @@ function ProjectVisual({ visual }: { visual: (typeof projects)[number]["visual"]
         <span>4 CHANNELS ONLINE</span>
         <span>LATENCY 42MS</span>
       </div>
+      <VisualChrome />
     </div>
   );
 }
@@ -124,11 +141,16 @@ export default function Home() {
         Skip to content
       </a>
 
+      <BootScreen />
+
       <div className={styles.ambient} aria-hidden="true">
         <div className={styles.grid} />
-        <div className={styles.scanlines} />
+        <MatrixRain className={styles.rain} />
         <div className={styles.glowOne} />
         <div className={styles.glowTwo} />
+        <div className={styles.scanlines} />
+        <div className={styles.sweep} />
+        <div className={styles.vignette} />
       </div>
 
       <header className={styles.header}>
@@ -161,8 +183,8 @@ export default function Home() {
           </div>
 
           <h1>
-            <span>ZIZHEN</span>
-            <span>LIU<span className={styles.cursor} aria-hidden="true" /></span>
+            <span><Decode text="ZIZHEN" delay={260} /></span>
+            <span><Decode text="LIU" delay={420} /><span className={styles.cursor} aria-hidden="true" /></span>
           </h1>
 
           <div className={styles.roleLine}>
@@ -223,6 +245,7 @@ export default function Home() {
             <span><i /> BUILD READY</span>
             <span>CTRL + K</span>
           </div>
+          <div className={styles.panelRaster} aria-hidden="true" />
         </aside>
 
         <div className={styles.scrollCue} aria-hidden="true">
@@ -233,10 +256,10 @@ export default function Home() {
 
       <div className={styles.marquee} aria-hidden="true">
         <div>
-          <span>REACT</span><i>✦</i><span>TYPESCRIPT</span><i>✦</i><span>NEXT.JS</span><i>✦</i>
-          <span>DATA VISUALISATION</span><i>✦</i><span>RESPONSIVE UI</span><i>✦</i><span>WEB APIs</span><i>✦</i>
-          <span>REACT</span><i>✦</i><span>TYPESCRIPT</span><i>✦</i><span>NEXT.JS</span><i>✦</i>
-          <span>DATA VISUALISATION</span><i>✦</i><span>RESPONSIVE UI</span><i>✦</i><span>WEB APIs</span><i>✦</i>
+          <span>REACT</span><i>{"//"}</i><span>TYPESCRIPT</span><i>{"//"}</i><span>NEXT.JS</span><i>{"//"}</i>
+          <span>DATA VISUALISATION</span><i>{"//"}</i><span>RESPONSIVE UI</span><i>{"//"}</i><span>WEB APIs</span><i>{"//"}</i>
+          <span>REACT</span><i>{"//"}</i><span>TYPESCRIPT</span><i>{"//"}</i><span>NEXT.JS</span><i>{"//"}</i>
+          <span>DATA VISUALISATION</span><i>{"//"}</i><span>RESPONSIVE UI</span><i>{"//"}</i><span>WEB APIs</span><i>{"//"}</i>
         </div>
       </div>
 
@@ -340,7 +363,11 @@ export default function Home() {
       <section className={`${styles.section} ${styles.labSection}`} id="lab">
         <div className={styles.labCopy}>
           <div className={styles.sectionCode}><span>04</span><span>{"//"}</span><span>AERO_LAB</span></div>
-          <h2>The portfolio has<br />a Frutiger Aero operating system.</h2>
+          <h2>
+            <Decode text="The portfolio has" />
+            <br />
+            <Decode text="a Frutiger Aero operating system." />
+          </h2>
           <p>
             A hand-built lab of Y2K-era interfaces — glassy Aero chrome, gel
             buttons, reflections and drag-and-drop window management, all
@@ -380,10 +407,16 @@ export default function Home() {
           <span>CHANNEL: OPEN</span>
         </div>
         <p>Have a role, a product,<br />or a difficult interface?</p>
-        <h2>LET&apos;S BUILD<br /><span>SOMETHING CLEAR.</span></h2>
+        <h2>
+          <Decode text="LET'S BUILD" />
+          <br />
+          <span className={styles.contactOutline}><Decode text="SOMETHING CLEAR." /></span>
+        </h2>
         <div className={styles.contactActions}>
           <a href={`mailto:${profile.email}`}>{profile.email} <span>↗</span></a>
-          <a href={profile.github} target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+          <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
+          <a href={profile.github} target="_blank" rel="noreferrer">GitHub · zizhenliu0427 <span>↗</span></a>
+          <a href={profile.githubSecondary} target="_blank" rel="noreferrer">GitHub · Fairchild2333 <span>↗</span></a>
           <span>RÉSUMÉ PDF / UPDATE INCOMING</span>
         </div>
       </section>

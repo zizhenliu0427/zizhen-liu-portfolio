@@ -7,7 +7,7 @@ Extracted from `前端 Resume Zizhen Liu.pdf`. Organised into the OOBE wizard st
 - **Title:** Graduate / Junior Frontend Engineer
 - **Location:** Sydney, Australia
 - **Status:** 485 Temporary Graduate Visa — full working rights; open to grad/junior frontend roles
-- **Contact:** +61 432354832 · lzz288898@gmail.com · LinkedIn
+- **Contact:** +61 432354832 · lzz288898@gmail.com · [LinkedIn](https://www.linkedin.com/in/zizhen-liu-580a40258/) · [GitHub](https://github.com/zizhenliu0427) · [GitHub (Fairchild2333)](https://github.com/Fairchild2333)
 
 ## About
 Recent **Master of Information Technology** graduate (UNSW, Sep 2024–Sep 2025) with a
@@ -56,5 +56,5 @@ intuitive, high-performing, user-centric web apps.
 - **Backend & Security:** Python, Node.js, RESTful API integration, JWT auth
 
 ## Contact
-- Email: lzz288898@gmail.com · Phone: +61 432354832 · LinkedIn · Sydney
+- Email: lzz288898@gmail.com · Phone: +61 432354832 · [LinkedIn](https://www.linkedin.com/in/zizhen-liu-580a40258/) · [GitHub](https://github.com/zizhenliu0427) · [GitHub (Fairchild2333)](https://github.com/Fairchild2333) · Sydney
 - 485 Temporary Graduate Visa (full working rights)
