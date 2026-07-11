@@ -11,6 +11,17 @@
   --green-deep: #2bd06b;
   --ok: #6dff9f;
   --red: #ff667d;
+  /* Motion tokens — hover feedback → standard UI → card lift. */
+  --t-fast: 160ms;
+  --t-base: 180ms;
+  --t-mid: 220ms;
+  --t-slow: 260ms;
+  --ease: ease;
+  --ease-out: var(--ease-out);
+  /* Spacing tokens — the full-bleed page gutter and its narrower variants. */
+  --gutter: max(42px, calc((100vw - 1456px) / 2 + 42px));
+  --gutter-md: 28px;
+  --gutter-sm: 18px;
   position: relative;
   isolation: isolate;
   flex: 1;
@@ -51,7 +62,7 @@
   background: var(--green);
   font: 700 12px/1 var(--font-geist-mono), monospace;
   transform: translateY(-160%);
-  transition: transform 160ms ease;
+  transition: transform var(--t-fast) var(--ease);
 }
 
 .skipLink:focus {
@@ -235,7 +246,7 @@
   font: 600 10px/1 var(--font-geist-mono), monospace;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  transition: color 180ms ease;
+  transition: color var(--t-base) var(--ease);
 }
 
 .nav a span {
@@ -254,7 +265,7 @@
   content: "";
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 220ms ease;
+  transition: transform var(--t-mid) var(--ease);
 }
 
 .nav a:hover,
@@ -312,7 +323,7 @@
   color: #769a84;
   font: 600 10px/1 var(--font-geist-mono), monospace;
   letter-spacing: 0.16em;
-  animation: heroIn 580ms 100ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: heroIn 580ms 100ms var(--ease-out) both;
 }
 
 .heroMeta span:first-child {
@@ -373,7 +384,7 @@
   color: var(--green-soft);
   font: 500 clamp(1.05rem, 2vw, 1.8rem)/1 var(--font-geist-mono), monospace;
   letter-spacing: 0.28em;
-  animation: heroIn 600ms 340ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: heroIn 600ms 340ms var(--ease-out) both;
 }
 
 .roleLine span:first-child::before {
@@ -396,7 +407,7 @@
   color: #5f8169;
   font: 650 clamp(9px, 0.9vw, 12px)/1 var(--font-geist-mono), monospace;
   letter-spacing: 0.34em;
-  animation: heroIn 600ms 380ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: heroIn 600ms 380ms var(--ease-out) both;
 }
 
 .heroStatement {
@@ -406,7 +417,7 @@
   font-size: clamp(1.05rem, 1.45vw, 1.35rem);
   font-weight: 380;
   line-height: 1.65;
-  animation: heroIn 600ms 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: heroIn 600ms 420ms var(--ease-out) both;
 }
 
 .heroActions {
@@ -414,7 +425,7 @@
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 34px;
-  animation: heroIn 600ms 500ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: heroIn 600ms 500ms var(--ease-out) both;
 }
 
 .primaryButton,
@@ -430,7 +441,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   clip-path: polygon(0 0, calc(100% - 11px) 0, 100% 11px, 100% 100%, 11px 100%, 0 calc(100% - 11px));
-  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  transition: transform var(--t-base) var(--ease), box-shadow var(--t-base) var(--ease), background var(--t-base) var(--ease);
 }
 
 .primaryButton {
@@ -472,7 +483,7 @@
   margin: 54px 0 0;
   padding: 0;
   border-top: 1px solid var(--line);
-  animation: heroIn 600ms 580ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: heroIn 600ms 580ms var(--ease-out) both;
 }
 
 .heroFacts div {
@@ -950,7 +961,7 @@
 
 .projectFooter a {
   color: var(--green);
-  transition: color 160ms ease;
+  transition: color var(--t-fast) var(--ease);
 }
 
 .projectFooter a:hover {
@@ -972,14 +983,14 @@
   align-items: center;
   gap: 14px;
   min-height: 48px;
-  padding: 0 18px;
+  padding: 0 var(--gutter-sm);
   color: var(--green-soft);
   border: 1px solid rgba(70, 255, 127, 0.3);
   background: rgba(4, 12, 7, 0.72);
   font: 700 10px/1 var(--font-geist-mono), monospace;
   letter-spacing: 0.1em;
   clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 9px 100%, 0 calc(100% - 9px));
-  transition: border-color 180ms ease, box-shadow 180ms ease;
+  transition: border-color var(--t-base) var(--ease), box-shadow var(--t-base) var(--ease);
 }
 
 .archiveLink a::before {
@@ -1006,7 +1017,7 @@
     inset 0 0 72px rgba(0, 0, 0, 0.58),
     inset 0 0 22px rgba(56, 255, 137, 0.045);
   clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
-  transition: border-color 260ms ease, transform 260ms ease, box-shadow 260ms ease;
+  transition: border-color var(--t-slow) var(--ease), transform var(--t-slow) var(--ease), box-shadow var(--t-slow) var(--ease);
 }
 
 .projectVisual::before {
@@ -1079,7 +1090,7 @@
   justify-content: space-between;
   align-items: center;
   height: 48px;
-  padding: 0 18px;
+  padding: 0 var(--gutter-sm);
   color: #6c8e79;
   border-bottom: 1px solid var(--line);
   background: linear-gradient(90deg, rgba(70, 255, 127, 0.035), transparent 48%);
@@ -1098,14 +1109,14 @@
 }
 
 .sensorVisual {
-  padding: 0 18px 20px;
+  padding: 0 var(--gutter-sm) 20px;
   background:
     radial-gradient(circle at 86% 20%, rgba(24, 158, 80, 0.18), transparent 34%),
     linear-gradient(145deg, rgba(10, 24, 16, 0.96), rgba(4, 9, 6, 0.98));
 }
 
 .sensorVisual .visualTopline {
-  margin: 0 -18px;
+  margin: 0 calc(-1 * var(--gutter-sm));
 }
 
 .sensorReadout {
@@ -1189,7 +1200,7 @@
     0 -1px 7px rgba(218, 255, 231, 0.58),
     0 0 18px rgba(70, 255, 127, 0.27);
   transform-origin: bottom;
-  animation: barRise 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: barRise 1.2s var(--ease-out) both;
 }
 
 .chart > span:nth-child(3n) {
@@ -1303,7 +1314,7 @@
   min-height: 66px;
   padding: 0 14px;
   background: rgba(5, 11, 8, 0.95);
-  transition: background 180ms ease;
+  transition: background var(--t-base) var(--ease);
 }
 
 .databaseGrid span {
@@ -1386,14 +1397,14 @@
 }
 
 .cameraVisual {
-  padding: 0 18px 18px;
+  padding: 0 var(--gutter-sm) 18px;
   background:
     radial-gradient(circle at 50% 50%, rgba(28, 170, 88, 0.11), transparent 35%),
     #050a07;
 }
 
 .cameraVisual .visualTopline {
-  margin: 0 -18px;
+  margin: 0 calc(-1 * var(--gutter-sm));
 }
 
 .recording {
@@ -1496,8 +1507,8 @@
 .experienceSection {
   width: 100%;
   max-width: none;
-  padding-right: max(42px, calc((100vw - 1456px) / 2 + 42px));
-  padding-left: max(42px, calc((100vw - 1456px) / 2 + 42px));
+  padding-right: var(--gutter);
+  padding-left: var(--gutter);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   background:
@@ -1620,7 +1631,7 @@
   background:
     radial-gradient(circle at 90% 10%, rgba(70, 255, 127, 0.045), transparent 35%),
     #070d09;
-  transition: background 200ms ease;
+  transition: background var(--t-base) var(--ease);
 }
 
 .capabilityTop {
@@ -1743,8 +1754,8 @@
   gap: clamp(50px, 8vw, 120px);
   width: 100%;
   max-width: none;
-  padding-right: max(42px, calc((100vw - 1456px) / 2 + 42px));
-  padding-left: max(42px, calc((100vw - 1456px) / 2 + 42px));
+  padding-right: var(--gutter);
+  padding-left: var(--gutter);
   overflow: hidden;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -1783,7 +1794,7 @@
   font: 600 9px/1 var(--font-geist-mono), monospace;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  transition: color 160ms ease;
+  transition: color var(--t-fast) var(--ease);
 }
 
 .labActions > a:not(.primaryButton)::before {
@@ -2087,7 +2098,7 @@
   justify-content: space-between;
   gap: 28px;
   min-height: 52px;
-  padding: 0 18px;
+  padding: 0 var(--gutter-sm);
   border: 1px solid rgba(106, 204, 148, 0.23);
   background: rgba(6, 12, 9, 0.66);
   font: 650 9px/1 var(--font-geist-mono), monospace;
@@ -2229,7 +2240,7 @@
 
 @media (max-width: 1180px) {
   .header {
-    padding-inline: 28px;
+    padding-inline: var(--gutter-md);
   }
 
   .hero {
@@ -2294,7 +2305,7 @@
   }
 
   .footer {
-    padding-inline: 28px;
+    padding-inline: var(--gutter-md);
   }
 }
 

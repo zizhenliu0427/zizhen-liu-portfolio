@@ -56,6 +56,12 @@ These are release safeguards, not competing product priorities.
       dots, ">_" prompt on the secondary action, bracketed text links).
       98.css was considered and rejected for `/` — Win98 chrome is the Y2K lab
       language, reserved for `/labs/98` in Priority 3.
+- [x] Sync the project archive with the live GitHub accounts (2026-07-11):
+      added Novacart, Lanely, Whale Logistics CMS, Audio/Video2Text AI,
+      Breaktime Arcade, HLS Keeper and Bili CDN DNS Pin — 19 entries total.
+      sdr2hdr and this portfolio itself now link to their public repos instead
+      of reading CODE PRIVATE; the “here” badge supports an optional source
+      link.
 - [~] Win7 mobile support is not fully responsive: portrait touch devices are
       asked to rotate and the fixed desktop canvas then runs in landscape.
 - [x] Preserve the existing Windows 7/Aero experience and its OOBE/demo routes.
@@ -74,11 +80,13 @@ more important than spectacle.
       tokens, ambient layers and metadata changed.)
 - [x] Replace the current cyan/violet-heavy mood with a controlled palette:
       near-black surfaces, phosphor green accents and off-white/grey body text.
-- [~] Define tokens for background, foreground, muted text, terminal green,
+- [x] Define tokens for background, foreground, muted text, terminal green,
       borders, glow, focus, success/warning states, spacing and motion.
-      (Colour tokens defined in `page.module.css` — `--bg/--panel/--line/--text/
-      --muted/--green/--green-soft/--green-deep/--ok/--red`; spacing and motion
-      still use literal values carried over from the previous iteration.)
+      (Colour tokens in `page.module.css`; 2026-07-11 pass added motion tokens
+      `--t-fast/--t-base/--t-mid/--t-slow/--ease/--ease-out` and spacing tokens
+      `--gutter/--gutter-md/--gutter-sm` to `page.module.css` and
+      `subpage.module.css`, replacing the repeated transition/gutter literals.
+      One-off animation choreography keeps literal durations by design.)
 - [x] Explore a lightweight code-rain or falling-glyph layer, terminal prompts,
       scanlines, grid traces, blinking cursors and code annotations.
       (`src/components/MatrixRain.tsx`: DPR-scaled canvas, throttled rAF,
@@ -95,9 +103,10 @@ more important than spectacle.
       the Win7 lab.)
 - [x] Avoid copyrighted film stills, logos, dialogue, fonts and ripped assets;
       produce an original hacker/cyber visual system.
-- [~] Update metadata theme colour and the Open Graph image after the new visual
-      direction is approved. (Theme colour now `#030806`; `public/og.png` still
-      shows the old cyan design and needs regenerating.)
+- [x] Update metadata theme colour and the Open Graph image after the new visual
+      direction is approved. (Theme colour `#030806`; `public/og.png`
+      regenerated 2026-07-11 as a 1200×630 phosphor/CRT card — bloomed name,
+      code-rain, scanlines — and the layout OG metadata updated to 1200×630.)
 
 ### Responsive, motion and performance requirements
 
@@ -154,6 +163,8 @@ more important than spectacle.
 > Same day: `/projects` gained a domain filter (ALL/WEB/AI-ML/SYSTEMS/
 > HARDWARE/MOBILE/LAB) — the picked domain's entries pin to the top, the rest
 > dim below; deep-linkable via URL hash (`/projects#web`, `#ai-ml`, …).
+> 2026-07-11 (later): archive synced against both GitHub accounts — seven
+> public repos added, now 19 entries; stale CODE PRIVATE labels fixed.
 
 ### Source material and data
 

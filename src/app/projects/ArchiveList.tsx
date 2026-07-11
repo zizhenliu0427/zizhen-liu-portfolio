@@ -50,7 +50,16 @@ function AccessBadge({ access }: { access: ArchiveAccess }) {
     case "nda":
       return <span className={styles.access}>NDA · DEMO ON REQUEST</span>;
     case "here":
-      return <span className={styles.access}>YOU ARE HERE</span>;
+      return access.href ? (
+        <>
+          <span className={styles.access}>YOU ARE HERE</span>
+          <a className={styles.accessLink} href={access.href} target="_blank" rel="noreferrer">
+            SOURCE ↗
+          </a>
+        </>
+      ) : (
+        <span className={styles.access}>YOU ARE HERE</span>
+      );
     case "none":
       return null;
     default:

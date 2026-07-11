@@ -9,6 +9,10 @@
   --muted: #8fa899;
   --green: #46ff7f;
   --green-soft: #c3ffd6;
+  /* Motion tokens — mirror page.module.css. */
+  --t-fast: 160ms;
+  --t-base: 180ms;
+  --ease: ease;
   position: relative;
   isolation: isolate;
   flex: 1;
@@ -118,7 +122,7 @@
   color: #89aa95;
   font: 600 10px/1 var(--font-geist-mono), monospace;
   letter-spacing: 0.1em;
-  transition: color 160ms ease;
+  transition: color var(--t-fast) var(--ease);
 }
 
 .backLink::before {
@@ -212,7 +216,7 @@
   font: 700 9px/1 var(--font-geist-mono), monospace;
   letter-spacing: 0.09em;
   cursor: pointer;
-  transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+  transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
 }
 
 .filterButton::before {
@@ -285,7 +289,7 @@
   gap: 10px 26px;
   padding: 26px 26px 28px;
   background: rgba(5, 11, 8, 0.92);
-  transition: background 180ms ease;
+  transition: background var(--t-base) var(--ease);
 }
 
 @media (hover: hover) {
@@ -375,7 +379,7 @@
 
 .accessLink {
   color: var(--green);
-  transition: color 160ms ease;
+  transition: color var(--t-fast) var(--ease);
 }
 
 .accessLink::before {
@@ -531,7 +535,7 @@
   font: 600 10px/1 var(--font-geist-mono), monospace;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  transition: color 160ms ease;
+  transition: color var(--t-fast) var(--ease);
 }
 
 .ctaLink::before {

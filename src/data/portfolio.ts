@@ -77,7 +77,7 @@ export type ArchiveAccess =
   | { kind: "nda" }
   | { kind: "private" }
   | { kind: "wip"; href?: string }
-  | { kind: "here" }
+  | { kind: "here"; href?: string }
   | { kind: "none" };
 
 export type ArchiveEntry = {
@@ -97,7 +97,10 @@ export const archive: readonly ArchiveEntry[] = [
     summary:
       "Fully GPU-resident video pipeline (NVDEC → CUDA → RTX TrueHDR/VSR → NVENC) sustaining ~120fps real-time 4K HDR conversion, with hand-written colour-space kernels, HDR10 metadata signalling and a bilingual CLI.",
     stack: ["C++17", "CUDA", "NVENC/NVDEC", "RTX Video SDK", "FFmpeg"],
-    access: { kind: "private" },
+    access: {
+      kind: "github",
+      href: "https://github.com/zizhenliu0427/sdr2hdr",
+    },
   },
   {
     year: "2026",
@@ -106,7 +109,10 @@ export const archive: readonly ArchiveEntry[] = [
     summary:
       "The site you are reading: a Next.js static build with a canvas code-rain, CRT ambient layers and a hand-built Windows 7 Aero window manager living at /desktop.",
     stack: ["Next.js", "TypeScript", "Canvas", "CSS Modules", "Cloudflare"],
-    access: { kind: "here" },
+    access: {
+      kind: "here",
+      href: "https://github.com/zizhenliu0427/zizhen-liu-portfolio",
+    },
   },
   {
     year: "2026",
@@ -118,6 +124,90 @@ export const archive: readonly ArchiveEntry[] = [
     access: {
       kind: "github",
       href: "https://github.com/Fairchild2333/Multi-Graphics-API-GPU-Benchmark",
+    },
+  },
+  {
+    year: "2026",
+    title: "Novacart — E-Commerce Platform",
+    domains: ["WEB"],
+    summary:
+      "Mobile-first e-commerce platform in active development: an ASP.NET Core + PostgreSQL backend with a configurable order state machine, Stripe payments, Redis caching and server-side cart persistence, behind a Next.js PWA storefront with admin analytics.",
+    stack: ["ASP.NET Core", "Next.js", "PostgreSQL", "Stripe", "Redis", "Docker"],
+    access: {
+      kind: "github",
+      href: "https://github.com/zizhenliu0427/Novacart",
+    },
+  },
+  {
+    year: "2026",
+    title: "Lanely — Kanban Project Management",
+    domains: ["WEB"],
+    summary:
+      "Full-stack Kanban tool — drag-and-drop boards, real-time collaboration over WebSockets and project analytics, with a FastAPI + SQLAlchemy backend behind a React/TypeScript front end.",
+    stack: ["FastAPI", "SQLAlchemy", "React", "TypeScript", "WebSocket", "Docker"],
+    access: {
+      kind: "github",
+      href: "https://github.com/zizhenliu0427/lanely",
+    },
+  },
+  {
+    year: "2026",
+    title: "Whale Logistics CMS — Sea-Freight Microservices",
+    domains: ["WEB"],
+    summary:
+      "Spring Cloud microservices platform modernising end-to-end sea-freight workflows: automates container visibility from the wharf to empty dehire, replacing manual email coordination and mitigating detention risk.",
+    stack: ["Java", "Spring Cloud", "RabbitMQ", "React", "TypeScript", "Docker"],
+    access: {
+      kind: "github",
+      href: "https://github.com/Fairchild2333/whale-logistics-cms",
+    },
+  },
+  {
+    year: "2026",
+    title: "Audio/Video2Text AI — Transcription Suite",
+    domains: ["AI/ML", "WEB"],
+    summary:
+      "AI audio/video transcription with speaker diarisation, shipped three ways — CLI, web app and Electron desktop — with FFmpeg preprocessing in front of Whisper-class ASR models.",
+    stack: ["Python", "Whisper", "FFmpeg", "FastAPI", "Next.js", "Electron"],
+    access: {
+      kind: "github",
+      href: "https://github.com/zizhenliu0427/Audio-Video2Text-AI",
+    },
+  },
+  {
+    year: "2026",
+    title: "Breaktime Arcade — Multiplayer Party Games",
+    domains: ["WEB"],
+    summary:
+      "Kahoot-style party-game platform: host on a projector, players join from their phones — real-time game rooms over Socket.IO in a Vue 3 + TypeScript monorepo, installable as a PWA.",
+    stack: ["Vue 3", "TypeScript", "Socket.IO", "Express", "PWA"],
+    access: {
+      kind: "github",
+      href: "https://github.com/zizhenliu0427/breaktime-arcade",
+    },
+  },
+  {
+    year: "2026",
+    title: "HLS Keeper — Local-First Stream Archiver",
+    domains: ["WEB"],
+    summary:
+      "Captures HLS streams and site attachments via a browser extension talking to a local Python server with a web dashboard; FFmpeg merges segments into playable archives, all on your own machine.",
+    stack: ["Python", "Chrome Extension", "FFmpeg", "HLS"],
+    access: {
+      kind: "github",
+      href: "https://github.com/zizhenliu0427/hls-keeper",
+    },
+  },
+  {
+    year: "2026",
+    title: "Bili CDN DNS Pin — Streaming Network Tuner",
+    domains: ["SYSTEMS"],
+    summary:
+      "Fixes overseas Bilibili buffering by probing CDN edge nodes and pinning the fastest via DNS — periodic re-checks, threshold protection and candidate-IP refresh across Windows, macOS, OpenWrt and AdGuard Home.",
+    stack: ["Shell", "DNS", "OpenWrt", "AdGuard Home"],
+    access: {
+      kind: "github",
+      href: "https://github.com/zizhenliu0427/bili-cdn-dns-pin",
     },
   },
   {
