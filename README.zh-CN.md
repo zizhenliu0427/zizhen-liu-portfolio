@@ -23,7 +23,7 @@
   Canvas 代码雨、扫描线与辉光，并提供减弱动效 / 低功耗降级。招聘者的阅读
   路径优先，视觉效果始终在内容之后。
 - **Aero/Y2K 实验室（`/desktop`、`/oobe`、`/demo`）**——Frutiger Aero / 玻璃拟态，
-  灵感来自 Windows Aero (Longhorn - Vista - 7) 与 Aqua / Liquid Glass：手写的
+  灵感来自 Windows Aero (Longhorn - Vista - 7) 与 Mac OS X Aqua / macOS Liquid Glass：手写的
   可拖拽窗口管理器、OOBE 风格简历向导和组件演示场。后续计划加入 XP 与
   Windows 98 界面。
 
