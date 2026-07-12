@@ -821,6 +821,7 @@
 }
 
 .project {
+  scroll-margin-top: 96px;
   display: grid;
   grid-template-columns: minmax(0, 0.8fr) minmax(480px, 1.2fr);
   align-items: stretch;
@@ -1504,6 +1505,189 @@
   letter-spacing: 0.1em;
 }
 
+/* Novacart: storefront/checkout terminal. */
+.cartVisual {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--gutter-sm) 18px;
+  background: radial-gradient(circle at 24% 10%, rgba(28, 170, 88, 0.12), transparent 44%);
+}
+
+/* The configurable order state machine, PAID currently lit. */
+.cartFlow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  margin-top: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(100, 212, 148, 0.16);
+  background: rgba(100, 212, 148, 0.12);
+}
+
+.cartFlow > div {
+  display: grid;
+  gap: 9px;
+  justify-items: center;
+  padding: 13px 6px 12px;
+  background: rgba(5, 11, 8, 0.95);
+}
+
+.cartFlow i {
+  width: 7px;
+  height: 7px;
+  border: 1px solid #2c5039;
+  border-radius: 50%;
+}
+
+.cartFlow span {
+  color: #587a63;
+  font: 600 7.5px/1 var(--font-geist-mono), monospace;
+  letter-spacing: 0.12em;
+}
+
+.cartStageActive i {
+  border-color: var(--green);
+  background: var(--green);
+  box-shadow: 0 0 12px var(--green);
+}
+
+.cartStageActive span {
+  color: var(--green-soft);
+  text-shadow: 0 0 8px rgba(70, 255, 127, 0.4);
+}
+
+.cartRows {
+  display: grid;
+  gap: 1px;
+  margin-top: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(100, 212, 148, 0.16);
+  background: rgba(100, 212, 148, 0.12);
+}
+
+.cartRows > div {
+  display: grid;
+  grid-template-columns: 58px 1fr auto auto;
+  gap: 12px;
+  align-items: center;
+  min-height: 52px;
+  padding: 0 14px;
+  background: rgba(5, 11, 8, 0.95);
+}
+
+.cartRows span {
+  color: #36583f;
+  font: 600 8px/1 var(--font-geist-mono), monospace;
+}
+
+.cartRows strong {
+  overflow: hidden;
+  color: #b5d2bf;
+  font: 650 10px/1 var(--font-geist-mono), monospace;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cartRows i {
+  color: #648a71;
+  font: 500 8px/1 var(--font-geist-mono), monospace;
+  font-style: normal;
+}
+
+.cartRows b {
+  color: #9fe7b6;
+  font: 650 10px/1 var(--font-geist-mono), monospace;
+}
+
+.cartTotal strong {
+  color: var(--green-soft);
+}
+
+.cartTotal b {
+  color: var(--green);
+  text-shadow: 0 0 12px rgba(70, 255, 127, 0.5);
+}
+
+/* MediaJira: slug-migration diff + CI pipeline terminal. */
+.campaignVisual {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--gutter-sm) 18px;
+  background: radial-gradient(circle at 76% 12%, rgba(28, 170, 88, 0.11), transparent 44%);
+}
+
+.urlDiff {
+  display: grid;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 14px 15px 15px;
+  border: 1px solid rgba(100, 212, 148, 0.16);
+  background: rgba(5, 11, 8, 0.9);
+  font: 500 9px/1.4 var(--font-geist-mono), monospace;
+}
+
+.urlDiff span {
+  margin-bottom: 3px;
+  color: #587a63;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.urlDiff b {
+  overflow: hidden;
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.diffMinus {
+  color: #a05a68;
+}
+
+.diffPlus {
+  color: #8fe7ac;
+  text-shadow: 0 0 8px rgba(70, 255, 127, 0.25);
+}
+
+.ciFlow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  margin-top: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(100, 212, 148, 0.16);
+  background: rgba(100, 212, 148, 0.12);
+}
+
+.ciFlow > div {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  padding: 13px 6px 12px;
+  background: rgba(5, 11, 8, 0.95);
+}
+
+.ciFlow i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 10px rgba(70, 255, 127, 0.7);
+}
+
+.ciFlow span {
+  color: #587a63;
+  font: 600 7.5px/1 var(--font-geist-mono), monospace;
+  letter-spacing: 0.12em;
+}
+
+.ciFlow b {
+  color: #b5d2bf;
+  font: 650 10px/1 var(--font-geist-mono), monospace;
+}
+
 .experienceSection {
   width: 100%;
   max-width: none;
@@ -1535,7 +1719,50 @@
   display: grid;
 }
 
+.timelineLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 16px;
+  margin-top: 18px;
+}
+
+.timelineLinks a {
+  color: var(--green);
+  font: 650 9px/1.4 var(--font-geist-mono), monospace;
+  letter-spacing: 0.08em;
+  transition: color var(--t-fast) var(--ease);
+}
+
+.timelineLinks a::before {
+  color: #4b6a56;
+  content: "[ ";
+}
+
+.timelineLinks a::after {
+  color: #4b6a56;
+  content: " ↗ ]";
+}
+
+.timelineLinks a:hover,
+.timelineLinks a:focus-visible {
+  color: #fff;
+}
+
+/* Same-page anchors (e.g. experience ↔ featured card) get a down-right arrow. */
+.timelineLinks a.internalLink::after {
+  content: " ↘ ]";
+}
+
+/* Footnote for the mainland-China-hosted company sites. */
+.timelineNote {
+  margin: 4px 0 0;
+  color: #5e8068;
+  font: 500 9px/1.7 var(--font-geist-mono), monospace;
+  letter-spacing: 0.06em;
+}
+
 .timelineItem {
+  scroll-margin-top: 96px;
   display: grid;
   grid-template-columns: 42px minmax(130px, 0.36fr) 1fr;
   gap: 24px;
@@ -1745,6 +1972,19 @@
   color: #51715a;
   font: 500 9px/1.6 var(--font-geist-mono), monospace;
   letter-spacing: 0.04em;
+}
+
+/* Location + verified rank chip under the degree. */
+.educationList .eduMeta {
+  color: #5e8068;
+  font: 600 9px/1.6 var(--font-geist-mono), monospace;
+  letter-spacing: 0.08em;
+}
+
+.educationList .eduMeta b {
+  color: var(--green);
+  font-weight: 650;
+  text-shadow: 0 0 8px rgba(70, 255, 127, 0.3);
 }
 
 .labSection {

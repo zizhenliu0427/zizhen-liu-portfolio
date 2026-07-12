@@ -65,6 +65,15 @@ export default function AboutPage() {
                 <div>
                   <h3>{item.school}</h3>
                   <p>{item.degree}</p>
+                  <p className={styles.eduMeta}>
+                    {item.location.toUpperCase()}
+                    {item.ranking && (
+                      <>
+                        {" "}
+                        <b>[ {item.ranking} ]</b>
+                      </>
+                    )}
+                  </p>
                   <p className={styles.courses}>{item.courses.join(" · ")}</p>
                 </div>
               </article>

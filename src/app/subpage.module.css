@@ -505,6 +505,19 @@
   font: 500 9px/1.6 var(--font-geist-mono), monospace;
 }
 
+/* Location + verified rank chip under the degree. */
+.eduList .eduMeta {
+  color: #5e8068;
+  font: 600 9px/1.6 var(--font-geist-mono), monospace;
+  letter-spacing: 0.08em;
+}
+
+.eduList .eduMeta b {
+  color: var(--green);
+  font-weight: 650;
+  text-shadow: 0 0 8px rgba(70, 255, 127, 0.3);
+}
+
 /* ---------- shared footer ---------- */
 
 .cta {

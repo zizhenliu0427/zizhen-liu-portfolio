@@ -111,6 +111,92 @@ function ProjectVisual({ visual }: { visual: (typeof projects)[number]["visual"]
     );
   }
 
+  if (visual === "campaign") {
+    const checks = [
+      { stage: "TSC", value: "0 ERR" },
+      { stage: "LINT", value: "0 ERR" },
+      { stage: "JEST", value: "809" },
+      { stage: "PYTEST", value: "4,758" },
+    ];
+    return (
+      <div className={`${styles.projectVisual} ${styles.campaignVisual}`} aria-hidden="true">
+        <div className={styles.visualTopline}>
+          <span>MEDIAJIRA / PLATFORM</span>
+          <span className={styles.visualStatus}>CI · GREEN</span>
+        </div>
+        <div className={styles.urlDiff}>
+          <span>slug-url migration — 373 files, 12 modules</span>
+          <b className={styles.diffMinus}>- /tasks/123</b>
+          <b className={styles.diffPlus}>+ /tasks/design-homepage-banner</b>
+          <b className={styles.diffMinus}>- /campaigns/3fa85f64-5717-4562</b>
+          <b className={styles.diffPlus}>+ /campaigns/summer-launch</b>
+        </div>
+        <div className={styles.ciFlow}>
+          {checks.map((check) => (
+            <div key={check.stage}>
+              <i />
+              <span>{check.stage}</span>
+              <b>{check.value}</b>
+            </div>
+          ))}
+        </div>
+        <div className={styles.promptLine}>
+          <span>&gt;_</span>
+          <span>application_test 57:00 → 19:33 · −66%</span>
+          <i />
+        </div>
+        <VisualChrome />
+      </div>
+    );
+  }
+
+  if (visual === "cart") {
+    const stages = ["CREATED", "PAID", "PACKED", "SHIPPED"];
+    const items = [
+      { sku: "SKU-1042", name: "MECH KEYBOARD 75%", qty: "×1", price: "129.00" },
+      { sku: "SKU-0917", name: "USB-C DOCK 8K", qty: "×1", price: "89.00" },
+      { sku: "SKU-2203", name: "GAN CHARGER 100W", qty: "×2", price: "90.00" },
+    ];
+    return (
+      <div className={`${styles.projectVisual} ${styles.cartVisual}`} aria-hidden="true">
+        <div className={styles.visualTopline}>
+          <span>NOVACART / ORDER_7421</span>
+          <span className={styles.visualStatus}>PWA · ONLINE</span>
+        </div>
+        <div className={styles.cartFlow}>
+          {stages.map((stage, index) => (
+            <div key={stage} className={index === 1 ? styles.cartStageActive : undefined}>
+              <i />
+              <span>{stage}</span>
+            </div>
+          ))}
+        </div>
+        <div className={styles.cartRows}>
+          {items.map((item) => (
+            <div key={item.sku}>
+              <span>{item.sku}</span>
+              <strong>{item.name}</strong>
+              <i>{item.qty}</i>
+              <b>${item.price}</b>
+            </div>
+          ))}
+          <div className={styles.cartTotal}>
+            <span>TXN</span>
+            <strong>ORDER TOTAL</strong>
+            <i>AUD</i>
+            <b>$308.00</b>
+          </div>
+        </div>
+        <div className={styles.promptLine}>
+          <span>&gt;_</span>
+          <span>stripe.paymentIntent.confirm(&quot;order_7421&quot;)</span>
+          <i />
+        </div>
+        <VisualChrome />
+      </div>
+    );
+  }
+
   return (
     <div className={`${styles.projectVisual} ${styles.cameraVisual}`} aria-hidden="true">
       <div className={styles.visualTopline}>
@@ -272,7 +358,7 @@ export default function Home() {
         <SectionHeading index="01" eyebrow="SELECTED_WORK" title="Products built end to end." />
         <div className={styles.projects}>
           {projects.map((project) => (
-            <article className={styles.project} key={project.id}>
+            <article className={styles.project} key={project.id} id={`project-${project.id}`}>
               <div className={styles.projectCopy}>
                 <div className={styles.projectIndex}>
                   <span>{project.index}</span>
@@ -289,13 +375,24 @@ export default function Home() {
                 </ul>
                 <div className={styles.projectFooter}>
                   <span>{project.metric}</span>
-                  {"href" in project ? (
+                  {project.href && (
                     <a href={project.href} target="_blank" rel="noreferrer">
                       View live project <span aria-hidden="true">↗</span>
                     </a>
-                  ) : (
+                  )}
+                  {project.github && (
+                    <a href={project.github} target="_blank" rel="noreferrer">
+                      View source <span aria-hidden="true">↗</span>
+                    </a>
+                  )}
+                  {project.experienceHref && (
+                    <a href={project.experienceHref}>
+                      Experience entry <span aria-hidden="true">↘</span>
+                    </a>
+                  )}
+                  {!project.href && !project.github && (
                     <span className={styles.caseStudyPending}>
-                      {"access" in project ? project.access : "CASE STUDY / INCOMING"}
+                      {project.access ?? "CASE STUDY / INCOMING"}
                     </span>
                   )}
                 </div>
@@ -321,7 +418,11 @@ export default function Home() {
           </p>
           <div className={styles.timeline}>
             {experience.map((item, index) => (
-              <article key={item.company} className={styles.timelineItem}>
+              <article
+                key={item.company}
+                className={styles.timelineItem}
+                id={`exp-${item.company.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+              >
                 <div className={styles.timelineMarker}>
                   <span>{String(index + 1).padStart(2, "0")}</span>
                   <i />
@@ -334,9 +435,28 @@ export default function Home() {
                   <h3>{item.company}</h3>
                   <p>{item.role}</p>
                   <ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
+                  {item.links && (
+                    <div className={styles.timelineLinks}>
+                      {item.links.map((link) =>
+                        link.internal ? (
+                          <a key={link.href} href={link.href} className={styles.internalLink}>
+                            {link.label}
+                          </a>
+                        ) : (
+                          <a key={link.href} href={link.href} target="_blank" rel="noreferrer">
+                            {link.cn ? `${link.label} †` : link.label}
+                          </a>
+                        ),
+                      )}
+                    </div>
+                  )}
                 </div>
               </article>
             ))}
+            <p className={styles.timelineNote}>
+              † Hosted in mainland China — these sites may not load from
+              Australian networks without a China route.
+            </p>
           </div>
         </div>
       </section>
@@ -369,6 +489,15 @@ export default function Home() {
                 <div>
                   <h4>{item.school}</h4>
                   <p>{item.degree}</p>
+                  <p className={styles.eduMeta}>
+                    {item.location.toUpperCase()}
+                    {item.ranking && (
+                      <>
+                        {" "}
+                        <b>[ {item.ranking} ]</b>
+                      </>
+                    )}
+                  </p>
                   <p className={styles.courses}>{item.courses.join(" · ")}</p>
                 </div>
               </article>

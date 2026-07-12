@@ -1,6 +1,12 @@
-# Portfolio content (source of truth)
+# Portfolio content (OOBE wizard extract)
 
 Extracted from `前端 Resume Zizhen Liu.pdf`. Organised into the OOBE wizard steps.
+
+> 2026-07-11: the typed source of truth for the live site is now
+> [`src/data/portfolio.ts`](../src/data/portfolio.ts) (full-stack positioning,
+> 19-entry archive synced with GitHub). This file remains the
+> frontend-flavoured extract that feeds the Aero OOBE wizard; the title below
+> reflects that original resume, not the current site positioning.
 
 ## Welcome
 - **Name:** Zizhen Liu (Lance)
@@ -54,6 +60,17 @@ intuitive, high-performing, user-centric web apps.
 - **Data Viz & Web APIs:** ECharts, D3.js, Web Workers, Intersection Observer, Fetch API
 - **Tooling & Testing:** Vite, Vitest, Git, Vercel, Figma
 - **Backend & Security:** Python, Node.js, RESTful API integration, JWT auth
+
+## Public repositories added 2026-07-11 (both GitHub accounts)
+
+- Novacart — ASP.NET Core + Next.js + PostgreSQL + Stripe e-commerce (active)
+- Lanely — FastAPI + React/TS Kanban with WebSocket collaboration
+- Whale Logistics CMS — Spring Cloud sea-freight microservices
+- Audio/Video2Text AI — transcription + speaker diarisation (CLI/Web/Desktop)
+- Breaktime Arcade — Vue 3 + Socket.IO multiplayer party games
+- HLS Keeper — local-first HLS capture (extension + local server + dashboard)
+- Bili CDN DNS Pin — overseas Bilibili CDN probe-and-pin network tool
+- sdr2hdr — now public: GPU SDR→HDR/VSR pipeline (was CODE PRIVATE)
 
 ## Contact
 - Email: lzz288898@gmail.com · Phone: +61 432354832 · [LinkedIn](https://www.linkedin.com/in/zizhen-liu-580a40258/) · [GitHub](https://github.com/zizhenliu0427) · [GitHub (Fairchild2333)](https://github.com/Fairchild2333) · Sydney

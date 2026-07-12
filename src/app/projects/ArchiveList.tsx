@@ -29,9 +29,16 @@ function AccessBadge({ access }: { access: ArchiveAccess }) {
   switch (access.kind) {
     case "live":
       return (
-        <a className={styles.accessLink} href={access.href} target="_blank" rel="noreferrer">
-          LIVE ↗
-        </a>
+        <>
+          <a className={styles.accessLink} href={access.href} target="_blank" rel="noreferrer">
+            LIVE ↗
+          </a>
+          {access.source && (
+            <a className={styles.accessLink} href={access.source} target="_blank" rel="noreferrer">
+              SOURCE ↗
+            </a>
+          )}
+        </>
       );
     case "github":
       return (

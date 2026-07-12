@@ -3,9 +3,11 @@
 > Updated: 2026-07-11  
 > Status: Priority 1 (Matrix CRT reskin) is complete on desktop-browser
 > evidence — only real-device iOS/Android checks remain. Priority 2 has landed
-> its first passes: full-stack repositioning, `/projects` (19 entries, synced
-> with both GitHub accounts) and `/about`. All work is committed up to
-> `74b2385`.
+> its first passes: full-stack repositioning, `/projects` (20 entries, synced
+> with both GitHub accounts) and `/about`. Committed up to `355e5bd`; the
+> 2026-07-12 batch (featured cards 04/05, Codritium internship + company
+> links, education QS rank chips, README/docs sync) is committed directly by
+> the owner.
 
 ## 1. Current decision
 

@@ -14,7 +14,28 @@ export const profile = {
     "I build complete products — responsive interfaces, data and AI backends, and systems code all the way down to the GPU.",
 } as const;
 
-export const projects = [
+export type FeaturedProject = {
+  id: string;
+  index: string;
+  year: string;
+  title: string;
+  type: string;
+  summary: string;
+  highlights: readonly string[];
+  stack: readonly string[];
+  metric: string;
+  visual: "sensor" | "database" | "camera" | "cart" | "campaign";
+  /** Live product URL, shown as "View live project". */
+  href?: string;
+  /** Public repository URL, shown as "View source". */
+  github?: string;
+  /** Honest access label when neither link exists. */
+  access?: string;
+  /** In-page anchor to the matching experience entry (e.g. "#exp-codritium"). */
+  experienceHref?: string;
+};
+
+export const projects: readonly FeaturedProject[] = [
   {
     id: "sensor",
     index: "01",
@@ -69,10 +90,48 @@ export const projects = [
     visual: "camera",
     access: "TEAM PROJECT / CODE PRIVATE",
   },
-] as const;
+  {
+    id: "novacart",
+    index: "04",
+    year: "2026",
+    title: "Novacart",
+    type: "Personal product · E-commerce platform · in development",
+    summary:
+      "A mobile-first e-commerce platform built end to end — a Next.js PWA storefront over an ASP.NET Core + PostgreSQL backend with Stripe payments, Redis caching, server-side cart persistence and a configurable order state machine.",
+    highlights: [
+      "Configurable order state machine + admin analytics",
+      "Server-side cart persistence · Stripe payments",
+      "Dockerised ASP.NET Core + PostgreSQL + Redis stack",
+    ],
+    stack: ["ASP.NET Core", "C#", "Next.js", "PostgreSQL", "Stripe", "Redis"],
+    metric: "IN ACTIVE DEV",
+    visual: "cart",
+    github: "https://github.com/zizhenliu0427/Novacart",
+  },
+  {
+    id: "mediajira",
+    index: "05",
+    year: "2026",
+    title: "Marketing Simplified (MediaJira)",
+    type: "Codritium internship · Platform engineering across the stack",
+    summary:
+      "The campaign-management platform I build at Codritium — a 373-file slug-URL migration across 12 Django/Next.js modules, a CI pipeline rebuilt from 57 to 20 minutes, a production outage diagnosed and recovered on GCP, and CSM features shipped end to end.",
+    highlights: [
+      "12-module slug-URL architecture + IDOR access-control hardening",
+      "CI −66%: pytest config fix (+597 recovered tests), xdist, blocking quality gates",
+      "Prod 521 recovery — 144 migrations restored, migration guard + health polling",
+    ],
+    stack: ["Next.js", "TypeScript", "Django REST", "PostgreSQL", "GitHub Actions", "Docker"],
+    metric: "4,758 TESTS GREEN",
+    visual: "campaign",
+    href: "https://zmarkio.com/",
+    github: "https://github.com/quanwangniuniu/marketing-simplified",
+    experienceHref: "#exp-codritium",
+  },
+];
 
 export type ArchiveAccess =
-  | { kind: "live"; href: string }
+  | { kind: "live"; href: string; source?: string }
   | { kind: "github"; href: string }
   | { kind: "nda" }
   | { kind: "private" }
@@ -124,6 +183,19 @@ export const archive: readonly ArchiveEntry[] = [
     access: {
       kind: "github",
       href: "https://github.com/Fairchild2333/Multi-Graphics-API-GPU-Benchmark",
+    },
+  },
+  {
+    year: "2026",
+    title: "Marketing Simplified — Campaign Management Platform",
+    domains: ["WEB"],
+    summary:
+      "Codritium internship product (MediaJira): a campaign-management platform for media-buying teams — Next.js/TypeScript over Django REST + Channels, with Kafka event streaming, Celery jobs, ad-platform integrations and a Prometheus/Grafana/Loki/Jaeger observability stack.",
+    stack: ["Next.js", "TypeScript", "Django REST", "Kafka", "Celery", "PostgreSQL"],
+    access: {
+      kind: "live",
+      href: "https://zmarkio.com/",
+      source: "https://github.com/quanwangniuniu/marketing-simplified",
     },
   },
   {
@@ -296,7 +368,49 @@ export const archive: readonly ArchiveEntry[] = [
   },
 ] as const;
 
-export const experience = [
+export type ExperienceLink = {
+  label: string;
+  href: string;
+  /** Hosted in mainland China — may not load from AU networks directly. */
+  cn?: boolean;
+  /** Same-page anchor link (renders without target="_blank"). */
+  internal?: boolean;
+};
+
+export type ExperienceItem = {
+  period: string;
+  company: string;
+  location: string;
+  role: string;
+  bullets: readonly string[];
+  links?: readonly ExperienceLink[];
+};
+
+export const experience: readonly ExperienceItem[] = [
+  {
+    period: "JUN 2026 — PRESENT",
+    company: "Codritium",
+    location: "Sydney, Australia",
+    role: "Software Developer Intern",
+    bullets: [
+      "Building Marketing Simplified (MediaJira), a campaign-management platform for media-buying teams — a Next.js/TypeScript front end over a Django REST + Channels backend.",
+      "Working across an event-driven, containerised stack: Kafka event pipelines, Celery background jobs, PostgreSQL/Redis, Nginx and Docker Compose.",
+      "Shipping with production-grade observability (OpenTelemetry → Prometheus/Grafana/Loki/Jaeger) and a Jest/pytest/K6 test pipeline in GitHub Actions CI.",
+    ],
+    links: [
+      { label: "FEATURED_05", href: "#project-mediajira", internal: true },
+      { label: "ZMARKIO.COM", href: "https://zmarkio.com/" },
+      {
+        label: "SOURCE",
+        href: "https://github.com/quanwangniuniu/marketing-simplified",
+      },
+      { label: "CODRITIUM", href: "https://www.codritium.com/" },
+      {
+        label: "LINKEDIN",
+        href: "https://www.linkedin.com/company/codritium/",
+      },
+    ],
+  },
   {
     period: "OCT 2023 — JAN 2024",
     company: "Intelli New Technologies",
@@ -306,6 +420,13 @@ export const experience = [
       "Built Python scrapers and Pandas ETL pipelines to collect, validate and normalise semi-structured web data for downstream features.",
       "Translated business requirements into user stories and API contracts, verifying React components in Agile sprint reviews via Jira/Confluence.",
       "Produced and validated data-dashboard wireframes, supporting responsive implementation across the frontend/backend boundary.",
+    ],
+    links: [
+      { label: "INTELLINEW.COM.AU", href: "https://intellinew.com.au/" },
+      {
+        label: "LINKEDIN",
+        href: "https://www.linkedin.com/company/intelli-new-technologies/",
+      },
     ],
   },
   {
@@ -317,8 +438,17 @@ export const experience = [
       "Maintained a Vue.js corporate site in production, shipping responsive UI and content updates safely.",
       "Diagnosed workstation hardware and configured operating systems and creative software for heavy-workload use.",
     ],
+    links: [
+      { label: "GROUP SITE", href: "https://goldenladies.com/", cn: true },
+      { label: "CHONGQING", href: "https://cq.121314.com/", cn: true },
+      { label: "GUANGZHOU", href: "http://www.jfrgz.com/", cn: true },
+      {
+        label: "LINKEDIN",
+        href: "https://www.linkedin.com/company/%E9%87%8D%E5%BA%86%E9%87%91%E5%A4%AB%E4%BA%BA%E5%AE%9E%E4%B8%9A%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/",
+      },
+    ],
   },
-] as const;
+];
 
 export const capabilities = [
   {
@@ -347,20 +477,34 @@ export const capabilities = [
   },
 ] as const;
 
-export const education = [
+export type EducationItem = {
+  school: string;
+  location: string;
+  /** Verified rank chip, e.g. "QS 2027 · WORLD #19". Keep it short. */
+  ranking?: string;
+  degree: string;
+  period: string;
+  courses: readonly string[];
+};
+
+export const education: readonly EducationItem[] = [
   {
-    school: "University of New South Wales",
+    school: "University of New South Wales (UNSW)",
+    location: "Sydney, Australia",
+    ranking: "QS 2027 · WORLD #19 · AU #1",
     degree: "Master of Information Technology",
     period: "2024 — 2025",
     courses: ["Capstone Project (85)", "Artificial Intelligence (81)", "Advanced C++ (81)"],
   },
   {
-    school: "University of Technology Sydney",
+    school: "University of Technology Sydney (UTS)",
+    location: "Sydney, Australia",
+    ranking: "QS 2027 · WORLD #87",
     degree: "Bachelor of Software Engineering (Honours)",
     period: "2021 — 2024",
     courses: ["Database Fundamentals (94)", "Systems Testing & QM (90)", "Data Structures & Algorithms (84)"],
   },
-] as const;
+];
 
 export const interests = [
   {

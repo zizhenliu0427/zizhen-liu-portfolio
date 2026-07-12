@@ -59,6 +59,15 @@ These are release safeguards, not competing product priorities.
 - [x] Sync the project archive with the live GitHub accounts (2026-07-11):
       added Novacart, Lanely, Whale Logistics CMS, Audio/Video2Text AI,
       Breaktime Arcade, HLS Keeper and Bili CDN DNS Pin — 19 entries total.
+- [x] 2026-07-12: Novacart promoted to a fourth featured card (new "cart"
+      order-state-machine visual); Marketing Simplified added as a fifth
+      featured card (new "campaign" slug-diff + CI-pipeline visual, content
+      sourced from the owner's SMP/MED ticket reports);
+      Codritium Software Developer Intern
+      (JUN 2026 — PRESENT, Marketing Simplified / MediaJira) added to
+      experience with company links; Intelli and Golden Lady gained
+      website/LinkedIn links with a CN-hosted footnote; archive now 20
+      entries (Marketing Simplified, LIVE + SOURCE).
       sdr2hdr and this portfolio itself now link to their public repos instead
       of reading CODE PRIVATE; the “here” badge supports an optional source
       link.
@@ -194,6 +203,11 @@ more important than spectacle.
       location and impact-first bullets.
 - [ ] Expand education details for UNSW, UTS and any relevant awards,
       coursework or activities that strengthen the story.
+- [ ] Earlier (secondary) education on /about, opt-in only: hidden by default
+      behind an explicit [ SHOW_EARLIER_EDUCATION ] disclosure button — the
+      entries render only after the click, never in the default flow and never
+      on the homepage. Needs school names/dates from the owner first
+      (2026-07-12 request).
 - [ ] Add a visible Resume action once the current PDF exists.
 - [ ] Decide whether long-form content belongs in `/projects/[slug]` pages or a
       smaller expandable archive after the source material is collected.
