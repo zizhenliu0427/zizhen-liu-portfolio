@@ -13,16 +13,16 @@
 - **样式：** CSS Modules（主站）+ Tailwind CSS 4 · Aero 实验室使用玻璃拟态
 - **代码检查：** ESLint 9
 - **多语言：** 中英文切换——规划中（Priority 4）
-- **部署：** Cloudflare（OpenNext 静态导出）
+- **临时部署：** Cloudflare（OpenNext 静态导出）
 
 ## 设计风格
 
 两套并存的视觉体系：
 
-- **主站（`/`）**——Matrix 风格的 CRT 操作员终端：近黑底色、磷绿高亮、
+- **主站（`/`）**——黑客帝国 (Matrix) 风格的 CRT 操作员终端：近黑底色、磷绿高亮、
   Canvas 代码雨、扫描线与辉光，并提供减弱动效 / 低功耗降级。招聘者的阅读
   路径优先，视觉效果始终在内容之后。
-- **Aero 实验室（`/desktop`、`/oobe`、`/demo`）**——Frutiger Aero / 玻璃拟态，
+- **Aero/Y2K 实验室（`/desktop`、`/oobe`、`/demo`）**——Frutiger Aero / 玻璃拟态，
   灵感来自 Windows Aero (Longhorn - Vista - 7) 与 Aqua / Liquid Glass：手写的
   可拖拽窗口管理器、OOBE 风格简历向导和组件演示场。后续计划加入 XP 与
   Windows 98 界面。
