@@ -20,6 +20,55 @@
   letter-spacing: 0.06em;
 }
 
+.embedded {
+  position: absolute;
+  z-index: 6;
+  background:
+    radial-gradient(circle at 50% 44%, rgba(18, 120, 62, 0.1), transparent 30rem),
+    rgba(2, 8, 5, 0.58);
+  backdrop-filter: blur(1.5px);
+}
+
+.embedded .inner {
+  padding: 26px 30px 28px;
+  border: 1px solid rgba(84, 255, 150, 0.28);
+  background: rgba(2, 9, 5, 0.82);
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.5),
+    inset 0 0 42px rgba(70, 255, 127, 0.035),
+    0 0 40px rgba(70, 255, 127, 0.06);
+  clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 13px, 100% 100%, 13px 100%, 0 calc(100% - 13px));
+}
+
+.compact {
+  animation: bootFade 0.18s ease 0.64s forwards;
+}
+
+.compact .line {
+  animation-duration: 0.03s;
+}
+
+.compact .line:nth-of-type(2) {
+  animation-delay: 0.02s;
+}
+
+.compact .line:nth-of-type(3) {
+  animation-delay: 0.12s;
+}
+
+.compact .line:nth-of-type(4) {
+  animation-delay: 0.24s;
+}
+
+.compact .last {
+  animation-delay: 0.36s !important;
+}
+
+.compact .bar span {
+  animation-duration: 0.54s;
+  animation-delay: 0.02s;
+}
+
 .title {
   margin: 0 0 14px;
   padding-bottom: 10px;

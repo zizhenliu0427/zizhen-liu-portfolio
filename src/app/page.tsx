@@ -7,7 +7,7 @@ import {
   profile,
   projects,
 } from "@/data/portfolio";
-import BootScreen from "@/components/BootScreen";
+import CinematicEntry from "@/components/CinematicEntry";
 import Decode from "@/components/Decode";
 import MatrixRain from "@/components/MatrixRain";
 import styles from "./page.module.css";
@@ -228,7 +228,7 @@ export default function Home() {
         Skip to content
       </a>
 
-      <BootScreen />
+      <CinematicEntry />
 
       <div className={styles.ambient} aria-hidden="true">
         <div className={styles.grid} />
@@ -265,7 +265,7 @@ export default function Home() {
       </header>
 
       <section className={styles.hero} id="top">
-        <div className={styles.heroContent} id="main-content">
+        <div className={styles.heroContent} id="main-content" tabIndex={-1}>
           <div className={styles.heroMeta}>
             <span>00 // SYSTEM_PROFILE</span>
             <span>SYDNEY · AU</span>
@@ -444,19 +444,22 @@ export default function Home() {
                           </a>
                         ) : (
                           <a key={link.href} href={link.href} target="_blank" rel="noreferrer">
-                            {link.cn ? `${link.label} †` : link.label}
+                            {link.cn ? `${link.label} ①` : link.label}
                           </a>
                         ),
                       )}
                     </div>
                   )}
+                  {item.links?.some((link) => link.cn) && (
+                    <p className={styles.timelineNote}>
+                      ① Hosted in mainland China — access from outside China
+                      may be affected by the GFW and may require a Chinese
+                      network route/proxy.
+                    </p>
+                  )}
                 </div>
               </article>
             ))}
-            <p className={styles.timelineNote}>
-              † Hosted in mainland China — these sites may not load from
-              Australian networks without a China route.
-            </p>
           </div>
         </div>
       </section>

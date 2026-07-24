@@ -92,6 +92,11 @@
   width: 100%;
   height: 100%;
   opacity: 0.4;
+  transition: opacity 700ms var(--ease);
+}
+
+.site[data-intro-active] .rain {
+  opacity: 0.72;
 }
 
 @media (pointer: coarse), (max-width: 767px) {
@@ -192,6 +197,7 @@
   padding: 0 42px;
   border-bottom: 1px solid var(--line);
   transform: translateX(-50%);
+  animation: headerIn 620ms 80ms var(--ease-out) both;
 }
 
 .brand {
@@ -541,6 +547,25 @@
   z-index: 6;
   content: "";
   pointer-events: none;
+}
+
+/* Keep the interface dormant behind the movie. Releasing this attribute
+   restarts the existing entrance animations as the monitor signal clears. */
+.site[data-intro-active] .header,
+.site[data-intro-active] .heroMeta,
+.site[data-intro-active] .hero h1 > span,
+.site[data-intro-active] .roleLine,
+.site[data-intro-active] .tagline,
+.site[data-intro-active] .heroStatement,
+.site[data-intro-active] .heroActions,
+.site[data-intro-active] .heroFacts,
+.site[data-intro-active] .profilePanel {
+  opacity: 0;
+  animation: none !important;
+}
+
+.site[data-intro-active] .header {
+  transform: translate(-50%, -14px);
 }
 
 .profilePanel::before {
@@ -1753,12 +1778,16 @@
   content: " ↘ ]";
 }
 
-/* Footnote for the mainland-China-hosted company sites. */
-.timelineNote {
-  margin: 4px 0 0;
+/* Footnote directly under a CN-hosted company's link row.
+   Scoped as .timelineBody p.* to out-rank the bright `.timelineBody > p`
+   role style that would otherwise turn it phosphor green + uppercase. */
+.timelineBody p.timelineNote {
+  max-width: 720px;
+  margin: 12px 0 0;
   color: #5e8068;
   font: 500 9px/1.7 var(--font-geist-mono), monospace;
   letter-spacing: 0.06em;
+  text-transform: none;
 }
 
 .timelineItem {
@@ -2428,6 +2457,11 @@
 @keyframes heroIn {
   from { opacity: 0; transform: translateY(24px); filter: blur(8px); }
   to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes headerIn {
+  from { opacity: 0; transform: translate(-50%, -14px); filter: blur(6px); }
+  to { opacity: 1; transform: translate(-50%, 0); filter: blur(0); }
 }
 
 @keyframes panelIn {

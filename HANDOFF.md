@@ -1,318 +1,366 @@
-# Portfolio direction handoff
+# Portfolio cinematic/Three.js rebuild handoff
 
-> Updated: 2026-07-11  
-> Status: Priority 1 (Matrix CRT reskin) is complete on desktop-browser
-> evidence — only real-device iOS/Android checks remain. Priority 2 has landed
-> its first passes: full-stack repositioning, `/projects` (20 entries, synced
-> with both GitHub accounts) and `/about`. Committed up to `355e5bd`; the
-> 2026-07-12 batch (featured cards 04/05, Codritium internship + company
-> links, education QS rank chips, README/docs sync) is committed directly by
-> the owner.
+> Updated: 2026-07-25<br>
+> Decision status: **restart required**<br>
+> Current cinematic prototype: **not approved; do not polish it further**<br>
+> Next direction: build an isolated Three.js/WebGL proof of concept first, then
+> integrate it only after the monitor-to-page handoff is convincing.
 
-## 1. Current decision
+## 1. Why this handoff exists
 
-The main product remains a recruiter-facing technology portfolio at `/`. Its
-next iteration should move from the current cyan/violet technical-editorial look
-to an original Matrix-inspired hacker aesthetic: near-black surfaces, phosphor
-green signals, terminal/code language and optional digital-rain atmosphere.
+The current portfolio itself is a valid baseline, but the attempted cinematic
+entry does not meet the desired quality. The current implementation combines a
+generated city-to-desk video, a cropped still frame, CSS fades, Canvas 2D code
+rain and the old boot overlay. It improved incrementally, but still feels like
+separate layers being swapped rather than one continuous system.
 
-The exact implementation order is:
+The user explicitly rejected the current effect because:
 
-| Order | Workstream | Outcome |
+- the transition still feels visibly disconnected from the live page;
+- there is a perceptible pause/freeze near the monitor takeover;
+- the live frontend does not appear to continue the same motion seen inside
+  the video monitor;
+- the original loading/boot window disappeared in one iteration and felt
+  artificially appended when restored;
+- shortening the generated video to five seconds made the camera move faster,
+  but did not solve the continuity problem;
+- further CSS crossfades and static-frame bridges are unlikely to produce the
+  desired premium result.
+
+The next implementation should therefore start from the transition mechanism,
+not from more edits to the current video wrapper.
+
+## 2. Product goal
+
+The opening should feel like the visitor physically enters Zizhen Liu's digital
+workspace and the monitor becomes the real website.
+
+The intended experience is:
+
+```text
+Sydney-inspired city exterior
+  -> approach a modern technology building
+  -> pass through/near a window in one apparently continuous shot
+  -> enter a personal developer workspace
+  -> approach a desk with two modern IPS monitors
+  -> the main monitor wakes into moving Matrix-inspired glyph rain
+  -> the existing ZL boot/loading window runs inside that live screen
+  -> the monitor fills the viewport
+  -> the same moving graphics continue behind the real semantic portfolio
+```
+
+This is a professional software-engineering portfolio, not a film demo followed
+by a resume. The spectacle should establish identity quickly, then get out of
+the way.
+
+## 3. Non-negotiable user requirements
+
+### Timing
+
+- The complete pre-page experience should be approximately **five seconds**.
+- Five seconds means city exterior through the start of the interactive page;
+  do not play a five-second movie and then add a separate two-second loader.
+- The boot/loading window must overlap the final monitor approach rather than
+  extending the entrance significantly.
+- `SKIP INTRO` must appear within the first second.
+
+### Camera and environment
+
+- The shot should read as one continuous move from outside the building to the
+  main display.
+- Use a Sydney/Sydney-inspired skyline, not an unrelated generic US city.
+- Visual quality may take inspiration from the atmosphere of *The Matrix
+  Awakens* UE5 demo: cinematic scale, believable architecture and a restrained
+  black/green grade. Do not copy its assets, branding or exact environment.
+- The room should feel like a real developer/GPU engineer workspace rather than
+  a generic gaming room or influencer setup.
+- Use **two modern IPS displays**. A CRT monitor is not the target endpoint.
+- Props may suggest engineering, photography, hardware and automotive
+  interests, but the monitors remain the focal point.
+
+### Screen content
+
+- Do not place portfolio headings, navigation or fake website copy over the
+  city/room portion of the cinematic.
+- Do not ask a video model to generate readable code or portfolio text.
+- The monitor should contain original Matrix-inspired moving glyphs, not a
+  static screenshot and not official Matrix imagery.
+- The existing loading window is part of the identity and must return in the
+  final sequence. Its current copy is:
+
+```text
+ZL://BOOT_SEQUENCE — V.01
+> loading profile.sys                OK
+> decrypting portfolio.dat           OK
+> tracing signal — sydney.au         OK
+> access granted — entering system
+```
+
+- The boot window should appear inside the monitor/live graphics system and
+  complete during the last part of the five-second sequence.
+
+### Handoff
+
+- The live code rain must visibly keep moving through the transition. Motion
+  cannot pause on a final video frame.
+- Do not use a full-screen static screenshot as the primary bridge.
+- Do not perform an obvious video fade-out followed by an unrelated DOM fade-in.
+- No route change, reload, black flash, white flash or layout jump.
+- The page must already exist underneath/alongside the effect and become
+  interactive without navigation.
+- The homepage typography and panels may enter after the boot signal, but the
+  background motion must be continuous before, during and after their reveal.
+
+## 4. Target five-second storyboard
+
+The exact edit may move by a few frames, but use this as the default pacing:
+
+| Time | Beat | Required result |
 | --- | --- | --- |
-| 1 | Matrix-inspired main portfolio | Re-theme and refine `/` without losing clarity, responsiveness or the current content structure |
-| 2 | Resume and personal-content expansion | More projects, work, internships, education, photography/HDR, computers and cars |
-| 3 | Y2K retro labs | Preserve Win7, then add distinct XP.css and 98.css interfaces |
-| 4 | English / 中文 i18n | `en-AU` and `zh-CN` content, routing and metadata |
-| Later | Quality and experiments | CI, deeper audits, Win7/Flip 3D improvements and optional ideas |
-| Last | Classic Mac / macOS | Consider only after the priorities above are stable |
-
-Quality and worktree-preservation checks apply continuously. They are safety
-gates, not permission to reorder the four product workstreams.
-
-### Progress as of 2026-07-11
-
-- Priority 1 shipped in three passes (palette/code-rain → boot intro + decode
-  headings → CRT operator terminal), then closed out with motion/spacing
-  tokens (`--t-*`, `--ease*`, `--gutter*`) and a regenerated 1200×630 phosphor
-  OG image. Outstanding: real iOS Safari / Android Chrome verification.
-- Priority 2 so far: full-stack positioning, `/projects` domain-filter archive
-  synced against both GitHub accounts (19 entries; stale CODE PRIVATE labels
-  fixed, sdr2hdr + this site now link SOURCE) and `/about`. Next: resume PDF
-  (a TeX `resume` repo exists under Fairchild2333), case studies, project
-  screenshots, photography gallery.
-- Checkpoints: `dbb05f4` (P2 pages) and `74b2385` (P1 close-out + GitHub
-  sync).
-
-## 2. Boundaries that must not be broken
-
-- Do not replace the latest user files with an earlier generated version. Read
-  the current worktree and diff before every implementation session.
-- Preserve the current Windows 7/Aero work and the `/desktop`, `/oobe` and
-  `/demo` routes.
-- Preserve all untracked supporting files when checkpointing, including
-  `src/components/flip3d.ts`, `src/components/RotateGate.tsx`,
-  `src/app/page.module.css`, `src/data/`, the Open Graph image and deployment
-  configuration.
-- The main `/` route stays a professional portfolio. Win7, XP, 98 and any future
-  Mac interface remain optional labs.
-- Keep 7.css, XP.css and 98.css route-scoped so their generic selectors cannot
-  alter the main site or another lab.
-- Shared facts should have one typed source; themes may change presentation, not
-  maintain contradictory resumes.
-
-## 3. Current repository snapshot
-
-### Main portfolio
-
-`/` is no longer the create-next-app starter. It currently contains:
-
-- a recruiter-focused Hero with identity, role, Sydney location, work status and
-  calls to work/contact;
-- Selected Work, Experience, Capabilities, Education, Aero Lab and Contact
-  sections;
-- typed shared content from `src/data/portfolio.ts`;
-- a dedicated CSS module with responsive states, animation fallbacks and
-  technical visual effects;
-- project and lab links plus portfolio metadata/Open Graph work.
-
-The current page structure is a strong base for a visual reskin. The Matrix pass
-should generally update tokens, surfaces, decoration and component treatments
-instead of deleting the working information architecture.
-
-### Recent user work
-
-> 2026-07-11: the work below has since been committed; kept for context.
-
-The current worktree cannot precisely separate every user edit from earlier
-generated work because the technology portfolio has not been checkpointed. File
-state and timestamps indicate the later edits are concentrated around:
-
-- Win7 Aero Peek and Flip 3D interaction;
-- `RotateGate.tsx` and root-overflow handling for portrait touch devices;
-- updated Aero/Y2K wording in the main Lab teaser and `/desktop` metadata;
-- OpenNext/Cloudflare scripts and configuration, public headers and related
-  package changes.
-
-Do not assume those changes are disposable or regenerate their files wholesale.
-
-### Existing lab routes
-
-| Route | Current role | Rule |
-| --- | --- | --- |
-| `/desktop` | Windows 7/Aero desktop and window manager | Preserve; future mobile work must not remove desktop interaction |
-| `/oobe` | Aero resume/setup walkthrough | Preserve and eventually feed from shared content |
-| `/demo` | Aero component playground | Preserve as an engineering/design-system lab |
-| `/labs` | Future experiment index | Add in Priority 3 |
-| `/labs/xp` | Future XP.css portfolio shell | Priority 3 |
-| `/labs/98` | Future 98.css portfolio shell | Priority 3 |
-
-No standalone `/labs/y2k` route is required yet. “Y2K” is the umbrella visual
-family unless a distinct concept later proves useful.
-
-## 4. Responsive status — accurate scope
-
-### Main `/` route: responsive
-
-The current technology portfolio has a real responsive implementation:
-
-- the page root uses full width, `100svh` and horizontal clipping;
-- fluid type and spacing use `clamp()`;
-- at 1180px the 12-column Hero becomes a single-column composition and the
-  profile/Lab layouts reflow;
-- at 860px navigation becomes a scrollable second row and projects, experience
-  and education stack;
-- at 620px gutters shrink, Hero actions become full width, facts/capabilities/
-  timeline/contact/footer become mobile columns and the code panel compresses;
-- hover-only effects are guarded by `@media (hover: hover)`;
-- `prefers-reduced-motion` stops non-essential animation.
-
-An earlier 390px browser check found no horizontal overflow, and the user's later
-work did not materially change the main CSS module. That is evidence of a solid
-baseline, not a substitute for a fresh test after the Matrix reskin.
-
-### Win7 `/desktop` route: landscape gate, not full responsive reflow
-
-`RotateGate.tsx` is mounted by `Win7Desktop`. A media query covers portrait
-devices with a coarse primary pointer and asks the user to rotate. In landscape,
-the fixed desktop/window-manager canvas runs normally.
-
-This is useful mobile handling, but it is not a true phone layout. Known limits:
-
-- portrait tablets and other large touch devices can also be blocked because the
-  gate has no maximum width;
-- a small phone in landscape still needs interaction testing for windows,
-  taskbar, drag targets and Flip 3D;
-- there is no stacked/read-only mobile shell when landscape space is inadequate.
-
-### Next responsive test matrix
-
-After the Matrix visual work, verify 320, 360, 390, 768, 1024 and 1440px, plus
-representative iOS Safari and Android Chrome devices. Check:
-
-- unintended overflow hidden by `overflow-x: clip`;
-- very large Hero/Contact text and nowrap terminal/code rows;
-- horizontal-nav discoverability and future Chinese labels;
-- touch target size and interactions that currently imply hover;
-- project media height and total page length on phones;
-- performance cost from fixed backgrounds, blur, backdrop filters, scanlines,
-  marquee, code rain and large shadows;
-- reduced-motion and a low-effects path for coarse-pointer/small screens.
-
-## 5. Priority 1 brief — Matrix-inspired main site
-
-### Intended visual language
-
-- near-black background with layered black/green surfaces;
-- phosphor or terminal green for state, focus, borders and selected highlights;
-- off-white/grey for long-form reading;
-- lightweight falling glyphs or code rain, grid traces, terminal prompts,
-  scanlines, cursors and system annotations;
-- controlled bloom/glow rather than uniform neon;
-- confident identity typography and project evidence kept above decoration.
-
-This is an original “hacker/cyber terminal” interpretation. Do not use film
-stills, official Matrix logos, copied dialogue, proprietary fonts, ripped audio
-or other copyrighted media. The inspiration should be recognisable through
-design grammar rather than copied assets.
-
-### Product constraints
-
-- The first viewport still answers who Zizhen is, the target role, location,
-  availability and what action to take.
-- Do not hide content behind a boot sequence, long loader, custom cursor, scroll
-  hijacking or animation completion.
-- Falling glyphs and scanlines are decorative, `aria-hidden`, non-interactive and
-  visually behind the content.
-- Green is an accent. Body copy must retain comfortable contrast and line length.
-- Reduced-motion stops continuous effects; mobile/low-power modes also reduce
-  expensive filters, not just keyframe animation.
-- Complete the reskin as a coherent system: Hero, header, project treatments,
-  section language, Lab teaser, Contact, focus/hover and OG artwork.
-
-### Completion gate
-
-The Matrix pass is done when the main site has one coherent visual identity,
-passes fresh responsive/keyboard/reduced-motion checks, preserves the recruiter
-story, and leaves all Aero routes working.
-
-## 6. Priority 2 brief — deeper portfolio content
-
-The professional story should become richer before more theme engineering. The
-home page keeps a curated set; deeper pages or archives carry the detail.
-
-### Content to collect
-
-- latest resume PDF;
-- verified email, GitHub, LinkedIn, live URLs and source links;
-- full work and internship history with dates, roles, locations and defensible
-  impact statements;
-- complete UNSW, UTS and relevant education details;
-- more projects, screenshots, constraints, technical decisions and results;
-- original photography/HDR images and captions;
-- material about PC building, hardware/homelab interests and cars.
-
-### Proposed information architecture
-
-- Hero and concise profile
-- Selected Work
-- All Projects or `/projects/[slug]` case studies
-- Experience and Internships
-- Skills/Capabilities
-- Education
-- About and Interests
-- Photography/HDR gallery
-- Aero/Y2K Labs
-- Resume and Contact
-
-Interests belong after the core professional evidence. They should make the
-portfolio memorable without diluting its job-search purpose.
-
-### Shared content/media model
-
-Extend the typed source with domains such as `profile`, `socialLinks`,
-`projects`, `experience`, `internships`, `education`, `skills`, `interests` and
-`photography`. Every project should be able to express problem, audience, role,
-decisions, result, stack, media, live/source links and translation keys later.
-
-Images need responsive sizes, AVIF/WebP where suitable, meaningful alt text,
-captions, ownership/licence notes and privacy review. Strip or consciously keep
-EXIF/location data; do not let a gallery delay the first viewport.
-
-### Completion gate
-
-Resume, employment, internships and education are internally consistent; every
-featured project explains contribution and outcome; real links work; personal
-interests enrich rather than dominate; and all themes read the same facts.
-
-## 7. Priority 3 brief — Y2K, XP.css and 98.css
-
-Build a `/labs` index that preserves Win7 and introduces XP and Windows 98 as
-separate interfaces:
-
-- XP: `/labs/xp`, using [XP.css](https://github.com/botoxparty/XP.css)
-- Windows 98: `/labs/98`, using [98.css](https://github.com/jdan/98.css)
-
-The first version of each should be intentionally smaller than the Win7 lab:
-About, Projects, Experience/Skills, Education, Resume and Contact; core window
-open/focus/move/minimise/close behaviour; an era-appropriate start/taskbar
-surface; and keyboard/touch/small-screen access.
-
-Use the libraries according to their licences and source all wallpaper, icons,
-fonts and sound legally. Do not begin with filesystem simulation, boot sequences,
-games or spectacle. Route-scoped CSS and shared portfolio data are mandatory.
-
-### Completion gate
-
-Win7, XP and 98 are independently usable, do not leak styles, expose the same
-essential portfolio facts and never replace `/` as the main experience.
-
-## 8. Priority 4 brief — English / 中文 i18n
-
-Use `en-AU` as the default and add `zh-CN`. Decide locale routing before adding
-translations; locale-prefixed, directly addressable URLs are preferable to a
-client-only toggle. Do not infer language from IP.
-
-The language switch should retain the current page/section. Localise main
-content, navigation, UI states, accessible labels, dates, metadata, canonical
-URLs, `hreflang` and Open Graph data. Set the document `lang` correctly. Define a
-fallback locale and fail checks on missing keys.
-
-Portfolio content inside Labs must be translatable. Simulated OS chrome can keep
-era-appropriate terminology only when this is intentional and does not make the
-content inaccessible. Both languages require independent responsive checks,
-especially navigation and long English/Chinese wrapping differences.
-
-### Completion gate
-
-Both locale URLs render useful server content directly, refresh correctly, keep
-the visitor's route during language switching, contain no large accidental
-mixed-language areas and expose their relationship to search engines.
-
-## 9. Later backlog
-
-Only after the four product priorities:
-
-1. add focused tests and CI, complete SEO/deployment configuration, and run full
-   accessibility/performance audits;
-2. improve Win7 small-screen behaviour beyond the orientation gate and clean up
-   the recorded Flip 3D geometry/measurement issues;
-3. consider optional CMS, contact backend or heavier interactive experiments
-   only when content needs justify them;
-4. consider a Classic Macintosh/System 6, Mac OS 9 Platinum or modern macOS lab
-   last. `system.css` is a possible Classic Mac base; modern clones are references,
-   not sources to copy.
-
-## 10. Next implementation-session checklist
-
-1. Read `git status`, the current diff and all new/untracked files. Do not
-   start from an earlier snapshot.
-2. Run the outstanding P1 real-device checks (iOS Safari, Android Chrome) when
-   hardware is available and log the result in TODO.md.
-3. Continue Priority 2: pick the resume PDF (TeX source exists), define the
-   case-study structure, collect screenshots and photography selects.
-4. Then open Priority 3 with the `/labs` index; keep XP.css/98.css
-   route-scoped.
-5. Regress `/desktop`, `/oobe` and `/demo` after any global change.
-
-The active task list in [TODO.md](TODO.md) is authoritative for execution order.
+| 0.00-0.75s | Sydney exterior | Immediate location/scale; camera already moving toward a target |
+| 0.75-1.75s | Building/window approach | Accelerated but readable push; architecture or darkness can conceal a cut |
+| 1.75-2.80s | Workspace entry | Reveal the desk and two monitors; avoid lingering on props |
+| 2.80-3.75s | Monitor approach | Camera stabilises, main display becomes nearly front-facing |
+| 3.75-4.65s | Live screen takeover | Moving glyph system and compact ZL boot window run together |
+| 4.65-5.00s | Interactive reveal | Monitor/canvas fills viewport; DOM content begins to resolve over the same live motion |
+
+The first exterior beat should not consume half the sequence. The last monitor
+beat needs enough time to establish continuity.
+
+## 5. Recommended technical architecture
+
+### Core decision
+
+Use **Three.js/WebGL for the monitor screen, takeover and live Hero background**.
+The highest-priority goal is that one renderer/animation state owns both the
+monitor content and the post-transition background.
+
+Do not put semantic portfolio content inside WebGL. Navigation, headings,
+projects and contact actions remain normal HTML/React.
+
+### Preferred hybrid implementation
+
+The practical default is:
+
+1. use a short pre-rendered/AI/3D clip only for the exterior, window and room
+   approach if a full real-time scene is too costly;
+2. hide the video-to-WebGL cut while the monitor surface or a dark window frame
+   fills most of the viewport;
+3. use Three.js for the final monitor plane, live glyph effect, boot window
+   compositing and fullscreen takeover;
+4. keep that same WebGL canvas alive as the Hero background after the DOM is
+   revealed.
+
+A full real-time Three.js city/building/office is allowed only if suitable
+licensed glTF assets, baked lighting and an acceptable performance budget are
+available. Do not spend the next implementation session building a photoreal
+city from scratch.
+
+### Continuous render-target strategy
+
+Recommended rendering model:
+
+1. Render the Matrix-inspired glyph/data effect into a
+   `THREE.WebGLRenderTarget`.
+2. Use that render target's texture as the material for the main monitor mesh.
+3. Run the compact ZL boot window as an HTML/CSS overlay accurately projected
+   over the monitor, or composite a controlled texture into the same target.
+4. Animate the Three.js camera along a deterministic spline toward the monitor.
+5. When the monitor fills the viewport, switch from the 3D monitor view to a
+   fullscreen quad sampling the **same live render target**.
+6. Reveal the semantic Hero DOM over that canvas while the render target keeps
+   advancing without resetting time, random seeds or particle positions.
+
+The visual content must not be recreated at the handoff. It must be the same
+running simulation before and after the screen fills the viewport.
+
+### Three.js scene guidance
+
+- Prefer one renderer and one WebGL context on `/`.
+- Raw Three.js is acceptable and may be preferable for bundle/control; React
+  Three Fiber is optional, not required.
+- Use a deterministic camera timeline rather than scroll-driven camera control
+  for the intro.
+- A `CatmullRomCurve3` camera path plus quaternion/slerp orientation is a
+  reasonable starting point.
+- Use baked lighting/textures for any room/building assets. Avoid expensive
+  real-time global illumination.
+- Use bloom sparingly for phosphor highlights. Avoid heavy gamer RGB,
+  overexposure and generic blue/orange fibre optics.
+- Motion blur is optional and must not hide low frame rate.
+- Cap device pixel ratio; do not render unrestricted native DPR.
+- Cleanly dispose geometries, materials, textures, render targets and event
+  listeners when the component unmounts.
+
+## 6. Live Matrix art direction
+
+The live effect should clearly begin as code/glyph rain:
+
+- phosphor green is dominant;
+- upper/distant layers contain discrete falling characters;
+- some streams accelerate and stretch toward the monitor/Hero focal point;
+- lower/near layers may bend in perspective and become light trails;
+- trails should periodically resolve back into glyphs;
+- cool cyan may appear as a rare network/depth signal;
+- amber is reserved for sparse status events;
+- CRT scanlines, bloom and signal decay may remain subtle supporting layers.
+
+Do not turn it into generic multicolour fibre optics or a typical AI SaaS
+background. It must still read as Matrix-inspired code before it reads as
+abstract light.
+
+## 7. Current prototype: what exists and how to treat it
+
+The following experimental files currently exist:
+
+- `src/components/CinematicEntry.tsx`
+- `src/components/CinematicEntry.module.css`
+- `src/components/BootScreen.tsx`
+- `src/components/BootScreen.module.css`
+- `public/cinematic-entry.mp4`
+- `public/cinematic-entry-poster.webp`
+- `public/cinematic-screen-bridge.webp`
+- the `CinematicEntry` mount in `src/app/page.tsx`
+- cinematic waiting/reveal styles in `src/app/page.module.css`
+
+`public/cinematic-entry.mp4` is currently a roughly five-second, 2×-speed web
+encode derived from the selected generated clip. The screen bridge is a cropped
+still from its last frame.
+
+These files are evidence/prototype material, **not an approved foundation**.
+The next implementation may remove or replace them, but must inspect the
+working-tree diff first and must not destroy unrelated user edits.
+
+The existing generated video may be used temporarily to prototype a hidden
+cut into the Three.js monitor scene. Do not assume it is a final production
+asset.
+
+## 8. Existing site that must be preserved
+
+Preserve the current semantic portfolio and routes unless the user explicitly
+requests a separate redesign:
+
+- `/`: Hero, Selected Work, Experience, Capabilities, Education, Lab, Contact;
+- `/projects`: project archive;
+- `/about`: professional/personal context;
+- `/desktop`, `/oobe`, `/demo`: Windows 7/Aero experiments;
+- shared content in `src/data/portfolio.ts`;
+- responsive, keyboard, reduced-motion and low-power behaviour.
+
+The new Three.js layer is an enhancement around the Hero. It must not replace
+the whole portfolio or make project/contact content dependent on GPU support.
+
+## 9. Behaviour, fallback and accessibility
+
+- Play the full sequence once per browser session by default.
+- Provide `?intro=1` or an equivalent internal debug switch for replay.
+- Show `SKIP INTRO` within one second; keyboard and touch must work.
+- Skip and natural completion must land in the same stable DOM/canvas state.
+- Never replay during normal internal navigation.
+- Autoplay is muted; audio is not required.
+- `prefers-reduced-motion` skips the camera flight and enters through a short
+  monitor/live-Hero dissolve.
+- Mobile/coarse-pointer devices may use a poster or much shorter screen-only
+  transition rather than the full city flight.
+- If video, model or WebGL initialisation fails, show the readable portfolio
+  immediately with the existing Canvas 2D/static fallback.
+- Screen readers encounter the real page structure, not decorative scene beats.
+- Restore scroll and predictable focus after completion/Skip.
+
+Progressive fallback chain:
+
+```text
+hybrid video + Three.js takeover
+  -> Three.js monitor/Hero only
+  -> current Canvas 2D glyph rain
+  -> static CSS atmosphere
+  -> plain semantic portfolio
+```
+
+## 10. Performance expectations
+
+- Target smooth 60 fps on a normal desktop; degrade intentionally toward 30 fps
+  on lower-power devices.
+- A transition frame should not freeze noticeably; specifically, avoid a
+  single-frame stall near the video/WebGL or WebGL/DOM takeover.
+- Preload only the assets needed during the five-second entry.
+- Lazy-load optional Three.js/postprocessing code without delaying readable
+  content or Skip.
+- Use compressed textures/models where appropriate and keep the entry asset
+  budget explicit.
+- Pause or reduce animation when `document.hidden`, when the Hero is far outside
+  the viewport, or when reduced motion is requested.
+- Do not maintain both an expensive hidden canvas and an expensive visible
+  canvas.
+
+## 11. Rebuild order
+
+Do not immediately wire a new renderer into the production Hero. Use this order:
+
+1. Inspect `git status`/diff and preserve all unrelated edits.
+2. Disable or isolate the rejected cinematic prototype without deleting source
+   evidence.
+3. Build a dedicated local prototype route/component for only the final
+   monitor-to-fullscreen transition.
+4. Prove that the same live render target continues moving through monitor,
+   fullscreen and DOM reveal states.
+5. Add the compact boot window inside that continuous screen system.
+6. Get user approval for the final 1.5 seconds before adding city/room footage.
+7. Add the exterior/room segment and conceal its cut into the approved Three.js
+   endpoint.
+8. Compress the complete timing to approximately five seconds.
+9. Add Skip, session, reduced-motion, mobile and failure fallbacks.
+10. Integrate into `/` only after the isolated prototype is approved.
+11. Run production build and regression checks for all existing routes.
+
+The critical reversal from the previous attempt is: **approve the live endpoint
+first, then build the cinematic backward from it**.
+
+## 12. Acceptance criteria
+
+The rebuild is not complete until all of these are true:
+
+- The complete entrance reaches the interactive homepage at roughly five
+  seconds.
+- Exterior, workspace, dual monitors and final main-screen target are readable
+  despite the short duration.
+- The final monitor geometry is stable and its bezel leaves the viewport
+  cleanly.
+- Glyphs visibly continue moving through the monitor-to-page handoff.
+- No static-frame pause, obvious layer swap, black/white flash or route reload
+  is visible.
+- The compact ZL boot window is present and feels embedded in the screen rather
+  than appended afterward.
+- Homepage typography/panels reveal only after the screen signal is established.
+- Skip is available within one second and reaches exactly the same final state.
+- The result remains a usable portfolio when video or WebGL is unavailable.
+- Motion is smooth on desktop and deliberately simplified on mobile/reduced
+  motion.
+- Existing portfolio, project, About and Aero routes do not regress.
+
+## 13. Explicit non-goals
+
+- Do not keep patching the current static crossfade until it is called done.
+- Do not put the entire portfolio into a WebGL canvas.
+- Do not require WebGPU on the main route.
+- Do not create a full photoreal city from scratch before proving the last
+  monitor transition.
+- Do not use official Matrix logos, dialogue, fonts, film footage or ripped
+  audio.
+- Do not copy MotionSite templates or *The Matrix Awakens* assets.
+- Do not make the intro mandatory, unskippable or repeat on every navigation.
+- Do not add a loader after a five-second intro and call the total sequence five
+  seconds.
+
+## 14. One-paragraph brief for the next implementation session
+
+Rebuild the rejected cinematic entry as an isolated Three.js/WebGL prototype.
+First prove a continuous final 1.5-second sequence in which a modern IPS monitor
+shows moving Matrix-inspired glyph rain, the compact `ZL://BOOT_SEQUENCE` runs
+inside it, the camera moves until the screen fills the viewport, and the exact
+same live render target continues as the semantic homepage Hero background.
+There must be no static bridge, motion reset, route change or visible fade
+between unrelated layers. After that endpoint is approved, attach a short
+Sydney-building-to-dual-monitor exterior/workspace segment and keep the complete
+experience near five seconds with Skip, session, reduced-motion, mobile and
+Canvas 2D/static fallbacks.

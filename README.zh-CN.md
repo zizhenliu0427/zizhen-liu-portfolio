@@ -9,35 +9,34 @@
 - **基础环境：** Node.js 24.2
 - **核心框架：** Next.js 16.2 (App Router)
 - **UI 库：** React 19.2
-- **语言：** TypeScript 6.0（类型检查使用原生 TypeScript 7 / `tsgo` 预览版）
-- **样式：** CSS Modules（主站）+ Tailwind CSS 4 · Aero 实验室使用玻璃拟态
+- **语言：** TypeScript 6（类型检查使用原生 TypeScript 7 / `tsgo` 预览版）
+- **样式：** CSS Modules（主站）+ Tailwind CSS 4 · Aero 使用玻璃拟态
 - **代码检查：** ESLint 9
 - **多语言：** 中英文切换——规划中（Priority 4）
-- **临时部署：** Cloudflare（OpenNext 静态导出）
+- **目前临时部署：** Cloudflare（OpenNext 静态导出）
 
 ## 设计风格
 
 两套并存的视觉体系：
 
-- **主站（`/`）**——黑客帝国 (Matrix) 风格的 CRT 操作员终端：近黑底色、磷绿高亮、
+- **主站（`/`）**——黑客帝国 (Matrix) 风格的 CRT 操作员终端：近黑底色、荧绿高亮、
   Canvas 代码雨、扫描线与辉光，并提供减弱动效 / 低功耗降级。招聘者的阅读
   路径优先，视觉效果始终在内容之后。
-- **Aero/Y2K 实验室（`/desktop`、`/oobe`、`/demo`）**——Frutiger Aero / 玻璃拟态，
+- **FA/Y2K 美学界面（`/desktop`、`/oobe`、`/demo`）**——Frutiger Aero / 玻璃拟态，
   灵感来自 Windows Aero (Longhorn - Vista - 7) 与 Mac OS X Aqua / macOS Liquid Glass：手写的
-  可拖拽窗口管理器、OOBE 风格简历向导和组件演示场。后续计划加入 XP 与
+  可拖拽窗口管理器、OOBE 风格简历向导和组件演示。后续计划加入 XP 与
   Windows 98 界面。
 
 ## 站点内容
 
 - **精选项目**——五张带手绘终端视觉的项目卡：IoT 传感分析、CMO-DB、CTV 暴力检测、
-  Novacart 电商、Codritium 实习平台工作（MediaJira），并与经历区双向链接。
+  Novacart 电商、Codritium 实习平台工作 (MediaJira / Marketing Simplified)。
 - **`/projects`**——可按领域过滤的完整项目归档（WEB / AI-ML / SYSTEMS / HARDWARE /
   MOBILE / LAB），诚实标注访问状态：LIVE、SOURCE、NDA、CODE PRIVATE、开发中。
-- **经历**——Codritium（在职）、Intelli New Technologies、金夫人摄影，均附公司链接；
-  中国大陆托管的站点带脚注说明。
-- **教育**——UNSW 与 UTS，附经核实的 QS 2027 排名徽标。
-- **`/about`**——终端背后的人：家庭实验室、摄影、汽车、语言。
-- **Aero 实验室**——`/desktop`、`/oobe`、`/demo` Windows 7 时代实验。
+- **经历**——Codritium（在职）、Intelli New Technologies、金夫人摄影。
+- **大学教育**——UNSW 与 UTS。
+- **`/about`**——终端背后的人：爱好：摄影、汽车、动漫、语言。
+- **Aero 页面展示**——`/desktop`、`/oobe`、`/demo` Windows 7 时代展示。
 
 所有内容都是 [`src/data/portfolio.ts`](src/data/portfolio.ts) 里的类型化数据，
 主题只改变呈现方式。

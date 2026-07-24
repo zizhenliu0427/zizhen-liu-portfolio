@@ -1,350 +1,272 @@
 # Portfolio TODO
 
-> Direction updated 2026-07-10. The main product remains the technology
-> portfolio at `/`, but its next visual iteration is a Matrix-inspired hacker
-> interface. Windows 7 is preserved as a lab. This planning update changes only
-> `TODO.md` and `HANDOFF.md`; it does not authorise replacing the user's current
-> implementation.
+> Scope reset: 2026-07-21.
+> The current site is the stable baseline. The next product milestone is a
+> cinematic exterior-to-computer entrance that hands off seamlessly to an
+> evolved Matrix-inspired portfolio. This file authorises planning and ordered
+> implementation only; it does not authorise discarding current user changes.
 
-Legend: `[x]` done · `[~]` partial / intentionally deferred · `[ ]` to do
+Legend: `[x]` done · `[~]` partial / deferred · `[ ]` to do
 
-## Safety baseline — applies to every priority
+## Safety baseline — applies to every phase
 
-These are release safeguards, not competing product priorities.
+- [ ] Read the latest worktree and diff before editing.
+- [ ] Preserve the current user edits in `README.zh-CN.md`,
+      `src/app/page.tsx`, `src/app/page.module.css` and
+      `src/data/portfolio.ts` unless the requested work explicitly overlaps.
+- [ ] Preserve `/desktop`, `/oobe` and `/demo`; regress them after global-style
+      or navigation changes.
+- [ ] Keep 7.css, future XP.css and future 98.css styles route scoped.
+- [ ] Maintain an immediately readable static path when video/GPU effects fail.
+- [ ] Treat old browser checks as historical evidence, not fresh verification.
 
-- [ ] Read the latest worktree and diff before editing; the portfolio, Win7,
-      Flip 3D, mobile rotate gate and Cloudflare/OpenNext work are uncommitted.
-- [ ] Checkpoint the current work without losing untracked files, especially
-      `src/components/flip3d.ts`, `src/components/RotateGate.tsx`,
-      `src/app/page.module.css`, `src/data/` and deployment configuration.
-- [ ] Preserve `/desktop`, `/oobe` and `/demo`; regress these routes after every
-      substantial main-site or global-style change.
-- [ ] Keep 7.css, future XP.css and future 98.css route-scoped. Never allow their
-      generic selectors to leak into `/` or into one another.
-- [ ] Distinguish an earlier successful check from a fresh verification after
-      user edits. Do not carry old `[x]` test results forward without checking.
+## Current baseline
 
-## Current implementation snapshot
-
-- [x] Replace the create-next-app root with a recruiter-facing, data-driven
-      portfolio.
+- [x] Replace the starter with a recruiter-facing, data-driven portfolio.
 - [x] Add Hero, Selected Work, Experience, Capabilities, Education, Lab and
       Contact sections.
-- [x] Keep portfolio data in the typed `src/data/portfolio.ts` source.
-- [x] Add responsive rules at 1180px, 860px and 620px, fluid `clamp()` sizing,
-      a horizontally scrollable narrow navigation and stacked mobile layouts.
-- [x] Add keyboard focus states, semantic landmarks and a skip link.
-- [x] Add a `prefers-reduced-motion` static path for the main portfolio.
-- [x] Add a portrait touch-device rotate gate to the Win7 lab.
-- [x] Reskin `/` to the Matrix-inspired direction: phosphor-green token palette,
-      canvas code-rain layer and dark-green surfaces (2026-07-11).
-- [x] Second Matrix pass (2026-07-11, user request): boot-sequence intro,
-      decode/scramble headings and terminal component styling. The boot intro
-      deliberately deviates from the earlier "no boot sequence" constraint at
-      the owner's request, but stays non-blocking: `pointer-events: none`,
-      ~2s pure-CSS auto-fade that works without JavaScript, hidden under
-      `prefers-reduced-motion`, and shown once per session.
-- [x] Fix code-rain ghosting: the bright head glyph is now erased and settled
-      into the trail as the same character instead of having a second random
-      glyph drawn over it.
-- [x] Third Matrix pass (2026-07-11, user feedback "not Matrix enough"): CRT
-      operator-terminal redesign. Display typography moved to phosphor-green
-      Geist Mono with layered bloom text-shadows; CRT ambient layers added
-      (dark scanlines + RGB screen-door mask, vignette, slow sweep band,
-      low-amplitude tube flicker — sweep/flicker off on coarse/small devices);
-      terminal chrome details (green panel squares instead of traffic-light
-      dots, ">_" prompt on the secondary action, bracketed text links).
-      98.css was considered and rejected for `/` — Win98 chrome is the Y2K lab
-      language, reserved for `/labs/98` in Priority 3.
-- [x] Sync the project archive with the live GitHub accounts (2026-07-11):
-      added Novacart, Lanely, Whale Logistics CMS, Audio/Video2Text AI,
-      Breaktime Arcade, HLS Keeper and Bili CDN DNS Pin — 19 entries total.
-- [x] 2026-07-12: Novacart promoted to a fourth featured card (new "cart"
-      order-state-machine visual); Marketing Simplified added as a fifth
-      featured card (new "campaign" slug-diff + CI-pipeline visual, content
-      sourced from the owner's SMP/MED ticket reports);
-      Codritium Software Developer Intern
-      (JUN 2026 — PRESENT, Marketing Simplified / MediaJira) added to
-      experience with company links; Intelli and Golden Lady gained
-      website/LinkedIn links with a CN-hosted footnote; archive now 20
-      entries (Marketing Simplified, LIVE + SOURCE).
-      sdr2hdr and this portfolio itself now link to their public repos instead
-      of reading CODE PRIVATE; the “here” badge supports an optional source
+- [x] Add `/projects` with 20 entries and `/about` with supporting personal
+      context.
+- [x] Keep shared portfolio facts in `src/data/portfolio.ts`.
+- [x] Add responsive layouts, keyboard focus, semantic landmarks and a skip
       link.
-- [~] Win7 mobile support is not fully responsive: portrait touch devices are
-      asked to rotate and the fixed desktop canvas then runs in landscape.
-- [x] Preserve the existing Windows 7/Aero experience and its OOBE/demo routes.
+- [x] Add Matrix-inspired tokens, Canvas 2D glyph rain, CRT layers, decoded
+      headings and a session-based non-blocking boot screen.
+- [x] Add `prefers-reduced-motion` and low-power/coarse-pointer fallbacks.
+- [x] Preserve the Windows 7/Aero desktop, OOBE and component demo routes.
+- [x] Confirm a production build passes on 2026-07-21.
+- [~] Win7 mobile support remains a landscape gate rather than a true small
+      screen layout.
+- [ ] Verify the current site on real iOS Safari and Android Chrome devices.
 
-## Priority 1 — Matrix-inspired technology portfolio
+## Phase 0 — scope and cinematic pre-production
 
-The direction is inspired by the visual language of *The Matrix*, not a clone
-and not an official branded site. The recruiter journey and readability remain
-more important than spectacle.
+- [x] Choose the core narrative: Sydney exterior → building/window → personal
+      workspace → computer → Matrix-inspired boot → real portfolio.
+- [x] Choose pre-rendered video rather than a full real-time 3D building scene.
+- [x] Choose a seamless same-page handoff rather than a route change/reload.
+- [x] Choose a hybrid live visual: recognisable glyph rain evolving into
+      spatial data streams.
+- [x] Reserve WebGPU for an optional technical lab; prefer WebGL plus fallbacks
+      on the main route.
+- [x] Document the product scope and non-goals in `HANDOFF.md`.
+- [x] Create the production brief in `docs/cinematic-entry-brief.md`.
+- [ ] Lock the exact exterior location language: recognisable Sydney, invented
+      Sydney-inspired skyline, or a location-neutral technology district.
+- [ ] Lock the workspace art direction and personal props.
+- [ ] Lock the monitor count, aspect ratios, camera endpoint and safe crop.
+- [ ] Approve desktop and mobile storyboards before generating final video.
+- [ ] Approve the exact boot copy and final live-Hero first frame.
 
-### Visual direction
+### Phase 0 acceptance
 
-- [x] Audit the latest `/` before implementation and record which current
-      components, content and responsive behaviours can stay unchanged.
-      (2026-07-11: all structure, content and breakpoints kept; only colour
-      tokens, ambient layers and metadata changed.)
-- [x] Replace the current cyan/violet-heavy mood with a controlled palette:
-      near-black surfaces, phosphor green accents and off-white/grey body text.
-- [x] Define tokens for background, foreground, muted text, terminal green,
-      borders, glow, focus, success/warning states, spacing and motion.
-      (Colour tokens in `page.module.css`; 2026-07-11 pass added motion tokens
-      `--t-fast/--t-base/--t-mid/--t-slow/--ease/--ease-out` and spacing tokens
-      `--gutter/--gutter-md/--gutter-sm` to `page.module.css` and
-      `subpage.module.css`, replacing the repeated transition/gutter literals.
-      One-off animation choreography keeps literal durations by design.)
-- [x] Explore a lightweight code-rain or falling-glyph layer, terminal prompts,
-      scanlines, grid traces, blinking cursors and code annotations.
-      (`src/components/MatrixRain.tsx`: DPR-scaled canvas, throttled rAF,
-      translucent-fill trails, katakana/digit glyphs with bright head.)
-- [x] Keep decorative effects behind the content, non-interactive and hidden
-      from assistive technology. (Rain canvas is `aria-hidden` inside the
-      pointer-events-none fixed ambient layer at `z-index: -2`.)
-- [x] Preserve the current page hierarchy: identity and role first, then work,
-      experience, capabilities/education, lab and contact.
-- [x] Redesign the Hero, navigation, project visuals, section dividers, Contact
-      and Lab teaser as one coherent system rather than adding isolated effects.
-      (Single token remap across every section; the Aero window preview in the
-      Lab teaser intentionally keeps its Frutiger Aero blues as the doorway to
-      the Win7 lab.)
-- [x] Avoid copyrighted film stills, logos, dialogue, fonts and ripped assets;
-      produce an original hacker/cyber visual system.
-- [x] Update metadata theme colour and the Open Graph image after the new visual
-      direction is approved. (Theme colour `#030806`; `public/og.png`
-      regenerated 2026-07-11 as a 1200×630 phosphor/CRT card — bloomed name,
-      code-rain, scanlines — and the layout OG metadata updated to 1200×630.)
+- [ ] First and last keyframes are approved at desktop and mobile aspect ratios.
+- [ ] The last monitor frame can match the real Hero without a visible jump.
+- [ ] All props and architecture are original, owned or correctly licensed.
+- [ ] The shot duration is at most nine seconds and contains a viable hidden-cut
+      plan.
 
-### Responsive, motion and performance requirements
+## Phase 1 — cinematic asset production
 
-- [x] Design desktop, tablet and mobile states before implementing the reskin.
-      (Existing 1180/860/620px states were audited first and preserved; the
-      reskin changed colour and decoration only.)
-- [x] Re-test at 320, 360, 390, 768, 1024 and 1440px after the Matrix pass.
-      (2026-07-11 browser pass: `scrollWidth` equals viewport at every width and
-      no content element exceeds the viewport; only the intentionally bleeding
-      grid/glow/marquee decor layers do, inside clipped containers.)
-- [ ] Check iOS Safari and Android Chrome, not only a resized desktop browser.
-- [x] Do not use `overflow-x: clip` as proof that nothing is overflowing; inspect
-      large headings, code lines, project visuals and the horizontal nav.
-      (Verified via per-element `getBoundingClientRect` at each width.)
-- [x] Keep all core actions usable without hover and provide roughly 44px touch
-      targets where practical. (Carried over from the pre-reskin implementation.)
-- [x] Reduce or disable code rain, blur, backdrop filters, scanlines and large
-      shadows on small/coarse-pointer or lower-powered devices. (Rain drops to
-      16fps, larger glyph grid and 0.3 opacity on coarse-pointer/sub-768px
-      viewports; other effect reductions unchanged from the previous pass.)
-- [x] Stop continuous decorative motion under `prefers-reduced-motion` while
-      leaving all information and navigation visible. (Global reduce rule plus a
-      static single-frame glyph scatter in `MatrixRain`.)
-- [x] Keep body text contrast and line length readable; phosphor green should be
-      an accent, not the colour of every paragraph. (Body copy is off-white/
-      grey-green; phosphor green marks labels, actions and state only.)
+- [ ] Produce the locked final desk/monitor keyframe first.
+- [ ] Produce exterior, window-transition and room-entry keyframes around the
+      locked endpoint.
+- [ ] Generate two or three controllable source clips rather than relying on one
+      long AI generation.
+- [ ] Hide joins behind window frames, dark occlusion, motion blur or a brief
+      exposure/signal transition.
+- [ ] Keep monitor screens blank, keyed or trackable during generation.
+- [ ] Composite the real terminal boot and matching Hero frame in post.
+- [ ] Correct structural morphing, disappearing props, inconsistent monitor
+      geometry and unstable lighting.
+- [ ] Export a desktop master, web delivery files and a final-frame poster.
+- [ ] Produce either a dedicated mobile composition or an approved poster-first
+      mobile fallback.
+- [ ] Record generation tool, model, source-asset and commercial-use/licence
+      information.
 
-### Priority 1 acceptance
+### Provisional delivery targets
 
-- [x] The first viewport states Zizhen's name, target role, Sydney location,
-      availability and primary work/contact action.
-- [x] 320px and 390px layouts have no unintended horizontal scrolling,
-      clipping, overlap or unreadable terminal text. (Desktop-browser check;
-      real-device confirmation still listed above.)
-- [x] The page remains complete with animation disabled and by keyboard only.
-      (All content is static DOM; rain/marquee/grid are decoration only.)
-- [x] Decorative glyphs are not announced by screen readers. (`aria-hidden`
-      ambient layer and canvas.)
-- [x] The visual result feels unmistakably hacker/Matrix-inspired while still
-      functioning as a professional portfolio.
-- [x] `/desktop`, `/oobe` and `/demo` remain intact. (Regressed 2026-07-11:
-      desktop icons/windows/taskbar, OOBE wizard and demo playground all render
-      with their Aero styling untouched.)
+- [ ] Desktop composition: 16:9, 1920×1080, 24 or 30 fps.
+- [ ] Delivery: WebM plus MP4 fallback, muted, no mandatory audio track.
+- [ ] Poster: optimised AVIF/WebP plus a broadly compatible fallback if needed.
+- [ ] Duration: target about 7–8 seconds, hard maximum 9 seconds.
+- [ ] Final approach: about one second of stable, near-front-facing monitor
+      framing before takeover.
+- [ ] Mobile: centre-safe composition and/or dedicated short portrait asset.
 
-## Priority 2 — more resume, projects, work and personal story
+### Phase 1 acceptance
 
-> 2026-07-11: first major P2 pass landed. All 14 domain resumes were extracted
-> and synthesised; positioning moved from "Frontend Engineer" to full-stack
-> ("interface → server & data → metal"). New pages: `/projects` (12-entry
-> archive with honest access labels — LIVE / SOURCE / NDA / CODE PRIVATE /
-> IN DEVELOPMENT) and `/about` (home lab, photography, automotive, languages,
-> education records). IT-support career content deliberately stays off the
-> site; its home-lab side lives on `/about`.
-> Same day: `/projects` gained a domain filter (ALL/WEB/AI-ML/SYSTEMS/
-> HARDWARE/MOBILE/LAB) — the picked domain's entries pin to the top, the rest
-> dim below; deep-linkable via URL hash (`/projects#web`, `#ai-ml`, …).
-> 2026-07-11 (later): archive synced against both GitHub accounts — seven
-> public repos added, now 19 entries; stale CODE PRIVATE labels fixed.
+- [ ] The final edit reads as one continuous camera move without obvious AI
+      discontinuities.
+- [ ] The monitor endpoint is stable enough for screen replacement and takeover.
+- [ ] Encoded assets meet the agreed visual-quality and transfer-size budgets.
+- [ ] A poster fallback is visually complete on its own.
 
-### Source material and data
+## Phase 2 — entry controller and seamless takeover
 
-- [~] Add the latest resume PDF and confirm the real GitHub, LinkedIn, email,
-      live-project and source-code URLs. (GitHub ×2 + LinkedIn confirmed and
-      live; resume PDF still pending — owner to choose which version.)
-- [~] Expand the shared typed content model for `profile`, `projects`,
-      `experience`, `internships`, `education`, `skills`, `interests` and
-      `photography` instead of duplicating copy in presentation components.
-      (`archive`, `interests`, `education.courses`, `profile.tagline/linkedin`
-      added; `photography` gallery data still pending real photos.)
-- [~] Verify dates, titles, locations, qualifications, metrics and publication
-      permission before making them public. (All content sourced from the
-      owner's own resumes; NDA projects labelled, no confidential code linked.)
-- [x] Keep the schema translation-ready, but do not block this content milestone
-      on the later i18n implementation.
+- [ ] Add the cinematic layer above the already-loaded home page.
+- [ ] Start from the first frame, muted and `playsInline`; handle autoplay
+      failure without blocking entry.
+- [ ] Show a keyboard/touch accessible `SKIP INTRO` no later than one second.
+- [ ] Store completion in `sessionStorage` so the full entrance plays once per
+      browser session.
+- [ ] Do not replay during normal internal navigation or browser back/forward.
+- [ ] Implement the monitor-fill → CRT sync → live Hero handoff without a route
+      transition.
+- [ ] Ensure Skip and natural completion land in the same final DOM state.
+- [ ] Absorb/retire the standalone `BootScreen` only after its role exists inside
+      the monitor sequence.
+- [ ] Preload only what is necessary; never hold the real page behind a video
+      download.
+- [ ] Use the poster and immediate entry when video playback or decoding fails.
+- [ ] Under `prefers-reduced-motion`, skip the camera move and use a brief poster
+      dissolve.
+- [ ] Restore predictable keyboard focus and document scrolling after takeover.
+- [ ] Prevent the decorative layer from being announced by screen readers.
 
-### Professional content
+### Phase 2 acceptance
 
-- [ ] Keep three strongest projects prominent on `/` and add a way to browse
-      the wider project archive.
-- [ ] Give each major project a case-study structure: problem, audience, role,
-      constraints, technical decisions, contribution, result, stack and links.
-- [ ] Add real screenshots or lightweight demos for Sensor Analytics, CMO-DB,
-      CTV and other selected work.
-- [ ] Expand work and internship history with clear organisation, role, dates,
-      location and impact-first bullets.
-- [ ] Expand education details for UNSW, UTS and any relevant awards,
-      coursework or activities that strengthen the story.
-- [ ] Earlier (secondary) education on /about, opt-in only: hidden by default
-      behind an explicit [ SHOW_EARLIER_EDUCATION ] disclosure button — the
-      entries render only after the click, never in the default flow and never
-      on the homepage. Needs school names/dates from the owner first
-      (2026-07-12 request).
-- [ ] Add a visible Resume action once the current PDF exists.
-- [ ] Decide whether long-form content belongs in `/projects/[slug]` pages or a
-      smaller expandable archive after the source material is collected.
+- [ ] No white/black flash, layout jump or duplicate loader appears at handoff.
+- [ ] Skip works immediately by keyboard and touch.
+- [ ] Repeat visits do not replay the cinematic in the same session.
+- [ ] Core identity, work and contact actions remain available without video.
+- [ ] Slow connection, autoplay rejection and decode failure all enter the site
+      cleanly.
 
-### Interests and visual work
+## Phase 3 — spatial Matrix Hero
 
-- [ ] Add a personal section after the professional story for photography,
-      computers/hardware and cars.
-- [ ] Create a photography/HDR gallery with captions, dates/locations where
-      appropriate, descriptive alt text and an optional before/after treatment.
-- [ ] Include PC building, hardware, setup or homelab stories that show genuine
-      long-term technical curiosity.
-- [ ] Present automotive interest as a concise personal signal, with original or
-      licensed media only.
-- [ ] Optimise all media to responsive AVIF/WebP where appropriate; prevent the
-      gallery from delaying the main first viewport.
-- [ ] Review privacy, copyright, EXIF/location data and third-party branding
-      before publishing photos.
+- [ ] Prototype a single WebGL canvas behind the semantic Hero.
+- [ ] Preserve discrete falling glyphs in upper/distant layers.
+- [ ] Add perspective depth and controlled parallax rather than flat full-screen
+      rain.
+- [ ] Make selected glyph streams accelerate, stretch and curve toward the Hero
+      focal point or terminal.
+- [ ] Allow trails to resolve back into legible glyphs so the effect remains
+      Matrix-inspired.
+- [ ] Keep phosphor green dominant; use cool cyan and amber only as sparse
+      semantic signals.
+- [ ] Avoid generic rainbow gradients and smooth fibre-optic SaaS visuals.
+- [ ] Keep the current Canvas 2D rain as the WebGL fallback.
+- [ ] Use one graphics context, lazy loading, deterministic cleanup and no global
+      scroll listeners that run when unnecessary.
+- [ ] Pause when offscreen or when `document.hidden` is true.
+- [ ] Cap device-pixel ratio and reduce density/frame rate on mobile and low
+      power devices.
+- [ ] Provide a static CSS fallback and complete reduced-motion mode.
 
-### Priority 2 acceptance
+### Phase 3 acceptance
 
-- [ ] A visitor can understand what Zizhen did, why it mattered and what changed
-      for every featured project.
-- [ ] Resume, education, employment and internships are complete and internally
-      consistent.
-- [ ] No false CTA, placeholder URL or unexplained `coming soon` appears.
-- [ ] Interests add personality without pushing the professional evidence below
-      the core recruiter journey.
-- [ ] Photography works on mobile, has useful alt text and does not compromise
-      first-load performance.
-- [ ] Modern and retro presentations consume the same portfolio facts.
+- [ ] The effect still reads as code/glyph rain before it reads as light trails.
+- [ ] Text and calls to action remain clearer than the background.
+- [ ] WebGL failure falls back automatically without an error surface.
+- [ ] Desktop motion is smooth and mobile degradation is intentional.
+- [ ] No additional graphics context remains alive after route changes.
 
-## Priority 3 — Y2K lab family with XP.css and 98.css
+## Phase 4 — motion system and project evidence
 
-Y2K is the umbrella direction for the experimental OS interfaces. Win7 remains
-the first existing lab; XP and Windows 98 become distinct route-scoped builds.
+- [ ] Define one shared motion vocabulary for Hero, sections, headings, project
+      media and links.
+- [ ] Add restrained scroll-driven reveals without scroll hijacking.
+- [ ] Prototype sticky-stacking Selected Work cards and retain a simple mobile
+      flow.
+- [ ] Replace or supplement abstract project visuals with real screenshots or
+      short recordings for the strongest three to five projects.
+- [ ] Add media masks/scans that belong to the terminal system rather than a
+      generic portfolio template.
+- [ ] Add subtle magnetic/pointer interactions only where keyboard/touch states
+      remain equivalent.
+- [ ] Keep continuous background effects subordinate to project evidence.
+- [ ] Re-test the complete motion stack under reduced motion and coarse pointer.
 
-- [ ] Add `/labs` as the experiment index and keep the current Win7 entry.
-- [ ] Decide whether a standalone non-OS Y2K page is useful; do not create one by
-      default if the XP/98 labs already express the idea.
-- [ ] Prototype `/labs/xp` with [XP.css](https://github.com/botoxparty/XP.css).
-- [ ] Prototype `/labs/98` with [98.css](https://github.com/jdan/98.css).
-- [ ] Record and comply with the libraries' licences; use legally reusable
-      wallpapers, icons, sounds and fonts.
-- [ ] Give each first release About, Projects, Experience/Skills, Education,
-      Resume and Contact surfaces backed by the shared content.
-- [ ] Implement only the core shell interactions first: open, focus, move,
-      minimise and close, plus an appropriate start/taskbar surface.
-- [ ] Provide keyboard, touch and small-screen stacked fallbacks; do not require
-      double-click or precision mouse input to read the portfolio.
-- [ ] Reuse window-management code only after a genuinely repeated abstraction
-      appears; visual CSS must remain isolated per lab.
-- [ ] Keep deep OS simulation, games, boot sequences and Flip 3D-like spectacle
-      out of the initial XP/98 scope.
+### Phase 4 acceptance
 
-### Priority 3 acceptance
+- [ ] Scrolling feels intentionally paced without delaying reading.
+- [ ] At least three featured projects show real, legible evidence.
+- [ ] Mobile projects remain compact and usable without sticky traps.
+- [ ] The page feels more cinematic without becoming a copied MotionSite skin.
 
-- [ ] `/`, Win7, XP and 98 do not leak styles into one another.
-- [ ] Each lab exposes the same essential portfolio content and real contact
-      paths even when its decorative interaction is unavailable.
-- [ ] The main `/` route remains the Matrix-inspired professional portfolio,
-      never an OS simulator.
+## Phase 5 — resume, case studies and personal story
 
-## Priority 4 — English / 中文 i18n
+- [~] Resume source exists externally; select the current PDF and reconcile it
+      with site data.
+- [~] Shared data already covers profile, projects, experience, education and
+      supporting interests; extend only where case studies need it.
+- [ ] Add a visible Resume action after the current PDF is approved.
+- [ ] Give major projects a case-study structure: problem, audience, role,
+      decisions, implementation and outcome.
+- [ ] Verify employment, internship, education, dates, links and defensible
+      impact statements.
+- [ ] Decide between `/projects/[slug]` pages and expandable archive detail.
+- [ ] Add original photography/HDR work with captions and responsive media.
+- [ ] Add concise hardware/homelab and automotive material after professional
+      evidence.
+- [ ] Review media ownership, privacy, EXIF/location and third-party branding.
 
-- [ ] Use English (`en-AU`) as the default recruiter-facing locale and add
-      Simplified Chinese (`zh-CN`).
-- [ ] Choose a stable URL strategy such as `/en/...` and `/zh-CN/...`; do not
-      rely only on client state or IP detection.
-- [ ] Make the language switch preserve the current page and, where possible,
-      the current section/anchor.
-- [ ] Translate navigation, Hero, projects, experience, internships, education,
-      interests, photography captions, contact, UI states and accessible labels.
-- [ ] Localise `<html lang>`, titles, descriptions, Open Graph metadata,
-      canonical URLs and `hreflang` relationships.
-- [ ] Format dates, locations and punctuation with locale-aware helpers.
-- [ ] Define the Lab translation boundary explicitly: portfolio content must be
-      translated; simulated OS chrome may retain era-appropriate language only
-      when intentional and accessible.
-- [ ] Add missing-key checks and a documented fallback locale.
-- [ ] Repeat responsive checks in both languages; Chinese and English text have
-      different wrapping and density.
+### Phase 5 acceptance
 
-### Priority 4 acceptance
+- [ ] Visitors can understand what Zizhen built, why it mattered and what
+      changed.
+- [ ] Resume and website facts are internally consistent.
+- [ ] No featured item relies on unexplained placeholders or false CTAs.
+- [ ] Personal interests add identity without displacing professional evidence.
 
-- [ ] Direct visits, refreshes and internal navigation work for both locales
-      without waiting for client hydration to reveal the main content.
-- [ ] Switching language does not send the visitor back to an unrelated page.
-- [ ] Neither locale contains large accidental mixed-language blocks or missing
-      translation keys.
-- [ ] Search engines can identify the relationship between the two versions.
+## Phase 6 — contained WebGPU lab
 
-## Later TODO — after priorities 1–4
+- [ ] Define one demonstrable GPU concept before adding the route.
+- [ ] Prefer a project connected to existing GPU/systems interests: WGSL compute
+      particles, flow field, spatial simulation or visualised GPU pipeline.
+- [ ] Add `/labs/webgpu` only after the main cinematic and project evidence are
+      stable.
+- [ ] Include WebGPU feature detection plus WebGL/static fallback.
+- [ ] Explain the engineering decisions, limits and measured behaviour rather
+      than shipping a context-free visual toy.
+- [ ] Keep lab bundles isolated from the main route.
 
-### Quality, SEO and deployment
+## Phase 7 — Aero/Y2K lab family
 
-- [ ] Run fresh lint, typecheck and production builds after the current user
-      changes; resolve any result instead of relying on an earlier pass.
-- [ ] Add focused tests for navigation, key content, locale routing and critical
-      external links.
+- [ ] Add `/labs` as the experiment index and preserve the existing Win7 entry.
+- [ ] Prototype scoped `/labs/xp` and `/labs/98` experiences only after the main
+      portfolio priorities are stable.
+- [ ] Reuse shared portfolio facts without leaking OS-theme CSS.
+- [ ] Implement accessible open/focus/move/minimise/close basics before deeper
+      simulation.
+- [ ] Replace the Win7 orientation gate with a genuine small-screen fallback
+      when this phase resumes.
+- [ ] Fix recorded Flip 3D measurement and viewport issues.
+
+## Phase 8 — English / 中文 i18n
+
+- [ ] Use `en-AU` as default and add directly addressable `zh-CN` routes.
+- [ ] Preserve the current route and section when switching languages.
+- [ ] Translate navigation, portfolio content, UI states, accessible labels and
+      metadata.
+- [ ] Localise document language, dates, canonical URLs, `hreflang` and Open
+      Graph data.
+- [ ] Add missing-key checks and repeat responsive tests in both languages.
+
+## Phase 9 — release quality
+
+- [ ] Run fresh lint, typecheck and production build after implementation.
+- [ ] Test 320, 360, 390, 768, 1024 and 1440px layouts.
+- [ ] Test real iOS Safari and Android Chrome devices.
+- [ ] Test slow network, data saver, autoplay rejection and video decode failure.
+- [ ] Test keyboard-only, screen reader and reduced-motion entry paths.
+- [ ] Measure video transfer, JavaScript cost, CPU/GPU time, frame pacing and
+      layout stability.
+- [ ] Add focused tests for entry completion/skip/session state and key content.
 - [ ] Add CI for lint, typecheck, tests and build.
-- [ ] Run accessibility, keyboard, console-error, responsive and performance
-      audits for every public route.
-- [ ] Add canonical metadata, sitemap and robots after the production domain is
-      final; regenerate the OG image for the Matrix direction.
-- [ ] Verify the current Cloudflare/OpenNext configuration and public headers;
-      record one supported deployment path before production release.
+- [ ] Complete canonical metadata, sitemap, robots, headers and production-domain
+      configuration.
 - [ ] Replace copyrighted/local-only Windows assets before public deployment.
 
-### Win7 and Flip 3D improvements
+## Deferred non-goals
 
-- [ ] Turn the current Win7 landscape gate into a real small-screen fallback if
-      the lab is expected to be fully usable on phones.
-- [ ] Limit the rotate gate so large portrait touch devices are not blocked
-      unnecessarily.
-- [ ] Test landscape windows, taskbar, dragging and Flip 3D on small phones and
-      tablets.
-- [ ] Fix the one-frame Flip 3D height-measurement race.
-- [ ] Avoid unnecessary `measuredH` updates when an explicit window height is in
-      use.
-- [ ] Move viewport measurements out of render and centralise desktop/window
-      Flip 3D geometry in shared helpers.
-- [ ] Extract the repeated modular depth calculation into a named helper.
-
-### Other experiments
-
-- [ ] Consider a CMS, custom contact backend or heavier 3D only when real content
-      volume demonstrates a need.
-- [ ] Avoid long loaders, scroll hijacking and core interactions that work only
-      with a custom cursor.
-
-### Classic Mac / macOS lab — final priority
-
-- [ ] Start only after priorities 1–4 and the Win7/XP/98 lab family are stable.
-- [ ] Choose the target era first: Classic Macintosh/System 6, Mac OS 9 Platinum
-      or modern macOS.
-- [ ] Prefer [system.css](https://github.com/sakofchit/system.css) for a Classic
-      Macintosh build; treat modern macOS clones as references, not copy sources.
-- [ ] Reuse shared content while keeping Mac assets and styles isolated and
-      properly licensed.
+- [ ] Full real-time 3D city/building/office rendering on `/`.
+- [ ] WebGPU-only main-site rendering.
+- [ ] Mandatory or repeatedly playing cinematic intro.
+- [ ] Scroll hijacking, custom-cursor requirements or content gated by animation.
+- [ ] Generic blue/orange AI-SaaS reskin.
+- [ ] CMS, contact backend or authentication without a demonstrated content need.
+- [ ] Classic Mac/macOS lab before the cinematic, evidence, WebGPU and Y2K work
+      are stable.

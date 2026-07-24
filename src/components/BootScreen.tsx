@@ -12,19 +12,30 @@ const SESSION_KEY = "zl-boot-seen";
  * and is skipped entirely under prefers-reduced-motion and on repeat visits
  * within the same session.
  */
-export default function BootScreen() {
+export default function BootScreen({
+  embedded = false,
+  compact = false,
+}: {
+  embedded?: boolean;
+  compact?: boolean;
+}) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (embedded) return;
     if (window.sessionStorage.getItem(SESSION_KEY)) {
       ref.current?.style.setProperty("display", "none");
       return;
     }
     window.sessionStorage.setItem(SESSION_KEY, "1");
-  }, []);
+  }, [embedded]);
 
   return (
-    <div className={styles.boot} aria-hidden="true" ref={ref}>
+    <div
+      className={`${styles.boot} ${embedded ? styles.embedded : ""} ${compact ? styles.compact : ""}`}
+      aria-hidden="true"
+      ref={ref}
+    >
       <div className={styles.inner}>
         <p className={styles.title}>ZL://BOOT_SEQUENCE — V.01</p>
         <p className={styles.line}>

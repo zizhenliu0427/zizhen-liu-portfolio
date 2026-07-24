@@ -371,7 +371,7 @@ export const archive: readonly ArchiveEntry[] = [
 export type ExperienceLink = {
   label: string;
   href: string;
-  /** Hosted in mainland China — may not load from AU networks directly. */
+  /** Hosted in mainland China — may be affected by GFW and may only be accessible from Chinese networks directly. */
   cn?: boolean;
   /** Same-page anchor link (renders without target="_blank"). */
   internal?: boolean;
