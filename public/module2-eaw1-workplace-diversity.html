@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#071a2f" />
+  <title>Australian Workplace Culture &amp; Diversity — Zizhen Liu</title>
+  <style>
+    :root {
+      --navy: #071a2f;
+      --navy-2: #0b2744;
+      --blue: #55c8ff;
+      --gold: #ffbf47;
+      --coral: #ff785a;
+      --paper: #f7f4ed;
+      --ink: #13243a;
+      --muted: #a9bbca;
+      --line: rgba(255, 255, 255, 0.16);
+      --shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #020b14;
+      color: white;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Helvetica, Arial, sans-serif;
+    }
+
+    button,
+    a { font: inherit; }
+
+    button { color: inherit; }
+
+    .deck {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      isolation: isolate;
+      background:
+        radial-gradient(circle at 18% 10%, rgba(85, 200, 255, 0.11), transparent 30%),
+        radial-gradient(circle at 88% 78%, rgba(255, 191, 71, 0.08), transparent 34%),
+        var(--navy);
+    }
+
+    .deck::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.2;
+      background-image:
+        linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, transparent, black 24%, black 80%, transparent);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: clamp(22px, 3vh, 42px);
+      padding: clamp(40px, 6vw, 104px);
+      visibility: hidden;
+      opacity: 0;
+      transform: translateX(2.2%);
+      transition: opacity 420ms ease, transform 520ms cubic-bezier(.2,.8,.2,1);
+      pointer-events: none;
+    }
+
+    .slide.active {
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+      z-index: 2;
+    }
+
+    .slide.previous {
+      transform: translateX(-2.2%);
+    }
+
+    .slide.light {
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 90% 10%, rgba(85, 200, 255, 0.18), transparent 27%),
+        radial-gradient(circle at 8% 90%, rgba(255, 191, 71, 0.16), transparent 30%),
+        var(--paper);
+    }
+
+    .kicker {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0;
+      color: var(--blue);
+      font-size: clamp(15px, 1.25vw, 21px);
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .light .kicker { color: #126e9c; }
+
+    .kicker::before {
+      content: "";
+      width: 38px;
+      height: 3px;
+      border-radius: 999px;
+      background: currentColor;
+    }
+
+    h1,
+    h2,
+    h3,
+    p { margin: 0; }
+
+    h1 {
+      max-width: 1250px;
+      font-size: clamp(58px, 7.4vw, 118px);
+      line-height: 0.95;
+      letter-spacing: -0.065em;
+      text-wrap: balance;
+    }
+
+    h2 {
+      max-width: 1350px;
+      font-size: clamp(42px, 5.3vw, 82px);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      text-wrap: balance;
+    }
+
+    .lead {
+      max-width: 1080px;
+      color: #d3e0ea;
+      font-size: clamp(21px, 2vw, 32px);
+      line-height: 1.45;
+      text-wrap: balance;
+    }
+
+    .light .lead { color: #40566c; }
+
+    .accent { color: var(--gold); }
+    .blue { color: var(--blue); }
+    .coral { color: var(--coral); }
+
+    .hero {
+      display: grid;
+      align-content: center;
+      gap: clamp(24px, 4vh, 50px);
+      max-width: 1400px;
+    }
+
+    .title-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px 22px;
+      font-size: clamp(18px, 1.5vw, 25px);
+      color: #d5e3ed;
+    }
+
+    .title-meta strong { color: white; }
+
+    .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .content {
+      display: grid;
+      align-content: center;
+      gap: clamp(28px, 4vh, 50px);
+      min-height: 0;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(22px, 3vw, 46px);
+      align-items: stretch;
+    }
+
+    .story {
+      position: relative;
+      overflow: hidden;
+      min-height: 320px;
+      padding: clamp(28px, 3vw, 48px);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: rgba(255,255,255,.065);
+      box-shadow: var(--shadow);
+    }
+
+    .light .story {
+      border-color: rgba(19, 36, 58, 0.12);
+      background: rgba(255,255,255,.76);
+      box-shadow: 0 28px 70px rgba(24, 51, 76, 0.12);
+    }
+
+    .story::after {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      right: -55px;
+      bottom: -75px;
+      border-radius: 50%;
+      background: var(--card-accent, var(--blue));
+      opacity: 0.16;
+    }
+
+    .story-number {
+      margin-bottom: 28px;
+      color: var(--card-accent, var(--blue));
+      font-size: clamp(15px, 1.2vw, 19px);
+      font-weight: 850;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .story h3 {
+      margin-bottom: 18px;
+      font-size: clamp(27px, 2.35vw, 40px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .story p {
+      max-width: 630px;
+      color: #d1dee8;
+      font-size: clamp(18px, 1.45vw, 25px);
+      line-height: 1.5;
+    }
+
+    .light .story p { color: #40566c; }
+
+    .impact-layout {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: clamp(28px, 5vw, 78px);
+      align-items: center;
+    }
+
+    .impact-sentence {
+      font-size: clamp(36px, 4vw, 64px);
+      line-height: 1.12;
+      letter-spacing: -0.045em;
+      text-wrap: balance;
+    }
+
+    .impact-list {
+      display: grid;
+      gap: 18px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .impact-list li {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      align-items: start;
+      gap: 18px;
+      padding: 19px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: clamp(18px, 1.45vw, 25px);
+      line-height: 1.35;
+    }
+
+    .light .impact-list li { border-color: rgba(19, 36, 58, 0.14); }
+
+    .impact-list span {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      color: var(--navy);
+      background: var(--gold);
+      font-weight: 900;
+    }
+
+    .law-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1fr;
+      gap: clamp(18px, 2.2vw, 34px);
+    }
+
+    .law {
+      min-height: 270px;
+      padding: clamp(24px, 2.6vw, 42px);
+      border-top: 5px solid var(--law-colour, var(--blue));
+      border-radius: 0 0 24px 24px;
+      background: rgba(255,255,255,.07);
+    }
+
+    .law-year {
+      color: var(--law-colour, var(--blue));
+      font-weight: 900;
+      letter-spacing: .12em;
+    }
+
+    .law h3 {
+      margin: 14px 0 18px;
+      font-size: clamp(24px, 2vw, 34px);
+      line-height: 1.1;
+    }
+
+    .law p {
+      color: #d1dee8;
+      font-size: clamp(17px, 1.3vw, 22px);
+      line-height: 1.45;
+    }
+
+    .source-line {
+      color: var(--muted);
+      font-size: clamp(13px, .95vw, 16px);
+      line-height: 1.35;
+    }
+
+    .source-line a {
+      color: inherit;
+      text-decoration-color: rgba(255,255,255,.4);
+      text-underline-offset: 3px;
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: .9fr .9fr 1.2fr;
+      align-items: stretch;
+      gap: clamp(18px, 2.2vw, 34px);
+    }
+
+    .country,
+    .action {
+      padding: clamp(26px, 2.7vw, 44px);
+      border-radius: 28px;
+    }
+
+    .country {
+      border: 1px solid rgba(19, 36, 58, 0.13);
+      background: rgba(255,255,255,.74);
+    }
+
+    .country-label {
+      margin-bottom: 18px;
+      color: #126e9c;
+      font-size: clamp(15px, 1.2vw, 19px);
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .country h3,
+    .action h3 {
+      margin-bottom: 18px;
+      font-size: clamp(27px, 2.2vw, 38px);
+      letter-spacing: -.03em;
+    }
+
+    .country p,
+    .action li {
+      font-size: clamp(17px, 1.35vw, 23px);
+      line-height: 1.45;
+    }
+
+    .country p { color: #40566c; }
+
+    .action {
+      color: white;
+      background: var(--navy-2);
+      box-shadow: 0 26px 65px rgba(24, 51, 76, 0.18);
+    }
+
+    .action ul {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding-left: 1.1em;
+    }
+
+    .close-line {
+      color: #36516a;
+      font-size: clamp(16px, 1.25vw, 21px);
+      font-style: italic;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: clamp(13px, 1vw, 17px);
+      letter-spacing: .06em;
+    }
+
+    .light .footer { color: #60758a; }
+
+    .slide-count { font-variant-numeric: tabular-nums; }
+
+    .controls {
+      position: fixed;
+      right: 24px;
+      bottom: 20px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      background: rgba(2,11,20,.62);
+      box-shadow: 0 15px 35px rgba(0,0,0,.2);
+      backdrop-filter: blur(16px);
+      transition: opacity .2s ease;
+    }
+
+    .controls button {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .controls button:hover,
+    .controls button:focus-visible {
+      background: rgba(255,255,255,.12);
+      outline: none;
+    }
+
+    .progress {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      z-index: 30;
+      width: 100%;
+      height: 4px;
+      background: rgba(255,255,255,.1);
+    }
+
+    .progress > div {
+      height: 100%;
+      width: 20%;
+      background: linear-gradient(90deg, var(--blue), var(--gold));
+      transition: width 350ms ease;
+    }
+
+    .notes {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 40;
+      display: none;
+      width: min(520px, calc(100vw - 40px));
+      max-height: calc(100vh - 40px);
+      overflow: auto;
+      padding: 24px 26px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 22px;
+      color: white;
+      background: rgba(2,11,20,.94);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .notes.visible { display: block; }
+
+    .notes-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 12px;
+      color: var(--gold);
+      font-size: 14px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .notes p {
+      color: #d6e1e9;
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .speaker-note { display: none; }
+
+    .hint {
+      position: fixed;
+      left: 24px;
+      bottom: 20px;
+      z-index: 20;
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: #c8d6e0;
+      background: rgba(2,11,20,.55);
+      backdrop-filter: blur(12px);
+      font-size: 13px;
+      transition: opacity 500ms ease;
+    }
+
+    .hint.hidden { opacity: 0; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 560ms ease, transform 650ms cubic-bezier(.2,.8,.2,1);
+    }
+
+    .active .reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .active .reveal:nth-child(2) { transition-delay: 90ms; }
+    .active .reveal:nth-child(3) { transition-delay: 180ms; }
+    .active .reveal:nth-child(4) { transition-delay: 270ms; }
+
+    @media (max-width: 900px), (max-aspect-ratio: 4/3) {
+      .slide {
+        gap: 20px;
+        padding: 34px 32px 74px;
+        overflow-y: auto;
+      }
+
+      .two-column,
+      .impact-layout,
+      .law-grid,
+      .comparison {
+        grid-template-columns: 1fr;
+      }
+
+      .story,
+      .law { min-height: 0; }
+
+      .controls { right: 12px; bottom: 12px; }
+      .hint { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behaviour: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+
+    @media print {
+      @page { size: 13.333in 7.5in; margin: 0; }
+
+      html,
+      body {
+        width: auto;
+        height: auto;
+        overflow: visible;
+        background: white;
+      }
+
+      .deck {
+        width: auto;
+        height: auto;
+        background: white;
+      }
+
+      .slide,
+      .slide.active,
+      .slide.previous {
+        position: relative;
+        display: grid;
+        visibility: visible;
+        width: 13.333in;
+        height: 7.5in;
+        opacity: 1;
+        transform: none;
+        page-break-after: always;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+
+      .slide:not(.light) {
+        color: white;
+        background:
+          radial-gradient(circle at 18% 10%, rgba(85, 200, 255, 0.11), transparent 30%),
+          radial-gradient(circle at 88% 78%, rgba(255, 191, 71, 0.08), transparent 34%),
+          var(--navy);
+      }
+
+      .slide.light {
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 90% 10%, rgba(85, 200, 255, 0.18), transparent 27%),
+          radial-gradient(circle at 8% 90%, rgba(255, 191, 71, 0.16), transparent 30%),
+          var(--paper);
+      }
+
+      .two-column {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+
+      .impact-layout {
+        grid-template-columns: 1.15fr .85fr !important;
+      }
+
+      .law-grid {
+        grid-template-columns: 1.1fr 1fr 1fr !important;
+      }
+
+      .comparison {
+        grid-template-columns: .9fr .9fr 1.2fr !important;
+      }
+
+      .footer {
+        position: absolute;
+        left: 40px;
+        right: 40px;
+        bottom: 28px;
+      }
+
+      .controls,
+      .progress,
+      .notes,
+      .hint { display: none !important; }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Assumption used for the required country-of-birth comparison: China. -->
+  <main class="deck" aria-live="polite">
+    <section class="slide active" data-title="Opening" data-seconds="45">
+      <p class="kicker reveal">Module 2 · EAW1</p>
+      <div class="hero">
+        <h1 class="reveal">Working well with <span class="accent">difference.</span></h1>
+        <p class="lead reveal">
+          What Australian workplace culture has taught me about communication,
+          inclusion and equal opportunity.
+        </p>
+        <div class="title-meta reveal">
+          <strong>Zizhen Liu</strong>
+          <span class="dot" aria-hidden="true"></span>
+          <span>Individual presentation</span>
+        </div>
+      </div>
+      <footer class="footer">
+        <span>Australian Workplace Culture &amp; Diversity</span>
+        <span class="slide-count">01 / 05</span>
+      </footer>
+      <aside class="speaker-note">
+        Good morning. My name is Zizhen Liu. Today I will explain what I have
+        learned about diversity in Australian workplaces. I will focus on two
+        areas from my experience: culture and communication style, and language
+        and accent. I will also explain the workplace impact, the relevant laws,
+        and the practical strategies I now use.
+      </aside>
+    </section>
+
+    <section class="slide light" data-title="Two examples" data-seconds="70">
+      <p class="kicker reveal">Two examples from my experience</p>
+      <div class="content">
+        <h2 class="reveal">The same message can be understood in <span class="coral">different ways.</span></h2>
+        <div class="two-column">
+          <article class="story reveal" style="--card-accent:#ff785a">
+            <div class="story-number">01 · Culture</div>
+            <h3>Direct and indirect feedback</h3>
+            <p>
+              In multicultural group work, I noticed that direct Australian
+              feedback can sound strong to someone used to a more indirect style.
+              I learned to check the intention before reacting.
+            </p>
+          </article>
+          <article class="story reveal" style="--card-accent:#1284b6">
+            <div class="story-number">02 · Language</div>
+            <h3>Accent and speaking speed</h3>
+            <p>
+              Fast speech, local expressions and different accents can cause
+              misunderstandings. A short written summary helps everyone confirm
+              the same meaning.
+            </p>
+          </article>
+        </div>
+      </div>
+      <footer class="footer">
+        <span>Personal examples from study and group work</span>
+        <span class="slide-count">02 / 05</span>
+      </footer>
+      <aside class="speaker-note">
+        My first example is culture. In China, feedback can be more indirect,
+        especially when speaking to a senior person. In Australia, people may
+        give feedback more directly. At first, this could feel uncomfortable,
+        but I learned that the intention is often to solve the problem quickly.
+        My second example is language. In group meetings, accents, fast speech
+        and local expressions can create confusion. I now ask people to repeat
+        important points and I use a short written summary after the meeting.
+      </aside>
+    </section>
+
+    <section class="slide" data-title="Impact" data-seconds="60">
+      <p class="kicker reveal">Workplace impact</p>
+      <div class="content impact-layout">
+        <p class="impact-sentence reveal">
+          Diversity improves ideas and decisions — <span class="accent">when people can participate fully.</span>
+        </p>
+        <ul class="impact-list">
+          <li class="reveal">
+            <span>+</span>
+            <div><strong>Better ideas:</strong> different experience reveals risks and opportunities others may miss.</div>
+          </li>
+          <li class="reveal">
+            <span>+</span>
+            <div><strong>Stronger service:</strong> a diverse team understands a wider range of customers.</div>
+          </li>
+          <li class="reveal">
+            <span style="background:var(--coral)">!</span>
+            <div><strong>Possible friction:</strong> stereotypes, unclear language or exclusion can reduce trust.</div>
+          </li>
+        </ul>
+      </div>
+      <footer class="footer">
+        <span>Inclusion turns difference into performance</span>
+        <span class="slide-count">03 / 05</span>
+      </footer>
+      <aside class="speaker-note">
+        Diversity can have a positive impact. People with different backgrounds
+        can identify different risks, suggest new ideas and understand more
+        customers. However, diversity alone is not enough. If communication is
+        unclear, or if people make assumptions, the result may be conflict,
+        silence or lower trust. The key is inclusion: every person needs a fair
+        chance to speak, contribute and develop.
+      </aside>
+    </section>
+
+    <section class="slide" data-title="Australian law" data-seconds="70">
+      <p class="kicker reveal">Australian legal protections</p>
+      <div class="content">
+        <h2 class="reveal">Fair treatment is more than good manners — <span class="blue">it is protected by law.</span></h2>
+        <div class="law-grid">
+          <article class="law reveal" style="--law-colour:#55c8ff">
+            <div class="law-year">2009</div>
+            <h3>Fair Work Act</h3>
+            <p>
+              Employers cannot take adverse action because of protected
+              attributes such as race, sex, age, disability or religion.
+            </p>
+          </article>
+          <article class="law reveal" style="--law-colour:#ffbf47">
+            <div class="law-year">1975</div>
+            <h3>Racial Discrimination Act</h3>
+            <p>
+              Protects people from unfair treatment because of race, colour,
+              descent, or national or ethnic origin.
+            </p>
+          </article>
+          <article class="law reveal" style="--law-colour:#ff785a">
+            <div class="law-year">1984</div>
+            <h3>Sex Discrimination Act</h3>
+            <p>
+              Protects against sex discrimination and sexual harassment, and
+              covers attributes including sexual orientation and gender identity.
+            </p>
+          </article>
+        </div>
+        <p class="source-line reveal">
+          Sources:
+          <a href="https://www.fairwork.gov.au/employment-conditions/protections-at-work/protection-from-discrimination-at-work" target="_blank" rel="noreferrer">Fair Work Ombudsman</a>
+          ·
+          <a href="https://humanrights.gov.au/resource-hub/guides-for-impacted-individuals/a-quick-guide-to-australian-discrimination-laws" target="_blank" rel="noreferrer">Australian Human Rights Commission</a>
+        </p>
+      </div>
+      <footer class="footer">
+        <span>Equal opportunity means fair, lawful decisions</span>
+        <span class="slide-count">04 / 05</span>
+      </footer>
+      <aside class="speaker-note">
+        Australian workplace inclusion is supported by law. Under the Fair Work
+        Act, an employer cannot take adverse action because of protected
+        attributes. The Racial Discrimination Act protects people from unfair
+        treatment because of race or ethnic origin. The Sex Discrimination Act
+        protects against sex discrimination and sexual harassment. In practice,
+        recruitment, training, promotion and dismissal should use fair and
+        lawful criteria. Workers should also have a safe way to raise concerns.
+      </aside>
+    </section>
+
+    <section class="slide light" data-title="Strategies and comparison" data-seconds="55">
+      <p class="kicker reveal">What I do differently now</p>
+      <div class="content">
+        <h2 class="reveal">Inclusion is built through <span class="coral">daily behaviour.</span></h2>
+        <div class="comparison">
+          <article class="country reveal">
+            <div class="country-label">Australia</div>
+            <h3>Open and formal</h3>
+            <p>
+              Equal opportunity is discussed openly, first names are common,
+              and formal complaint pathways are visible.
+            </p>
+          </article>
+          <article class="country reveal">
+            <div class="country-label">China</div>
+            <h3>More hierarchical</h3>
+            <p>
+              Communication can be more indirect, and raising concerns with a
+              senior person may feel more sensitive.
+            </p>
+          </article>
+          <article class="action reveal">
+            <h3>My practical response</h3>
+            <ul>
+              <li>Ask instead of assuming.</li>
+              <li>Use plain language and written follow-ups.</li>
+              <li>Invite quieter people to contribute.</li>
+              <li>Speak up early and use the correct process.</li>
+            </ul>
+          </article>
+        </div>
+        <p class="close-line reveal">
+          These are personal observations, not rules about every person or workplace.
+        </p>
+      </div>
+      <footer class="footer">
+        <span>Respect · clarity · fair opportunity</span>
+        <span class="slide-count">05 / 05</span>
+      </footer>
+      <aside class="speaker-note">
+        In my experience, Australian workplaces discuss equal opportunity more
+        openly and use formal processes. Communication in China can be more
+        hierarchical and indirect. These are tendencies, not rules. My response
+        is practical: I ask questions instead of making assumptions, use plain
+        language, send written follow-ups, invite quieter people to speak, and
+        raise problems early through the correct process. For me, inclusion
+        means respect, clarity and a fair opportunity to contribute.
+      </aside>
+    </section>
+  </main>
+
+  <div class="hint" aria-hidden="true">← → navigate · N notes · F full screen</div>
+
+  <nav class="controls" aria-label="Slide controls">
+    <button type="button" id="prev" aria-label="Previous slide">←</button>
+    <button type="button" id="notesButton" aria-label="Toggle speaker notes">N</button>
+    <button type="button" id="next" aria-label="Next slide">→</button>
+  </nav>
+
+  <div class="progress" aria-hidden="true"><div id="progressBar"></div></div>
+
+  <aside class="notes" id="notesPanel" aria-label="Speaker notes">
+    <div class="notes-top">
+      <span id="notesTitle">Opening</span>
+      <span id="notesTime">45 sec</span>
+    </div>
+    <p id="notesText"></p>
+  </aside>
+
+  <script>
+    (() => {
+      const slides = [...document.querySelectorAll(".slide")];
+      const progressBar = document.getElementById("progressBar");
+      const notesPanel = document.getElementById("notesPanel");
+      const notesTitle = document.getElementById("notesTitle");
+      const notesTime = document.getElementById("notesTime");
+      const notesText = document.getElementById("notesText");
+      const hint = document.querySelector(".hint");
+      let current = Math.max(0, Math.min(
+        slides.length - 1,
+        Number.parseInt(location.hash.slice(1), 10) - 1 || 0
+      ));
+
+      function updateNotes() {
+        const slide = slides[current];
+        notesTitle.textContent = slide.dataset.title || `Slide ${current + 1}`;
+        notesTime.textContent = `${slide.dataset.seconds || "60"} sec`;
+        notesText.textContent = slide.querySelector(".speaker-note")?.textContent.trim() || "";
+      }
+
+      function show(index, updateHash = true) {
+        const nextIndex = Math.max(0, Math.min(slides.length - 1, index));
+        slides.forEach((slide, i) => {
+          slide.classList.toggle("active", i === nextIndex);
+          slide.classList.toggle("previous", i < nextIndex);
+          slide.setAttribute("aria-hidden", i === nextIndex ? "false" : "true");
+        });
+        current = nextIndex;
+        progressBar.style.width = `${((current + 1) / slides.length) * 100}%`;
+        if (updateHash) history.replaceState(null, "", `#${current + 1}`);
+        updateNotes();
+      }
+
+      function toggleNotes() {
+        notesPanel.classList.toggle("visible");
+      }
+
+      function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen?.();
+        } else {
+          document.exitFullscreen?.();
+        }
+      }
+
+      document.getElementById("prev").addEventListener("click", () => show(current - 1));
+      document.getElementById("next").addEventListener("click", () => show(current + 1));
+      document.getElementById("notesButton").addEventListener("click", toggleNotes);
+
+      document.addEventListener("keydown", (event) => {
+        if (["ArrowRight", "PageDown", " ", "Enter"].includes(event.key)) {
+          event.preventDefault();
+          show(current + 1);
+        } else if (["ArrowLeft", "PageUp", "Backspace"].includes(event.key)) {
+          event.preventDefault();
+          show(current - 1);
+        } else if (event.key.toLowerCase() === "n") {
+          toggleNotes();
+        } else if (event.key.toLowerCase() === "f") {
+          toggleFullscreen();
+        } else if (event.key === "Home") {
+          show(0);
+        } else if (event.key === "End") {
+          show(slides.length - 1);
+        }
+      });
+
+      let touchStartX = null;
+      document.addEventListener("touchstart", (event) => {
+        touchStartX = event.changedTouches[0].clientX;
+      }, { passive: true });
+      document.addEventListener("touchend", (event) => {
+        if (touchStartX === null) return;
+        const delta = event.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(delta) > 55) show(current + (delta < 0 ? 1 : -1));
+        touchStartX = null;
+      }, { passive: true });
+
+      setTimeout(() => hint.classList.add("hidden"), 5000);
+      show(current, false);
+    })();
+  </script>
+</body>
+</html>

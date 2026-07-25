@@ -1,10 +1,136 @@
 # Portfolio cinematic/Three.js rebuild handoff
 
+## 0. Status and decisions — 2026-07-25
+
+**Read this section first.** Sections 1-14 are the original brief, written before
+any of the current implementation existed. Where the two conflict, §0 wins.
+
+### Decisions taken after the brief was written
+
+1. **No video at all.** The AI-generated clip is rejected outright, not just as
+   a final asset. The entire sequence is real-time Three.js. This deletes the
+   "preferred hybrid implementation" in §5 and every reference to hiding a
+   video-to-WebGL cut — with one scene and one camera there is no cut to hide.
+2. **No Sydney, no real city.** Landmark recognisability is dropped; the user
+   may not end up working there, and an anonymous Mega City is closer to the
+   source material anyway. §3's Sydney requirement no longer applies.
+   (`BootScreen` still contains a `sydney.au` line — content decision pending.)
+3. **Stylised, not photoreal.** *The Matrix Awakens* is the reference for
+   **atmosphere only** — scale, dense architecture, camera behaviour,
+   atmospheric perspective, cold night grade with sparse warm window light.
+   Nanite/Lumen fidelity is not reproducible in WebGL and will not be attempted.
+   At this budget image quality comes from shader, post, grade and camera, not
+   from geometry count. §5's ban on building a city from scratch is lifted for
+   procedural geometry; it still stands for photoreal asset production.
+4. **The city is to be legible, not suggested.** The user rejected the option of
+   hiding the city behind bokeh and shallow depth of field, and asked for a city
+   that reads clearly. Procedural boxes have been pushed about as far as they go
+   (stepped silhouettes, floor bands, whole-floor lighting, distance softening,
+   obstruction beacons) and still read as boxes. Closing the remaining gap needs
+   **licensed glTF building assets with baked lighting**, which must be supplied
+   by the user — assets are not to be downloaded from arbitrary sources. Until
+   they exist, treat the procedural city as placeholder, not as the target.
+
+WebGPU remains out of the main route (see `TODO.md`): the glyph field is
+fill-rate bound, not compute bound, so WebGPU buys no image quality here. It
+stays reserved for a separate `/labs/webgpu` demo.
+
+### Current state
+
+`/labs/entry` runs the whole sequence — night city, window transit, room,
+monitor, DOM handoff — on **one scene, one camera, one unbroken curve**. There is
+no video, no cut, no bridge frame and no crossfade anywhere in it. §11 steps 3-9
+are done; **only step 10, integration into `/`, remains**. The rejected
+`CinematicEntry` is still mounted on `/` and has not been touched.
+
+| File | Responsibility |
+| --- | --- |
+| `src/components/cinematic/glyphRain.ts` | Glyph field in one fragment shader, drawn into a `WebGLRenderTarget`. Generates its own glyph atlas. This texture is the single source of truth for the monitor, the window spill and the page background. |
+| `src/components/cinematic/cityscape.ts` | Procedural night city: instanced building sections, window shader keyed off world position, sky gradient, hero building with a real window aperture, frame, glass, beacons. |
+| `src/components/cinematic/postFx.ts` | Quarter-res threshold bloom, then one composite pass carrying chromatic aberration, vignette and grain. Hand-written; `UnrealBloomPass` costs more passes and bundle than this scene needs. |
+| `src/components/cinematic/introPlan.ts` | Decides once per page load what the visitor gets. |
+| `src/components/cinematic/MonitorHandoff.tsx` | Scene assembly, camera timeline, boot overlay projection, skip/scroll/focus/pause behaviour. |
+| `src/app/labs/entry/` | Isolated prototype route with per-mode replay controls. |
+
+### Behaviour model
+
+`introPlan.ts` resolves two axes that fail independently:
+
+- `flight`: `full` (city → window → room → monitor) | `short` (already docked,
+  brief dissolve) | `none` (already docked, no animation)
+- `renderer`: `webgl` | `canvas2d`
+
+Keeping them separate matters: a repeat visitor still gets the live WebGL field
+as the hero background and only loses the flight. Collapsing this into a single
+mode would degrade repeat visits to a static background and break the
+"background motion is continuous" requirement.
+
+Resolution order: no WebGL → `canvas2d`; `?flight=` / `?renderer=` debug
+override; session already seen → `none`; `prefers-reduced-motion` or
+`(pointer: coarse), (max-width: 767px)` → `short`; otherwise `full`.
+`?intro=1` replays. `?renderer=canvas2d` is the only practical way to exercise
+the no-WebGL branch in a browser that has WebGL.
+
+### Two mechanisms not to unpick
+
+**Timeline is split at the facade, not eased as one curve.** The exterior leg is
+~41 world units and the interior leg ~1.3, so the facade sits at ~95% of the arc
+and *no* single easing gives the room more than about a fifth of the runtime —
+verified empirically, the first attempt gave the city 70%. `EXTERIOR_TIME` splits
+the timeline there; the crossing is located by binary search on arc length
+because it shifts with viewport aspect. Exterior uses an exponential approach
+(constant *apparent* growth, not constant speed) and `INTERIOR_POWER` is chosen
+so `du/dt` matches across the join — mismatched, the camera visibly changes
+speed at the transit.
+
+**The handoff is not a switch.** The camera dollies until the monitor plane
+covers the frustum and then stays there, re-docking every frame so resize keeps
+it exact. Nothing is swapped at the handoff, so no seam can exist. Do not
+"optimise" this into a fullscreen-quad swap.
+
+### Two traps that cost real debugging time
+
+- `useIntroPlan` returns a **server snapshot** on the hydration render. Anything
+  seeded from it (`useState(flight === "none")`) latches the wrong value and
+  reveals the hero for a frame before fading it back out. Derive reveal state;
+  never seed it.
+- Post-intro focus must **not** be scheduled in `requestAnimationFrame`. rAF does
+  not fire in a background tab, so focus silently never lands. Use a
+  commit-ordered effect.
+
+Also: `Object3D.lookAt` aims **+Z** at the target while cameras look down **−Z**.
+Computing camera orientation with a plain `Object3D` scratch inverts it and the
+scene renders black. Use a `Camera` as the scratch object.
+
+### Verified vs not
+
+Verified by assertion, not by inspection: session gating, `?intro=1`, the real
+mobile gate at 375px, the Canvas 2D fallback, Skip present within a frame with a
+44px target and outside the `aria-hidden` subtree, Escape-to-skip, scroll lock
+and restore-to-prior-value, focus landing on the hero, session marking, and — the
+acceptance criterion that matters — **Skip and natural completion land on a
+byte-identical camera pose** (`[0, 0, 1.30036, 0, 0, 0, 1]`, within 1e-6).
+
+**Not verified: the motion itself.** The preview pane used during development
+reports `visibilityState: "hidden"`, which starves rAF, and its compositor does
+not reliably sync to manually driven frames. Beats were confirmed numerically
+(camera poses, facade crossing at 2.73s, per-beat bright-pixel ratios). Whether
+the sequence *reads* well at 60fps has not been observed and needs a human at a
+real browser. In particular the transit darkens sharply (bright-pixel coverage
+5.3% → 0.34% over ~0.5s) — physically correct and the intended "darkness at the
+window" beat, but it could read as a black flash.
+
+---
+
+> **Everything from here down is the original brief, written before any of the
+> above existed.** It is kept because the product goal, the non-negotiable
+> requirements and the art direction in it still stand. Where it describes the
+> *implementation* — the video wrapper, the hybrid cut, Sydney — §0 overrides it.
+> References below to "the current prototype" mean the rejected video version,
+> not `/labs/entry`.
+
 > Updated: 2026-07-25<br>
-> Decision status: **restart required**<br>
-> Current cinematic prototype: **not approved; do not polish it further**<br>
-> Next direction: build an isolated Three.js/WebGL proof of concept first, then
-> integrate it only after the monitor-to-page handoff is convincing.
+> Decision status of the **video** prototype: **rejected; do not polish it**
 
 ## 1. Why this handoff exists
 
@@ -209,7 +335,15 @@ Do not turn it into generic multicolour fibre optics or a typical AI SaaS
 background. It must still read as Matrix-inspired code before it reads as
 abstract light.
 
-## 7. Current prototype: what exists and how to treat it
+## 7. The rejected video prototype: what exists and how to treat it
+
+> Still accurate. These files are all still present and `/` still mounts
+> `CinematicEntry`; the Three.js work lives entirely under
+> `src/components/cinematic/` and `/labs/entry`. They come out as part of §11
+> step 10, not before. `BootScreen.tsx` is the exception worth noting — it is
+> still used by other routes, and its `sydney.au` copy line is a pending content
+> decision (§0 decision 2). The `/labs/entry` boot overlay is a separate
+> implementation and does not import it.
 
 The following experimental files currently exist:
 
@@ -297,46 +431,58 @@ hybrid video + Three.js takeover
 
 Do not immediately wire a new renderer into the production Hero. Use this order:
 
-1. Inspect `git status`/diff and preserve all unrelated edits.
-2. Disable or isolate the rejected cinematic prototype without deleting source
-   evidence.
-3. Build a dedicated local prototype route/component for only the final
-   monitor-to-fullscreen transition.
-4. Prove that the same live render target continues moving through monitor,
-   fullscreen and DOM reveal states.
-5. Add the compact boot window inside that continuous screen system.
-6. Get user approval for the final 1.5 seconds before adding city/room footage.
-7. Add the exterior/room segment and conceal its cut into the approved Three.js
-   endpoint.
-8. Compress the complete timing to approximately five seconds.
-9. Add Skip, session, reduced-motion, mobile and failure fallbacks.
-10. Integrate into `/` only after the isolated prototype is approved.
+1. ~~Inspect `git status`/diff and preserve all unrelated edits.~~ done
+2. ~~Disable or isolate the rejected cinematic prototype without deleting source
+   evidence.~~ superseded — the new work is a separate route, so `/` was left
+   entirely alone rather than disabled.
+3. ~~Build a dedicated local prototype route/component for only the final
+   monitor-to-fullscreen transition.~~ done — `/labs/entry`
+4. ~~Prove that the same live render target continues moving through monitor,
+   fullscreen and DOM reveal states.~~ done, and approved
+5. ~~Add the compact boot window inside that continuous screen system.~~ done —
+   HTML overlay projected onto the screen plane every frame
+6. ~~Get user approval for the final 1.5 seconds before adding city/room
+   footage.~~ approved
+7. ~~Add the exterior/room segment and conceal its cut into the approved Three.js
+   endpoint.~~ done — and **there is no cut to conceal**: forced perspective keeps
+   the hero building close enough that the whole move stays on one curve
+8. ~~Compress the complete timing to approximately five seconds.~~ done — 4.4s
+   flight + ~0.6s boot tail
+9. ~~Add Skip, session, reduced-motion, mobile and failure fallbacks.~~ done, see
+   §0 "Verified vs not"
+10. **← NEXT.** Integrate into `/` only after the isolated prototype is approved.
+    Open questions for that step: the WebGL host must become the hero background
+    rather than a fixed full-viewport layer (the `IntersectionObserver` pause is
+    already in place for this), and `/about` and `/projects` still run the
+    Canvas 2D `MatrixRain` — two expensive canvases must not coexist.
 11. Run production build and regression checks for all existing routes.
+
+Independent of the above: the city's visual quality is **not** signed off. See §0
+decision 4 — it needs licensed glTF assets supplied by the user. Integration and
+assets are decoupled; integrating now does not block swapping the city later.
 
 The critical reversal from the previous attempt is: **approve the live endpoint
 first, then build the cinematic backward from it**.
 
 ## 12. Acceptance criteria
 
-The rebuild is not complete until all of these are true:
+The rebuild is not complete until all of these are true. Status is against
+`/labs/entry`; nothing is signed off for `/` until step 10 lands.
 
-- The complete entrance reaches the interactive homepage at roughly five
-  seconds.
-- Exterior, workspace, dual monitors and final main-screen target are readable
-  despite the short duration.
-- The final monitor geometry is stable and its bezel leaves the viewport
-  cleanly.
-- Glyphs visibly continue moving through the monitor-to-page handoff.
-- No static-frame pause, obvious layer swap, black/white flash or route reload
-  is visible.
-- The compact ZL boot window is present and feels embedded in the screen rather
-  than appended afterward.
-- Homepage typography/panels reveal only after the screen signal is established.
-- Skip is available within one second and reaches exactly the same final state.
-- The result remains a usable portfolio when video or WebGL is unavailable.
-- Motion is smooth on desktop and deliberately simplified on mobile/reduced
-  motion.
-- Existing portfolio, project, About and Aero routes do not regress.
+| Criterion | Status |
+| --- | --- |
+| Reaches the interactive page at roughly five seconds | met — 4.4s + ~0.6s boot tail |
+| Exterior, workspace, dual monitors, main screen all readable | **unconfirmed** — beats are numerically correct but unobserved in motion |
+| Final monitor geometry stable, bezel leaves the viewport cleanly | met — re-docks every frame, exact across aspect |
+| Glyphs visibly continue moving through the handoff | met by construction — nothing is swapped |
+| No static-frame pause, layer swap, flash or reload | **needs eyes** — the transit darkens 5.3% → 0.34% bright pixels over ~0.5s; correct, but may read as a flash |
+| Boot window embedded in the screen, not appended | met — projected onto the screen plane per frame; suppressed entirely on repeat visits |
+| Typography reveals only after the screen signal | met |
+| Skip available within one second, same final state | met — present immediately, pose identical to 1e-6 |
+| Usable portfolio without WebGL | met — Canvas 2D fallback, verified |
+| Simplified on mobile / reduced motion | met — `short` flight, verified at 375px |
+| Existing routes do not regress | met — `/` untouched; lint, typecheck and build clean across all 8 routes |
+| City reads as a real city | **not met** — see §0 decision 4 |
 
 ## 13. Explicit non-goals
 
@@ -353,6 +499,12 @@ The rebuild is not complete until all of these are true:
   seconds.
 
 ## 14. One-paragraph brief for the next implementation session
+
+> **Superseded — this describes work that is now done.** The current brief is:
+> watch `/labs/entry?intro=1` in a real browser and judge whether the motion
+> reads, especially the darkening at the window transit. Then either integrate
+> into `/` (§11 step 10) or wait on licensed glTF city assets (§0 decision 4) —
+> the two are independent. Kept below for the original framing.
 
 Rebuild the rejected cinematic entry as an isolated Three.js/WebGL prototype.
 First prove a continuous final 1.5-second sequence in which a modern IPS monitor

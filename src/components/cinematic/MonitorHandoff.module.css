@@ -1,0 +1,141 @@
+.host {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #02060a;
+}
+
+/*
+ * Reduced-motion / small-screen entry: no camera flight, so the live screen
+ * dissolves up instead. Deliberately a dissolve from the page's own background
+ * colour, not a fade from black.
+ */
+.dissolve {
+  animation: screenIn 620ms ease-out both;
+}
+
+@keyframes screenIn {
+  from {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.host canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Sized and positioned each frame from the projected screen plane. */
+.boot {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transition: opacity 260ms ease-out;
+  pointer-events: none;
+  /* The projected screen rect is the container the boot window scales against. */
+  container-type: inline-size;
+}
+
+.bootVisible {
+  opacity: 1;
+}
+
+.bootWindow {
+  width: min(62%, 30rem);
+  padding: 1.1em 1.3em;
+  border: 1px solid rgba(70, 255, 127, 0.42);
+  border-radius: 0.4em;
+  /* The field behind is dense, so the window needs a real plate to sit on. */
+  background: rgba(1, 8, 4, 0.93);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.7),
+    0 0 3em rgba(40, 255, 120, 0.22),
+    0 1.2em 3em rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(6px);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  /* Scales with the projected screen so the window belongs to the display. */
+  font-size: clamp(0.34rem, 2.1cqw, 0.86rem);
+  color: rgba(120, 255, 165, 0.92);
+  line-height: 1.85;
+}
+
+.bootTitle {
+  margin: 0 0 0.6em;
+  letter-spacing: 0.16em;
+  color: rgba(216, 255, 230, 0.95);
+}
+
+.bootLine {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  opacity: 0;
+  animation: bootIn 220ms ease-out forwards;
+}
+
+.bootLine:nth-of-type(1) { animation-delay: 60ms; }
+.bootLine:nth-of-type(2) { animation-delay: 220ms; }
+.bootLine:nth-of-type(3) { animation-delay: 380ms; }
+.bootLine:nth-of-type(4) { animation-delay: 540ms; }
+
+.bootLine span {
+  color: rgba(216, 255, 230, 0.85);
+}
+
+.bootLine i {
+  display: inline-block;
+  width: 0.6em;
+  height: 1em;
+  margin-left: 0.3em;
+  background: rgba(120, 255, 165, 0.9);
+  vertical-align: text-bottom;
+  animation: caret 780ms steps(1) infinite;
+}
+
+@keyframes bootIn {
+  from { opacity: 0; transform: translateY(0.3em); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes caret {
+  50% { opacity: 0; }
+}
+
+.skip {
+  position: fixed;
+  z-index: 4;
+  right: clamp(1rem, 4vw, 2.5rem);
+  bottom: clamp(1rem, 4vw, 2.5rem);
+  /* Keeps the tap target at the 44px minimum on touch. */
+  min-height: 44px;
+  padding: 0.55rem 1.15rem;
+  border: 1px solid rgba(120, 255, 165, 0.3);
+  border-radius: 999px;
+  background: rgba(2, 12, 6, 0.5);
+  color: rgba(160, 255, 190, 0.9);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  transition: border-color 160ms, color 160ms;
+}
+
+.skip:hover,
+.skip:focus-visible {
+  border-color: rgba(120, 255, 165, 0.7);
+  color: #d8ffe6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bootLine {
+    animation-duration: 1ms;
+  }
+}
