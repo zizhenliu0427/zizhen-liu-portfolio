@@ -388,7 +388,7 @@ export type ExperienceItem = {
 
 export const experience: readonly ExperienceItem[] = [
   {
-    period: "JUN 2026 — PRESENT",
+    period: "MAR 2026 — PRESENT",
     company: "Codritium",
     location: "Sydney, Australia",
     role: "Software Developer Intern",
