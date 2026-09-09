@@ -52,6 +52,12 @@ CLAUDE.md
 .agent/
 .codex/
 
+# Coursework, scratch renders and generated PDFs — kept on disk, never
+# tracked: anything under public/ is served at the site root once deployed.
+/local/
+/output/
+/tmp/
+
 # Windows 7 wallpaper (Microsoft copyright) — local preview only
 /windows-7-official-3840x2160-13944.jpg
 /public/win7-wallpaper.jpg
