@@ -34,6 +34,21 @@ function resolve(obj: Translations, path: string): string {
   return typeof cur === "string" ? cur : path;
 }
 
+/**
+ * Resolve a dot-path key to a string array — used for list content such as
+ * project highlights, which `resolve` cannot return. `null` means "not found",
+ * so the caller can fall back to English.
+ */
+function resolveList(obj: Translations, path: string): readonly string[] | null {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let cur: any = obj;
+  for (const segment of path.split(".")) {
+    if (cur == null) return null;
+    cur = cur[segment];
+  }
+  return Array.isArray(cur) ? (cur as readonly string[]) : null;
+}
+
 /* ------------------------------------------------------------------ */
 /*  Context                                                            */
 /* ------------------------------------------------------------------ */
@@ -43,6 +58,11 @@ interface LanguageContextValue {
   setLocale: (locale: Locale) => void;
   /** Translate a dot-path key. Falls back to English, then to the key itself. */
   t: (key: string) => string;
+  /**
+   * Translate a dot-path key that holds a list (e.g. project highlights).
+   * Falls back to English, then to an empty array.
+   */
+  tList: (key: string) => readonly string[];
   /** Convenience flag: `true` when current locale is Chinese. */
   isZh: boolean;
 }
@@ -88,9 +108,17 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     [locale],
   );
 
+  const tList = useCallback(
+    (key: string): readonly string[] => {
+      const dict = translations[locale] as Translations;
+      return resolveList(dict, key) ?? resolveList(translations.en, key) ?? [];
+    },
+    [locale],
+  );
+
   return (
     <LanguageContext.Provider
-      value={{ locale, setLocale, t, isZh: locale === "zh" }}
+      value={{ locale, setLocale, t, tList, isZh: locale === "zh" }}
     >
       {children}
     </LanguageContext.Provider>

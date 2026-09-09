@@ -393,4 +393,163 @@ export const en = {
     interestCultureBody:
       "Native Mandarin, proficient English, beginner Japanese — studying it alongside a long-running interest in Japanese culture and anime.",
   },
+
+  /* ------------------------------------------------------------------ */
+  /*  Featured project copy (keyed by project id in data/portfolio.ts)    */
+  /* ------------------------------------------------------------------ */
+  projectContent: {
+    sensor: {
+      type: "UNSW Capstone \u00b7 End-to-end data product",
+      summary:
+        "An IoT analytics platform where building managers query live sensor data in natural language \u2014 built across the React front end, the FastAPI/Kafka backend and the RAG pipeline behind the conversation.",
+      highlights: [
+        "React 19 SPA \u00b7 Web Workers for CSV/Excel parsing",
+        "Kafka ingestion + PostgreSQL UPSERT batch pipeline",
+        "RAG with Qdrant + local LLMs (Ollama) and NL2SQL",
+      ],
+      metric: "FULL-STACK + AI",
+      access: "UNI PROJECT / CODE PRIVATE",
+    },
+    cmo: {
+      type: "Personal team \u00b7 Live full-stack product",
+      summary:
+        "A responsive, wiki-like equipment database \u2014 bilingual routing and D3 visuals up front, a serverless Node/Express + Sequelize backend answering 6-table joins across 29,000+ records behind it.",
+      highlights: [
+        "29,000+ records \u00b7 parameterised multi-table JOINs",
+        "Serverless migration to Vercel, zero-maintenance infra",
+        "English / Chinese URL routing \u00b7 custom D3 sensor arcs",
+      ],
+      metric: "29K+ RECORDS",
+    },
+    ctv: {
+      type: "UTS team project \u00b7 Full-stack + computer vision",
+      summary:
+        "A real-time monitoring platform: YOLOv8 trained on 10,025 hand-annotated frames, served through a Django REST + MJPEG streaming backend into a multi-camera React dashboard.",
+      highlights: [
+        "YOLOv8 trained to 85% mAP50 on an RTX 4090",
+        "Sub-200ms OpenCV \u2192 MJPEG live streaming pipeline",
+        "JWT-secured React SPA with 1/2/4/6 camera layouts",
+      ],
+      metric: "85% mAP50 LIVE",
+      access: "TEAM PROJECT / CODE PRIVATE",
+    },
+    novacart: {
+      type: "Personal product \u00b7 E-commerce platform \u00b7 in development",
+      summary:
+        "A mobile-first e-commerce platform built end to end \u2014 a Next.js PWA storefront over an ASP.NET Core + PostgreSQL backend with Stripe payments, Redis caching, server-side cart persistence and a configurable order state machine.",
+      highlights: [
+        "Configurable order state machine + admin analytics",
+        "Server-side cart persistence \u00b7 Stripe payments",
+        "Dockerised ASP.NET Core + PostgreSQL + Redis stack",
+      ],
+      metric: "IN ACTIVE DEV",
+    },
+    mediajira: {
+      type: "Codritium internship \u00b7 Platform engineering across the stack",
+      summary:
+        "The campaign-management platform built at Codritium \u2014 a 373-file slug-URL migration across 12 Django/Next.js modules, a CI pipeline rebuilt from 57 to 20 minutes, a production outage diagnosed and recovered on GCP, and CSM features shipped end to end.",
+      highlights: [
+        "12-module slug-URL architecture + IDOR access-control hardening",
+        "CI \u221266%: pytest config fix (+597 recovered tests), xdist, blocking quality gates",
+        "Prod 521 recovery \u2014 144 migrations restored, migration guard + health polling",
+      ],
+      metric: "4,758 TESTS GREEN",
+    },
+  },
+
+  /* ------------------------------------------------------------------ */
+  /*  Archive copy (keyed by archive id in data/portfolio.ts)             */
+  /* ------------------------------------------------------------------ */
+  archiveContent: {
+    "sdr2hdr": { summary: "Fully GPU-resident video pipeline (NVDEC \u2192 CUDA \u2192 RTX TrueHDR/VSR \u2192 NVENC) sustaining ~120fps real-time 4K HDR conversion, with hand-written colour-space kernels, HDR10 metadata signalling and a bilingual CLI." },
+    "portfolio": { summary: "The site you are reading: a Next.js static build with a canvas code-rain, CRT ambient layers and a hand-built Windows 7 Aero window manager living at /desktop." },
+    "gpu-benchmark": { summary: "C++17 benchmark with five backends \u2014 Vulkan, DX12, DX11, OpenGL, Metal \u2014 profiling 10+ AMD and NVIDIA GPUs, including six generations of AMD architectures; a headless compute mode uncovered 12x hidden throughput. 2,300-line technical report." },
+    "mediajira-archive": { summary: "Codritium internship product (MediaJira): a campaign-management platform for media-buying teams \u2014 Next.js/TypeScript over Django REST + Channels, with Kafka event streaming, Celery jobs, ad-platform integrations and a Prometheus/Grafana/Loki/Jaeger observability stack." },
+    "novacart-archive": { summary: "Mobile-first e-commerce platform in active development: an ASP.NET Core + PostgreSQL backend with a configurable order state machine, Stripe payments, Redis caching and server-side cart persistence, behind a Next.js PWA storefront with admin analytics." },
+    "lanely": { summary: "Full-stack Kanban tool \u2014 drag-and-drop boards, real-time collaboration over WebSockets and project analytics, with a FastAPI + SQLAlchemy backend behind a React/TypeScript front end." },
+    "whale-logistics": { summary: "Spring Cloud microservices platform modernising end-to-end sea-freight workflows: automates container visibility from the wharf to empty dehire, replacing manual email coordination and mitigating detention risk." },
+    "av2text": { summary: "AI audio/video transcription with speaker diarisation, shipped three ways \u2014 CLI, web app and Electron desktop \u2014 with FFmpeg preprocessing in front of Whisper-class ASR models." },
+    "breaktime": { summary: "Kahoot-style party-game platform: host on a projector, players join from their phones \u2014 real-time game rooms over Socket.IO in a Vue 3 + TypeScript monorepo, installable as a PWA." },
+    "hls-keeper": { summary: "Captures HLS streams and site attachments via a browser extension talking to a local Python server with a web dashboard; FFmpeg merges segments into playable archives, all on your own machine." },
+    "bili-dns": { summary: "Fixes overseas Bilibili buffering by probing CDN edge nodes and pinning the fastest via DNS \u2014 periodic re-checks, threshold protection and candidate-IP refresh across Windows, macOS, OpenWrt and AdGuard Home." },
+    "sensor-archive": { summary: "End-to-end IoT analytics: React 19 SPA, FastAPI + Kafka ingestion, TFT time-series forecasting with quantile regression, and a RAG/NL2SQL conversational layer over Qdrant with local LLMs." },
+    "gdwg": { summary: "Modern C++20 generic graph container with value semantics, a polymorphic edge hierarchy, deterministic ordering and full Catch2 unit-test coverage." },
+    "isic2018": { summary: "Fine-tuned DenseNet/EfficientNet/ResNet backbones with a hand-implemented Squeeze-and-Excitation attention module, reaching 83% macro F1 on severely imbalanced dermoscopy data; Grad-CAM interpretability." },
+    "ctv-archive": { summary: "YOLOv8 trained on a self-annotated 10,025-frame dataset (85% mAP50), served via Django REST with sub-200ms MJPEG streaming into a JWT-secured multi-camera React dashboard." },
+    "cmo-db": { summary: "Wiki-like database serving 29,000+ records: serverless Node/Express + Sequelize backend, bilingual URL routing, deferred rendering and custom D3 sensor-arc visualisations." },
+    "kv260": { summary: "VHDL I2S receiver in programmable logic streaming 48kHz/24-bit audio through AXI4-Stream + DMA into Linux, with Device Tree integration and an AXI-Lite controlled gain/EQ stage." },
+    "good360": { summary: "Kotlin/MVVM chat feature for Good360 Australia's donation app: multi-type RecyclerView messaging, Firebase Realtime sync, image messages and deterministic chat-room IDs." },
+    "budget-app": { summary: "Personal-finance Android app for tracking daily spending \u2014 in active development." },
+    "home-lab": { summary: "Windows Server 2025 + Active Directory lab in VMware WorkStation, a Synology NAS with remote access and IPv6, and low-level device work: Hackintosh EFI/ACPI bring-up, kext injection and Android custom-ROM recovery." },
+  },
+
+  /* ------------------------------------------------------------------ */
+  /*  Experience copy (keyed by experience id in data/portfolio.ts)       */
+  /* ------------------------------------------------------------------ */
+  experienceContent: {
+    codritium: {
+      location: "Sydney, Australia",
+      role: "Software Developer Intern",
+      bullets: [
+        "Building Marketing Simplified (MediaJira), a campaign-management platform for media-buying teams \u2014 a Next.js/TypeScript front end over a Django REST + Channels backend.",
+        "Working across an event-driven, containerised stack: Kafka event pipelines, Celery background jobs, PostgreSQL/Redis, Nginx and Docker Compose.",
+        "Shipping with production-grade observability (OpenTelemetry \u2192 Prometheus/Grafana/Loki/Jaeger) and a Jest/pytest/K6 test pipeline in GitHub Actions CI.",
+      ],
+    },
+    intelli: {
+      location: "Sydney, Australia",
+      role: "IT / Business Analysis Intern",
+      bullets: [
+        "Built Python scrapers and Pandas ETL pipelines to collect, validate and normalise semi-structured web data for downstream features.",
+        "Translated business requirements into user stories and API contracts, verifying React components in Agile sprint reviews via Jira/Confluence.",
+        "Produced and validated data-dashboard wireframes, supporting responsive implementation across the frontend/backend boundary.",
+      ],
+    },
+    goldenlady: {
+      location: "Chongqing, China",
+      role: "IT Support Intern",
+      bullets: [
+        "Maintained a Vue.js corporate site in production, shipping responsive UI and content updates safely.",
+        "Diagnosed workstation hardware and configured operating systems and creative software for heavy-workload use.",
+      ],
+    },
+  },
+
+  /* ------------------------------------------------------------------ */
+  /*  Capability groups (keyed by capability id)                          */
+  /* ------------------------------------------------------------------ */
+  capabilityContent: {
+    interface: {
+      title: "Interface",
+      description: "Product surfaces across web and mobile.",
+    },
+    server: {
+      title: "Server & data",
+      description: "APIs, pipelines and the models behind them.",
+    },
+    metal: {
+      title: "Metal",
+      description: "Systems code where performance is the product.",
+    },
+    delivery: {
+      title: "Delivery",
+      description: "From prototype to deployed, tested software.",
+    },
+  },
+
+  /* ------------------------------------------------------------------ */
+  /*  Education (keyed by education id)                                   */
+  /* ------------------------------------------------------------------ */
+  educationContent: {
+    unsw: {
+      school: "University of New South Wales (UNSW)",
+      degree: "Master of Information Technology",
+      courses: ["Capstone Project (85)", "Artificial Intelligence (81)", "Advanced C++ (81)"],
+    },
+    uts: {
+      school: "University of Technology Sydney (UTS)",
+      degree: "Bachelor of Software Engineering (Honours)",
+      courses: ["Database Fundamentals (94)", "Systems Testing & QM (90)", "Data Structures & Algorithms (84)"],
+    },
+  },
 } as const;

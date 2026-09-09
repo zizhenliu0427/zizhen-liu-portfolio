@@ -231,7 +231,7 @@ function ProjectVisual({ visual }: { visual: (typeof projects)[number]["visual"]
 }
 
 export default function Home() {
-  const { t, isZh } = useLanguage();
+  const { t, tList, isZh } = useLanguage();
   return (
     <main className={styles.site}>
       <a className={styles.skipLink} href="#main-content">
@@ -380,17 +380,23 @@ export default function Home() {
                   <span>{project.index}</span>
                   <span>{project.year}</span>
                 </div>
-                <p className={styles.projectType}>{project.type}</p>
+                <p className={styles.projectType}>
+                  {t(`projectContent.${project.id}.type`)}
+                </p>
                 <h3>{project.title}</h3>
-                <p className={styles.projectSummary}>{project.summary}</p>
+                <p className={styles.projectSummary}>
+                  {t(`projectContent.${project.id}.summary`)}
+                </p>
                 <ul className={styles.projectHighlights}>
-                  {project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+                  {tList(`projectContent.${project.id}.highlights`).map((highlight) => (
+                    <li key={highlight}>{highlight}</li>
+                  ))}
                 </ul>
                 <ul className={styles.tags} aria-label={`${project.title} technologies`}>
                   {project.stack.map((item) => <li key={item}>{item}</li>)}
                 </ul>
                 <div className={styles.projectFooter}>
-                  <span>{project.metric}</span>
+                  <span>{t(`projectContent.${project.id}.metric`)}</span>
                   {project.href && (
                     <a href={project.href} target="_blank" rel="noreferrer">
                       {t('work.viewLive')} <span aria-hidden="true">↗</span>
@@ -408,7 +414,9 @@ export default function Home() {
                   )}
                   {!project.href && !project.github && (
                     <span className={styles.caseStudyPending}>
-                      {project.access ?? t('work.caseStudyFallback')}
+                      {project.access
+                        ? t(`projectContent.${project.id}.access`)
+                        : t('work.caseStudyFallback')}
                     </span>
                   )}
                 </div>
@@ -443,12 +451,16 @@ export default function Home() {
                 </div>
                 <div className={styles.timelineMeta}>
                   <span>{item.period}</span>
-                  <span>{item.location}</span>
+                  <span>{t(`experienceContent.${item.id}.location`)}</span>
                 </div>
                 <div className={styles.timelineBody}>
                   <h3>{item.company}</h3>
-                  <p>{item.role}</p>
-                  <ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
+                  <p>{t(`experienceContent.${item.id}.role`)}</p>
+                  <ul>
+                    {tList(`experienceContent.${item.id}.bullets`).map((bullet) => (
+                      <li key={bullet}>{bullet}</li>
+                    ))}
+                  </ul>
                   {item.links && (
                     <div className={styles.timelineLinks}>
                       {item.links.map((link) =>
@@ -485,8 +497,8 @@ export default function Home() {
                 <span>[{group.index}]</span>
                 <i aria-hidden="true" />
               </div>
-              <h3>{group.title}</h3>
-              <p>{group.description}</p>
+              <h3>{t(`capabilityContent.${group.id}.title`)}</h3>
+              <p>{t(`capabilityContent.${group.id}.description`)}</p>
               <ul>{group.items.map((item) => <li key={item}>{item}</li>)}</ul>
             </article>
           ))}

@@ -7,8 +7,16 @@ import styles from "../subpage.module.css";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageToggle from "@/components/LanguageToggle";
 
+/** Interest ids in the data file map to `data.interest*` keys in the locales. */
+const INTEREST_KEY: Record<string, string> = {
+  hardware: "Hardware",
+  photography: "Photo",
+  automotive: "Auto",
+  culture: "Culture",
+};
+
 export default function AboutPage() {
-  const { t, isZh } = useLanguage();
+  const { t, tList, isZh } = useLanguage();
 
   return (
     <main className={styles.page}>
@@ -44,8 +52,8 @@ export default function AboutPage() {
         <div className={styles.cards}>
           {interests.map((interest) => (
             <article className={styles.card} key={interest.id}>
-              <h2>{interest.title}</h2>
-              <p>{interest.body}</p>
+              <h2>{t(`data.interest${INTEREST_KEY[interest.id]}Title`)}</h2>
+              <p>{t(`data.interest${INTEREST_KEY[interest.id]}Body`)}</p>
             </article>
           ))}
         </div>
@@ -61,8 +69,8 @@ export default function AboutPage() {
               <article key={item.school}>
                 <span>{item.period}</span>
                 <div>
-                  <h3>{item.school}</h3>
-                  <p>{item.degree}</p>
+                  <h3>{t(`educationContent.${item.id}.school`)}</h3>
+                  <p>{t(`educationContent.${item.id}.degree`)}</p>
                   <p className={styles.eduMeta}>
                     {!isZh && item.location.toUpperCase()}
                     {item.ranking && (
@@ -72,7 +80,9 @@ export default function AboutPage() {
                       </>
                     )}
                   </p>
-                  <p className={styles.courses}>{item.courses.join(" · ")}</p>
+                  <p className={styles.courses}>
+                    {tList(`educationContent.${item.id}.courses`).join(" · ")}
+                  </p>
                 </div>
               </article>
             ))}

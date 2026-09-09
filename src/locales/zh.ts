@@ -29,7 +29,7 @@ export const zh = {
     systemProfile: "00 // 系统档案",
     sydneyBadge: "", // 中文版隐藏
     firstName: "刘",
-    lastName: "自臻",
+    lastName: "子箴",
     roleA: "全栈",
     roleB: "工程师",
     tagline: "WEB · AI · 系统",
@@ -113,7 +113,7 @@ export const zh = {
   /*  首页 — 页脚                                                        */
   /* ------------------------------------------------------------------ */
   footer: {
-    copyright: "© 2026 刘自臻",
+    copyright: "© 2026 刘子箴",
     engineeredIn: "DESIGNED + ENGINEERED BY ZIZHEN LIU",
     backToTop: "回到顶部 ↑",
   },
@@ -122,7 +122,7 @@ export const zh = {
   /*  关于页面                                                           */
   /* ------------------------------------------------------------------ */
   about: {
-    metaTitle: "关于 — 刘自臻",
+    metaTitle: "关于 — 刘子箴",
     metaDescription:
       "终端背后的人：硬件与家庭实验室、摄影、汽车爱好、语言与教育。",
     backHome: "CD ../首页",
@@ -154,7 +154,7 @@ export const zh = {
   /*  项目档案页面                                                       */
   /* ------------------------------------------------------------------ */
   projectsPage: {
-    metaTitle: "项目档案 — 刘自臻",
+    metaTitle: "项目档案 — 刘子箴",
     metaDescription:
       "所有项目记录：Web 全栈产品、AI/ML 系统、GPU 和 FPGA 项目、Android 应用和家庭实验室。",
     backHome: "CD ../首页",
@@ -189,7 +189,7 @@ export const zh = {
   /* ------------------------------------------------------------------ */
   labsEntry: {
     brandLine: "ZL // 入口原型",
-    name: "刘自臻",
+    name: "刘子箴",
     role: "全栈工程师",
     description:
       "文字背后的字符雨场是与显示器内部相同的实时渲染目标。无桥接帧、无交叉淡入、无重置。",
@@ -230,14 +230,14 @@ export const zh = {
   /*  Win7 桌面                                                          */
   /* ------------------------------------------------------------------ */
   desktop: {
-    metaTitle: "刘自臻 — Aero 实验室",
+    metaTitle: "刘子箴 — Aero 实验室",
     metaDescription:
       "手工构建的 Frutiger Aero、Y2K 时代桌面实验室。Windows 7 是首个版本；XP 和 98 即将推出。",
     getStarted: "开始使用",
     aboutMe: "关于我",
-    aboutTitle: "关于 — 刘自臻",
+    aboutTitle: "关于 — 刘子箴",
     aboutBio:
-      "刘自臻 (Lance) — 全栈工程师。",
+      "刘子箴 (Lance) — 全栈工程师。",
     aboutDescription:
       "新南威尔士大学（UNSW）信息技术硕士，悉尼科技大学（UTS）软件工程荣誉学士。擅长使用 React、TypeScript 构建高性能 Web 应用。",
     aboutExtra:
@@ -278,7 +278,7 @@ export const zh = {
     flipHint:
       "Tab / 滚动切换窗口 · 点击或回车打开 · Esc 取消",
     desktopLabel: "桌面",
-    userName: "刘自臻",
+    userName: "刘子箴",
   },
 
   /* ------------------------------------------------------------------ */
@@ -297,7 +297,7 @@ export const zh = {
   /*  OOBE 向导                                                          */
   /* ------------------------------------------------------------------ */
   oobe: {
-    metaTitle: "刘自臻 — 欢迎",
+    metaTitle: "刘子箴 — 欢迎",
     metaDescription:
       "前端工程师作品集，以 Windows Aero 设置向导的形式呈现。",
     startingSetup: "正在启动设置…",
@@ -308,7 +308,7 @@ export const zh = {
     completingSetup: "正在完成设置…",
     welcomeLabel: "欢迎",
     welcomeTitle: "欢迎",
-    welcomeName: "刘自臻 ",
+    welcomeName: "刘子箴 ",
     welcomeAlias: "(Lance)",
     welcomeRolePrefix: "",
     welcomeRole: "全栈工程师",
@@ -393,5 +393,166 @@ export const zh = {
     interestCultureTitle: "语言与文化",
     interestCultureBody:
       "中文母语、英语熟练、日语入门 — 伴随着对日本文化和动漫的持续兴趣而学习。",
+  },
+
+  /* ------------------------------------------------------------------ */
+  /*  精选项目文案(键对应 data/portfolio.ts 里的 project id)              */
+  /*  约定:项目名与技术术语保留英文,只翻描述性文字                        */
+  /* ------------------------------------------------------------------ */
+  projectContent: {
+    sensor: {
+      type: "UNSW 毕业项目 \u00b7 端到端数据产品",
+      summary:
+        "一个物联网分析平台,楼宇管理者可以直接用自然语言查询实时传感器数据。覆盖 React 前端、FastAPI + Kafka 后端,以及对话背后的 RAG 检索管线。",
+      highlights: [
+        "React 19 单页应用 \u00b7 CSV/Excel 解析交给 Web Workers",
+        "Kafka 数据接入 + PostgreSQL UPSERT 批量写入",
+        "Qdrant 向量检索 + 本地大模型(Ollama)与 NL2SQL",
+      ],
+      metric: "全栈 + AI",
+      access: "学校项目 / 代码未公开",
+    },
+    cmo: {
+      type: "个人团队项目 \u00b7 已上线的全栈产品",
+      summary:
+        "一个 wiki 式的装备数据库。前台做中英双语路由和 D3 可视化,后台是 Node/Express + Sequelize 的无服务器架构,在 29,000 多条记录上跑最多六表联查。",
+      highlights: [
+        "29,000+ 条记录 \u00b7 参数化多表联查",
+        "迁移到 Vercel 无服务器架构,基础设施零维护",
+        "中英文 URL 路由 \u00b7 自制 D3 传感器扇形图",
+      ],
+      metric: "29K+ 条记录",
+    },
+    ctv: {
+      type: "UTS 团队项目 \u00b7 全栈 + 计算机视觉",
+      summary:
+        "实时监控平台:YOLOv8 在 10,025 张人工标注的画面上训练,经 Django REST + MJPEG 推流,送到多路摄像头的 React 面板。",
+      highlights: [
+        "在 RTX 4090 上把 YOLOv8 训到 85% mAP50",
+        "OpenCV \u2192 MJPEG 实时推流,延迟低于 200ms",
+        "JWT 鉴权的 React 单页应用,支持 1/2/4/6 分屏",
+      ],
+      metric: "85% mAP50 实时",
+      access: "团队项目 / 代码未公开",
+    },
+    novacart: {
+      type: "个人产品 \u00b7 电商平台 \u00b7 开发中",
+      summary:
+        "端到端搭建的移动优先电商平台。Next.js PWA 店面,底下是 ASP.NET Core + PostgreSQL,接了 Stripe 支付、Redis 缓存、服务端购物车持久化,以及一套可配置的订单状态机。",
+      highlights: [
+        "可配置订单状态机 + 后台数据看板",
+        "服务端购物车持久化 \u00b7 Stripe 支付",
+        "ASP.NET Core + PostgreSQL + Redis 全栈容器化",
+      ],
+      metric: "开发中",
+    },
+    mediajira: {
+      type: "Codritium 实习 \u00b7 跨全栈的平台工程",
+      summary:
+        "Codritium 实习期间的广告投放管理平台。横跨 12 个 Django/Next.js 模块、涉及 373 个文件的 slug-URL 架构迁移,CI 从 57 分钟重建到 20 分钟,一次 GCP 生产事故的诊断与恢复,以及端到端交付的 CSM 功能。",
+      highlights: [
+        "12 模块 slug-URL 架构改造 + IDOR 越权加固",
+        "CI 耗时 \u221266%:修复 pytest 配置(找回 597 个被跳过的测试)、xdist 并行、强制质量门禁",
+        "生产 521 事故恢复:修复 144 个数据库迁移,补上迁移守卫与健康轮询",
+      ],
+      metric: "4,758 个测试全绿",
+    },
+  },
+
+  /* ------------------------------------------------------------------ */
+  /*  项目归档文案(键对应 data/portfolio.ts 里的 archive id)              */
+  /* ------------------------------------------------------------------ */
+  archiveContent: {
+    "sdr2hdr": { summary: "全程驻留 GPU 的视频管线(NVDEC \u2192 CUDA \u2192 RTX TrueHDR/VSR \u2192 NVENC),4K HDR 实时转换稳定在 ~120fps。色彩空间转换 kernel 手写,支持 HDR10 元数据标记,配中英双语命令行。" },
+    "portfolio": { summary: "你正在看的这个站点:Next.js 静态构建,canvas 代码雨、CRT 氛围层,以及 /desktop 下一套手写的 Windows 7 Aero 窗口管理器。" },
+    "gpu-benchmark": { summary: "C++17 写的五后端基准测试(Vulkan、DX12、DX11、OpenGL、Metal),实测 10 多张 AMD 与 NVIDIA 显卡,覆盖六代 AMD 架构;无窗口计算模式挖出了被渲染路径掩盖的 12 倍吞吐差异。附 2,300 行技术报告。" },
+    "mediajira-archive": { summary: "Codritium 实习期的产品(MediaJira):面向媒介采购团队的广告投放管理平台。Next.js/TypeScript 前端,Django REST + Channels 后端,配 Kafka 事件流、Celery 任务、广告平台对接,以及 Prometheus/Grafana/Loki/Jaeger 可观测性栈。" },
+    "novacart-archive": { summary: "开发中的移动优先电商平台:ASP.NET Core + PostgreSQL 后端,含可配置订单状态机、Stripe 支付、Redis 缓存与服务端购物车持久化;前台是带后台看板的 Next.js PWA 店面。" },
+    "lanely": { summary: "全栈看板工具:拖拽式面板、基于 WebSocket 的多人实时协作、项目数据统计。后端 FastAPI + SQLAlchemy,前端 React/TypeScript。" },
+    "whale-logistics": { summary: "用 Spring Cloud 微服务重做海运货代的全流程:把集装箱从码头到还空箱的全程可见性自动化,替掉原来靠邮件人工协调的方式,降低滞箱风险。" },
+    "av2text": { summary: "AI 音视频转写,带说话人分离。以三种形态交付:命令行、网页应用和 Electron 桌面端,前置 FFmpeg 预处理,后接 Whisper 系语音识别模型。" },
+    "breaktime": { summary: "Kahoot 式的多人派对游戏平台:主持端投屏,玩家用手机加入。Socket.IO 撑起实时房间,Vue 3 + TypeScript 单仓结构,可作为 PWA 安装。" },
+    "hls-keeper": { summary: "浏览器扩展抓取 HLS 流和站内附件,与本地 Python 服务通信,配网页控制台;FFmpeg 把切片合成可播放的文件。全程在本机完成。" },
+    "bili-dns": { summary: "解决海外看 B 站卡顿:探测 CDN 边缘节点,把最快的那个用 DNS 固定下来。带定时复测、阈值保护和候选 IP 刷新,支持 Windows、macOS、OpenWrt 和 AdGuard Home。" },
+    "sensor-archive": { summary: "端到端的物联网分析系统:React 19 前端,FastAPI + Kafka 数据接入,TFT 时序预测配分位数回归,以及基于 Qdrant 和本地大模型的 RAG/NL2SQL 对话层。" },
+    "gdwg": { summary: "现代 C++20 泛型图容器:值语义、多态边类型层级、确定性排序,Catch2 单元测试全覆盖。" },
+    "isic2018": { summary: "在类别严重失衡的皮肤镜数据上微调 DenseNet/EfficientNet/ResNet,并手写实现 Squeeze-and-Excitation 注意力模块,macro F1 达到 83%;用 Grad-CAM 验证模型看的是不是该看的区域。" },
+    "ctv-archive": { summary: "YOLOv8 在自行标注的 10,025 帧数据集上训练(85% mAP50),经 Django REST 提供服务,MJPEG 推流延迟低于 200ms,输出到 JWT 鉴权的多路摄像头 React 面板。" },
+    "cmo-db": { summary: "wiki 式数据库,承载 29,000 多条记录:Node/Express + Sequelize 无服务器后端,中英双语 URL 路由,延迟渲染,以及自制的 D3 传感器扇形图。" },
+    "kv260": { summary: "在可编程逻辑里用 VHDL 写 I2S 接收器,48kHz/24-bit 音频经 AXI4-Stream + DMA 送进 Linux,配 Device Tree 集成和一级 AXI-Lite 控制的增益/EQ。" },
+    "good360": { summary: "为 Good360 Australia 的捐赠 App 做的聊天模块,Kotlin/MVVM:多类型 RecyclerView 消息流、Firebase 实时同步、图片消息,以及可复现的聊天室 ID 生成。" },
+    "budget-app": { summary: "记录日常开销的个人理财 Android 应用,开发中。" },
+    "home-lab": { summary: "VMware Workstation 里搭的 Windows Server 2025 + Active Directory 实验环境,一台支持远程访问和 IPv6 的群晖 NAS,外加一些底层折腾:黑苹果 EFI/ACPI 引导、kext 注入,以及安卓第三方 ROM 救砖。" },
+  },
+
+  /* ------------------------------------------------------------------ */
+  /*  工作经历文案(键对应 data/portfolio.ts 里的 experience id)           */
+  /*  约定:公司名保留英文,技术术语保留英文                                */
+  /* ------------------------------------------------------------------ */
+  experienceContent: {
+    codritium: {
+      location: "悉尼,澳大利亚",
+      role: "软件开发实习生",
+      bullets: [
+        "开发 Marketing Simplified(MediaJira)——面向媒介采购团队的广告投放管理平台,Next.js/TypeScript 前端搭配 Django REST + Channels 后端。",
+        "工作覆盖整套事件驱动的容器化技术栈:Kafka 事件管线、Celery 后台任务、PostgreSQL/Redis、Nginx 与 Docker Compose。",
+        "交付时配齐生产级可观测性(OpenTelemetry \u2192 Prometheus/Grafana/Loki/Jaeger),以及跑在 GitHub Actions CI 上的 Jest/pytest/K6 测试流水线。",
+      ],
+    },
+    intelli: {
+      location: "悉尼,澳大利亚",
+      role: "IT / 业务分析实习生",
+      bullets: [
+        "用 Python 爬虫和 Pandas ETL 管线采集、校验并规范化半结构化的网页数据,供下游功能使用。",
+        "把业务需求转成用户故事和 API 约定,并在敏捷冲刺评审中对照设计稿验证 React 组件。",
+        "产出并验证数据看板的线框图,支撑前后端交界处的响应式实现。",
+      ],
+    },
+    goldenlady: {
+      location: "重庆,中国",
+      role: "IT 支持实习生",
+      bullets: [
+        "维护线上的 Vue.js 企业官网,稳妥地交付响应式界面调整与内容更新。",
+        "排查工作站硬件故障,为高负载场景配置操作系统与创意设计软件。",
+      ],
+    },
+  },
+
+  /* ------------------------------------------------------------------ */
+  /*  能力分组(键对应 capability id);技术条目保留英文                    */
+  /* ------------------------------------------------------------------ */
+  capabilityContent: {
+    interface: {
+      title: "界面",
+      description: "跨 Web 与移动端的产品界面。",
+    },
+    server: {
+      title: "服务端与数据",
+      description: "API、数据管线,以及背后的模型。",
+    },
+    metal: {
+      title: "底层",
+      description: "性能本身就是产品的系统级代码。",
+    },
+    delivery: {
+      title: "交付",
+      description: "从原型到部署上线、经过测试的软件。",
+    },
+  },
+
+  /* ------------------------------------------------------------------ */
+  /*  教育经历(键对应 education id)                                      */
+  /* ------------------------------------------------------------------ */
+  educationContent: {
+    unsw: {
+      school: "新南威尔士大学(UNSW)",
+      degree: "信息技术硕士",
+      courses: ["毕业项目 (85)", "人工智能 (81)", "高级 C++ (81)"],
+    },
+    uts: {
+      school: "悉尼科技大学(UTS)",
+      degree: "软件工程学士(荣誉)",
+      courses: ["数据库基础 (94)", "系统测试与质量管理 (90)", "数据结构与算法 (84)"],
+    },
   },
 } as const;

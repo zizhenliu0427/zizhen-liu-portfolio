@@ -140,6 +140,8 @@ export type ArchiveAccess =
   | { kind: "none" };
 
 export type ArchiveEntry = {
+  /** Stable key for i18n lookup (`archiveContent.<id>`). */
+  id: string;
   year: string;
   title: string;
   domains: readonly string[];
@@ -150,6 +152,7 @@ export type ArchiveEntry = {
 
 export const archive: readonly ArchiveEntry[] = [
   {
+    id: "sdr2hdr",
     year: "2026",
     title: "sdr2hdr — GPU SDR-to-HDR / Super-Resolution Pipeline",
     domains: ["SYSTEMS"],
@@ -162,6 +165,7 @@ export const archive: readonly ArchiveEntry[] = [
     },
   },
   {
+    id: "portfolio",
     year: "2026",
     title: "This portfolio — Matrix CRT terminal + Aero OS lab",
     domains: ["WEB"],
@@ -174,6 +178,7 @@ export const archive: readonly ArchiveEntry[] = [
     },
   },
   {
+    id: "gpu-benchmark",
     year: "2026",
     title: "Multi-Graphics-API GPU Compute Benchmark",
     domains: ["SYSTEMS"],
@@ -186,6 +191,7 @@ export const archive: readonly ArchiveEntry[] = [
     },
   },
   {
+    id: "mediajira-archive",
     year: "2026",
     title: "Marketing Simplified — Campaign Management Platform",
     domains: ["WEB"],
@@ -199,6 +205,7 @@ export const archive: readonly ArchiveEntry[] = [
     },
   },
   {
+    id: "novacart-archive",
     year: "2026",
     title: "Novacart — E-Commerce Platform",
     domains: ["WEB"],
@@ -211,6 +218,7 @@ export const archive: readonly ArchiveEntry[] = [
     },
   },
   {
+    id: "lanely",
     year: "2026",
     title: "Lanely — Kanban Project Management",
     domains: ["WEB"],
@@ -223,6 +231,7 @@ export const archive: readonly ArchiveEntry[] = [
     },
   },
   {
+    id: "whale-logistics",
     year: "2026",
     title: "Whale Logistics CMS — Sea-Freight Microservices",
     domains: ["WEB"],
@@ -235,6 +244,7 @@ export const archive: readonly ArchiveEntry[] = [
     },
   },
   {
+    id: "av2text",
     year: "2026",
     title: "Audio/Video2Text AI — Transcription Suite",
     domains: ["AI/ML", "WEB"],
@@ -247,6 +257,7 @@ export const archive: readonly ArchiveEntry[] = [
     },
   },
   {
+    id: "breaktime",
     year: "2026",
     title: "Breaktime Arcade — Multiplayer Party Games",
     domains: ["WEB"],
@@ -259,6 +270,7 @@ export const archive: readonly ArchiveEntry[] = [
     },
   },
   {
+    id: "hls-keeper",
     year: "2026",
     title: "HLS Keeper — Local-First Stream Archiver",
     domains: ["WEB"],
@@ -271,6 +283,7 @@ export const archive: readonly ArchiveEntry[] = [
     },
   },
   {
+    id: "bili-dns",
     year: "2026",
     title: "Bili CDN DNS Pin — Streaming Network Tuner",
     domains: ["SYSTEMS"],
@@ -283,6 +296,7 @@ export const archive: readonly ArchiveEntry[] = [
     },
   },
   {
+    id: "sensor-archive",
     year: "2025",
     title: "Conversational AI for Building Sensor Data",
     domains: ["WEB", "AI/ML"],
@@ -292,6 +306,7 @@ export const archive: readonly ArchiveEntry[] = [
     access: { kind: "private" },
   },
   {
+    id: "gdwg",
     year: "2025",
     title: "GDWG — Generic Directed Weighted Graph Library",
     domains: ["SYSTEMS"],
@@ -301,6 +316,7 @@ export const archive: readonly ArchiveEntry[] = [
     access: { kind: "private" },
   },
   {
+    id: "isic2018",
     year: "2024",
     title: "Skin Lesion Classification — ISIC2018",
     domains: ["AI/ML"],
@@ -310,6 +326,7 @@ export const archive: readonly ArchiveEntry[] = [
     access: { kind: "private" },
   },
   {
+    id: "ctv-archive",
     year: "2023",
     title: "CTV — Real-Time Violence Detection",
     domains: ["WEB", "AI/ML"],
@@ -319,6 +336,7 @@ export const archive: readonly ArchiveEntry[] = [
     access: { kind: "private" },
   },
   {
+    id: "cmo-db",
     year: "2023—24",
     title: "CMO-DB — Bilingual Equipment Database",
     domains: ["WEB"],
@@ -328,6 +346,7 @@ export const archive: readonly ArchiveEntry[] = [
     access: { kind: "live", href: "https://www.cmo-db.com/" },
   },
   {
+    id: "kv260",
     year: "2023",
     title: "FPGA Audio Capture & Gain EQ — AMD Kria KV260",
     domains: ["HARDWARE"],
@@ -337,6 +356,7 @@ export const archive: readonly ArchiveEntry[] = [
     access: { kind: "private" },
   },
   {
+    id: "good360",
     year: "2023",
     title: "Good360 Donation App — Real-Time Chat Module",
     domains: ["MOBILE"],
@@ -346,6 +366,7 @@ export const archive: readonly ArchiveEntry[] = [
     access: { kind: "nda" },
   },
   {
+    id: "budget-app",
     year: "ONGOING",
     title: "Budget Manage App",
     domains: ["MOBILE"],
@@ -358,6 +379,7 @@ export const archive: readonly ArchiveEntry[] = [
     },
   },
   {
+    id: "home-lab",
     year: "ONGOING",
     title: "Home Lab — Server, NAS & Device Restoration",
     domains: ["LAB"],
@@ -378,6 +400,8 @@ export type ExperienceLink = {
 };
 
 export type ExperienceItem = {
+  /** Stable key for i18n lookup (`experienceContent.<id>`). */
+  id: string;
   period: string;
   company: string;
   location: string;
@@ -388,6 +412,7 @@ export type ExperienceItem = {
 
 export const experience: readonly ExperienceItem[] = [
   {
+    id: "codritium",
     period: "MAR 2026 — PRESENT",
     company: "Codritium",
     location: "Sydney, Australia",
@@ -412,6 +437,7 @@ export const experience: readonly ExperienceItem[] = [
     ],
   },
   {
+    id: "intelli",
     period: "OCT 2023 — JAN 2024",
     company: "Intelli New Technologies",
     location: "Sydney, Australia",
@@ -430,6 +456,7 @@ export const experience: readonly ExperienceItem[] = [
     ],
   },
   {
+    id: "goldenlady",
     period: "MAY 2021 — AUG 2021",
     company: "Golden Lady Photography",
     location: "Chongqing, China",
@@ -452,24 +479,28 @@ export const experience: readonly ExperienceItem[] = [
 
 export const capabilities = [
   {
+    id: "interface",
     index: "01",
     title: "Interface",
     description: "Product surfaces across web and mobile.",
     items: ["React 19", "Next.js", "TypeScript", "Tailwind CSS", "ECharts / D3", "Android (Kotlin)"],
   },
   {
+    id: "server",
     index: "02",
     title: "Server & data",
     description: "APIs, pipelines and the models behind them.",
     items: ["FastAPI", "Django REST", "Node.js / Express", "PostgreSQL / MySQL", "Kafka", "RAG / Qdrant", "PyTorch"],
   },
   {
+    id: "metal",
     index: "03",
     title: "Metal",
     description: "Systems code where performance is the product.",
     items: ["C++17/20", "CUDA", "Vulkan / DX12 / Metal", "NVENC / NVDEC", "VHDL / FPGA", "Linux"],
   },
   {
+    id: "delivery",
     index: "04",
     title: "Delivery",
     description: "From prototype to deployed, tested software.",
@@ -478,6 +509,8 @@ export const capabilities = [
 ] as const;
 
 export type EducationItem = {
+  /** Stable key for i18n lookup (`educationContent.<id>`). */
+  id: string;
   school: string;
   location: string;
   /** Verified rank chip, e.g. "QS 2027 · WORLD #19". Keep it short. */
@@ -489,6 +522,7 @@ export type EducationItem = {
 
 export const education: readonly EducationItem[] = [
   {
+    id: "unsw",
     school: "University of New South Wales (UNSW)",
     location: "Sydney, Australia",
     ranking: "QS 2027 · WORLD #19 · AU #1",
@@ -497,6 +531,7 @@ export const education: readonly EducationItem[] = [
     courses: ["Capstone Project (85)", "Artificial Intelligence (81)", "Advanced C++ (81)"],
   },
   {
+    id: "uts",
     school: "University of Technology Sydney (UTS)",
     location: "Sydney, Australia",
     ranking: "QS 2027 · WORLD #87",

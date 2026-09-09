@@ -148,7 +148,7 @@ export default function ArchiveList({
             <span className={styles.entryYear}>{entry.year}</span>
             <div className={styles.entryBody}>
               <h2>{entry.title}</h2>
-              <p>{entry.summary}</p>
+              <p>{t(`archiveContent.${entry.id}.summary`)}</p>
               <ul className={styles.entryStack} aria-label={`${entry.title} technologies`}>
                 {entry.stack.map((item) => (
                   <li key={item}>{item}</li>
