@@ -12,6 +12,11 @@ import Decode from "@/components/Decode";
 import MatrixRain from "@/components/MatrixRain";
 import styles from "./page.module.css";
 
+// The pre-rendered video intro is parked, not removed: the component and
+// public/cinematic-entry.mp4 both stay in place. Flip this to true to bring it
+// back. Typed as boolean so the guard below is not narrowed to dead code.
+const CINEMATIC_INTRO_ENABLED: boolean = false;
+
 function SectionHeading({
   index,
   eyebrow,
@@ -228,7 +233,7 @@ export default function Home() {
         Skip to content
       </a>
 
-      <CinematicEntry />
+      {CINEMATIC_INTRO_ENABLED && <CinematicEntry />}
 
       <div className={styles.ambient} aria-hidden="true">
         <div className={styles.grid} />
