@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import BootScreen from "./BootScreen";
 import styles from "./CinematicEntry.module.css";
 
@@ -16,6 +17,7 @@ function focusPortfolio() {
 }
 
 export default function CinematicEntry() {
+  const { t } = useLanguage();
   const [phase, setPhase] = useState<Phase>("checking");
   const [showSkip, setShowSkip] = useState(false);
   const [showBoot, setShowBoot] = useState(false);
@@ -208,7 +210,7 @@ export default function CinematicEntry() {
     <div
       className={`${styles.entry} ${styles[phase]}`}
       ref={rootRef}
-      aria-label="Cinematic introduction"
+      aria-label={t('cinematic.ariaLabel')}
     >
       <div className={styles.videoFrame} aria-hidden="true">
         <video
@@ -241,7 +243,7 @@ export default function CinematicEntry() {
 
       {showSkip && phase === "playing" && (
         <button className={styles.skip} type="button" onClick={() => finish("skip")}>
-          SKIP INTRO <span aria-hidden="true">↗</span>
+          {t('cinematic.skipIntro')} <span aria-hidden="true">↗</span>
         </button>
       )}
 

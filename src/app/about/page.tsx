@@ -1,16 +1,15 @@
-import type { Metadata } from "next";
+"use client";
+
 import Link from "next/link";
 import { education, interests, profile } from "@/data/portfolio";
 import MatrixRain from "@/components/MatrixRain";
 import styles from "../subpage.module.css";
-
-export const metadata: Metadata = {
-  title: "About — Zizhen Liu",
-  description:
-    "The operator behind the terminal: hardware and home lab, photography, automotive interests, languages and education.",
-};
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageToggle from "@/components/LanguageToggle";
 
 export default function AboutPage() {
+  const { t, isZh } = useLanguage();
+
   return (
     <main className={styles.page}>
       <div className={styles.ambient} aria-hidden="true">
@@ -24,23 +23,22 @@ export default function AboutPage() {
         <Link className={styles.brand} href="/" aria-label="Zizhen Liu — home">
           ZL
         </Link>
+        <LanguageToggle />
         <Link className={styles.backLink} href="/">
-          CD ../HOME
+          {t('about.backHome')}
         </Link>
       </header>
 
       <div className={styles.main}>
         <div className={styles.eyebrow}>
-          <span>05</span>
+          <span>{t('about.sectionIndex')}</span>
           <span aria-hidden="true">{"//"}</span>
-          <span>OPERATOR_PROFILE</span>
+          <span>{t('about.eyebrow')}</span>
         </div>
-        <h1>The human behind the terminal.</h1>
+        <h1>{t('about.title')}</h1>
         <p className={styles.intro}>
-          {profile.name} ({profile.preferredName}) — a {profile.role.toLowerCase()} in{" "}
-          {profile.location}. The professional story lives on the main page and
-          in the project archive; this page is everything that happens when the
-          IDE is closed — and most of it still involves hardware.
+          {profile.name} ({profile.preferredName}){t('about.introPrefix')}{profile.role.toLowerCase()}{t('about.introMiddle')}
+          {!isZh && profile.location}{!isZh && ". "}{t('about.introSuffix')}
         </p>
 
         <div className={styles.cards}>
@@ -54,9 +52,9 @@ export default function AboutPage() {
 
         <div className={styles.factsBlock}>
           <div className={styles.eyebrow}>
-            <span>05.1</span>
+            <span>{t('about.educationIndex')}</span>
             <span aria-hidden="true">{"//"}</span>
-            <span>EDUCATION_RECORDS</span>
+            <span>{t('about.educationEyebrow')}</span>
           </div>
           <div className={styles.eduList}>
             {education.map((item) => (
@@ -66,7 +64,7 @@ export default function AboutPage() {
                   <h3>{item.school}</h3>
                   <p>{item.degree}</p>
                   <p className={styles.eduMeta}>
-                    {item.location.toUpperCase()}
+                    {!isZh && item.location.toUpperCase()}
                     {item.ranking && (
                       <>
                         {" "}
@@ -83,42 +81,44 @@ export default function AboutPage() {
 
         <div className={styles.factsBlock}>
           <div className={styles.eyebrow}>
-            <span>05.2</span>
+            <span>{t('about.factsIndex')}</span>
             <span aria-hidden="true">{"//"}</span>
-            <span>SYSTEM_FACTS</span>
+            <span>{t('about.factsEyebrow')}</span>
           </div>
           <dl className={styles.facts}>
             <div>
-              <dt>LANGUAGES</dt>
-              <dd>English (proficient) · Mandarin (native) · Japanese (learning)</dd>
+              <dt>{t('about.languagesLabel')}</dt>
+              <dd>{t('about.languagesValue')}</dd>
             </div>
+            {!isZh && (
+              <div>
+                <dt>{t('about.accessLabel')}</dt>
+                <dd>{profile.workRights}{t('about.accessSuffix')}</dd>
+              </div>
+            )}
             <div>
-              <dt>ACCESS</dt>
-              <dd>{profile.workRights} · full NSW licence (manual)</dd>
-            </div>
-            <div>
-              <dt>AFFILIATION</dt>
-              <dd>Australian Computer Society member</dd>
+              <dt>{t('about.affiliationLabel')}</dt>
+              <dd>{t('about.affiliationValue')}</dd>
             </div>
           </dl>
         </div>
 
         <div className={styles.cta}>
           <a className={styles.ctaButton} href={`mailto:${profile.email}`}>
-            Start a conversation <span aria-hidden="true">↗</span>
+            {t('about.startConversation')}<span aria-hidden="true">↗</span>
           </a>
           <Link className={styles.ctaLink} href="/projects">
-            PROJECT ARCHIVE
+            {t('about.projectArchive')}
           </Link>
           <Link className={styles.ctaLink} href="/desktop">
-            AERO LAB
+            {t('about.aeroLab')}
           </Link>
         </div>
       </div>
 
       <footer className={styles.footer}>
-        <span>© 2026 ZIZHEN LIU</span>
-        <Link href="/">RETURN TO MAIN ↖</Link>
+        <span>{t('footer.copyright')}</span>
+        <Link href="/">{t('about.returnToMain')}</Link>
       </footer>
     </main>
   );

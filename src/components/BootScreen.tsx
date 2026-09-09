@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import styles from "./BootScreen.module.css";
 
 const SESSION_KEY = "zl-boot-seen";
@@ -19,6 +20,7 @@ export default function BootScreen({
   embedded?: boolean;
   compact?: boolean;
 }) {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -37,18 +39,18 @@ export default function BootScreen({
       ref={ref}
     >
       <div className={styles.inner}>
-        <p className={styles.title}>ZL://BOOT_SEQUENCE — V.01</p>
+        <p className={styles.title}>{t('boot.title')}</p>
         <p className={styles.line}>
-          &gt; loading profile.sys <span>OK</span>
+          {t('boot.loadProfile')} <span>{t('boot.ok')}</span>
         </p>
         <p className={styles.line}>
-          &gt; decrypting portfolio.dat <span>OK</span>
+          {t('boot.decryptPortfolio')} <span>{t('boot.ok')}</span>
         </p>
         <p className={styles.line}>
-          &gt; tracing signal — sydney.au <span>OK</span>
+          {t('boot.traceSignal')} <span>{t('boot.ok')}</span>
         </p>
         <p className={`${styles.line} ${styles.last}`}>
-          &gt; access granted — entering system<i />
+          {t('boot.accessGranted')}<i />
         </p>
         <div className={styles.bar}>
           <span />

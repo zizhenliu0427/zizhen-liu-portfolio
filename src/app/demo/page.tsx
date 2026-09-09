@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+"use client";
+
 import AeroButton from "@/components/AeroButton";
 import AeroInput from "@/components/AeroInput";
 import AeroNav from "@/components/AeroNav";
@@ -11,11 +12,7 @@ import Draggable from "@/components/Draggable";
 import GlassCard from "@/components/GlassCard";
 import GlassFilter from "@/components/GlassFilter";
 import WallpaperSwitcher from "@/components/WallpaperSwitcher";
-
-export const metadata: Metadata = {
-  title: "Aero Glass — Demo",
-  description: "Frutiger Aero / glassmorphism component playground.",
-};
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const SKILLS = [
   { label: "TypeScript", value: 92 },
@@ -25,6 +22,7 @@ const SKILLS = [
 ];
 
 export default function DemoPage() {
+  const { t } = useLanguage();
   return (
     // NOTE: no `overflow-hidden` on this ancestor — it would disable the cards'
     // backdrop-filter (a Chromium quirk). AeroBackground is a sibling, not a
@@ -34,34 +32,32 @@ export default function DemoPage() {
       <WallpaperSwitcher />
       <main className="relative h-dvh select-none">
         <p className="pointer-events-none absolute left-1/2 top-4 z-40 -translate-x-1/2 rounded-full bg-black/40 px-4 py-1.5 text-sm text-white backdrop-blur-sm">
-          Drag the windows around — every piece is a hand-built Aero glass component
+          {t('demo.dragInstructions')}
         </p>
 
         {/* GlassCard — hero */}
         <Draggable initialX={48} initialY={70}>
           <GlassCard className="w-72 p-7 text-center">
             <h1 className="text-2xl font-semibold tracking-tight text-slate-900 drop-shadow-sm dark:text-white">
-              Frutiger Aero
+              {t('demo.frutigerAero')}
             </h1>
             <p className="mt-2 text-sm text-slate-800 dark:text-slate-100">
-              Hand-built glass: edge refraction, viewport-pinned striations,
-              convex-lens bubbles.
+              {t('demo.glassDescription')}
             </p>
           </GlassCard>
         </Draggable>
 
         {/* AeroWindow + AeroButton + AeroTooltip */}
         <Draggable initialX={360} initialY={64}>
-          <AeroWindow title="About Me" status="Ready" className="w-80">
+          <AeroWindow title={t('demo.aboutMeTitle')} status="Ready" className="w-80">
             <p className="text-sm text-slate-800 dark:text-slate-100">
-              A draggable window — title bar, glossy controls, body and status
-              bar, skinned with our own glass.
+              {t('demo.aboutMeDescription')}
             </p>
             <div className="mt-3 flex gap-2">
-              <AeroTooltip label="Opens your mail client">
-                <AeroButton>Contact me</AeroButton>
+              <AeroTooltip label={t('demo.contactMe')}>
+                <AeroButton>{t('demo.contactMe')}</AeroButton>
               </AeroTooltip>
-              <AeroButton>Résumé</AeroButton>
+              <AeroButton>{t('demo.resume')}</AeroButton>
             </div>
           </AeroWindow>
         </Draggable>

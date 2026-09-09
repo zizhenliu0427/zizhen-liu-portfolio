@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { createGlyphRainField } from "./glyphRain";
 import { createPostFx } from "./postFx";
 import { createCityscape, FACADE_Z } from "./cityscape";
@@ -71,6 +72,7 @@ function dockDistance(camera: THREE.PerspectiveCamera) {
 }
 
 export default function MonitorHandoff({ onDocked, flight }: Props) {
+  const { t } = useLanguage();
   const hostRef = useRef<HTMLDivElement>(null);
   const bootRef = useRef<HTMLDivElement>(null);
   const dockedRef = useRef(onDocked);
@@ -606,7 +608,7 @@ export default function MonitorHandoff({ onDocked, flight }: Props) {
           let atlasAlpha = 0;
           if (atlasData) {
             for (let i = 3; i < atlasData.length; i += 4) {
-              if (atlasData[i] > 10) atlasAlpha++;
+               if (atlasData[i] > 10) atlasAlpha++;
             }
           }
           return { maxG, litPct: (100 * lit) / (w * h), atlasAlpha };
@@ -701,11 +703,11 @@ export default function MonitorHandoff({ onDocked, flight }: Props) {
         aria-hidden="true"
       >
         <div className={styles.bootWindow}>
-          <p className={styles.bootTitle}>ZL://BOOT_SEQUENCE — V.01</p>
-          <p className={styles.bootLine}>&gt; loading profile.sys <span>OK</span></p>
-          <p className={styles.bootLine}>&gt; decrypting portfolio.dat <span>OK</span></p>
-          <p className={styles.bootLine}>&gt; tracing signal <span>OK</span></p>
-          <p className={styles.bootLine}>&gt; access granted — entering system<i /></p>
+          <p className={styles.bootTitle}>{t('boot.title')}</p>
+          <p className={styles.bootLine}>{t('boot.loadProfile')} <span>{t('boot.ok')}</span></p>
+          <p className={styles.bootLine}>{t('boot.decryptPortfolio')} <span>{t('boot.ok')}</span></p>
+          <p className={styles.bootLine}>{t('boot.traceSignal')} <span>{t('boot.ok')}</span></p>
+          <p className={styles.bootLine}>{t('boot.accessGranted')}<i /></p>
         </div>
       </div>
       </div>
@@ -719,7 +721,7 @@ export default function MonitorHandoff({ onDocked, flight }: Props) {
           ref={skipButtonRef}
           onClick={() => skipRef.current()}
         >
-          SKIP INTRO <span aria-hidden="true">↗</span>
+          {t('cinematic.skipIntro')} <span aria-hidden="true">↗</span>
         </button>
       )}
     </>

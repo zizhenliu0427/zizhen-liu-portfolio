@@ -3,6 +3,7 @@
 import { useSyncExternalStore } from "react";
 import type { ArchiveAccess, ArchiveEntry } from "@/data/portfolio";
 import styles from "../subpage.module.css";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const DOMAINS = ["ALL", "WEB", "AI/ML", "SYSTEMS", "HARDWARE", "MOBILE", "LAB"] as const;
 
@@ -26,16 +27,18 @@ const applyHash = (slug: string) => {
 };
 
 function AccessBadge({ access }: { access: ArchiveAccess }) {
+  const { t } = useLanguage();
+
   switch (access.kind) {
     case "live":
       return (
         <>
           <a className={styles.accessLink} href={access.href} target="_blank" rel="noreferrer">
-            LIVE ↗
+            {t('archive.live')}
           </a>
           {access.source && (
             <a className={styles.accessLink} href={access.source} target="_blank" rel="noreferrer">
-              SOURCE ↗
+              {t('archive.source')}
             </a>
           )}
         </>
@@ -43,34 +46,34 @@ function AccessBadge({ access }: { access: ArchiveAccess }) {
     case "github":
       return (
         <a className={styles.accessLink} href={access.href} target="_blank" rel="noreferrer">
-          SOURCE ↗
+          {t('archive.source')}
         </a>
       );
     case "wip":
       return access.href ? (
         <a className={styles.accessLink} href={access.href} target="_blank" rel="noreferrer">
-          IN DEVELOPMENT ↗
+          {t('archive.inDevelopment')}
         </a>
       ) : (
-        <span className={styles.access}>IN DEVELOPMENT</span>
+        <span className={styles.access}>{t('archive.inDevelopmentNoLink')}</span>
       );
     case "nda":
-      return <span className={styles.access}>NDA · DEMO ON REQUEST</span>;
+      return <span className={styles.access}>{t('archive.nda')}</span>;
     case "here":
       return access.href ? (
         <>
-          <span className={styles.access}>YOU ARE HERE</span>
+          <span className={styles.access}>{t('archive.youAreHere')}</span>
           <a className={styles.accessLink} href={access.href} target="_blank" rel="noreferrer">
-            SOURCE ↗
+            {t('archive.source')}
           </a>
         </>
       ) : (
-        <span className={styles.access}>YOU ARE HERE</span>
+        <span className={styles.access}>{t('archive.youAreHere')}</span>
       );
     case "none":
       return null;
     default:
-      return <span className={styles.access}>CODE PRIVATE</span>;
+      return <span className={styles.access}>{t('archive.codePrivate')}</span>;
   }
 }
 
@@ -85,6 +88,7 @@ export default function ArchiveList({
 }: {
   entries: readonly ArchiveEntry[];
 }) {
+  const { t } = useLanguage();
   const hash = useSyncExternalStore(
     subscribeHash,
     () => window.location.hash.replace("#", ""),
@@ -112,7 +116,7 @@ export default function ArchiveList({
   return (
     <>
       <div className={styles.filters} role="group" aria-label="Prioritise projects by domain">
-        <span className={styles.filtersLabel}>FILTER:</span>
+        <span className={styles.filtersLabel}>{t('archive.filterLabel')}</span>
         {DOMAINS.map((candidate) => (
           <button
             key={candidate}
@@ -130,8 +134,8 @@ export default function ArchiveList({
         ))}
         <span className={styles.filterCount} aria-live="polite">
           {domain === "ALL"
-            ? `${entries.length} ENTRIES`
-            : `${hitCount} PRIORITISED · ${entries.length - hitCount} DIMMED`}
+            ? `${entries.length} ${t('archive.entries')}`
+            : `${hitCount} ${t('archive.prioritised')} · ${entries.length - hitCount} ${t('archive.dimmed')}`}
         </span>
       </div>
 

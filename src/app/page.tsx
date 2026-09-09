@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   archive,
@@ -10,6 +12,8 @@ import {
 import CinematicEntry from "@/components/CinematicEntry";
 import Decode from "@/components/Decode";
 import MatrixRain from "@/components/MatrixRain";
+import LanguageToggle from "@/components/LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
 import styles from "./page.module.css";
 
 // The pre-rendered video intro is parked, not removed: the component and
@@ -227,10 +231,11 @@ function ProjectVisual({ visual }: { visual: (typeof projects)[number]["visual"]
 }
 
 export default function Home() {
+  const { t, isZh } = useLanguage();
   return (
     <main className={styles.site}>
       <a className={styles.skipLink} href="#main-content">
-        Skip to content
+        {t('nav.skipToContent')}
       </a>
 
       {CINEMATIC_INTRO_ENABLED && <CinematicEntry />}
@@ -255,62 +260,68 @@ export default function Home() {
         </a>
 
         <nav className={styles.nav} aria-label="Primary navigation">
-          <a href="#work"><span>01</span> Work</a>
-          <Link href="/projects"><span>02</span> Projects</Link>
-          <a href="#experience"><span>03</span> Experience</a>
-          <a href="#lab"><span>04</span> Lab</a>
-          <Link href="/about"><span>05</span> About</Link>
-          <a href="#contact"><span>06</span> Contact</a>
+          <a href="#work"><span>01</span> {t('nav.work')}</a>
+          <Link href="/projects"><span>02</span> {t('nav.projects')}</Link>
+          <a href="#experience"><span>03</span> {t('nav.experience')}</a>
+          <a href="#lab"><span>04</span> {t('nav.lab')}</a>
+          <Link href="/about"><span>05</span> {t('nav.about')}</Link>
+          <a href="#contact"><span>06</span> {t('nav.contact')}</a>
         </nav>
+
+        <LanguageToggle />
 
         <div className={styles.availability}>
           <i aria-hidden="true" />
-          OPEN_TO_WORK
+          {t('nav.openToWork')}
         </div>
       </header>
 
       <section className={styles.hero} id="top">
         <div className={styles.heroContent} id="main-content" tabIndex={-1}>
           <div className={styles.heroMeta}>
-            <span>00 // SYSTEM_PROFILE</span>
-            <span>SYDNEY · AU</span>
+            <span>{t('hero.systemProfile')}</span>
+            {!isZh && <span>{t('hero.sydneyBadge')}</span>}
           </div>
 
           <h1>
-            <span><Decode text="ZIZHEN" delay={260} /></span>
-            <span><Decode text="LIU" delay={420} /><span className={styles.cursor} aria-hidden="true" /></span>
+            <span><Decode text={t('hero.firstName')} delay={260} /></span>
+            <span><Decode text={t('hero.lastName')} delay={420} /><span className={styles.cursor} aria-hidden="true" /></span>
           </h1>
 
           <div className={styles.roleLine}>
-            <span>FULL-STACK</span>
-            <span>ENGINEER</span>
+            <span>{t('hero.roleA')}</span>
+            <span>{t('hero.roleB')}</span>
           </div>
 
-          <p className={styles.tagline}>{profile.tagline}</p>
+          <p className={styles.tagline}>{t('hero.tagline')}</p>
 
-          <p className={styles.heroStatement}>{profile.statement}</p>
+          <p className={styles.heroStatement}>{t('hero.statement')}</p>
 
           <div className={styles.heroActions}>
             <a className={styles.primaryButton} href="#work">
-              Explore selected work <span aria-hidden="true">↘</span>
+              {t('hero.exploreWork')} <span aria-hidden="true">↘</span>
             </a>
             <a className={styles.secondaryButton} href={`mailto:${profile.email}`}>
-              Start a conversation <span aria-hidden="true">↗</span>
+              {t('hero.startConversation')} <span aria-hidden="true">↗</span>
             </a>
           </div>
 
           <dl className={styles.heroFacts}>
+            {!isZh && (
+              <div>
+                <dt>{t('hero.locationLabel')}</dt>
+                <dd>{t('hero.locationValue')}</dd>
+              </div>
+            )}
+            {!isZh && (
+              <div>
+                <dt>{t('hero.accessLabel')}</dt>
+                <dd>{t('hero.accessValue')}</dd>
+              </div>
+            )}
             <div>
-              <dt>LOCATION</dt>
-              <dd>{profile.location}</dd>
-            </div>
-            <div>
-              <dt>ACCESS</dt>
-              <dd>{profile.workRights}</dd>
-            </div>
-            <div>
-              <dt>STATUS</dt>
-              <dd>{profile.availability}</dd>
+              <dt>{t('hero.statusLabel')}</dt>
+              <dd>{t('hero.statusValue')}</dd>
             </div>
           </dl>
         </div>
@@ -345,7 +356,7 @@ export default function Home() {
         </aside>
 
         <div className={styles.scrollCue} aria-hidden="true">
-          <span>SCROLL TO DECODE</span>
+          <span>{t('hero.scrollCue')}</span>
           <i />
         </div>
       </section>
@@ -360,7 +371,7 @@ export default function Home() {
       </div>
 
       <section className={styles.section} id="work">
-        <SectionHeading index="01" eyebrow="SELECTED_WORK" title="Products built end to end." />
+        <SectionHeading index="01" eyebrow={t('work.eyebrow')} title={t('work.title')} />
         <div className={styles.projects}>
           {projects.map((project) => (
             <article className={styles.project} key={project.id} id={`project-${project.id}`}>
@@ -382,22 +393,22 @@ export default function Home() {
                   <span>{project.metric}</span>
                   {project.href && (
                     <a href={project.href} target="_blank" rel="noreferrer">
-                      View live project <span aria-hidden="true">↗</span>
+                      {t('work.viewLive')} <span aria-hidden="true">↗</span>
                     </a>
                   )}
                   {project.github && (
                     <a href={project.github} target="_blank" rel="noreferrer">
-                      View source <span aria-hidden="true">↗</span>
+                      {t('work.viewSource')} <span aria-hidden="true">↗</span>
                     </a>
                   )}
                   {project.experienceHref && (
                     <a href={project.experienceHref}>
-                      Experience entry <span aria-hidden="true">↘</span>
+                      {t('work.experienceEntry')} <span aria-hidden="true">↘</span>
                     </a>
                   )}
                   {!project.href && !project.github && (
                     <span className={styles.caseStudyPending}>
-                      {project.access ?? "CASE STUDY / INCOMING"}
+                      {project.access ?? t('work.caseStudyFallback')}
                     </span>
                   )}
                 </div>
@@ -408,18 +419,16 @@ export default function Home() {
         </div>
         <div className={styles.archiveLink}>
           <Link href="/projects">
-            OPEN PROJECT_ARCHIVE — {archive.length} ENTRIES <span aria-hidden="true">↗</span>
+            {t('work.archiveLink').replace('{count}', String(archive.length))} <span aria-hidden="true">↗</span>
           </Link>
         </div>
       </section>
 
       <section className={`${styles.section} ${styles.experienceSection}`} id="experience">
-        <SectionHeading index="02" eyebrow="EXPERIENCE_LOG" title="From requirements to shipped UI." />
+        <SectionHeading index="02" eyebrow={t('experience.eyebrow')} title={t('experience.title')} />
         <div className={styles.experienceLayout}>
           <p className={styles.sectionIntro}>
-            A full-stack engineer with a software engineering foundation,
-            product analysis experience and a habit of learning by building
-            across the whole stack.
+            {t('experience.intro')}
           </p>
           <div className={styles.timeline}>
             {experience.map((item, index) => (
@@ -457,9 +466,7 @@ export default function Home() {
                   )}
                   {item.links?.some((link) => link.cn) && (
                     <p className={styles.timelineNote}>
-                      ① Hosted in mainland China — access from outside China
-                      may be affected by the GFW and may require a Chinese
-                      network route/proxy.
+                      {t('experience.gfwNote')}
                     </p>
                   )}
                 </div>
@@ -470,7 +477,7 @@ export default function Home() {
       </section>
 
       <section className={styles.section} id="capabilities">
-        <SectionHeading index="03" eyebrow="STACK_MAP" title="Interface to metal, one engineer." />
+        <SectionHeading index="03" eyebrow={t('capabilities.eyebrow')} title={t('capabilities.title')} />
         <div className={styles.capabilityGrid}>
           {capabilities.map((group) => (
             <article key={group.index} className={styles.capabilityCard}>
@@ -487,8 +494,8 @@ export default function Home() {
 
         <div className={styles.educationBlock}>
           <div>
-            <span className={styles.miniLabel}>EDUCATION / VERIFIED</span>
-            <h3>Software engineering foundation.<br />Product-focused execution.</h3>
+            <span className={styles.miniLabel}>{t('capabilities.educationLabel')}</span>
+            <h3>{t('capabilities.educationTitle')}<br />{t('capabilities.educationTitle2')}</h3>
           </div>
           <div className={styles.educationList}>
             {education.map((item) => (
@@ -516,22 +523,19 @@ export default function Home() {
 
       <section className={`${styles.section} ${styles.labSection}`} id="lab">
         <div className={styles.labCopy}>
-          <div className={styles.sectionCode}><span>04</span><span>{"//"}</span><span>AERO_LAB</span></div>
+          <div className={styles.sectionCode}><span>04</span><span>{"//"}</span><span>{t('lab.eyebrow')}</span></div>
           <h2>
-            <Decode text="The portfolio has" />
+            <Decode text={t('lab.titleA')} />
             <br />
-            <Decode text="a Frutiger Aero operating system." />
+            <Decode text={t('lab.titleB')} />
           </h2>
           <p>
-            A hand-built lab of Y2K-era interfaces — glassy Aero chrome, gel
-            buttons, reflections and drag-and-drop window management, all
-            engineered from scratch. Windows 7 is the first build; XP and
-            Windows 98 shells are next.
+            {t('lab.description')}
           </p>
           <div className={styles.labActions}>
-            <Link className={styles.primaryButton} href="/desktop">Launch the Aero lab <span>↗</span></Link>
-            <Link href="/oobe">Open résumé setup</Link>
-            <Link href="/demo">View Aero components</Link>
+            <Link className={styles.primaryButton} href="/desktop">{t('lab.launchLab')} <span>↗</span></Link>
+            <Link href="/oobe">{t('lab.resumeSetup')}</Link>
+            <Link href="/demo">{t('lab.viewComponents')}</Link>
           </div>
         </div>
         <div className={styles.labPreview} aria-hidden="true">
@@ -557,28 +561,28 @@ export default function Home() {
 
       <section className={styles.contact} id="contact">
         <div className={styles.contactTopline}>
-          <span>05 // CONTACT_PROTOCOL</span>
-          <span>CHANNEL: OPEN</span>
+          <span>{t('contact.topline')}</span>
+          <span>{t('contact.channelOpen')}</span>
         </div>
-        <p>Have a role, a product,<br />or a difficult interface?</p>
+        <p>{t('contact.subtitleA')}<br />{t('contact.subtitleB')}</p>
         <h2>
-          <Decode text="LET'S BUILD" />
+          <Decode text={t('contact.ctaA')} />
           <br />
-          <span className={styles.contactOutline}><Decode text="SOMETHING CLEAR." /></span>
+          <span className={styles.contactOutline}><Decode text={t('contact.ctaB')} /></span>
         </h2>
         <div className={styles.contactActions}>
           <a href={`mailto:${profile.email}`}>{profile.email} <span>↗</span></a>
           <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
           <a href={profile.github} target="_blank" rel="noreferrer">GitHub · zizhenliu0427 <span>↗</span></a>
           <a href={profile.githubSecondary} target="_blank" rel="noreferrer">GitHub · Fairchild2333 <span>↗</span></a>
-          <span>RÉSUMÉ PDF / UPDATE INCOMING</span>
+          <span>{t('contact.resumeStatus')}</span>
         </div>
       </section>
 
       <footer className={styles.footer}>
-        <span>© 2026 ZIZHEN LIU</span>
-        <span>DESIGNED + ENGINEERED IN SYDNEY</span>
-        <a href="#top">BACK TO TOP ↑</a>
+        <span>{t('footer.copyright')}</span>
+        <span>{t('footer.engineeredIn')}</span>
+        <a href="#top">{t('footer.backToTop')}</a>
       </footer>
     </main>
   );

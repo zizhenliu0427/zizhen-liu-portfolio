@@ -2,19 +2,10 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { profile } from "@/data/portfolio";
+import { useLanguage } from "@/contexts/LanguageContext";
 import AeroButton from "./AeroButton";
 import AeroProgress from "./AeroProgress";
 import GlassCard from "./GlassCard";
-
-// Setup-style caption per step, shown next to the bottom install progress bar.
-const INSTALL_LABEL: Record<string, string> = {
-  welcome: "Starting setup…",
-  about: "Loading profile…",
-  experience: "Installing experience…",
-  projects: "Installing projects…",
-  skills: "Configuring skills…",
-  contact: "Completing setup…",
-};
 
 /** Aero "command link": arrow + bold title + sub text, like Win7 wizard options. */
 function CommandLink({ title, sub }: { title: string; sub: string }) {
@@ -31,155 +22,7 @@ function CommandLink({ title, sub }: { title: string; sub: string }) {
   );
 }
 
-const SKILLS = [
-  { label: "React / Next.js", value: 90 },
-  { label: "TypeScript / JavaScript", value: 90 },
-  { label: "CSS / Tailwind / SVG", value: 88 },
-  { label: "Node / Python / REST APIs", value: 75 },
-];
-
 export type Step = { id: string; label: string; title: string; content: ReactNode };
-
-export const STEPS: Step[] = [
-  {
-    id: "welcome",
-    label: "Welcome",
-    title: "Welcome",
-    content: (
-      <div className="space-y-3">
-        <p className="text-3xl font-semibold tracking-tight text-white">
-          Zizhen Liu <span className="text-slate-400">(Lance)</span>
-        </p>
-        <p className="text-lg text-slate-200">
-          Graduate / Junior{" "}
-          <span className="text-sky-300">Frontend Engineer</span> · Sydney
-        </p>
-        <p className="text-sm text-slate-300">
-          React · TypeScript · responsive UI. Open to grad/junior roles — 485
-          visa with full working rights. Let&rsquo;s get set up.
-        </p>
-      </div>
-    ),
-  },
-  {
-    id: "about",
-    label: "About",
-    title: "Get to know me",
-    content: (
-      <div className="space-y-2 text-slate-200">
-        <p>
-          Recent <strong className="text-white">Master of Information
-          Technology</strong> (UNSW) with a{" "}
-          <strong className="text-white">Software Engineering (Honours)</strong>{" "}
-          background (UTS).
-        </p>
-        <p>
-          I build intuitive, high-performing web apps with React, modern
-          JavaScript/TypeScript and responsive design.
-        </p>
-        <p className="text-sm text-slate-300">
-          Off the clock: building PCs since 14, photography, and Japanese
-          culture. English (proficient) · Mandarin (native) · Japanese
-          (beginner).
-        </p>
-      </div>
-    ),
-  },
-  {
-    id: "experience",
-    label: "Experience",
-    title: "Where I've worked",
-    content: (
-      <ol className="space-y-4 text-slate-200">
-        <li>
-          <p className="font-medium text-white">
-            Intelli New Technologies — Sydney
-          </p>
-          <p className="text-xs text-slate-400">
-            IT / Business Analysis Intern · Oct 2023 – Jan 2024
-          </p>
-          <p className="mt-1 text-sm">
-            Figma prototyping, responsive UI build, Agile delivery, React
-            component verification, Python data scrapers.
-          </p>
-        </li>
-        <li>
-          <p className="font-medium text-white">
-            Golden Lady Photography — Chongqing
-          </p>
-          <p className="text-xs text-slate-400">
-            IT Support Intern · May – Aug 2021
-          </p>
-          <p className="mt-1 text-sm">
-            Maintained a Vue.js corporate site; responsive UI tweaks; system
-            setup.
-          </p>
-        </li>
-      </ol>
-    ),
-  },
-  {
-    id: "projects",
-    label: "Projects",
-    title: "What I've built",
-    content: (
-      <div className="space-y-2.5">
-        <CommandLink
-          title="Conversational-AI Sensor Analytics"
-          sub="React 19 · ECharts · Web Workers — query IoT data in natural language"
-        />
-        <CommandLink
-          title="CMO-DB — Weapon Database"
-          sub="29,000+ records · bilingual · D3.js · cmo-db.com"
-        />
-        <CommandLink
-          title="CTV — Real-Time Violence Detection"
-          sub="React · JWT route guards · multi-panel YOLO video UI"
-        />
-      </div>
-    ),
-  },
-  {
-    id: "skills",
-    label: "Skills",
-    title: "My toolkit",
-    content: (
-      <div className="space-y-2.5">
-        {SKILLS.map((s) => (
-          <AeroProgress
-            key={s.label}
-            label={s.label}
-            value={s.value}
-            color="blue"
-          />
-        ))}
-      </div>
-    ),
-  },
-  {
-    id: "contact",
-    label: "Contact",
-    title: "Let's connect",
-    content: (
-      <div className="space-y-3 text-slate-200">
-        <p>Open to graduate / junior frontend roles across Australia.</p>
-        <ul className="space-y-1 text-sm">
-          <li>✉ {profile.email}</li>
-          <li>☎ +61 432 354 832</li>
-          <li>
-            in <a className="text-sky-300 hover:underline" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a> · Sydney, Australia
-          </li>
-          <li>
-            ◉ <a className="text-sky-300 hover:underline" href={profile.github} target="_blank" rel="noreferrer">GitHub · zizhenliu0427</a>
-          </li>
-          <li>
-            ◉ <a className="text-sky-300 hover:underline" href={profile.githubSecondary} target="_blank" rel="noreferrer">GitHub · Fairchild2333</a>
-          </li>
-        </ul>
-      </div>
-    ),
-  },
-];
 
 /**
  * Windows Vista/7 OOBE-style setup wizard: a clickable step rail, a centred
@@ -196,6 +39,159 @@ export default function OobeWizard({
    *  viewport, so the same wizard works standalone or inside a window. */
   embedded?: boolean;
 } = {}) {
+  const { t, isZh } = useLanguage();
+
+  const INSTALL_LABEL: Record<string, string> = {
+    welcome: t('oobe.startingSetup'),
+    about: t('oobe.loadingProfile'),
+    experience: t('oobe.installingExperience'),
+    projects: t('oobe.installingProjects'),
+    skills: t('oobe.configuringSkills'),
+    contact: t('oobe.completingSetup'),
+  };
+
+  const SKILLS = [
+    { label: "React / Next.js", value: 90 },
+    { label: "TypeScript / JavaScript", value: 90 },
+    { label: "CSS / Tailwind / SVG", value: 88 },
+    { label: "Node / Python / REST APIs", value: 75 },
+  ];
+
+  const STEPS: Step[] = [
+    {
+      id: "welcome",
+      label: t('oobe.welcomeLabel'),
+      title: t('oobe.welcomeTitle'),
+      content: (
+        <div className="space-y-3">
+          <p className="text-3xl font-semibold tracking-tight text-white">
+            {t('oobe.welcomeName')} <span className="text-slate-400">{t('oobe.welcomeAlias')}</span>
+          </p>
+          <p className="text-lg text-slate-200">
+            {t('oobe.welcomeRolePrefix')}
+            <span className="text-sky-300">{t('oobe.welcomeRole')}</span>
+            {!isZh && t('oobe.welcomeLocation')}
+          </p>
+          {!isZh && (
+            <p className="text-sm text-slate-300">
+              {t('oobe.welcomeDescription')}
+            </p>
+          )}
+        </div>
+      ),
+    },
+    {
+      id: "about",
+      label: t('oobe.aboutLabel'),
+      title: t('oobe.aboutTitle'),
+      content: (
+        <div className="space-y-2 text-slate-200">
+          <p>
+            {t('oobe.aboutEdu')}
+          </p>
+          <p>
+            {t('oobe.aboutSkills')}
+          </p>
+          <p className="text-sm text-slate-300">
+            {t('oobe.aboutHobbies')}
+          </p>
+        </div>
+      ),
+    },
+    {
+      id: "experience",
+      label: t('oobe.experienceLabel'),
+      title: t('oobe.experienceTitle'),
+      content: (
+        <ol className="space-y-4 text-slate-200">
+          <li>
+            <p className="font-medium text-white">
+              {t('desktop.intelliCompany')}
+            </p>
+            <p className="text-xs text-slate-400">
+              {t('desktop.intelliRole')}
+            </p>
+            <p className="mt-1 text-sm">
+              {t('desktop.intelliDesc')}
+            </p>
+          </li>
+          <li>
+            <p className="font-medium text-white">
+              {t('desktop.goldenCompany')}
+            </p>
+            <p className="text-xs text-slate-400">
+              {t('desktop.goldenRole')}
+            </p>
+            <p className="mt-1 text-sm">
+              {t('desktop.goldenDesc')}
+            </p>
+          </li>
+        </ol>
+      ),
+    },
+    {
+      id: "projects",
+      label: t('oobe.projectsLabel'),
+      title: t('oobe.projectsTitle'),
+      content: (
+        <div className="space-y-2.5">
+          <CommandLink
+            title="Conversational-AI Sensor Analytics"
+            sub="React 19 · ECharts · Web Workers — query IoT data in natural language"
+          />
+          <CommandLink
+            title="CMO-DB — Weapon Database"
+            sub="29,000+ records · bilingual · D3.js · cmo-db.com"
+          />
+          <CommandLink
+            title="CTV — Real-Time Violence Detection"
+            sub="React · JWT route guards · multi-panel YOLO video UI"
+          />
+        </div>
+      ),
+    },
+    {
+      id: "skills",
+      label: t('oobe.skillsLabel'),
+      title: t('oobe.skillsTitle'),
+      content: (
+        <div className="space-y-2.5">
+          {SKILLS.map((s) => (
+            <AeroProgress
+              key={s.label}
+              label={s.label}
+              value={s.value}
+              color="blue"
+            />
+          ))}
+        </div>
+      ),
+    },
+    {
+      id: "contact",
+      label: t('oobe.contactLabel'),
+      title: t('oobe.contactTitle'),
+      content: (
+        <div className="space-y-3 text-slate-200">
+          {!isZh && <p>{t('oobe.contactStatus')}</p>}
+          <ul className="space-y-1 text-sm">
+            <li>✉ {profile.email}</li>
+            <li>☎ +61 432 354 832</li>
+            <li>
+              in <a className="text-sky-300 hover:underline" href={profile.linkedin} target="_blank" rel="noreferrer">{!isZh ? t('oobe.contactLinkedin') : 'LinkedIn'}</a>
+            </li>
+            <li>
+              ◉ <a className="text-sky-300 hover:underline" href={profile.github} target="_blank" rel="noreferrer">{t('oobe.contactGithubPrimary')}</a>
+            </li>
+            <li>
+              ◉ <a className="text-sky-300 hover:underline" href={profile.githubSecondary} target="_blank" rel="noreferrer">{t('oobe.contactGithubSecondary')}</a>
+            </li>
+          </ul>
+        </div>
+      ),
+    },
+  ];
+
   const [i, setI] = useState(0);
   const step = STEPS[i];
   const first = i === 0;
@@ -265,11 +261,11 @@ export default function OobeWizard({
           <div className="mt-4 flex-1">{step.content}</div>
 
           <div className="mt-6 flex items-center justify-between gap-3 border-t border-white/20 pt-4">
-            <span className="text-xs text-slate-400">Scroll or ↑ ↓ to move</span>
+            <span className="text-xs text-slate-400">{t('oobe.scrollHint')}</span>
             <div className="flex gap-2">
               {!first && (
                 <AeroButton onClick={() => setI((n) => Math.max(0, n - 1))}>
-                  Back
+                  {t('oobe.back')}
                 </AeroButton>
               )}
               <AeroButton
@@ -277,7 +273,7 @@ export default function OobeWizard({
                 onClick={() => setI((n) => Math.min(STEPS.length - 1, n + 1))}
                 disabled={last}
               >
-                {last ? "Finish" : "Next"}
+                {last ? t('oobe.finish') : t('oobe.next')}
               </AeroButton>
             </div>
           </div>

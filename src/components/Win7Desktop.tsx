@@ -1,6 +1,7 @@
 "use client";
 
-import { memo, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { memo, useCallback, useEffect, useRef, useState, type ReactNode, useMemo } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { profile } from "@/data/portfolio";
 import {
   FLIP_AX,
@@ -51,138 +52,6 @@ type App = {
   bare?: boolean;
 };
 
-const APPS: App[] = [
-  {
-    id: "setup",
-    label: "Get Started",
-    icon: "🧭",
-    title: "Get Started — Setup",
-    content: <OobeApp />,
-    w: 720,
-    h: 520,
-    bare: true,
-  },
-  {
-    id: "about",
-    label: "About Me",
-    icon: "👤",
-    title: "About — Zizhen Liu",
-    content: (
-      <>
-        <p>
-          <strong>Zizhen Liu (Lance)</strong> — Graduate / Junior Frontend
-          Engineer, Sydney.
-        </p>
-        <p style={{ marginTop: 8 }}>
-          Recent Master of Information Technology (UNSW) with a Software
-          Engineering (Honours) background (UTS). I build intuitive,
-          high-performing web apps with React, TypeScript and responsive design.
-        </p>
-        <p style={{ marginTop: 8 }}>
-          Open to grad/junior roles — 485 visa, full working rights. Off the
-          clock: building PCs since 14, photography, Japanese culture.
-        </p>
-      </>
-    ),
-  },
-  {
-    id: "experience",
-    label: "Experience",
-    icon: "💼",
-    title: "Experience",
-    content: (
-      <>
-        <p>
-          <strong>Intelli New Technologies — Sydney</strong>
-          <br />
-          IT / Business Analysis Intern · Oct 2023 – Jan 2024
-        </p>
-        <p style={{ marginTop: 4 }}>
-          Figma prototyping, responsive UI build, Agile delivery, React
-          component verification, Python data scrapers.
-        </p>
-        <p style={{ marginTop: 12 }}>
-          <strong>Golden Lady Photography — Chongqing</strong>
-          <br />
-          IT Support Intern · May – Aug 2021
-        </p>
-        <p style={{ marginTop: 4 }}>
-          Maintained a Vue.js corporate site; responsive UI tweaks; system setup.
-        </p>
-      </>
-    ),
-  },
-  {
-    id: "projects",
-    label: "Projects",
-    icon: "📁",
-    title: "Projects",
-    content: (
-      <ul className="tree-view">
-        <li>
-          <strong>Conversational-AI Sensor Analytics</strong> — React 19,
-          ECharts, Web Workers. Query IoT data in natural language.
-        </li>
-        <li>
-          <strong>CMO-DB — Weapon Database</strong> — 29,000+ records, bilingual,
-          D3.js. <code>cmo-db.com</code>
-        </li>
-        <li>
-          <strong>CTV — Violence Detection</strong> — React, JWT route guards,
-          multi-panel YOLO video UI.
-        </li>
-      </ul>
-    ),
-  },
-  {
-    id: "skills",
-    label: "Skills",
-    icon: "📊",
-    title: "Skills",
-    content: (
-      <ul>
-        <li>
-          <strong>Languages:</strong> JavaScript (ES6+), TypeScript, HTML5, CSS3
-        </li>
-        <li>
-          <strong>Frameworks:</strong> React, React Router, Context API
-        </li>
-        <li>
-          <strong>UI / Styling:</strong> Tailwind, MUI v5, Bootstrap 5, CSS
-          Grid/Flexbox
-        </li>
-        <li>
-          <strong>Data / APIs:</strong> ECharts, D3.js, Web Workers, Fetch API
-        </li>
-        <li>
-          <strong>Tooling:</strong> Vite, Vitest, Git, Vercel, Figma
-        </li>
-      </ul>
-    ),
-  },
-  {
-    id: "contact",
-    label: "Contact",
-    icon: "✉️",
-    title: "Contact",
-    content: (
-      <ul>
-        <li>✉ {profile.email}</li>
-        <li>☎ +61 432 354 832</li>
-        <li>
-          in <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a> · Sydney, Australia
-        </li>
-        <li>
-          ◉ <a href={profile.github} target="_blank" rel="noreferrer">GitHub · zizhenliu0427</a>
-        </li>
-        <li>
-          ◉ <a href={profile.githubSecondary} target="_blank" rel="noreferrer">GitHub · Fairchild2333</a>
-        </li>
-        <li>485 Temporary Graduate Visa — full working rights</li>
-      </ul>
-    ),
-  },
-];
 
 const AURORA_THUMB =
   "radial-gradient(60% 80% at 38% 62%, #15d8c8, transparent 70%)," +
@@ -214,9 +83,135 @@ type Win = {
   closing?: boolean;
 };
 
-const appOf = (id: string) => APPS.find((a) => a.id === id)!;
-
 export default function Win7Desktop() {
+  const { t, isZh } = useLanguage();
+
+  const APPS: App[] = useMemo(() => [
+    {
+      id: "setup",
+      label: t('desktop.getStarted'),
+      icon: "🧭",
+      title: t('desktop.getStarted') + " — Setup",
+      content: <OobeApp />,
+      w: 720,
+      h: 520,
+      bare: true,
+    },
+    {
+      id: "about",
+      label: t('desktop.aboutMe'),
+      icon: "👤",
+      title: t('desktop.aboutTitle'),
+      content: (
+        <>
+          <p>
+            {t('desktop.aboutBio')}
+          </p>
+          <p style={{ marginTop: 8 }}>
+            {t('desktop.aboutDescription')}
+          </p>
+          <p style={{ marginTop: 8 }}>
+            {t('desktop.aboutExtra')}
+          </p>
+        </>
+      ),
+    },
+    {
+      id: "experience",
+      label: t('desktop.experienceLabel'),
+      icon: "💼",
+      title: t('desktop.experienceTitle'),
+      content: (
+        <>
+          <p>
+            <strong>{t('desktop.intelliCompany')}</strong>
+            <br />
+            {t('desktop.intelliRole')}
+          </p>
+          <p style={{ marginTop: 4 }}>
+            {t('desktop.intelliDesc')}
+          </p>
+          <p style={{ marginTop: 12 }}>
+            <strong>{t('desktop.goldenCompany')}</strong>
+            <br />
+            {t('desktop.goldenRole')}
+          </p>
+          <p style={{ marginTop: 4 }}>
+            {t('desktop.goldenDesc')}
+          </p>
+        </>
+      ),
+    },
+    {
+      id: "projects",
+      label: t('desktop.projectsLabel'),
+      icon: "📁",
+      title: t('desktop.projectsTitle'),
+      content: (
+        <ul className="tree-view">
+          <li>
+            <strong>Conversational-AI Sensor Analytics</strong> — {t('desktop.sensorProject')}
+          </li>
+          <li>
+            <strong>CMO-DB — Weapon Database</strong> — {t('desktop.cmoProject')}
+          </li>
+          <li>
+            <strong>CTV — Violence Detection</strong> — {t('desktop.ctvProject')}
+          </li>
+        </ul>
+      ),
+    },
+    {
+      id: "skills",
+      label: t('desktop.skillsLabel'),
+      icon: "📊",
+      title: t('desktop.skillsTitle'),
+      content: (
+        <ul>
+          <li>
+            <strong>Languages:</strong> {t('desktop.skillLanguages')}
+          </li>
+          <li>
+            <strong>Frameworks:</strong> {t('desktop.skillFrameworks')}
+          </li>
+          <li>
+            <strong>UI / Styling:</strong> {t('desktop.skillUI')}
+          </li>
+          <li>
+            <strong>Data / APIs:</strong> {t('desktop.skillData')}
+          </li>
+          <li>
+            <strong>Tooling:</strong> {t('desktop.skillTooling')}
+          </li>
+        </ul>
+      ),
+    },
+    {
+      id: "contact",
+      label: t('desktop.contactLabel'),
+      icon: "✉️",
+      title: t('desktop.contactTitle'),
+      content: (
+        <ul>
+          <li>✉ {profile.email}</li>
+          <li>☎ +61 432 354 832</li>
+          <li>
+            in <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a> · {t('desktop.linkedinSydney')}
+          </li>
+          <li>
+            ◉ <a href={profile.github} target="_blank" rel="noreferrer">{t('desktop.githubPrimary')}</a>
+          </li>
+          <li>
+            ◉ <a href={profile.githubSecondary} target="_blank" rel="noreferrer">{t('desktop.githubSecondary')}</a>
+          </li>
+          {!isZh && <li>{t('desktop.visaStatus')}</li>}
+        </ul>
+      ),
+    },
+  ], [t, isZh]);
+
+  const appOf = useCallback((id: string) => APPS.find((a) => a.id === id)!, [APPS]);
+
   const [wins, setWins] = useState<Win[]>([
     { id: "about", x: 96, y: 56, z: 11, min: false, minimizing: false },
   ]);
@@ -529,8 +524,7 @@ export default function Win7Desktop() {
               pointerEvents: "none",
             }}
           >
-            Tab / scroll to cycle · click a window or Enter to open · Esc to
-            cancel
+            {t('desktop.flipHint')}
           </div>
         </>
       )}
@@ -629,7 +623,7 @@ export default function Win7Desktop() {
                 textShadow: "0 1px 2px rgba(0,0,0,.6)",
               }}
             >
-              Desktop
+              {t('desktop.desktopLabel')}
             </span>
           </div>
         );
@@ -663,7 +657,7 @@ export default function Win7Desktop() {
               borderBottom: "1px solid rgba(255,255,255,.12)",
             }}
           >
-            Zizhen Liu
+            {t('desktop.userName')}
           </div>
           {APPS.map((a) => (
             <button
@@ -723,7 +717,7 @@ export default function Win7Desktop() {
         >
         <button
           onClick={() => setStartOpen((o) => !o)}
-          aria-label="Start"
+          aria-label={t('desktop.startButton')}
           style={{
             all: "unset",
             cursor: "pointer",
@@ -852,8 +846,8 @@ export default function Win7Desktop() {
         {/* Aero Peek — Show Desktop sliver at the far right; hover previews the
             desktop (windows → glass outlines), click minimises/restores all */}
         <button
-          aria-label="Show desktop"
-          title="Show desktop"
+          aria-label={t('desktop.showDesktop')}
+          title={t('desktop.showDesktop')}
           onMouseEnter={() => setPeek(true)}
           onMouseLeave={() => setPeek(false)}
           onClick={showDesktop}
