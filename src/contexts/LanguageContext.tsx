@@ -5,11 +5,16 @@ import {
   useCallback,
   useContext,
   useEffect,
-  useState,
+  useSyncExternalStore,
   type ReactNode,
 } from "react";
 import type { Locale } from "@/i18n";
-import { getCurrentLocale, setStoredLocale } from "@/i18n";
+import {
+  getLocaleSnapshot,
+  getServerLocaleSnapshot,
+  setStoredLocale,
+  subscribeLocale,
+} from "@/i18n";
 import { translations } from "@/locales";
 
 /* ------------------------------------------------------------------ */
@@ -49,26 +54,26 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
 /* ------------------------------------------------------------------ */
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
-  const [mounted, setMounted] = useState(false);
-
-  /* Hydrate from localStorage / navigator.language on mount */
-  useEffect(() => {
-    setLocaleState(getCurrentLocale());
-    setMounted(true);
-  }, []);
+  /* The locale is external state (localStorage, falling back to
+     navigator.language), so it is read through useSyncExternalStore instead of
+     being copied into React state inside an effect. The prerendered HTML uses
+     the server snapshot and React swaps in the client value during hydration —
+     no setState in an effect, no cascading render. */
+  const locale = useSyncExternalStore(
+    subscribeLocale,
+    getLocaleSnapshot,
+    getServerLocaleSnapshot,
+  );
 
   /* Update <html lang> attribute whenever locale changes */
   useEffect(() => {
-    if (mounted) {
-      document.documentElement.lang = locale;
-    }
-  }, [locale, mounted]);
+    document.documentElement.lang = locale;
+  }, [locale]);
 
-  const setLocale = useCallback((next: Locale) => {
-    setLocaleState(next);
-    setStoredLocale(next);
-  }, []);
+  /* Writing to the store notifies every subscriber, so this needs no local
+     state of its own; the module-level function is already referentially
+     stable across renders. */
+  const setLocale = setStoredLocale;
 
   const t = useCallback(
     (key: string): string => {

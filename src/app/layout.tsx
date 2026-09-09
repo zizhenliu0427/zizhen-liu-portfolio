@@ -14,8 +14,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  /* The production origin is the default so Open Graph and canonical URLs are
+     absolute even when the env var is unset; override it for a preview
+     deployment or a custom domain. */
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://zizhen-liu-portfolio.vercel.app",
   ),
   title: "Zizhen Liu (Lance) — Full-Stack Engineer",
   description:
