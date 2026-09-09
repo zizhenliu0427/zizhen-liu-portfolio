@@ -15,7 +15,7 @@ Personal portfolio website built to showcase my software engineering skills and 
 - **Styling:** CSS Modules (main site) + Tailwind CSS 4 · Glassmorphism in the Aero lab
 - **Linting:** ESLint 9
 - **i18n:** English / Chinese — planned (Priority 4)
-- **Deployment:** Cloudflare via OpenNext (static export)
+- **Deployment:** Vercel (Next.js static export)
 
 ## Design
 
@@ -67,6 +67,20 @@ npm run typecheck
 This prefers the native TypeScript 7 compiler ([`tsgo`](https://www.npmjs.com/package/@typescript/native-preview), ~10× faster) and automatically falls back to the classic JavaScript-based `tsc` (TypeScript 6) when the native binary is unavailable — so it works the same locally and in CI. The fallback logic lives in [scripts/typecheck.mjs](scripts/typecheck.mjs).
 
 > Note: `next build` does its own type checking via SWC and is independent of this script.
+
+## Deployment
+
+Deployed on Vercel from `main`. The site is a full static export
+(`output: "export"` in [next.config.ts](next.config.ts)) — no API routes, no
+middleware, no serverless functions — so Vercel needs no extra configuration
+beyond its auto-detected Next.js defaults.
+
+One environment variable is required in the Vercel project, otherwise
+`metadataBase` falls back to `localhost` and every Open Graph preview breaks:
+
+```
+NEXT_PUBLIC_SITE_URL=https://<your-domain>
+```
 
 ## Roadmap
 

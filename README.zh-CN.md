@@ -13,7 +13,7 @@
 - **样式：** CSS Modules（主站）+ Tailwind CSS 4 · Aero 使用玻璃拟态
 - **代码检查：** ESLint 9
 - **多语言：** 中英文切换——规划中（Priority 4）
-- **目前临时部署：** Cloudflare（OpenNext 静态导出）
+- **部署：** Vercel（Next.js 静态导出）
 
 ## 设计风格
 
@@ -59,6 +59,19 @@ npm run typecheck
 优先使用原生 TypeScript 7 编译器（[`tsgo`](https://www.npmjs.com/package/@typescript/native-preview)，速度约快 10 倍），当原生二进制不可用时自动回退到经典的 JavaScript 版 `tsc`（TypeScript 6）——因此本地和 CI 表现一致。回退逻辑见 [scripts/typecheck.mjs](scripts/typecheck.mjs)。
 
 > 说明：`next build` 通过 SWC 自带类型检查，与此脚本相互独立。
+
+## 部署
+
+部署在 Vercel，跟随 `main` 分支自动构建。站点是完整的静态导出
+（[next.config.ts](next.config.ts) 中的 `output: "export"`）——没有 API 路由、
+中间件或 Serverless 函数，因此除 Vercel 自动识别的 Next.js 默认配置外无需额外设置。
+
+Vercel 项目中需要配置一个环境变量，否则 `metadataBase` 会回退到 `localhost`，
+导致所有 Open Graph 分享预览失效：
+
+```
+NEXT_PUBLIC_SITE_URL=https://<your-domain>
+```
 
 ## 开发计划
 

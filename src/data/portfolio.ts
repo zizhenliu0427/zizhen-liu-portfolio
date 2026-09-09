@@ -167,7 +167,7 @@ export const archive: readonly ArchiveEntry[] = [
     domains: ["WEB"],
     summary:
       "The site you are reading: a Next.js static build with a canvas code-rain, CRT ambient layers and a hand-built Windows 7 Aero window manager living at /desktop.",
-    stack: ["Next.js", "TypeScript", "Canvas", "CSS Modules", "Cloudflare"],
+    stack: ["Next.js", "TypeScript", "Canvas", "CSS Modules", "Vercel"],
     access: {
       kind: "here",
       href: "https://github.com/zizhenliu0427/zizhen-liu-portfolio",

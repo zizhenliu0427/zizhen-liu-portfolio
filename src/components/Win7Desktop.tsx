@@ -15,7 +15,7 @@ import {
 import GlassFilter from "./GlassFilter";
 import OobeApp from "./OobeApp";
 import RotateGate from "./RotateGate";
-import WallpaperPicker from "./WallpaperPicker";
+import WallpaperPicker, { type Wallpaper } from "./WallpaperPicker";
 import Win7Window from "./Win7Window";
 
 // The taskbar glass, separated from the dynamic content and memoised so desktop
@@ -189,9 +189,17 @@ const AURORA_THUMB =
   "radial-gradient(55% 70% at 74% 40%, #2a86ff, transparent 70%)," +
   "linear-gradient(165deg, #021a2b, #02101b)";
 
-const WALLPAPERS = [
-  { src: "/win7-wallpaper.jpg", label: "Windows 7" },
-  { src: "/bg-hill1.jpg", label: "Hill" },
+const DEFAULT_WALLPAPER = "/bg-hill1.jpg";
+
+// The Windows 7 wallpaper is Microsoft copyright and deliberately kept out of
+// git (see .gitignore), so it is absent from any deployed build and would show
+// there as a broken tile. NODE_ENV is inlined at build time, so it stays a
+// local-preview-only extra and production ships only wallpapers we own.
+const WALLPAPERS: Wallpaper[] = [
+  ...(process.env.NODE_ENV === "development"
+    ? [{ src: "/win7-wallpaper.jpg", label: "Windows 7" }]
+    : []),
+  { src: DEFAULT_WALLPAPER, label: "Hill" },
   { src: "/bg-hill3.jpg", label: "Field" },
   { src: "aurora", label: "Aurora", thumb: AURORA_THUMB },
 ];
@@ -215,7 +223,7 @@ export default function Win7Desktop() {
   const zTop = useRef(11);
   const [startOpen, setStartOpen] = useState(false);
   const [clock, setClock] = useState("");
-  const [wallpaper, setWallpaper] = useState("/win7-wallpaper.jpg");
+  const [wallpaper, setWallpaper] = useState(DEFAULT_WALLPAPER);
   const [peek, setPeek] = useState(false); // Aero Peek (Show Desktop) hover
   const [flip3d, setFlip3d] = useState(false); // Aero Flip 3D overlay
   const [flipIdx, setFlipIdx] = useState(0);

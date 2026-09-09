@@ -56,12 +56,4 @@ CLAUDE.md
 /windows-7-official-3840x2160-13944.jpg
 /public/win7-wallpaper.jpg
 
-# OpenNext
-.open-next
-
-# wrangler files
-.wrangler
-.dev.vars*
-!.dev.vars.example
-
 AGENTS.md
