@@ -37,8 +37,6 @@ export class StartupGate {
       event.stopPropagation();
       if (event.key === "Tab") {
         const buttons = [...root.querySelectorAll<HTMLElement>('button, select, summary')].filter(button => !button.matches(':disabled') && !button.hidden && button.getClientRects().length);
-        const switcher = document.querySelector<HTMLElement>('portfolio-interface-switcher');
-        if (switcher) buttons.push(switcher);
         if (!buttons.length) { event.preventDefault(); return; }
         const index = buttons.indexOf(document.activeElement as HTMLButtonElement);
         event.preventDefault();

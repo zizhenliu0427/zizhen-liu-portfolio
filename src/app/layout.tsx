@@ -74,6 +74,9 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <meta name="darkreader-lock" />
+      </head>
       <body className="min-h-full flex flex-col"><LanguageProvider>{children}</LanguageProvider></body>
     </html>
   );
