@@ -1,6 +1,6 @@
 /* Portfolio content fits the upstream layout; scene, material and motion values stay upstream. */
 /* Other visual systems live in the same category/model switcher. */
-.column-navigation > portfolio-interface-switcher { margin-left: 2px; }
+.column-navigation > portfolio-interface-switcher { margin-left: 2px; pointer-events: auto; }
 /* The scaled stage is a fixed canvas. Focusing a modal must never scroll its outer frame. */
 #viewport, #stage { overflow: clip; }
 .project-model-status { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; margin-bottom: 12px; border-bottom: 1px solid var(--theme-line); color: var(--theme-muted); font-size: 12px; }
