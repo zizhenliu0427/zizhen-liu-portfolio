@@ -1,5 +1,11 @@
 # 明暗配色验证 · 2026-09-10
 
+## Dark Reader 兼容
+
+主站和模型预览页在初始 `<head>` 中声明 `<meta name="darkreader-lock">`，让 Dark Reader 跳过二次改色，避免 DOM 文字、玻璃面板与 WebGL 场景出现不一致。亮色、暗色和跟随系统继续由本站主题逻辑控制。
+
+依据：[Dark Reader 官方说明](https://github.com/darkreader/darkreader/blob/main/CONTRIBUTING.md#disabling-dark-reader-on-your-site)。此声明针对支持该机制的 Dark Reader，不代表屏蔽所有浏览器扩展。
+
 设置新增亮色／暗色，默认亮色；WE 原生属性在「入场与画面」分组中长期保存。沿用原生实现与既有 Blender 模型。
 
 ## 行为与视觉
