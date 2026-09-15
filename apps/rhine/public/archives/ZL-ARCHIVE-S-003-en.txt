@@ -1,0 +1,16 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE S-003 / C++20 Generic Graph
+GDWG — Generic Directed Weighted Graph Library
+
+Focus: C++20 / STL / Templates
+Period: 2025
+Author: Zizhen Liu / Lance
+Access: CODE PRIVATE
+
+Modern C++20 generic graph container with value semantics, a polymorphic edge hierarchy, deterministic ordering and full Catch2 unit-test coverage.
+
+Engineering notes
+1. Stack: C++20 · STL · Templates · Catch2
+2. Source code is not public. This record describes work I contributed to.
+
+Related link: https://github.com/zizhenliu0427

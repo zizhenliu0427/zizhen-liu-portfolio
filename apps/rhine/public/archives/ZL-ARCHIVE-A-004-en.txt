@@ -1,0 +1,16 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE A-004 / Audio / Video Transcription
+Audio/Video2Text AI — Transcription Suite
+
+Focus: Python / Whisper / FFmpeg
+Period: 2026
+Author: Zizhen Liu / Lance
+Access: PROJECT
+
+AI audio/video transcription with speaker diarisation, shipped three ways — CLI, web app and Electron desktop — with FFmpeg preprocessing in front of Whisper-class ASR models.
+
+Engineering notes
+1. Stack: Python · Whisper · FFmpeg · FastAPI · Next.js · Electron
+2. Details carried over from the existing portfolio.
+
+Related link: https://github.com/zizhenliu0427/Audio-Video2Text-AI

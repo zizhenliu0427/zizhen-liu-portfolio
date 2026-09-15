@@ -1,0 +1,17 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE W-006 / Breaktime · 派对游戏
+Breaktime Arcade — Multiplayer Party Games
+
+方向：Vue 3 / TypeScript / Socket.IO
+时间：2026
+作者：Zizhen Liu / Lance
+访问范围：PROJECT
+
+Kahoot 式的多人派对游戏平台:主持端投屏,玩家用手机加入。Socket.IO 撑起实时房间,Vue 3 + TypeScript 单仓结构,可作为 PWA 安装。
+
+实现记录
+1. 技术栈：Vue 3 · TypeScript · Socket.IO · Express · PWA
+2. 项目内容整理自已有个人作品集。
+
+相关链接：https://github.com/zizhenliu0427/breaktime-arcade
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

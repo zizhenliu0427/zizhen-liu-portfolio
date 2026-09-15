@@ -1,0 +1,17 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE I-001 / Codritium
+CODRITIUM
+
+Focus: Software Developer Intern
+Period: MAR 2026 — PRESENT
+Author: Zizhen Liu / Lance
+Access: EXPERIENCE
+
+Building Marketing Simplified (MediaJira), a campaign-management platform for media-buying teams — a Next.js/TypeScript front end over a Django REST + Channels backend.
+
+Engineering notes
+1. Building Marketing Simplified (MediaJira), a campaign-management platform for media-buying teams — a Next.js/TypeScript front end over a Django REST + Channels backend.
+2. Made real-time chat reliable under load (idempotent sends, a transactional outbox, PgBouncer pooling: 9,900/9,900 messages delivered at 100 concurrent users) and built multi-user spreadsheet collaboration over Django Channels with ~145ms peer updates.
+3. Shipped Calendly-style booking links, a 373-file slug-URL migration and IDOR fixes; cut CI from 57 to 20 minutes and recovered a production 521 outage by restoring 144 migrations.
+
+Related link: https://zmarkio.com/

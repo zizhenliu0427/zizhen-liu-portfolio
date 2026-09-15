@@ -1,0 +1,20 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE P-006 / BUILD & SHIP
+BUILD & SHIP
+
+Focus: WEB · AI · SYSTEMS
+Period: 2026
+Author: Zizhen Liu / Lance
+Access: PROFILE
+
+From prototype to deployed, tested software.
+
+Engineering notes
+1. Technology & tools: Docker
+2. Technology & tools: Git
+3. Technology & tools: Vercel / Cloudflare
+4. Technology & tools: Vitest / Catch2
+5. Technology & tools: Jira / Confluence
+6. Technology & tools: Agile
+
+Related link: https://github.com/zizhenliu0427

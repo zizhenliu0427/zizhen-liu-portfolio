@@ -1,0 +1,21 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE P-005 / SERVER & DATA
+SERVER & DATA
+
+Focus: WEB · AI · SYSTEMS
+Period: 2026
+Author: Zizhen Liu / Lance
+Access: PROFILE
+
+APIs, pipelines and the models behind them.
+
+Engineering notes
+1. Technology & tools: FastAPI
+2. Technology & tools: Django REST
+3. Technology & tools: Node.js / Express
+4. Technology & tools: PostgreSQL / MySQL
+5. Technology & tools: Kafka
+6. Technology & tools: RAG / Qdrant
+7. Technology & tools: PyTorch
+
+Related link: https://github.com/zizhenliu0427

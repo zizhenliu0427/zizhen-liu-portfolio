@@ -1,0 +1,17 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE W-002 / Novacart
+Novacart
+
+Focus: ASP.NET Core / C# / Next.js
+Period: 2026
+Author: Zizhen Liu / Lance
+Access: IN DEVELOPMENT
+
+A mobile-first e-commerce platform built end to end — a Next.js PWA storefront over an ASP.NET Core + PostgreSQL backend with Stripe payments, Redis caching, server-side cart persistence and a configurable order state machine.
+
+Engineering notes
+1. Configurable order state machine + admin analytics
+2. Server-side cart persistence · Stripe payments
+3. Dockerised ASP.NET Core + PostgreSQL + Redis stack
+
+Related link: https://github.com/zizhenliu0427/Novacart

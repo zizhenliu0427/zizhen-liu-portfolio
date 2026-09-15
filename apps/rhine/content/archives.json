@@ -1,0 +1,1027 @@
+{
+  "categories": [
+    "个人资料",
+    "实习经历",
+    "Web 与应用",
+    "AI 与数据",
+    "系统与硬件"
+  ],
+  "columns": [
+    "Web 与应用",
+    "AI 与数据",
+    "个人资料",
+    "实习经历",
+    "系统与硬件"
+  ],
+  "records": [
+    {
+      "id": "P-001",
+      "title": "刘子箴 · 全栈工程师",
+      "en": "ZIZHEN LIU",
+      "department": "WEB · AI · SYSTEMS",
+      "category": "个人资料",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROFILE",
+      "abstract": "我构建完整的产品 — 响应式界面、数据与 AI 后端、以及深入 GPU 层级的系统代码。",
+      "findings": [
+        "也可以叫我 Lance。",
+        "关注 Web 产品、AI 数据应用，以及深入 GPU 的系统工程。",
+        "目前寻求软件开发工作机会。"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "作者 GitHub",
+      "links": [
+        {
+          "label": "GitHub",
+          "href": "https://github.com/zizhenliu0427"
+        },
+        {
+          "label": "LinkedIn",
+          "href": "https://www.linkedin.com/in/zizhen-liu-580a40258/"
+        }
+      ],
+      "stack": [
+        "TypeScript",
+        "Python",
+        "C++",
+        "C#"
+      ],
+      "legacyId": "X-001"
+    },
+    {
+      "id": "P-002",
+      "title": "联系与合作",
+      "en": "LET’S BUILD SOMETHING",
+      "department": "WEB · AI · SYSTEMS",
+      "category": "个人资料",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROFILE",
+      "abstract": "欢迎交流软件开发机会、项目合作，或聊聊正在做的产品。",
+      "findings": [
+        "Email：lzz288898@gmail.com",
+        "GitHub：https://github.com/zizhenliu0427",
+        "LinkedIn：https://www.linkedin.com/in/zizhen-liu-580a40258/"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "作者 GitHub",
+      "links": [
+        {
+          "label": "发送邮件",
+          "href": "mailto:lzz288898@gmail.com"
+        },
+        {
+          "label": "LinkedIn",
+          "href": "https://www.linkedin.com/in/zizhen-liu-580a40258/"
+        },
+        {
+          "label": "GitHub",
+          "href": "https://github.com/zizhenliu0427"
+        }
+      ],
+      "legacyId": "X-002"
+    },
+    {
+      "id": "P-003",
+      "title": "从界面到 GPU",
+      "en": "WEB · AI · SYSTEMS",
+      "department": "WEB · AI · SYSTEMS",
+      "category": "个人资料",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROFILE",
+      "abstract": "从交互界面、服务端和数据管线，到 C++ 与 CUDA，沿着产品的实际问题深入不同技术层。",
+      "findings": [
+        "Interface：React 19 · Next.js · TypeScript · Tailwind CSS · ECharts / D3 · Android (Kotlin)",
+        "Server & data：FastAPI · Django REST · Node.js / Express · PostgreSQL / MySQL · Kafka · RAG / Qdrant · PyTorch",
+        "Metal：C++17/20 · CUDA · Vulkan / DX12 / Metal · NVENC / NVDEC · VHDL / FPGA · Linux",
+        "Delivery：Docker · Git · Vercel / Cloudflare · Vitest / Catch2 · Jira / Confluence · Agile"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "作者 GitHub",
+      "legacyId": "X-003"
+    },
+    {
+      "id": "P-004",
+      "title": "界面与交互",
+      "en": "INTERFACE ENGINEERING",
+      "department": "WEB · AI · SYSTEMS",
+      "category": "个人资料",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROFILE",
+      "abstract": "构建面向真实用户的 Web 与移动端界面。",
+      "findings": [
+        "技术与工具：React 19",
+        "技术与工具：Next.js",
+        "技术与工具：TypeScript",
+        "技术与工具：Tailwind CSS",
+        "技术与工具：ECharts / D3",
+        "技术与工具：Android (Kotlin)"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "作者 GitHub",
+      "stack": [
+        "React 19",
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "ECharts / D3",
+        "Android (Kotlin)"
+      ],
+      "legacyId": "X-004"
+    },
+    {
+      "id": "P-005",
+      "title": "服务端与数据",
+      "en": "SERVER & DATA",
+      "department": "WEB · AI · SYSTEMS",
+      "category": "个人资料",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROFILE",
+      "abstract": "实现 API、数据接入、检索与支撑产品的后端服务。",
+      "findings": [
+        "技术与工具：FastAPI",
+        "技术与工具：Django REST",
+        "技术与工具：Node.js / Express",
+        "技术与工具：PostgreSQL / MySQL",
+        "技术与工具：Kafka",
+        "技术与工具：RAG / Qdrant",
+        "技术与工具：PyTorch"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "作者 GitHub",
+      "stack": [
+        "FastAPI",
+        "Django REST",
+        "Node.js / Express",
+        "PostgreSQL / MySQL",
+        "Kafka",
+        "RAG / Qdrant",
+        "PyTorch"
+      ],
+      "legacyId": "X-005"
+    },
+    {
+      "id": "P-006",
+      "title": "开发与交付",
+      "en": "BUILD & SHIP",
+      "department": "WEB · AI · SYSTEMS",
+      "category": "个人资料",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROFILE",
+      "abstract": "将原型推进到可以部署、验证和持续维护的软件。",
+      "findings": [
+        "技术与工具：Docker",
+        "技术与工具：Git",
+        "技术与工具：Vercel / Cloudflare",
+        "技术与工具：Vitest / Catch2",
+        "技术与工具：Jira / Confluence",
+        "技术与工具：Agile"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "作者 GitHub",
+      "stack": [
+        "Docker",
+        "Git",
+        "Vercel / Cloudflare",
+        "Vitest / Catch2",
+        "Jira / Confluence",
+        "Agile"
+      ],
+      "legacyId": "X-006"
+    },
+    {
+      "id": "P-007",
+      "title": "摄影与观察",
+      "en": "BEYOND THE SCREEN",
+      "department": "WEB · AI · SYSTEMS",
+      "category": "个人资料",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROFILE",
+      "abstract": "喜欢风景与 HDR 摄影，也喜欢研究影像从采集、处理到显示的整个过程。",
+      "findings": [
+        "个人摄影作品集仍在整理。",
+        "对色彩、动态范围和显示设备的兴趣，也延伸到了 GPU 视频处理项目。"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "作者 GitHub",
+      "legacyId": "X-007"
+    },
+    {
+      "id": "P-008",
+      "title": "驾驶与语言",
+      "en": "OFFLINE / ONLINE",
+      "department": "WEB · AI · SYSTEMS",
+      "category": "个人资料",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROFILE",
+      "abstract": "代码之外，喜欢汽车、日本文化与语言学习。",
+      "findings": [
+        "Honda Civic Type R FK8，手动挡。",
+        "ADVAN GT Beyond 轮毂与 Neova AD09 轮胎。",
+        "母语中文，熟练英语，正在学习日语。"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "作者 GitHub",
+      "legacyId": "X-008"
+    },
+    {
+      "id": "W-001",
+      "title": "CMO-DB · 装备数据库",
+      "en": "CMO-DB",
+      "department": "JavaScript / Node.js / Express",
+      "category": "Web 与应用",
+      "date": "2023—24",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "abstract": "一个 wiki 式的装备数据库。前台做中英双语路由和 D3 可视化,后台是 Node/Express + Sequelize 的无服务器架构,在 29,000 多条记录上跑最多六表联查。",
+      "findings": [
+        "29,000+ 条记录 · 参数化多表联查",
+        "迁移到 Vercel 无服务器架构,基础设施零维护",
+        "中英文 URL 路由 · 自制 D3 传感器扇形图"
+      ],
+      "source": "https://www.cmo-db.com/",
+      "sourceLabel": "打开项目",
+      "stack": [
+        "JavaScript",
+        "Node.js",
+        "Express",
+        "Sequelize",
+        "D3.js",
+        "i18next"
+      ],
+      "links": [
+        {
+          "label": "打开项目",
+          "href": "https://www.cmo-db.com/"
+        }
+      ],
+      "legacyId": "X-009"
+    },
+    {
+      "id": "W-002",
+      "title": "Novacart · 电商平台",
+      "en": "Novacart",
+      "department": "ASP.NET Core / C# / Next.js",
+      "category": "Web 与应用",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "IN DEVELOPMENT",
+      "abstract": "端到端搭建的移动优先电商平台。Next.js PWA 店面,底下是 ASP.NET Core + PostgreSQL,接了 Stripe 支付、Redis 缓存、服务端购物车持久化,以及一套可配置的订单状态机。",
+      "findings": [
+        "可配置订单状态机 + 后台数据看板",
+        "服务端购物车持久化 · Stripe 支付",
+        "ASP.NET Core + PostgreSQL + Redis 全栈容器化"
+      ],
+      "source": "https://github.com/zizhenliu0427/Novacart",
+      "sourceLabel": "查看源码",
+      "stack": [
+        "ASP.NET Core",
+        "C#",
+        "Next.js",
+        "PostgreSQL",
+        "Stripe",
+        "Redis"
+      ],
+      "links": [
+        {
+          "label": "查看源码",
+          "href": "https://github.com/zizhenliu0427/Novacart"
+        }
+      ],
+      "legacyId": "X-010"
+    },
+    {
+      "id": "W-003",
+      "title": "MediaJira · 广告平台",
+      "en": "Marketing Simplified (MediaJira)",
+      "department": "Next.js / TypeScript / Django Channels",
+      "category": "Web 与应用",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "abstract": "Codritium 实习期间开发的广告投放管理平台。让实时聊天在 100 人并发下稳定送达,做了多人实时协作表格和 Calendly 式预约链接,完成横跨 12 个模块、涉及 373 个文件的 slug-URL 迁移,并把 CI 从 57 分钟压到 20 分钟。",
+      "findings": [
+        "100 人并发聊天:送达从 83–89% 提到 9,900/9,900,WebSocket p95 从 47.5 秒降到 5.0 秒",
+        "多人实时协作表格:在线状态、他人光标,协作编辑约 145ms 同步",
+        "CI 耗时 −66%(找回 597 个被跳过的测试)· 12 模块 slug-URL 迁移 + IDOR 越权修复"
+      ],
+      "source": "https://github.com/quanwangniuniu/marketing-simplified",
+      "sourceLabel": "查看源码",
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "Django Channels",
+        "PostgreSQL",
+        "Redis",
+        "GitHub Actions"
+      ],
+      "links": [
+        {
+          "label": "打开项目",
+          "href": "https://zmarkio.com/"
+        },
+        {
+          "label": "查看源码",
+          "href": "https://github.com/quanwangniuniu/marketing-simplified"
+        }
+      ],
+      "sections": [
+        {
+          "id": "X-038",
+          "title": "百人并发聊天可靠性",
+          "abstract": "Codritium 实习中的 MediaJira 实时聊天改进。",
+          "findings": [
+            "幂等发送、transactional outbox 与 PgBouncer 连接池。",
+            "100 人并发测试，送达由 83–89% 提升至 9,900 / 9,900。",
+            "WebSocket p95 从 47.5 秒降至 5.0 秒。"
+          ]
+        },
+        {
+          "id": "X-039",
+          "title": "多人表格协作",
+          "abstract": "在 MediaJira 中实现多人实时协作表格。",
+          "findings": [
+            "Django Channels 支撑实时同步。",
+            "在线状态、其他用户的光标与协作编辑。",
+            "作品集记录约 145ms 的协作更新延迟。"
+          ]
+        },
+        {
+          "id": "X-040",
+          "title": "迁移、恢复与 CI",
+          "abstract": "跨模块迁移与交付流程改进，同属 Codritium 实习工作。",
+          "findings": [
+            "slug-URL 迁移涉及 373 个文件、12 个模块，并修复 IDOR 越权问题。",
+            "CI 由 57 分钟压缩至约 20 分钟，找回 597 个被跳过的测试。",
+            "恢复 144 个数据库迁移，处理生产环境 521 故障。"
+          ]
+        }
+      ],
+      "legacyId": "X-011"
+    },
+    {
+      "id": "W-004",
+      "title": "Lanely · 协作看板",
+      "en": "Lanely — Kanban Project Management",
+      "department": "FastAPI / SQLAlchemy / React",
+      "category": "Web 与应用",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "abstract": "全栈看板工具:拖拽式面板、基于 WebSocket 的多人实时协作、项目数据统计。后端 FastAPI + SQLAlchemy,前端 React/TypeScript。",
+      "findings": [
+        "技术栈：FastAPI · SQLAlchemy · React · TypeScript · WebSocket · Docker",
+        "项目内容整理自已有个人作品集。"
+      ],
+      "source": "https://github.com/zizhenliu0427/lanely",
+      "sourceLabel": "查看源码",
+      "stack": [
+        "FastAPI",
+        "SQLAlchemy",
+        "React",
+        "TypeScript",
+        "WebSocket",
+        "Docker"
+      ],
+      "links": [
+        {
+          "label": "查看源码",
+          "href": "https://github.com/zizhenliu0427/lanely"
+        }
+      ],
+      "legacyId": "X-012"
+    },
+    {
+      "id": "W-005",
+      "title": "Whale · 海运平台",
+      "en": "Whale Logistics CMS — Sea-Freight Microservices",
+      "department": "Java / Spring Cloud / RabbitMQ",
+      "category": "Web 与应用",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "abstract": "用 Spring Cloud 微服务重做海运货代的全流程:把集装箱从码头到还空箱的全程可见性自动化,替掉原来靠邮件人工协调的方式,降低滞箱风险。",
+      "findings": [
+        "技术栈：Java · Spring Cloud · RabbitMQ · React · TypeScript · Docker",
+        "项目内容整理自已有个人作品集。"
+      ],
+      "source": "https://github.com/Fairchild2333/whale-logistics-cms",
+      "sourceLabel": "查看源码",
+      "stack": [
+        "Java",
+        "Spring Cloud",
+        "RabbitMQ",
+        "React",
+        "TypeScript",
+        "Docker"
+      ],
+      "links": [
+        {
+          "label": "查看源码",
+          "href": "https://github.com/Fairchild2333/whale-logistics-cms"
+        }
+      ],
+      "legacyId": "X-013"
+    },
+    {
+      "id": "W-006",
+      "title": "Breaktime · 派对游戏",
+      "en": "Breaktime Arcade — Multiplayer Party Games",
+      "department": "Vue 3 / TypeScript / Socket.IO",
+      "category": "Web 与应用",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "abstract": "Kahoot 式的多人派对游戏平台:主持端投屏,玩家用手机加入。Socket.IO 撑起实时房间,Vue 3 + TypeScript 单仓结构,可作为 PWA 安装。",
+      "findings": [
+        "技术栈：Vue 3 · TypeScript · Socket.IO · Express · PWA",
+        "项目内容整理自已有个人作品集。"
+      ],
+      "source": "https://github.com/zizhenliu0427/breaktime-arcade",
+      "sourceLabel": "查看源码",
+      "stack": [
+        "Vue 3",
+        "TypeScript",
+        "Socket.IO",
+        "Express",
+        "PWA"
+      ],
+      "links": [
+        {
+          "label": "查看源码",
+          "href": "https://github.com/zizhenliu0427/breaktime-arcade"
+        }
+      ],
+      "legacyId": "X-014"
+    },
+    {
+      "id": "W-007",
+      "title": "Good360 · 移动聊天",
+      "en": "Good360 Donation App — Real-Time Chat Module",
+      "department": "Kotlin / MVVM / Firebase",
+      "category": "Web 与应用",
+      "date": "2023",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "CODE PRIVATE",
+      "abstract": "为 Good360 Australia 的捐赠 App 做的聊天模块,Kotlin/MVVM:多类型 RecyclerView 消息流、Firebase 实时同步、图片消息,以及可复现的聊天室 ID 生成。",
+      "findings": [
+        "技术栈：Kotlin · MVVM · Firebase · RecyclerView",
+        "代码未公开；此档案介绍本人参与的实现。"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "作者 GitHub",
+      "stack": [
+        "Kotlin",
+        "MVVM",
+        "Firebase",
+        "RecyclerView"
+      ],
+      "links": [],
+      "legacyId": "X-015"
+    },
+    {
+      "id": "W-008",
+      "title": "HLS Keeper · 流媒体归档",
+      "en": "HLS Keeper — Local-First Stream Archiver",
+      "department": "Python / Chrome Extension / FFmpeg",
+      "category": "Web 与应用",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "abstract": "浏览器扩展抓取 HLS 流和站内附件,与本地 Python 服务通信,配网页控制台;FFmpeg 把切片合成可播放的文件。全程在本机完成。",
+      "findings": [
+        "技术栈：Python · Chrome Extension · FFmpeg · HLS",
+        "项目内容整理自已有个人作品集。"
+      ],
+      "source": "https://github.com/zizhenliu0427/hls-keeper",
+      "sourceLabel": "查看源码",
+      "stack": [
+        "Python",
+        "Chrome Extension",
+        "FFmpeg",
+        "HLS"
+      ],
+      "links": [
+        {
+          "label": "查看源码",
+          "href": "https://github.com/zizhenliu0427/hls-keeper"
+        }
+      ],
+      "legacyId": "X-016"
+    },
+    {
+      "id": "A-001",
+      "title": "楼宇传感器 AI",
+      "en": "Conversational AI for Building Sensor Data",
+      "department": "React 19 / TypeScript / FastAPI",
+      "category": "AI 与数据",
+      "date": "2025",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "CODE PRIVATE",
+      "abstract": "一个物联网分析平台,楼宇管理者可以直接用自然语言查询实时传感器数据。覆盖 React 前端、FastAPI + Kafka 后端,以及对话背后的 RAG 检索管线。",
+      "findings": [
+        "React 19 单页应用 · CSV/Excel 解析交给 Web Workers",
+        "Kafka 数据接入 + PostgreSQL UPSERT 批量写入",
+        "Qdrant 向量检索 + 本地大模型(Ollama)与 NL2SQL"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "作者 GitHub",
+      "stack": [
+        "React 19",
+        "TypeScript",
+        "FastAPI",
+        "Kafka",
+        "PostgreSQL",
+        "Qdrant"
+      ],
+      "links": [],
+      "sections": [
+        {
+          "id": "X-021",
+          "title": "RAG 与自然语言查询",
+          "abstract": "楼宇传感器项目中的对话层：让管理者通过自然语言查询数据。",
+          "findings": [
+            "Qdrant 支持向量检索，Ollama 运行本地大模型。",
+            "结合 RAG 与 NL2SQL 连接文档知识和结构化数据。",
+            "本条是同一毕业项目的技术说明，不计为独立项目。"
+          ]
+        },
+        {
+          "id": "X-022",
+          "title": "时序预测与数据接入",
+          "abstract": "楼宇传感器项目中的数据管线与预测模块。",
+          "findings": [
+            "FastAPI 与 Kafka 接入数据，PostgreSQL UPSERT 完成批量写入。",
+            "TFT 时序预测采用分位数回归。",
+            "前端通过 Web Workers 处理 CSV / Excel 解析。"
+          ]
+        }
+      ],
+      "legacyId": "X-017"
+    },
+    {
+      "id": "A-002",
+      "title": "皮肤镜图像分类",
+      "en": "Skin Lesion Classification — ISIC2018",
+      "department": "PyTorch / Albumentations / scikit-learn",
+      "category": "AI 与数据",
+      "date": "2024",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "CODE PRIVATE",
+      "abstract": "在类别严重失衡的皮肤镜数据上微调 DenseNet/EfficientNet/ResNet,并手写实现 Squeeze-and-Excitation 注意力模块,macro F1 达到 83%;用 Grad-CAM 验证模型看的是不是该看的区域。",
+      "findings": [
+        "技术栈：PyTorch · Albumentations · scikit-learn · OpenCV",
+        "代码未公开；此档案介绍本人参与的实现。"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "作者 GitHub",
+      "stack": [
+        "PyTorch",
+        "Albumentations",
+        "scikit-learn",
+        "OpenCV"
+      ],
+      "links": [],
+      "legacyId": "X-018"
+    },
+    {
+      "id": "A-003",
+      "title": "CTV · 视觉检测",
+      "en": "CTV Violence Detection",
+      "department": "React 18 / Django REST / PyTorch",
+      "category": "AI 与数据",
+      "date": "2023",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "CODE PRIVATE",
+      "abstract": "实时监控平台:YOLOv8 在 10,025 张人工标注的画面上训练,经 Django REST + MJPEG 推流,送到多路摄像头的 React 面板。",
+      "findings": [
+        "在 RTX 4090 上把 YOLOv8 训到 85% mAP50",
+        "OpenCV → MJPEG 实时推流,延迟低于 200ms",
+        "JWT 鉴权的 React 单页应用,支持 1/2/4/6 分屏"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "作者 GitHub",
+      "stack": [
+        "React 18",
+        "Django REST",
+        "PyTorch",
+        "YOLOv8",
+        "OpenCV",
+        "MySQL"
+      ],
+      "links": [],
+      "sections": [
+        {
+          "id": "X-023",
+          "title": "数据标注与模型训练",
+          "abstract": "CTV 项目将数据标注、训练和实时推理连接成完整的视觉应用。",
+          "findings": [
+            "自行标注 10,025 帧训练数据。",
+            "YOLOv8 在 RTX 4090 上训练，作品集记录的结果为 85% mAP50。",
+            "Django REST 与 MJPEG 将推理结果送到 React 多路监控面板。"
+          ]
+        }
+      ],
+      "legacyId": "X-019"
+    },
+    {
+      "id": "A-004",
+      "title": "音视频 AI 转写",
+      "en": "Audio/Video2Text AI — Transcription Suite",
+      "department": "Python / Whisper / FFmpeg",
+      "category": "AI 与数据",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "abstract": "AI 音视频转写,带说话人分离。以三种形态交付:命令行、网页应用和 Electron 桌面端,前置 FFmpeg 预处理,后接 Whisper 系语音识别模型。",
+      "findings": [
+        "技术栈：Python · Whisper · FFmpeg · FastAPI · Next.js · Electron",
+        "项目内容整理自已有个人作品集。"
+      ],
+      "source": "https://github.com/zizhenliu0427/Audio-Video2Text-AI",
+      "sourceLabel": "查看源码",
+      "stack": [
+        "Python",
+        "Whisper",
+        "FFmpeg",
+        "FastAPI",
+        "Next.js",
+        "Electron"
+      ],
+      "links": [
+        {
+          "label": "查看源码",
+          "href": "https://github.com/zizhenliu0427/Audio-Video2Text-AI"
+        }
+      ],
+      "legacyId": "X-020"
+    },
+    {
+      "id": "S-001",
+      "title": "SDR → HDR",
+      "en": "sdr2hdr — GPU SDR-to-HDR / Super-Resolution Pipeline",
+      "department": "C++17 / CUDA / NVENC/NVDEC",
+      "category": "系统与硬件",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "abstract": "全程驻留 GPU 的视频管线(NVDEC → CUDA → RTX TrueHDR/VSR → NVENC),4K HDR 实时转换稳定在 ~120fps。色彩空间转换 kernel 手写,支持 HDR10 元数据标记,配中英双语命令行。",
+      "findings": [
+        "技术栈：C++17 · CUDA · NVENC/NVDEC · RTX Video SDK · FFmpeg",
+        "项目内容整理自已有个人作品集。"
+      ],
+      "source": "https://github.com/zizhenliu0427/sdr2hdr",
+      "sourceLabel": "查看源码",
+      "stack": [
+        "C++17",
+        "CUDA",
+        "NVENC/NVDEC",
+        "RTX Video SDK",
+        "FFmpeg"
+      ],
+      "links": [
+        {
+          "label": "查看源码",
+          "href": "https://github.com/zizhenliu0427/sdr2hdr"
+        }
+      ],
+      "sections": [
+        {
+          "id": "X-031",
+          "title": "GPU 视频处理路径",
+          "abstract": "sdr2hdr 项目的端到端 GPU 视频处理路径。",
+          "findings": [
+            "NVDEC → CUDA → RTX TrueHDR / VSR → NVENC。",
+            "手写色彩空间转换 kernel，支持 HDR10 元数据。",
+            "作品集记录约 120fps 的实时 4K HDR 转换；具体性能取决于设备与输入。"
+          ]
+        }
+      ],
+      "legacyId": "X-025"
+    },
+    {
+      "id": "S-002",
+      "title": "跨 API GPU 基准",
+      "en": "Multi-Graphics-API GPU Compute Benchmark",
+      "department": "C++17 / Vulkan / DirectX 12",
+      "category": "系统与硬件",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "abstract": "C++17 写的五后端基准测试(Vulkan、DX12、DX11、OpenGL、Metal),实测 10 多张 AMD 与 NVIDIA 显卡,覆盖六代 AMD 架构;无窗口计算模式挖出了被渲染路径掩盖的 12 倍吞吐差异。附 2,300 行技术报告。",
+      "findings": [
+        "技术栈：C++17 · Vulkan · DirectX 12 · Metal · RenderDoc · Python",
+        "项目内容整理自已有个人作品集。"
+      ],
+      "source": "https://github.com/Fairchild2333/Multi-Graphics-API-GPU-Benchmark",
+      "sourceLabel": "查看源码",
+      "stack": [
+        "C++17",
+        "Vulkan",
+        "DirectX 12",
+        "Metal",
+        "RenderDoc",
+        "Python"
+      ],
+      "links": [
+        {
+          "label": "查看源码",
+          "href": "https://github.com/Fairchild2333/Multi-Graphics-API-GPU-Benchmark"
+        }
+      ],
+      "sections": [
+        {
+          "id": "X-032",
+          "title": "跨图形 API 的性能观察",
+          "abstract": "通过一致的计算任务理解不同 GPU 和图形 API 的性能行为。",
+          "findings": [
+            "五个后端：Vulkan、DirectX 12、DirectX 11、OpenGL、Metal。",
+            "测试覆盖十余张显卡与六代 AMD 架构。",
+            "无窗口计算路径揭示了被渲染路径掩盖的吞吐差异；技术报告约 2,300 行。"
+          ]
+        }
+      ],
+      "legacyId": "X-026"
+    },
+    {
+      "id": "S-003",
+      "title": "C++20 泛型图",
+      "en": "GDWG — Generic Directed Weighted Graph Library",
+      "department": "C++20 / STL / Templates",
+      "category": "系统与硬件",
+      "date": "2025",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "CODE PRIVATE",
+      "abstract": "现代 C++20 泛型图容器:值语义、多态边类型层级、确定性排序,Catch2 单元测试全覆盖。",
+      "findings": [
+        "技术栈：C++20 · STL · Templates · Catch2",
+        "代码未公开；此档案介绍本人参与的实现。"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "作者 GitHub",
+      "stack": [
+        "C++20",
+        "STL",
+        "Templates",
+        "Catch2"
+      ],
+      "links": [],
+      "legacyId": "X-027"
+    },
+    {
+      "id": "S-004",
+      "title": "FPGA 音频管线",
+      "en": "FPGA Audio Capture & Gain EQ — AMD Kria KV260",
+      "department": "VHDL / Vivado / AXI4 / DMA",
+      "category": "系统与硬件",
+      "date": "2023",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "CODE PRIVATE",
+      "abstract": "在可编程逻辑里用 VHDL 写 I2S 接收器,48kHz/24-bit 音频经 AXI4-Stream + DMA 送进 Linux,配 Device Tree 集成和一级 AXI-Lite 控制的增益/EQ。",
+      "findings": [
+        "技术栈：VHDL · Vivado · AXI4 / DMA · PetaLinux · C/C++",
+        "代码未公开；此档案介绍本人参与的实现。"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "作者 GitHub",
+      "stack": [
+        "VHDL",
+        "Vivado",
+        "AXI4 / DMA",
+        "PetaLinux",
+        "C/C++"
+      ],
+      "links": [],
+      "legacyId": "X-028"
+    },
+    {
+      "id": "S-005",
+      "title": "CDN 节点探测",
+      "en": "Bili CDN DNS Pin — Streaming Network Tuner",
+      "department": "Shell / DNS / OpenWrt",
+      "category": "系统与硬件",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "abstract": "解决海外看 B 站卡顿:探测 CDN 边缘节点,把最快的那个用 DNS 固定下来。带定时复测、阈值保护和候选 IP 刷新,支持 Windows、macOS、OpenWrt 和 AdGuard Home。",
+      "findings": [
+        "技术栈：Shell · DNS · OpenWrt · AdGuard Home",
+        "项目内容整理自已有个人作品集。"
+      ],
+      "source": "https://github.com/zizhenliu0427/bili-cdn-dns-pin",
+      "sourceLabel": "查看源码",
+      "stack": [
+        "Shell",
+        "DNS",
+        "OpenWrt",
+        "AdGuard Home"
+      ],
+      "links": [
+        {
+          "label": "查看源码",
+          "href": "https://github.com/zizhenliu0427/bili-cdn-dns-pin"
+        }
+      ],
+      "legacyId": "X-029"
+    },
+    {
+      "id": "S-006",
+      "title": "家庭服务器实验室",
+      "en": "Home Lab — Server, NAS & Device Restoration",
+      "department": "Windows Server / Active Directory / Synology",
+      "category": "系统与硬件",
+      "date": "ONGOING",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "CASE STUDY",
+      "abstract": "VMware Workstation 里搭的 Windows Server 2025 + Active Directory 实验环境,一台支持远程访问和 IPv6 的群晖 NAS,外加一些底层折腾:黑苹果 EFI/ACPI 引导、kext 注入,以及安卓第三方 ROM 救砖。",
+      "findings": [
+        "技术栈：Windows Server · Active Directory · Synology · EFI/ACPI · ADB",
+        "项目内容整理自已有个人作品集。"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "作者 GitHub",
+      "stack": [
+        "Windows Server",
+        "Active Directory",
+        "Synology",
+        "EFI/ACPI",
+        "ADB"
+      ],
+      "links": [],
+      "legacyId": "X-030"
+    },
+    {
+      "id": "I-001",
+      "title": "Codritium · 实习",
+      "en": "CODRITIUM",
+      "department": "软件开发实习生",
+      "category": "实习经历",
+      "date": "MAR 2026 — PRESENT",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "EXPERIENCE",
+      "abstract": "开发 Marketing Simplified(MediaJira)——面向媒介采购团队的广告投放管理平台,Next.js/TypeScript 前端搭配 Django REST + Channels 后端。",
+      "findings": [
+        "开发 Marketing Simplified(MediaJira)——面向媒介采购团队的广告投放管理平台,Next.js/TypeScript 前端搭配 Django REST + Channels 后端。",
+        "让实时聊天在高并发下稳定送达(幂等发送、transactional outbox、PgBouncer 连接池),100 人并发时 9,900/9,900 条全部送达;并基于 Django Channels 做了多人实时协作表格,协作编辑约 145ms 同步。",
+        "交付 Calendly 式预约链接、373 个文件的 slug-URL 迁移和 IDOR 越权修复;CI 从 57 分钟压到 20 分钟;生产环境出现 521 故障时恢复 144 个数据库迁移,让服务重新上线。"
+      ],
+      "source": "https://zmarkio.com/",
+      "sourceLabel": "公司 / 项目网站",
+      "links": [
+        {
+          "label": "相关网站",
+          "href": "https://zmarkio.com/"
+        }
+      ],
+      "legacyId": "X-033"
+    },
+    {
+      "id": "I-002",
+      "title": "Intelli New Technologies · 实习",
+      "en": "INTELLI NEW TECHNOLOGIES",
+      "department": "IT / 业务分析实习生",
+      "category": "实习经历",
+      "date": "OCT 2023 — JAN 2024",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "EXPERIENCE",
+      "abstract": "用 Python 爬虫和 Pandas ETL 管线采集、校验并规范化半结构化的网页数据,供下游功能使用。",
+      "findings": [
+        "用 Python 爬虫和 Pandas ETL 管线采集、校验并规范化半结构化的网页数据,供下游功能使用。",
+        "把业务需求转成用户故事和 API 约定,并在敏捷冲刺评审中对照设计稿验证 React 组件。",
+        "产出并验证数据看板的线框图,支撑前后端交界处的响应式实现。"
+      ],
+      "source": "https://intellinew.com.au/",
+      "sourceLabel": "公司 / 项目网站",
+      "links": [
+        {
+          "label": "相关网站",
+          "href": "https://intellinew.com.au/"
+        }
+      ],
+      "sections": [
+        {
+          "id": "X-024",
+          "title": "数据采集与 ETL",
+          "abstract": "Intelli New Technologies 实习期间的数据工作。",
+          "findings": [
+            "用 Python 爬虫和 Pandas ETL 管线采集、校验并规范化半结构化的网页数据,供下游功能使用。",
+            "把业务需求转成用户故事和 API 约定,并在敏捷冲刺评审中对照设计稿验证 React 组件。",
+            "产出并验证数据看板的线框图,支撑前后端交界处的响应式实现。"
+          ]
+        }
+      ],
+      "legacyId": "X-034"
+    },
+    {
+      "id": "I-003",
+      "title": "Golden Lady Photography · 实习",
+      "en": "GOLDEN LADY PHOTOGRAPHY",
+      "department": "IT 支持实习生",
+      "category": "实习经历",
+      "date": "MAY 2021 — AUG 2021",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "EXPERIENCE",
+      "abstract": "维护线上的 Vue.js 企业官网,稳妥地交付响应式界面调整与内容更新。",
+      "findings": [
+        "维护线上的 Vue.js 企业官网,稳妥地交付响应式界面调整与内容更新。",
+        "排查工作站硬件故障,为高负载场景配置操作系统与创意设计软件。"
+      ],
+      "source": "https://goldenladies.com/",
+      "sourceLabel": "公司 / 项目网站",
+      "links": [
+        {
+          "label": "相关网站",
+          "href": "https://goldenladies.com/"
+        }
+      ],
+      "legacyId": "X-035"
+    },
+    {
+      "id": "P-009",
+      "title": "新南威尔士大学(UNSW)",
+      "en": "UNSW",
+      "department": "信息技术硕士",
+      "category": "个人资料",
+      "date": "2024 — 2025",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "EDUCATION",
+      "abstract": "信息技术硕士",
+      "findings": [
+        "毕业项目 (85)",
+        "人工智能 (81)",
+        "高级 C++ (81)"
+      ],
+      "source": "https://www.unsw.edu.au/",
+      "sourceLabel": "学校网站",
+      "legacyId": "X-036"
+    },
+    {
+      "id": "P-010",
+      "title": "悉尼科技大学(UTS)",
+      "en": "UTS",
+      "department": "软件工程学士(荣誉)",
+      "category": "个人资料",
+      "date": "2021 — 2024",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "EDUCATION",
+      "abstract": "软件工程学士(荣誉)",
+      "findings": [
+        "数据库基础 (94)",
+        "系统测试与质量管理 (90)",
+        "数据结构与算法 (84)"
+      ],
+      "source": "https://www.uts.edu.au/",
+      "sourceLabel": "学校网站",
+      "legacyId": "X-037"
+    }
+  ],
+  "redirects": {
+    "X-021": "A-001",
+    "X-022": "A-001",
+    "X-023": "A-003",
+    "X-024": "I-002",
+    "X-031": "S-001",
+    "X-032": "S-002",
+    "X-038": "W-003",
+    "X-039": "W-003",
+    "X-040": "W-003",
+    "X-001": "P-001",
+    "X-002": "P-002",
+    "X-003": "P-003",
+    "X-004": "P-004",
+    "X-005": "P-005",
+    "X-006": "P-006",
+    "X-007": "P-007",
+    "X-008": "P-008",
+    "X-009": "W-001",
+    "X-010": "W-002",
+    "X-011": "W-003",
+    "X-012": "W-004",
+    "X-013": "W-005",
+    "X-014": "W-006",
+    "X-015": "W-007",
+    "X-016": "W-008",
+    "X-017": "A-001",
+    "X-018": "A-002",
+    "X-019": "A-003",
+    "X-020": "A-004",
+    "X-025": "S-001",
+    "X-026": "S-002",
+    "X-027": "S-003",
+    "X-028": "S-004",
+    "X-029": "S-005",
+    "X-030": "S-006",
+    "X-033": "I-001",
+    "X-034": "I-002",
+    "X-035": "I-003",
+    "X-036": "P-009",
+    "X-037": "P-010"
+  }
+}

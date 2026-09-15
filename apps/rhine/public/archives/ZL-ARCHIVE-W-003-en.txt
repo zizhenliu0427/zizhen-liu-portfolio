@@ -1,0 +1,35 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE W-003 / MediaJira
+Marketing Simplified (MediaJira)
+
+Focus: Next.js / TypeScript / Django Channels
+Period: 2026
+Author: Zizhen Liu / Lance
+Access: PROJECT
+
+The campaign-management platform I build at Codritium — real-time chat made reliable under 100-user load, multi-user spreadsheet collaboration, Calendly-style booking links, a 373-file slug-URL migration across 12 modules and a CI pipeline cut from 57 to 20 minutes.
+
+Engineering notes
+1. Chat under 100-user load: 83–89% → 9,900/9,900 delivered, WebSocket p95 47.5s → 5.0s
+2. Real-time spreadsheet collaboration · presence, remote cursors, ~145ms peer edits
+3. CI −66% (+597 recovered tests) · 12-module slug-URL migration + IDOR fixes
+
+Reliable chat under load
+Real-time chat improvements in MediaJira during the Codritium internship.
+1. Idempotent sends, a transactional outbox and PgBouncer connection pooling.
+2. At 100 concurrent users, delivery rose from 83–89% to 9,900 out of 9,900 messages.
+3. WebSocket p95 fell from 47.5 seconds to 5.0 seconds.
+
+Collaborative spreadsheets
+Multi-user spreadsheet collaboration in MediaJira.
+1. Django Channels supports live synchronisation.
+2. Presence, remote cursors and collaborative edits.
+3. The existing portfolio reports approximately 145ms peer updates.
+
+Migrations, recovery & CI
+Cross-module migration and delivery improvements during the Codritium internship.
+1. A slug-URL migration spanning 373 files and 12 modules, alongside IDOR fixes.
+2. CI fell from 57 to around 20 minutes, with 597 skipped tests recovered.
+3. Restored 144 database migrations to recover a production 521 outage.
+
+Related link: https://github.com/quanwangniuniu/marketing-simplified

@@ -1,0 +1,16 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE S-006 / Home Lab
+Home Lab — Server, NAS & Device Restoration
+
+Focus: Windows Server / Active Directory / Synology
+Period: ONGOING
+Author: Zizhen Liu / Lance
+Access: CASE STUDY
+
+Windows Server 2025 + Active Directory lab in VMware WorkStation, a Synology NAS with remote access and IPv6, and low-level device work: Hackintosh EFI/ACPI bring-up, kext injection and Android custom-ROM recovery.
+
+Engineering notes
+1. Stack: Windows Server · Active Directory · Synology · EFI/ACPI · ADB
+2. Details carried over from the existing portfolio.
+
+Related link: https://github.com/zizhenliu0427

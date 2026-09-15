@@ -1,0 +1,17 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE S-005 / CDN 节点探测
+Bili CDN DNS Pin — Streaming Network Tuner
+
+方向：Shell / DNS / OpenWrt
+时间：2026
+作者：Zizhen Liu / Lance
+访问范围：PROJECT
+
+解决海外看 B 站卡顿:探测 CDN 边缘节点,把最快的那个用 DNS 固定下来。带定时复测、阈值保护和候选 IP 刷新,支持 Windows、macOS、OpenWrt 和 AdGuard Home。
+
+实现记录
+1. 技术栈：Shell · DNS · OpenWrt · AdGuard Home
+2. 项目内容整理自已有个人作品集。
+
+相关链接：https://github.com/zizhenliu0427/bili-cdn-dns-pin
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

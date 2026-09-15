@@ -1,0 +1,17 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE I-003 / Golden Lady Photography · 实习
+GOLDEN LADY PHOTOGRAPHY
+
+方向：IT 支持实习生
+时间：MAY 2021 — AUG 2021
+作者：Zizhen Liu / Lance
+访问范围：EXPERIENCE
+
+维护线上的 Vue.js 企业官网,稳妥地交付响应式界面调整与内容更新。
+
+实现记录
+1. 维护线上的 Vue.js 企业官网,稳妥地交付响应式界面调整与内容更新。
+2. 排查工作站硬件故障,为高负载场景配置操作系统与创意设计软件。
+
+相关链接：https://goldenladies.com/
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

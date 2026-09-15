@@ -1,0 +1,23 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE I-002 / Intelli New Technologies
+INTELLI NEW TECHNOLOGIES
+
+Focus: IT / Business Analysis Intern
+Period: OCT 2023 — JAN 2024
+Author: Zizhen Liu / Lance
+Access: EXPERIENCE
+
+Built Python scrapers and Pandas ETL pipelines to collect, validate and normalise semi-structured web data for downstream features.
+
+Engineering notes
+1. Built Python scrapers and Pandas ETL pipelines to collect, validate and normalise semi-structured web data for downstream features.
+2. Translated business requirements into user stories and API contracts, verifying React components in Agile sprint reviews via Jira/Confluence.
+3. Produced and validated data-dashboard wireframes, supporting responsive implementation across the frontend/backend boundary.
+
+Data collection & ETL
+Data collection and ETL work during the Intelli New Technologies internship.
+1. Built Python scrapers and Pandas ETL pipelines to collect, validate and normalise semi-structured web data for downstream features.
+2. Translated business requirements into user stories and API contracts, verifying React components in Agile sprint reviews via Jira/Confluence.
+3. Produced and validated data-dashboard wireframes, supporting responsive implementation across the frontend/backend boundary.
+
+Related link: https://intellinew.com.au/

@@ -1,0 +1,17 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE P-007 / 摄影与观察
+BEYOND THE SCREEN
+
+方向：WEB · AI · SYSTEMS
+时间：2026
+作者：Zizhen Liu / Lance
+访问范围：PROFILE
+
+喜欢风景与 HDR 摄影，也喜欢研究影像从采集、处理到显示的整个过程。
+
+实现记录
+1. 个人摄影作品集仍在整理。
+2. 对色彩、动态范围和显示设备的兴趣，也延伸到了 GPU 视频处理项目。
+
+相关链接：https://github.com/zizhenliu0427
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

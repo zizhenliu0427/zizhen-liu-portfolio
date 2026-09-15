@@ -1,0 +1,7 @@
+# Rhine archive in the portfolio
+
+Imported from the working tree of https://github.com/zizhenliu0427/zizhen-liu-portfolio-rhine, based on commit c939303, including the authorised bilingual archive, 31 models and category IDs.
+
+Upstream: https://github.com/LBEILC/RhineLabUI. Keep LICENSE, public/licenses and docs/UPSTREAM-README.md with the sources. This is an in-repository source copy, not a nested Git repository. The sibling checkout is retained as a reference.
+
+Blender source projects, generators, evidence and verification notes are preserved. Local tooling, dependencies, caches, private environment files and individually licensed font kits were excluded using the source repository ignore rules.

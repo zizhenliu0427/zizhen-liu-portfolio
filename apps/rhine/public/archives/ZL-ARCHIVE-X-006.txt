@@ -1,0 +1,21 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE P-006 / 开发与交付
+BUILD & SHIP
+
+方向：WEB · AI · SYSTEMS
+时间：2026
+作者：Zizhen Liu / Lance
+访问范围：PROFILE
+
+将原型推进到可以部署、验证和持续维护的软件。
+
+实现记录
+1. 技术与工具：Docker
+2. 技术与工具：Git
+3. 技术与工具：Vercel / Cloudflare
+4. 技术与工具：Vitest / Catch2
+5. 技术与工具：Jira / Confluence
+6. 技术与工具：Agile
+
+相关链接：https://github.com/zizhenliu0427
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

@@ -1,0 +1,18 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE P-003 / WEB · AI · SYSTEMS
+WEB · AI · SYSTEMS
+
+Focus: WEB · AI · SYSTEMS
+Period: 2026
+Author: Zizhen Liu / Lance
+Access: PROFILE
+
+Follow the product’s actual needs from interfaces and APIs through data pipelines to C++ and CUDA.
+
+Engineering notes
+1. Interface: React 19 · Next.js · TypeScript · Tailwind CSS · ECharts / D3 · Android (Kotlin)
+2. Server & data: FastAPI · Django REST · Node.js / Express · PostgreSQL / MySQL · Kafka · RAG / Qdrant · PyTorch
+3. Metal: C++17/20 · CUDA · Vulkan / DX12 / Metal · NVENC / NVDEC · VHDL / FPGA · Linux
+4. Delivery: Docker · Git · Vercel / Cloudflare · Vitest / Catch2 · Jira / Confluence · Agile
+
+Related link: https://github.com/zizhenliu0427

@@ -1,0 +1,20 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE P-004 / INTERFACE ENGINEERING
+INTERFACE ENGINEERING
+
+Focus: WEB · AI · SYSTEMS
+Period: 2026
+Author: Zizhen Liu / Lance
+Access: PROFILE
+
+Product surfaces across web and mobile.
+
+Engineering notes
+1. Technology & tools: React 19
+2. Technology & tools: Next.js
+3. Technology & tools: TypeScript
+4. Technology & tools: Tailwind CSS
+5. Technology & tools: ECharts / D3
+6. Technology & tools: Android (Kotlin)
+
+Related link: https://github.com/zizhenliu0427

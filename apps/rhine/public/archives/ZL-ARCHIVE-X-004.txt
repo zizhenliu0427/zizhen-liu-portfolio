@@ -1,0 +1,21 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE P-004 / 界面与交互
+INTERFACE ENGINEERING
+
+方向：WEB · AI · SYSTEMS
+时间：2026
+作者：Zizhen Liu / Lance
+访问范围：PROFILE
+
+构建面向真实用户的 Web 与移动端界面。
+
+实现记录
+1. 技术与工具：React 19
+2. 技术与工具：Next.js
+3. 技术与工具：TypeScript
+4. 技术与工具：Tailwind CSS
+5. 技术与工具：ECharts / D3
+6. 技术与工具：Android (Kotlin)
+
+相关链接：https://github.com/zizhenliu0427
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

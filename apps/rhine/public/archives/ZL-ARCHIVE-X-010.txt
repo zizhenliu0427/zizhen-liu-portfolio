@@ -1,0 +1,18 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE W-002 / Novacart · 电商平台
+Novacart
+
+方向：ASP.NET Core / C# / Next.js
+时间：2026
+作者：Zizhen Liu / Lance
+访问范围：IN DEVELOPMENT
+
+端到端搭建的移动优先电商平台。Next.js PWA 店面,底下是 ASP.NET Core + PostgreSQL,接了 Stripe 支付、Redis 缓存、服务端购物车持久化,以及一套可配置的订单状态机。
+
+实现记录
+1. 可配置订单状态机 + 后台数据看板
+2. 服务端购物车持久化 · Stripe 支付
+3. ASP.NET Core + PostgreSQL + Redis 全栈容器化
+
+相关链接：https://github.com/zizhenliu0427/Novacart
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

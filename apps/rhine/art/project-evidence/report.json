@@ -1,0 +1,16 @@
+[
+  {
+    "id": "W-002",
+    "key": "novacart",
+    "meshes": 9,
+    "triangles": 8790,
+    "bytes": 845016
+  },
+  {
+    "id": "S-002",
+    "key": "gpu-benchmark",
+    "meshes": 6,
+    "triangles": 12528,
+    "bytes": 544552
+  }
+]

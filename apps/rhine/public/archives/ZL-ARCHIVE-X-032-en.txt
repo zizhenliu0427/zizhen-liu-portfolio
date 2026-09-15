@@ -1,0 +1,22 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE S-002 / GPU Compute Benchmark
+Multi-Graphics-API GPU Compute Benchmark
+
+Focus: C++17 / Vulkan / DirectX 12
+Period: 2026
+Author: Zizhen Liu / Lance
+Access: PROJECT
+
+C++17 benchmark with five backends — Vulkan, DX12, DX11, OpenGL, Metal — profiling 10+ AMD and NVIDIA GPUs, including six generations of AMD architectures; a headless compute mode uncovered 12x hidden throughput. 2,300-line technical report.
+
+Engineering notes
+1. Stack: C++17 · Vulkan · DirectX 12 · Metal · RenderDoc · Python
+2. Details carried over from the existing portfolio.
+
+Cross-API performance
+Compare consistent compute workloads across graphics APIs and GPU generations.
+1. Five backends: Vulkan, DirectX 12, DirectX 11, OpenGL and Metal.
+2. Tests cover more than ten GPUs and six AMD architecture generations.
+3. Headless compute revealed throughput hidden by the rendering path; the technical report spans around 2,300 lines.
+
+Related link: https://github.com/Fairchild2333/Multi-Graphics-API-GPU-Benchmark

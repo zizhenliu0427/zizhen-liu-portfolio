@@ -1,0 +1,24 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE A-003 / CTV · 视觉检测
+CTV Violence Detection
+
+方向：React 18 / Django REST / PyTorch
+时间：2023
+作者：Zizhen Liu / Lance
+访问范围：CODE PRIVATE
+
+实时监控平台:YOLOv8 在 10,025 张人工标注的画面上训练,经 Django REST + MJPEG 推流,送到多路摄像头的 React 面板。
+
+实现记录
+1. 在 RTX 4090 上把 YOLOv8 训到 85% mAP50
+2. OpenCV → MJPEG 实时推流,延迟低于 200ms
+3. JWT 鉴权的 React 单页应用,支持 1/2/4/6 分屏
+
+数据标注与模型训练
+CTV 项目将数据标注、训练和实时推理连接成完整的视觉应用。
+1. 自行标注 10,025 帧训练数据。
+2. YOLOv8 在 RTX 4090 上训练，作品集记录的结果为 85% mAP50。
+3. Django REST 与 MJPEG 将推理结果送到 React 多路监控面板。
+
+相关链接：https://github.com/zizhenliu0427
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

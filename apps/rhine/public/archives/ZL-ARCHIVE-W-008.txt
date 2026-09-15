@@ -1,0 +1,17 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE W-008 / HLS Keeper · 流媒体归档
+HLS Keeper — Local-First Stream Archiver
+
+方向：Python / Chrome Extension / FFmpeg
+时间：2026
+作者：Zizhen Liu / Lance
+访问范围：PROJECT
+
+浏览器扩展抓取 HLS 流和站内附件,与本地 Python 服务通信,配网页控制台;FFmpeg 把切片合成可播放的文件。全程在本机完成。
+
+实现记录
+1. 技术栈：Python · Chrome Extension · FFmpeg · HLS
+2. 项目内容整理自已有个人作品集。
+
+相关链接：https://github.com/zizhenliu0427/hls-keeper
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

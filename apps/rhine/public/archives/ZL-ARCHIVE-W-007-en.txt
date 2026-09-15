@@ -1,0 +1,16 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE W-007 / Good360
+Good360 Donation App — Real-Time Chat Module
+
+Focus: Kotlin / MVVM / Firebase
+Period: 2023
+Author: Zizhen Liu / Lance
+Access: CODE PRIVATE
+
+Kotlin/MVVM chat feature for Good360 Australia's donation app: multi-type RecyclerView messaging, Firebase Realtime sync, image messages and deterministic chat-room IDs.
+
+Engineering notes
+1. Stack: Kotlin · MVVM · Firebase · RecyclerView
+2. Source code is not public. This record describes work I contributed to.
+
+Related link: https://github.com/zizhenliu0427

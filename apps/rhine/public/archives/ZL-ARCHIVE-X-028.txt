@@ -1,0 +1,17 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE S-004 / FPGA 音频管线
+FPGA Audio Capture & Gain EQ — AMD Kria KV260
+
+方向：VHDL / Vivado / AXI4 / DMA
+时间：2023
+作者：Zizhen Liu / Lance
+访问范围：CODE PRIVATE
+
+在可编程逻辑里用 VHDL 写 I2S 接收器,48kHz/24-bit 音频经 AXI4-Stream + DMA 送进 Linux,配 Device Tree 集成和一级 AXI-Lite 控制的增益/EQ。
+
+实现记录
+1. 技术栈：VHDL · Vivado · AXI4 / DMA · PetaLinux · C/C++
+2. 代码未公开；此档案介绍本人参与的实现。
+
+相关链接：https://github.com/zizhenliu0427
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

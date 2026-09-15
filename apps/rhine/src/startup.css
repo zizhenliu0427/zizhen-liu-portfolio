@@ -1,0 +1,49 @@
+#viewport > .loading { position: fixed; inset: 0; width: 100%; height: 100%; }
+#viewport > .loading { background: var(--theme-paper); color: var(--theme-ink); padding: 24px 20px; overflow-y: auto; }
+.loading .entry-status, .loading .entry-silent { color: var(--theme-muted); }
+.loading-mark svg text { fill: currentColor; }
+.loading > span { color: var(--theme-muted); }
+.loading .entry-start:disabled { color: var(--theme-muted); }
+.opening-controls { position: fixed; z-index: 45; top: max(16px, env(safe-area-inset-top)); right: max(20px, env(safe-area-inset-right)); width: max-content; color: var(--theme-ink); }
+.opening-controls summary { display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; font-size: 12px; letter-spacing: 1px; min-height: 44px; padding: 0 4px; list-style: none; background: transparent; border: 0; text-transform: uppercase; }
+.opening-controls summary::-webkit-details-marker { display: none; }
+.opening-controls summary > span { font-size: 18px; }
+.opening-grid { position: absolute; top: 48px; right: 0; width: min(340px, calc(100vw - 40px)); max-height: calc(100dvh - 100px); overflow-y: auto; display: grid; grid-template-columns: 1fr; gap: 0; padding: 12px 20px; align-items: end; background: var(--theme-panel); border-block: 2px solid var(--theme-ink); }
+.opening-grid button { grid-column: 1 / -1; }
+.opening-controls details:not([open]) > .opening-grid { display: none; }
+.opening-grid label, .entry-language-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 12px; border-bottom: 1px solid var(--theme-line); min-height: 52px; }
+.opening-grid select, .opening-grid button, .speed-settings select { min-height: 44px; font: inherit; font-size: 12px; color: var(--theme-ink); background: transparent; border: 0; border-radius: 0; padding: 8px 0; }
+.opening-grid select { width: 132px; }
+.opening-grid .language-toggle { padding-inline: 4px; width: auto; }
+.opening-grid > button { margin-top: 6px; text-align: left; }
+.opening-grid button[aria-pressed="true"] { color: var(--theme-panel); background: var(--theme-ink); }
+.opening-controls :is(select, button, summary):focus-visible { outline: 2px solid var(--theme-accent); outline-offset: 3px; }
+.opening-controls[hidden] { display: none; }
+.speed-settings { display: flex; align-items: center; gap: 20px; justify-content: space-between; padding: 18px 0; border-block: 1px solid var(--theme-line); }
+.speed-settings > span { font-size: 14px; }
+.speed-settings small { display: block; font-size: 12px; color: var(--theme-muted); margin-top: 6px; }
+.speed-settings select { width: 150px; flex-shrink: 0; }
+html[data-performance="true"] :is(.archive-callout, .column-navigation) { backdrop-filter: none; -webkit-backdrop-filter: none; background: var(--theme-panel); }
+@media (max-width: 600px) {
+  .opening-grid { grid-template-columns: 1fr; }
+  .opening-grid button { grid-column: 1 / -1; }
+  .loading .loading-mark { margin-bottom: 16px; }
+  .loading .entry-controls { margin-top: 18px; }
+  .speed-settings { flex-wrap: wrap; gap: 10px; }
+}
+@media (max-height: 650px) {
+  #viewport > .loading { justify-content: flex-start; }
+  .loading .loading-mark { height: 48px; margin-bottom: 12px; flex-shrink: 0; }
+  .loading .entry-controls { margin-top: 12px; }
+}
+.entry-controls { display: flex; align-items: center; flex-direction: column; margin-top: 32px; max-width: calc(100vw - 40px); text-align: center; }
+.entry-start { min-height: 48px; padding: 8px 24px; border-block: 1px solid #969183; font-size: 16px; letter-spacing: 2px; }
+.entry-start:disabled, .entry-start[aria-disabled="true"] { color: #888277; cursor: wait; }
+.entry-start:focus-visible, .entry-silent:focus-visible { outline: 2px solid #555c45; outline-offset: 5px; }
+.entry-silent { min-height: 44px; margin-top: 12px; font-size: 13px; color: #666454; text-decoration: underline; text-underline-offset: 4px; }
+.entry-status { font-size: 12px; color: #777468; line-height: 1.8; margin: 14px 0 0; }
+.loading[data-entry="waiting"] > i:after, .loading[data-entry="error"] > i:after { animation: none; width: 100%; }
+@media (max-width: 600px) {
+  .loading-mark { width: 125px; margin-bottom: 32px; }
+  .loading > span { font-size: 9px; letter-spacing: 1.3px; }
+}

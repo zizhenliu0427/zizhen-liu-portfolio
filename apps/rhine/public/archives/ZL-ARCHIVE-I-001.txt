@@ -1,0 +1,18 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE I-001 / Codritium · 实习
+CODRITIUM
+
+方向：软件开发实习生
+时间：MAR 2026 — PRESENT
+作者：Zizhen Liu / Lance
+访问范围：EXPERIENCE
+
+开发 Marketing Simplified(MediaJira)——面向媒介采购团队的广告投放管理平台,Next.js/TypeScript 前端搭配 Django REST + Channels 后端。
+
+实现记录
+1. 开发 Marketing Simplified(MediaJira)——面向媒介采购团队的广告投放管理平台,Next.js/TypeScript 前端搭配 Django REST + Channels 后端。
+2. 让实时聊天在高并发下稳定送达(幂等发送、transactional outbox、PgBouncer 连接池),100 人并发时 9,900/9,900 条全部送达;并基于 Django Channels 做了多人实时协作表格,协作编辑约 145ms 同步。
+3. 交付 Calendly 式预约链接、373 个文件的 slug-URL 迁移和 IDOR 越权修复;CI 从 57 分钟压到 20 分钟;生产环境出现 521 故障时恢复 144 个数据库迁移,让服务重新上线。
+
+相关链接：https://zmarkio.com/
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

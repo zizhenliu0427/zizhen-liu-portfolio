@@ -1,0 +1,15 @@
+{
+  "source": "https://github.com/Fairchild2333/Multi-Graphics-API-GPU-Benchmark/blob/eb10fd3bac72b52c661a85282c3b729630e5136d/docs/report.md",
+  "section": "5c. Headless Compute — 1M Particles / RX 9070 XT — Windowed vs Headless comparison",
+  "gpu": "AMD Radeon RX 9070 XT",
+  "cpu": "AMD Ryzen 5 7600",
+  "driver": "AMD Adrenalin 26.3.1 (LLPC)",
+  "api": "Vulkan",
+  "particles": "1M",
+  "windowResolution": "1280 × 720",
+  "vsync": false,
+  "windowed": {"throughput": 1750.6, "computeMs": 0.033},
+  "headless": {"throughput": 21259.6, "computeMs": 0.034},
+  "unit": "iterations/s (labelled Avg FPS in the source report)",
+  "note": "Archived results, not a new benchmark. Headless mode excludes rendering and presentation; the throughput ratio is not a compute-shader speedup."
+}

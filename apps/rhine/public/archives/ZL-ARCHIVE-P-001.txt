@@ -1,0 +1,18 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE P-001 / 刘子箴 · 全栈工程师
+ZIZHEN LIU
+
+方向：WEB · AI · SYSTEMS
+时间：2026
+作者：Zizhen Liu / Lance
+访问范围：PROFILE
+
+我构建完整的产品 — 响应式界面、数据与 AI 后端、以及深入 GPU 层级的系统代码。
+
+实现记录
+1. 也可以叫我 Lance。
+2. 关注 Web 产品、AI 数据应用，以及深入 GPU 的系统工程。
+3. 目前寻求软件开发工作机会。
+
+相关链接：https://github.com/zizhenliu0427
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

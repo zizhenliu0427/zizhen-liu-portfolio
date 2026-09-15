@@ -1,0 +1,17 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE S-003 / C++20 泛型图
+GDWG — Generic Directed Weighted Graph Library
+
+方向：C++20 / STL / Templates
+时间：2025
+作者：Zizhen Liu / Lance
+访问范围：CODE PRIVATE
+
+现代 C++20 泛型图容器:值语义、多态边类型层级、确定性排序,Catch2 单元测试全覆盖。
+
+实现记录
+1. 技术栈：C++20 · STL · Templates · Catch2
+2. 代码未公开；此档案介绍本人参与的实现。
+
+相关链接：https://github.com/zizhenliu0427
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

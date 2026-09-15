@@ -1,0 +1,141 @@
+{
+  "notice": "Demonstration records, not customer transactions. Product names, prices and images come from the source seed catalogue.",
+  "products": [
+    {
+      "id": "11111111-0000-0000-0000-000000000001",
+      "name": "Wireless Noise-Cancelling Headphones",
+      "slug": "wireless-noise-cancelling-headphones",
+      "price": 199.99,
+      "currency": "AUD",
+      "stockQuantity": 45,
+      "categoryName": "Seed catalogue",
+      "tags": [],
+      "imageUrl": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": "11111111-0000-0000-0000-000000000002",
+      "name": "34\" Ultrawide Curved Monitor",
+      "slug": "ultrawide-curved-monitor-34",
+      "price": 649,
+      "currency": "AUD",
+      "stockQuantity": 45,
+      "categoryName": "Seed catalogue",
+      "tags": [],
+      "imageUrl": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": "11111111-0000-0000-0000-000000000003",
+      "name": "Tenkeyless Mechanical Keyboard",
+      "slug": "mechanical-keyboard-tkl",
+      "price": 149.95,
+      "currency": "AUD",
+      "stockQuantity": 45,
+      "categoryName": "Seed catalogue",
+      "tags": [],
+      "imageUrl": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": "11111111-0000-0000-0000-000000000004",
+      "name": "Merino Wool Crew-Neck Sweater",
+      "slug": "merino-wool-crew-neck-sweater",
+      "price": 89,
+      "currency": "AUD",
+      "stockQuantity": 45,
+      "categoryName": "Seed catalogue",
+      "tags": [],
+      "imageUrl": "https://images.unsplash.com/photo-1614975058789-41316d0e2e9c?w=500&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": "11111111-0000-0000-0000-000000000005",
+      "name": "Slim-Fit Chino Pants",
+      "slug": "slim-fit-chino-pants",
+      "price": 69.99,
+      "currency": "AUD",
+      "stockQuantity": 45,
+      "categoryName": "Seed catalogue",
+      "tags": [],
+      "imageUrl": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": "11111111-0000-0000-0000-000000000006",
+      "name": "Hand-Poured Soy Candle Set (3-pack)",
+      "slug": "hand-poured-soy-candle-set",
+      "price": 49.95,
+      "currency": "AUD",
+      "stockQuantity": 45,
+      "categoryName": "Seed catalogue",
+      "tags": [],
+      "imageUrl": "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=500&auto=format&fit=crop&q=60"
+    }
+  ],
+  "cart": {
+    "id": "demo-cart",
+    "items": [
+      {
+        "id": "demo-item-0",
+        "productId": "11111111-0000-0000-0000-000000000001",
+        "productName": "Wireless Noise-Cancelling Headphones",
+        "productSlug": "wireless-noise-cancelling-headphones",
+        "unitPrice": 199.99,
+        "price": 199.99,
+        "currency": "AUD",
+        "quantity": 1,
+        "lineTotal": 199.99,
+        "stockQuantity": 45
+      },
+      {
+        "id": "demo-item-1",
+        "productId": "11111111-0000-0000-0000-000000000002",
+        "productName": "34\" Ultrawide Curved Monitor",
+        "productSlug": "ultrawide-curved-monitor-34",
+        "unitPrice": 649,
+        "price": 649,
+        "currency": "AUD",
+        "quantity": 1,
+        "lineTotal": 649,
+        "stockQuantity": 45
+      }
+    ],
+    "subtotal": 848.99,
+    "totalItems": 2
+  },
+  "orders": [
+    {
+      "id": "demo-order",
+      "orderNumber": "DEMO-0001",
+      "subtotal": 848.99,
+      "shippingCost": 0,
+      "tax": 0,
+      "total": 848.99,
+      "currency": "AUD",
+      "currentStatus": "shipped",
+      "createdAt": "2026-01-15T00:00:00Z",
+      "items": [
+        {
+          "id": "demo-item-0",
+          "productId": "11111111-0000-0000-0000-000000000001",
+          "productName": "Wireless Noise-Cancelling Headphones",
+          "productSlug": "wireless-noise-cancelling-headphones",
+          "unitPrice": 199.99,
+          "price": 199.99,
+          "currency": "AUD",
+          "quantity": 1,
+          "lineTotal": 199.99,
+          "stockQuantity": 45
+        },
+        {
+          "id": "demo-item-1",
+          "productId": "11111111-0000-0000-0000-000000000002",
+          "productName": "34\" Ultrawide Curved Monitor",
+          "productSlug": "ultrawide-curved-monitor-34",
+          "unitPrice": 649,
+          "price": 649,
+          "currency": "AUD",
+          "quantity": 1,
+          "lineTotal": 649,
+          "stockQuantity": 45
+        }
+      ]
+    }
+  ]
+}

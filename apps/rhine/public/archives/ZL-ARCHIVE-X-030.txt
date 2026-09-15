@@ -1,0 +1,17 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE S-006 / 家庭服务器实验室
+Home Lab — Server, NAS & Device Restoration
+
+方向：Windows Server / Active Directory / Synology
+时间：ONGOING
+作者：Zizhen Liu / Lance
+访问范围：CASE STUDY
+
+VMware Workstation 里搭的 Windows Server 2025 + Active Directory 实验环境,一台支持远程访问和 IPv6 的群晖 NAS,外加一些底层折腾:黑苹果 EFI/ACPI 引导、kext 注入,以及安卓第三方 ROM 救砖。
+
+实现记录
+1. 技术栈：Windows Server · Active Directory · Synology · EFI/ACPI · ADB
+2. 项目内容整理自已有个人作品集。
+
+相关链接：https://github.com/zizhenliu0427
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

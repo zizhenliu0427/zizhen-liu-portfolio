@@ -1,0 +1,17 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE A-004 / 音视频 AI 转写
+Audio/Video2Text AI — Transcription Suite
+
+方向：Python / Whisper / FFmpeg
+时间：2026
+作者：Zizhen Liu / Lance
+访问范围：PROJECT
+
+AI 音视频转写,带说话人分离。以三种形态交付:命令行、网页应用和 Electron 桌面端,前置 FFmpeg 预处理,后接 Whisper 系语音识别模型。
+
+实现记录
+1. 技术栈：Python · Whisper · FFmpeg · FastAPI · Next.js · Electron
+2. 项目内容整理自已有个人作品集。
+
+相关链接：https://github.com/zizhenliu0427/Audio-Video2Text-AI
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

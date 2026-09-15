@@ -1,0 +1,16 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE S-005 / CDN Node Probing
+Bili CDN DNS Pin — Streaming Network Tuner
+
+Focus: Shell / DNS / OpenWrt
+Period: 2026
+Author: Zizhen Liu / Lance
+Access: PROJECT
+
+Fixes overseas Bilibili buffering by probing CDN edge nodes and pinning the fastest via DNS — periodic re-checks, threshold protection and candidate-IP refresh across Windows, macOS, OpenWrt and AdGuard Home.
+
+Engineering notes
+1. Stack: Shell · DNS · OpenWrt · AdGuard Home
+2. Details carried over from the existing portfolio.
+
+Related link: https://github.com/zizhenliu0427/bili-cdn-dns-pin

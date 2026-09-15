@@ -1,0 +1,205 @@
+[
+  {
+    "id": "P-001",
+    "key": "profile",
+    "meshes": 4,
+    "triangles": 1897,
+    "bytes": 106808
+  },
+  {
+    "id": "P-002",
+    "key": "contact",
+    "meshes": 5,
+    "triangles": 2381,
+    "bytes": 133284
+  },
+  {
+    "id": "P-003",
+    "key": "skills",
+    "meshes": 4,
+    "triangles": 2953,
+    "bytes": 172496
+  },
+  {
+    "id": "P-004",
+    "key": "frontend",
+    "meshes": 5,
+    "triangles": 2099,
+    "bytes": 128612
+  },
+  {
+    "id": "P-005",
+    "key": "backend",
+    "meshes": 4,
+    "triangles": 2846,
+    "bytes": 168364
+  },
+  {
+    "id": "P-006",
+    "key": "delivery",
+    "meshes": 5,
+    "triangles": 2448,
+    "bytes": 140004
+  },
+  {
+    "id": "P-007",
+    "key": "photography",
+    "meshes": 7,
+    "triangles": 2625,
+    "bytes": 123516
+  },
+  {
+    "id": "P-008",
+    "key": "driving-languages",
+    "meshes": 6,
+    "triangles": 2590,
+    "bytes": 145196
+  },
+  {
+    "id": "P-009",
+    "key": "unsw",
+    "meshes": 7,
+    "triangles": 2030,
+    "bytes": 116648
+  },
+  {
+    "id": "P-010",
+    "key": "uts",
+    "meshes": 7,
+    "triangles": 2298,
+    "bytes": 128244
+  },
+  {
+    "id": "I-001",
+    "key": "codritium",
+    "meshes": 7,
+    "triangles": 2032,
+    "bytes": 110936
+  },
+  {
+    "id": "I-002",
+    "key": "intelli-new",
+    "meshes": 5,
+    "triangles": 2806,
+    "bytes": 164324
+  },
+  {
+    "id": "I-003",
+    "key": "golden-lady",
+    "meshes": 5,
+    "triangles": 2447,
+    "bytes": 143324
+  },
+  {
+    "id": "W-001",
+    "key": "equipment-database",
+    "meshes": 4,
+    "triangles": 2858,
+    "bytes": 165756
+  },
+  {
+    "id": "W-003",
+    "key": "mediajira",
+    "meshes": 7,
+    "triangles": 2137,
+    "bytes": 114468
+  },
+  {
+    "id": "W-004",
+    "key": "lanely",
+    "meshes": 6,
+    "triangles": 2822,
+    "bytes": 168676
+  },
+  {
+    "id": "W-005",
+    "key": "whale",
+    "meshes": 5,
+    "triangles": 2386,
+    "bytes": 138032
+  },
+  {
+    "id": "W-006",
+    "key": "breaktime",
+    "meshes": 5,
+    "triangles": 2714,
+    "bytes": 162376
+  },
+  {
+    "id": "W-007",
+    "key": "good360",
+    "meshes": 6,
+    "triangles": 2043,
+    "bytes": 124828
+  },
+  {
+    "id": "W-008",
+    "key": "hls-keeper",
+    "meshes": 5,
+    "triangles": 2782,
+    "bytes": 152784
+  },
+  {
+    "id": "A-001",
+    "key": "building-ai",
+    "meshes": 4,
+    "triangles": 2988,
+    "bytes": 173772
+  },
+  {
+    "id": "A-002",
+    "key": "dermoscopy",
+    "meshes": 4,
+    "triangles": 3083,
+    "bytes": 180388
+  },
+  {
+    "id": "A-003",
+    "key": "ctv",
+    "meshes": 5,
+    "triangles": 3084,
+    "bytes": 186932
+  },
+  {
+    "id": "A-004",
+    "key": "transcription",
+    "meshes": 5,
+    "triangles": 4403,
+    "bytes": 280172
+  },
+  {
+    "id": "S-001",
+    "key": "sdr-hdr",
+    "meshes": 7,
+    "triangles": 3613,
+    "bytes": 223672
+  },
+  {
+    "id": "S-003",
+    "key": "generic-graph",
+    "meshes": 4,
+    "triangles": 2469,
+    "bytes": 140728
+  },
+  {
+    "id": "S-004",
+    "key": "fpga-audio",
+    "meshes": 4,
+    "triangles": 4365,
+    "bytes": 280700
+  },
+  {
+    "id": "S-005",
+    "key": "cdn-probe",
+    "meshes": 5,
+    "triangles": 2953,
+    "bytes": 173400
+  },
+  {
+    "id": "S-006",
+    "key": "home-lab",
+    "meshes": 5,
+    "triangles": 2511,
+    "bytes": 145288
+  }
+]

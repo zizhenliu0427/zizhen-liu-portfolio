@@ -1,0 +1,23 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE A-003 / CTV Violence Detection
+CTV Violence Detection
+
+Focus: React 18 / Django REST / PyTorch
+Period: 2023
+Author: Zizhen Liu / Lance
+Access: CODE PRIVATE
+
+A real-time monitoring platform: YOLOv8 trained on 10,025 hand-annotated frames, served through a Django REST + MJPEG streaming backend into a multi-camera React dashboard.
+
+Engineering notes
+1. YOLOv8 trained to 85% mAP50 on an RTX 4090
+2. Sub-200ms OpenCV → MJPEG live streaming pipeline
+3. JWT-secured React SPA with 1/2/4/6 camera layouts
+
+Annotation & model training
+CTV connects annotation, model training and real-time inference in one computer-vision application.
+1. 10,025 frames were annotated for training.
+2. YOLOv8 was trained on an RTX 4090; the portfolio reports 85% mAP50.
+3. Django REST and MJPEG deliver predictions to a multi-camera React dashboard.
+
+Related link: https://github.com/zizhenliu0427

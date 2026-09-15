@@ -1,0 +1,36 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE W-003 / MediaJira · 广告平台
+Marketing Simplified (MediaJira)
+
+方向：Next.js / TypeScript / Django Channels
+时间：2026
+作者：Zizhen Liu / Lance
+访问范围：PROJECT
+
+Codritium 实习期间开发的广告投放管理平台。让实时聊天在 100 人并发下稳定送达,做了多人实时协作表格和 Calendly 式预约链接,完成横跨 12 个模块、涉及 373 个文件的 slug-URL 迁移,并把 CI 从 57 分钟压到 20 分钟。
+
+实现记录
+1. 100 人并发聊天:送达从 83–89% 提到 9,900/9,900,WebSocket p95 从 47.5 秒降到 5.0 秒
+2. 多人实时协作表格:在线状态、他人光标,协作编辑约 145ms 同步
+3. CI 耗时 −66%(找回 597 个被跳过的测试)· 12 模块 slug-URL 迁移 + IDOR 越权修复
+
+百人并发聊天可靠性
+Codritium 实习中的 MediaJira 实时聊天改进。
+1. 幂等发送、transactional outbox 与 PgBouncer 连接池。
+2. 100 人并发测试，送达由 83–89% 提升至 9,900 / 9,900。
+3. WebSocket p95 从 47.5 秒降至 5.0 秒。
+
+多人表格协作
+在 MediaJira 中实现多人实时协作表格。
+1. Django Channels 支撑实时同步。
+2. 在线状态、其他用户的光标与协作编辑。
+3. 作品集记录约 145ms 的协作更新延迟。
+
+迁移、恢复与 CI
+跨模块迁移与交付流程改进，同属 Codritium 实习工作。
+1. slug-URL 迁移涉及 373 个文件、12 个模块，并修复 IDOR 越权问题。
+2. CI 由 57 分钟压缩至约 20 分钟，找回 597 个被跳过的测试。
+3. 恢复 144 个数据库迁移，处理生产环境 521 故障。
+
+相关链接：https://github.com/quanwangniuniu/marketing-simplified
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

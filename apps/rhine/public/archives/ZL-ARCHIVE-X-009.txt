@@ -1,0 +1,18 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE W-001 / CMO-DB · 装备数据库
+CMO-DB
+
+方向：JavaScript / Node.js / Express
+时间：2023—24
+作者：Zizhen Liu / Lance
+访问范围：PROJECT
+
+一个 wiki 式的装备数据库。前台做中英双语路由和 D3 可视化,后台是 Node/Express + Sequelize 的无服务器架构,在 29,000 多条记录上跑最多六表联查。
+
+实现记录
+1. 29,000+ 条记录 · 参数化多表联查
+2. 迁移到 Vercel 无服务器架构,基础设施零维护
+3. 中英文 URL 路由 · 自制 D3 传感器扇形图
+
+相关链接：https://www.cmo-db.com/
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

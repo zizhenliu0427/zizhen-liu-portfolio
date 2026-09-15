@@ -1,0 +1,30 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE A-001 / 楼宇传感器 AI
+Conversational AI for Building Sensor Data
+
+方向：React 19 / TypeScript / FastAPI
+时间：2025
+作者：Zizhen Liu / Lance
+访问范围：CODE PRIVATE
+
+一个物联网分析平台,楼宇管理者可以直接用自然语言查询实时传感器数据。覆盖 React 前端、FastAPI + Kafka 后端,以及对话背后的 RAG 检索管线。
+
+实现记录
+1. React 19 单页应用 · CSV/Excel 解析交给 Web Workers
+2. Kafka 数据接入 + PostgreSQL UPSERT 批量写入
+3. Qdrant 向量检索 + 本地大模型(Ollama)与 NL2SQL
+
+RAG 与自然语言查询
+楼宇传感器项目中的对话层：让管理者通过自然语言查询数据。
+1. Qdrant 支持向量检索，Ollama 运行本地大模型。
+2. 结合 RAG 与 NL2SQL 连接文档知识和结构化数据。
+3. 本条是同一毕业项目的技术说明，不计为独立项目。
+
+时序预测与数据接入
+楼宇传感器项目中的数据管线与预测模块。
+1. FastAPI 与 Kafka 接入数据，PostgreSQL UPSERT 完成批量写入。
+2. TFT 时序预测采用分位数回归。
+3. 前端通过 Web Workers 处理 CSV / Excel 解析。
+
+相关链接：https://github.com/zizhenliu0427
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

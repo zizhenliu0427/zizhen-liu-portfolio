@@ -1,0 +1,22 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE P-005 / 服务端与数据
+SERVER & DATA
+
+方向：WEB · AI · SYSTEMS
+时间：2026
+作者：Zizhen Liu / Lance
+访问范围：PROFILE
+
+实现 API、数据接入、检索与支撑产品的后端服务。
+
+实现记录
+1. 技术与工具：FastAPI
+2. 技术与工具：Django REST
+3. 技术与工具：Node.js / Express
+4. 技术与工具：PostgreSQL / MySQL
+5. 技术与工具：Kafka
+6. 技术与工具：RAG / Qdrant
+7. 技术与工具：PyTorch
+
+相关链接：https://github.com/zizhenliu0427
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

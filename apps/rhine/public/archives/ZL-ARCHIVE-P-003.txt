@@ -1,0 +1,19 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE P-003 / 从界面到 GPU
+WEB · AI · SYSTEMS
+
+方向：WEB · AI · SYSTEMS
+时间：2026
+作者：Zizhen Liu / Lance
+访问范围：PROFILE
+
+从交互界面、服务端和数据管线，到 C++ 与 CUDA，沿着产品的实际问题深入不同技术层。
+
+实现记录
+1. Interface：React 19 · Next.js · TypeScript · Tailwind CSS · ECharts / D3 · Android (Kotlin)
+2. Server & data：FastAPI · Django REST · Node.js / Express · PostgreSQL / MySQL · Kafka · RAG / Qdrant · PyTorch
+3. Metal：C++17/20 · CUDA · Vulkan / DX12 / Metal · NVENC / NVDEC · VHDL / FPGA · Linux
+4. Delivery：Docker · Git · Vercel / Cloudflare · Vitest / Catch2 · Jira / Confluence · Agile
+
+相关链接：https://github.com/zizhenliu0427
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

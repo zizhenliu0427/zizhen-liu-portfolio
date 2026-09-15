@@ -1,0 +1,16 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE I-003 / Golden Lady Photography
+GOLDEN LADY PHOTOGRAPHY
+
+Focus: IT Support Intern
+Period: MAY 2021 — AUG 2021
+Author: Zizhen Liu / Lance
+Access: EXPERIENCE
+
+Maintained a Vue.js corporate site in production, shipping responsive UI and content updates safely.
+
+Engineering notes
+1. Maintained a Vue.js corporate site in production, shipping responsive UI and content updates safely.
+2. Diagnosed workstation hardware and configured operating systems and creative software for heavy-workload use.
+
+Related link: https://goldenladies.com/

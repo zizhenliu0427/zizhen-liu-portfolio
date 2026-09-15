@@ -1,0 +1,17 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE W-001 / CMO-DB
+CMO-DB
+
+Focus: JavaScript / Node.js / Express
+Period: 2023—24
+Author: Zizhen Liu / Lance
+Access: PROJECT
+
+A responsive, wiki-like equipment database — bilingual routing and D3 visuals up front, a serverless Node/Express + Sequelize backend answering 6-table joins across 29,000+ records behind it.
+
+Engineering notes
+1. 29,000+ records · parameterised multi-table JOINs
+2. Serverless migration to Vercel, zero-maintenance infra
+3. English / Chinese URL routing · custom D3 sensor arcs
+
+Related link: https://www.cmo-db.com/

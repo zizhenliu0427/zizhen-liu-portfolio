@@ -1,0 +1,16 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE W-004 / Lanely
+Lanely — Kanban Project Management
+
+Focus: FastAPI / SQLAlchemy / React
+Period: 2026
+Author: Zizhen Liu / Lance
+Access: PROJECT
+
+Full-stack Kanban tool — drag-and-drop boards, real-time collaboration over WebSockets and project analytics, with a FastAPI + SQLAlchemy backend behind a React/TypeScript front end.
+
+Engineering notes
+1. Stack: FastAPI · SQLAlchemy · React · TypeScript · WebSocket · Docker
+2. Details carried over from the existing portfolio.
+
+Related link: https://github.com/zizhenliu0427/lanely

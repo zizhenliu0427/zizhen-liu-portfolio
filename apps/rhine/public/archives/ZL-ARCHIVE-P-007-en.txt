@@ -1,0 +1,16 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE P-007 / Photography & observation
+BEYOND THE SCREEN
+
+Focus: WEB · AI · SYSTEMS
+Period: 2026
+Author: Zizhen Liu / Lance
+Access: PROFILE
+
+Landscape and HDR photography, with an interest in the entire path from capture and processing to display.
+
+Engineering notes
+1. The personal photo gallery is still being curated.
+2. An interest in colour, dynamic range and displays also led to GPU video processing work.
+
+Related link: https://github.com/zizhenliu0427

@@ -1,0 +1,29 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE A-001 / Building Sensor AI
+Conversational AI for Building Sensor Data
+
+Focus: React 19 / TypeScript / FastAPI
+Period: 2025
+Author: Zizhen Liu / Lance
+Access: CODE PRIVATE
+
+An IoT analytics platform where building managers query live sensor data in natural language — built across the React front end, the FastAPI/Kafka backend and the RAG pipeline behind the conversation.
+
+Engineering notes
+1. React 19 SPA · Web Workers for CSV/Excel parsing
+2. Kafka ingestion + PostgreSQL UPSERT batch pipeline
+3. RAG with Qdrant + local LLMs (Ollama) and NL2SQL
+
+RAG & natural-language queries
+The conversational layer of the building-sensor project lets managers query data in natural language.
+1. Qdrant provides vector retrieval; Ollama runs local language models.
+2. RAG and NL2SQL connect document knowledge with structured sensor data.
+3. An engineering note within the same capstone, not a separate project.
+
+Forecasting & ingestion
+The building-sensor project’s data pipeline and forecasting module.
+1. FastAPI and Kafka ingest data; PostgreSQL UPSERT handles batch writes.
+2. Temporal Fusion Transformer forecasting uses quantile regression.
+3. Web Workers handle CSV and Excel parsing in the client.
+
+Related link: https://github.com/zizhenliu0427

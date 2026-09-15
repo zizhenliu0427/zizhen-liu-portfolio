@@ -1,0 +1,17 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE W-007 / Good360 · 移动聊天
+Good360 Donation App — Real-Time Chat Module
+
+方向：Kotlin / MVVM / Firebase
+时间：2023
+作者：Zizhen Liu / Lance
+访问范围：CODE PRIVATE
+
+为 Good360 Australia 的捐赠 App 做的聊天模块,Kotlin/MVVM:多类型 RecyclerView 消息流、Firebase 实时同步、图片消息,以及可复现的聊天室 ID 生成。
+
+实现记录
+1. 技术栈：Kotlin · MVVM · Firebase · RecyclerView
+2. 代码未公开；此档案介绍本人参与的实现。
+
+相关链接：https://github.com/zizhenliu0427
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

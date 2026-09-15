@@ -1,0 +1,1027 @@
+{
+  "categories": [
+    "About me",
+    "Internships",
+    "Web & Apps",
+    "AI & Data",
+    "Systems & Hardware"
+  ],
+  "columns": [
+    "Web & Apps",
+    "AI & Data",
+    "About me",
+    "Internships",
+    "Systems & Hardware"
+  ],
+  "records": [
+    {
+      "id": "P-001",
+      "title": "Zizhen Liu · Full-stack Engineer",
+      "en": "ZIZHEN LIU",
+      "department": "WEB · AI · SYSTEMS",
+      "category": "About me",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROFILE",
+      "abstract": "I build complete products — responsive interfaces, data and AI backends, and systems code all the way down to the GPU.",
+      "findings": [
+        "You can also call me Lance.",
+        "I work across web products, AI and data applications, and GPU systems engineering.",
+        "Open to software development opportunities."
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "Author’s GitHub",
+      "links": [
+        {
+          "label": "GitHub",
+          "href": "https://github.com/zizhenliu0427"
+        },
+        {
+          "label": "LinkedIn",
+          "href": "https://www.linkedin.com/in/zizhen-liu-580a40258/"
+        }
+      ],
+      "stack": [
+        "TypeScript",
+        "Python",
+        "C++",
+        "C#"
+      ],
+      "legacyId": "X-001"
+    },
+    {
+      "id": "P-002",
+      "title": "Contact & collaboration",
+      "en": "LET’S BUILD SOMETHING",
+      "department": "WEB · AI · SYSTEMS",
+      "category": "About me",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROFILE",
+      "abstract": "Get in touch about software roles, project collaboration or the products you are building.",
+      "findings": [
+        "Email: lzz288898@gmail.com",
+        "GitHub: https://github.com/zizhenliu0427",
+        "LinkedIn: https://www.linkedin.com/in/zizhen-liu-580a40258/"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "Author’s GitHub",
+      "links": [
+        {
+          "label": "Send email",
+          "href": "mailto:lzz288898@gmail.com"
+        },
+        {
+          "label": "LinkedIn",
+          "href": "https://www.linkedin.com/in/zizhen-liu-580a40258/"
+        },
+        {
+          "label": "GitHub",
+          "href": "https://github.com/zizhenliu0427"
+        }
+      ],
+      "legacyId": "X-002"
+    },
+    {
+      "id": "P-003",
+      "title": "WEB · AI · SYSTEMS",
+      "en": "WEB · AI · SYSTEMS",
+      "department": "WEB · AI · SYSTEMS",
+      "category": "About me",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROFILE",
+      "abstract": "Follow the product’s actual needs from interfaces and APIs through data pipelines to C++ and CUDA.",
+      "findings": [
+        "Interface: React 19 · Next.js · TypeScript · Tailwind CSS · ECharts / D3 · Android (Kotlin)",
+        "Server & data: FastAPI · Django REST · Node.js / Express · PostgreSQL / MySQL · Kafka · RAG / Qdrant · PyTorch",
+        "Metal: C++17/20 · CUDA · Vulkan / DX12 / Metal · NVENC / NVDEC · VHDL / FPGA · Linux",
+        "Delivery: Docker · Git · Vercel / Cloudflare · Vitest / Catch2 · Jira / Confluence · Agile"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "Author’s GitHub",
+      "legacyId": "X-003"
+    },
+    {
+      "id": "P-004",
+      "title": "INTERFACE ENGINEERING",
+      "en": "INTERFACE ENGINEERING",
+      "department": "WEB · AI · SYSTEMS",
+      "category": "About me",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROFILE",
+      "abstract": "Product surfaces across web and mobile.",
+      "findings": [
+        "Technology & tools: React 19",
+        "Technology & tools: Next.js",
+        "Technology & tools: TypeScript",
+        "Technology & tools: Tailwind CSS",
+        "Technology & tools: ECharts / D3",
+        "Technology & tools: Android (Kotlin)"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "Author’s GitHub",
+      "stack": [
+        "React 19",
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "ECharts / D3",
+        "Android (Kotlin)"
+      ],
+      "legacyId": "X-004"
+    },
+    {
+      "id": "P-005",
+      "title": "SERVER & DATA",
+      "en": "SERVER & DATA",
+      "department": "WEB · AI · SYSTEMS",
+      "category": "About me",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROFILE",
+      "abstract": "APIs, pipelines and the models behind them.",
+      "findings": [
+        "Technology & tools: FastAPI",
+        "Technology & tools: Django REST",
+        "Technology & tools: Node.js / Express",
+        "Technology & tools: PostgreSQL / MySQL",
+        "Technology & tools: Kafka",
+        "Technology & tools: RAG / Qdrant",
+        "Technology & tools: PyTorch"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "Author’s GitHub",
+      "stack": [
+        "FastAPI",
+        "Django REST",
+        "Node.js / Express",
+        "PostgreSQL / MySQL",
+        "Kafka",
+        "RAG / Qdrant",
+        "PyTorch"
+      ],
+      "legacyId": "X-005"
+    },
+    {
+      "id": "P-006",
+      "title": "BUILD & SHIP",
+      "en": "BUILD & SHIP",
+      "department": "WEB · AI · SYSTEMS",
+      "category": "About me",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROFILE",
+      "abstract": "From prototype to deployed, tested software.",
+      "findings": [
+        "Technology & tools: Docker",
+        "Technology & tools: Git",
+        "Technology & tools: Vercel / Cloudflare",
+        "Technology & tools: Vitest / Catch2",
+        "Technology & tools: Jira / Confluence",
+        "Technology & tools: Agile"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "Author’s GitHub",
+      "stack": [
+        "Docker",
+        "Git",
+        "Vercel / Cloudflare",
+        "Vitest / Catch2",
+        "Jira / Confluence",
+        "Agile"
+      ],
+      "legacyId": "X-006"
+    },
+    {
+      "id": "P-007",
+      "title": "Photography & observation",
+      "en": "BEYOND THE SCREEN",
+      "department": "WEB · AI · SYSTEMS",
+      "category": "About me",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROFILE",
+      "abstract": "Landscape and HDR photography, with an interest in the entire path from capture and processing to display.",
+      "findings": [
+        "The personal photo gallery is still being curated.",
+        "An interest in colour, dynamic range and displays also led to GPU video processing work."
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "Author’s GitHub",
+      "legacyId": "X-007"
+    },
+    {
+      "id": "P-008",
+      "title": "Driving & languages",
+      "en": "OFFLINE / ONLINE",
+      "department": "WEB · AI · SYSTEMS",
+      "category": "About me",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROFILE",
+      "abstract": "Beyond code: cars, Japanese culture and language learning.",
+      "findings": [
+        "Honda Civic Type R FK8, manual transmission.",
+        "ADVAN GT Beyond wheels and Neova AD09 tyres.",
+        "Native Mandarin, proficient English and beginner Japanese."
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "Author’s GitHub",
+      "legacyId": "X-008"
+    },
+    {
+      "id": "W-001",
+      "title": "CMO-DB",
+      "en": "CMO-DB",
+      "department": "JavaScript / Node.js / Express",
+      "category": "Web & Apps",
+      "date": "2023—24",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "abstract": "A responsive, wiki-like equipment database — bilingual routing and D3 visuals up front, a serverless Node/Express + Sequelize backend answering 6-table joins across 29,000+ records behind it.",
+      "findings": [
+        "29,000+ records · parameterised multi-table JOINs",
+        "Serverless migration to Vercel, zero-maintenance infra",
+        "English / Chinese URL routing · custom D3 sensor arcs"
+      ],
+      "source": "https://www.cmo-db.com/",
+      "sourceLabel": "Open project",
+      "stack": [
+        "JavaScript",
+        "Node.js",
+        "Express",
+        "Sequelize",
+        "D3.js",
+        "i18next"
+      ],
+      "links": [
+        {
+          "label": "Open project",
+          "href": "https://www.cmo-db.com/"
+        }
+      ],
+      "legacyId": "X-009"
+    },
+    {
+      "id": "W-002",
+      "title": "Novacart",
+      "en": "Novacart",
+      "department": "ASP.NET Core / C# / Next.js",
+      "category": "Web & Apps",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "IN DEVELOPMENT",
+      "abstract": "A mobile-first e-commerce platform built end to end — a Next.js PWA storefront over an ASP.NET Core + PostgreSQL backend with Stripe payments, Redis caching, server-side cart persistence and a configurable order state machine.",
+      "findings": [
+        "Configurable order state machine + admin analytics",
+        "Server-side cart persistence · Stripe payments",
+        "Dockerised ASP.NET Core + PostgreSQL + Redis stack"
+      ],
+      "source": "https://github.com/zizhenliu0427/Novacart",
+      "sourceLabel": "View source",
+      "stack": [
+        "ASP.NET Core",
+        "C#",
+        "Next.js",
+        "PostgreSQL",
+        "Stripe",
+        "Redis"
+      ],
+      "links": [
+        {
+          "label": "View source",
+          "href": "https://github.com/zizhenliu0427/Novacart"
+        }
+      ],
+      "legacyId": "X-010"
+    },
+    {
+      "id": "W-003",
+      "title": "MediaJira",
+      "en": "Marketing Simplified (MediaJira)",
+      "department": "Next.js / TypeScript / Django Channels",
+      "category": "Web & Apps",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "abstract": "The campaign-management platform I build at Codritium — real-time chat made reliable under 100-user load, multi-user spreadsheet collaboration, Calendly-style booking links, a 373-file slug-URL migration across 12 modules and a CI pipeline cut from 57 to 20 minutes.",
+      "findings": [
+        "Chat under 100-user load: 83–89% → 9,900/9,900 delivered, WebSocket p95 47.5s → 5.0s",
+        "Real-time spreadsheet collaboration · presence, remote cursors, ~145ms peer edits",
+        "CI −66% (+597 recovered tests) · 12-module slug-URL migration + IDOR fixes"
+      ],
+      "source": "https://github.com/quanwangniuniu/marketing-simplified",
+      "sourceLabel": "View source",
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "Django Channels",
+        "PostgreSQL",
+        "Redis",
+        "GitHub Actions"
+      ],
+      "links": [
+        {
+          "label": "Open project",
+          "href": "https://zmarkio.com/"
+        },
+        {
+          "label": "View source",
+          "href": "https://github.com/quanwangniuniu/marketing-simplified"
+        }
+      ],
+      "sections": [
+        {
+          "id": "X-038",
+          "title": "Reliable chat under load",
+          "abstract": "Real-time chat improvements in MediaJira during the Codritium internship.",
+          "findings": [
+            "Idempotent sends, a transactional outbox and PgBouncer connection pooling.",
+            "At 100 concurrent users, delivery rose from 83–89% to 9,900 out of 9,900 messages.",
+            "WebSocket p95 fell from 47.5 seconds to 5.0 seconds."
+          ]
+        },
+        {
+          "id": "X-039",
+          "title": "Collaborative spreadsheets",
+          "abstract": "Multi-user spreadsheet collaboration in MediaJira.",
+          "findings": [
+            "Django Channels supports live synchronisation.",
+            "Presence, remote cursors and collaborative edits.",
+            "The existing portfolio reports approximately 145ms peer updates."
+          ]
+        },
+        {
+          "id": "X-040",
+          "title": "Migrations, recovery & CI",
+          "abstract": "Cross-module migration and delivery improvements during the Codritium internship.",
+          "findings": [
+            "A slug-URL migration spanning 373 files and 12 modules, alongside IDOR fixes.",
+            "CI fell from 57 to around 20 minutes, with 597 skipped tests recovered.",
+            "Restored 144 database migrations to recover a production 521 outage."
+          ]
+        }
+      ],
+      "legacyId": "X-011"
+    },
+    {
+      "id": "W-004",
+      "title": "Lanely",
+      "en": "Lanely — Kanban Project Management",
+      "department": "FastAPI / SQLAlchemy / React",
+      "category": "Web & Apps",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "abstract": "Full-stack Kanban tool — drag-and-drop boards, real-time collaboration over WebSockets and project analytics, with a FastAPI + SQLAlchemy backend behind a React/TypeScript front end.",
+      "findings": [
+        "Stack: FastAPI · SQLAlchemy · React · TypeScript · WebSocket · Docker",
+        "Details carried over from the existing portfolio."
+      ],
+      "source": "https://github.com/zizhenliu0427/lanely",
+      "sourceLabel": "View source",
+      "stack": [
+        "FastAPI",
+        "SQLAlchemy",
+        "React",
+        "TypeScript",
+        "WebSocket",
+        "Docker"
+      ],
+      "links": [
+        {
+          "label": "View source",
+          "href": "https://github.com/zizhenliu0427/lanely"
+        }
+      ],
+      "legacyId": "X-012"
+    },
+    {
+      "id": "W-005",
+      "title": "Whale Logistics",
+      "en": "Whale Logistics CMS — Sea-Freight Microservices",
+      "department": "Java / Spring Cloud / RabbitMQ",
+      "category": "Web & Apps",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "abstract": "Spring Cloud microservices platform modernising end-to-end sea-freight workflows: automates container visibility from the wharf to empty dehire, replacing manual email coordination and mitigating detention risk.",
+      "findings": [
+        "Stack: Java · Spring Cloud · RabbitMQ · React · TypeScript · Docker",
+        "Details carried over from the existing portfolio."
+      ],
+      "source": "https://github.com/Fairchild2333/whale-logistics-cms",
+      "sourceLabel": "View source",
+      "stack": [
+        "Java",
+        "Spring Cloud",
+        "RabbitMQ",
+        "React",
+        "TypeScript",
+        "Docker"
+      ],
+      "links": [
+        {
+          "label": "View source",
+          "href": "https://github.com/Fairchild2333/whale-logistics-cms"
+        }
+      ],
+      "legacyId": "X-013"
+    },
+    {
+      "id": "W-006",
+      "title": "Breaktime Arcade",
+      "en": "Breaktime Arcade — Multiplayer Party Games",
+      "department": "Vue 3 / TypeScript / Socket.IO",
+      "category": "Web & Apps",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "abstract": "Kahoot-style party-game platform: host on a projector, players join from their phones — real-time game rooms over Socket.IO in a Vue 3 + TypeScript monorepo, installable as a PWA.",
+      "findings": [
+        "Stack: Vue 3 · TypeScript · Socket.IO · Express · PWA",
+        "Details carried over from the existing portfolio."
+      ],
+      "source": "https://github.com/zizhenliu0427/breaktime-arcade",
+      "sourceLabel": "View source",
+      "stack": [
+        "Vue 3",
+        "TypeScript",
+        "Socket.IO",
+        "Express",
+        "PWA"
+      ],
+      "links": [
+        {
+          "label": "View source",
+          "href": "https://github.com/zizhenliu0427/breaktime-arcade"
+        }
+      ],
+      "legacyId": "X-014"
+    },
+    {
+      "id": "W-007",
+      "title": "Good360",
+      "en": "Good360 Donation App — Real-Time Chat Module",
+      "department": "Kotlin / MVVM / Firebase",
+      "category": "Web & Apps",
+      "date": "2023",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "CODE PRIVATE",
+      "abstract": "Kotlin/MVVM chat feature for Good360 Australia's donation app: multi-type RecyclerView messaging, Firebase Realtime sync, image messages and deterministic chat-room IDs.",
+      "findings": [
+        "Stack: Kotlin · MVVM · Firebase · RecyclerView",
+        "Source code is not public. This record describes work I contributed to."
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "Author’s GitHub",
+      "stack": [
+        "Kotlin",
+        "MVVM",
+        "Firebase",
+        "RecyclerView"
+      ],
+      "links": [],
+      "legacyId": "X-015"
+    },
+    {
+      "id": "W-008",
+      "title": "HLS Keeper",
+      "en": "HLS Keeper — Local-First Stream Archiver",
+      "department": "Python / Chrome Extension / FFmpeg",
+      "category": "Web & Apps",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "abstract": "Captures HLS streams and site attachments via a browser extension talking to a local Python server with a web dashboard; FFmpeg merges segments into playable archives, all on your own machine.",
+      "findings": [
+        "Stack: Python · Chrome Extension · FFmpeg · HLS",
+        "Details carried over from the existing portfolio."
+      ],
+      "source": "https://github.com/zizhenliu0427/hls-keeper",
+      "sourceLabel": "View source",
+      "stack": [
+        "Python",
+        "Chrome Extension",
+        "FFmpeg",
+        "HLS"
+      ],
+      "links": [
+        {
+          "label": "View source",
+          "href": "https://github.com/zizhenliu0427/hls-keeper"
+        }
+      ],
+      "legacyId": "X-016"
+    },
+    {
+      "id": "A-001",
+      "title": "Building Sensor AI",
+      "en": "Conversational AI for Building Sensor Data",
+      "department": "React 19 / TypeScript / FastAPI",
+      "category": "AI & Data",
+      "date": "2025",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "CODE PRIVATE",
+      "abstract": "An IoT analytics platform where building managers query live sensor data in natural language — built across the React front end, the FastAPI/Kafka backend and the RAG pipeline behind the conversation.",
+      "findings": [
+        "React 19 SPA · Web Workers for CSV/Excel parsing",
+        "Kafka ingestion + PostgreSQL UPSERT batch pipeline",
+        "RAG with Qdrant + local LLMs (Ollama) and NL2SQL"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "Author’s GitHub",
+      "stack": [
+        "React 19",
+        "TypeScript",
+        "FastAPI",
+        "Kafka",
+        "PostgreSQL",
+        "Qdrant"
+      ],
+      "links": [],
+      "sections": [
+        {
+          "id": "X-021",
+          "title": "RAG & natural-language queries",
+          "abstract": "The conversational layer of the building-sensor project lets managers query data in natural language.",
+          "findings": [
+            "Qdrant provides vector retrieval; Ollama runs local language models.",
+            "RAG and NL2SQL connect document knowledge with structured sensor data.",
+            "An engineering note within the same capstone, not a separate project."
+          ]
+        },
+        {
+          "id": "X-022",
+          "title": "Forecasting & ingestion",
+          "abstract": "The building-sensor project’s data pipeline and forecasting module.",
+          "findings": [
+            "FastAPI and Kafka ingest data; PostgreSQL UPSERT handles batch writes.",
+            "Temporal Fusion Transformer forecasting uses quantile regression.",
+            "Web Workers handle CSV and Excel parsing in the client."
+          ]
+        }
+      ],
+      "legacyId": "X-017"
+    },
+    {
+      "id": "A-002",
+      "title": "Skin Lesion Classification",
+      "en": "Skin Lesion Classification — ISIC2018",
+      "department": "PyTorch / Albumentations / scikit-learn",
+      "category": "AI & Data",
+      "date": "2024",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "CODE PRIVATE",
+      "abstract": "Fine-tuned DenseNet/EfficientNet/ResNet backbones with a hand-implemented Squeeze-and-Excitation attention module, reaching 83% macro F1 on severely imbalanced dermoscopy data; Grad-CAM interpretability.",
+      "findings": [
+        "Stack: PyTorch · Albumentations · scikit-learn · OpenCV",
+        "Source code is not public. This record describes work I contributed to."
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "Author’s GitHub",
+      "stack": [
+        "PyTorch",
+        "Albumentations",
+        "scikit-learn",
+        "OpenCV"
+      ],
+      "links": [],
+      "legacyId": "X-018"
+    },
+    {
+      "id": "A-003",
+      "title": "CTV Violence Detection",
+      "en": "CTV Violence Detection",
+      "department": "React 18 / Django REST / PyTorch",
+      "category": "AI & Data",
+      "date": "2023",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "CODE PRIVATE",
+      "abstract": "A real-time monitoring platform: YOLOv8 trained on 10,025 hand-annotated frames, served through a Django REST + MJPEG streaming backend into a multi-camera React dashboard.",
+      "findings": [
+        "YOLOv8 trained to 85% mAP50 on an RTX 4090",
+        "Sub-200ms OpenCV → MJPEG live streaming pipeline",
+        "JWT-secured React SPA with 1/2/4/6 camera layouts"
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "Author’s GitHub",
+      "stack": [
+        "React 18",
+        "Django REST",
+        "PyTorch",
+        "YOLOv8",
+        "OpenCV",
+        "MySQL"
+      ],
+      "links": [],
+      "sections": [
+        {
+          "id": "X-023",
+          "title": "Annotation & model training",
+          "abstract": "CTV connects annotation, model training and real-time inference in one computer-vision application.",
+          "findings": [
+            "10,025 frames were annotated for training.",
+            "YOLOv8 was trained on an RTX 4090; the portfolio reports 85% mAP50.",
+            "Django REST and MJPEG deliver predictions to a multi-camera React dashboard."
+          ]
+        }
+      ],
+      "legacyId": "X-019"
+    },
+    {
+      "id": "A-004",
+      "title": "Audio / Video Transcription",
+      "en": "Audio/Video2Text AI — Transcription Suite",
+      "department": "Python / Whisper / FFmpeg",
+      "category": "AI & Data",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "abstract": "AI audio/video transcription with speaker diarisation, shipped three ways — CLI, web app and Electron desktop — with FFmpeg preprocessing in front of Whisper-class ASR models.",
+      "findings": [
+        "Stack: Python · Whisper · FFmpeg · FastAPI · Next.js · Electron",
+        "Details carried over from the existing portfolio."
+      ],
+      "source": "https://github.com/zizhenliu0427/Audio-Video2Text-AI",
+      "sourceLabel": "View source",
+      "stack": [
+        "Python",
+        "Whisper",
+        "FFmpeg",
+        "FastAPI",
+        "Next.js",
+        "Electron"
+      ],
+      "links": [
+        {
+          "label": "View source",
+          "href": "https://github.com/zizhenliu0427/Audio-Video2Text-AI"
+        }
+      ],
+      "legacyId": "X-020"
+    },
+    {
+      "id": "S-001",
+      "title": "SDR to HDR",
+      "en": "sdr2hdr — GPU SDR-to-HDR / Super-Resolution Pipeline",
+      "department": "C++17 / CUDA / NVENC/NVDEC",
+      "category": "Systems & Hardware",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "abstract": "Fully GPU-resident video pipeline (NVDEC → CUDA → RTX TrueHDR/VSR → NVENC) sustaining ~120fps real-time 4K HDR conversion, with hand-written colour-space kernels, HDR10 metadata signalling and a bilingual CLI.",
+      "findings": [
+        "Stack: C++17 · CUDA · NVENC/NVDEC · RTX Video SDK · FFmpeg",
+        "Details carried over from the existing portfolio."
+      ],
+      "source": "https://github.com/zizhenliu0427/sdr2hdr",
+      "sourceLabel": "View source",
+      "stack": [
+        "C++17",
+        "CUDA",
+        "NVENC/NVDEC",
+        "RTX Video SDK",
+        "FFmpeg"
+      ],
+      "links": [
+        {
+          "label": "View source",
+          "href": "https://github.com/zizhenliu0427/sdr2hdr"
+        }
+      ],
+      "sections": [
+        {
+          "id": "X-031",
+          "title": "GPU video processing",
+          "abstract": "The end-to-end GPU processing path in sdr2hdr.",
+          "findings": [
+            "NVDEC → CUDA → RTX TrueHDR / VSR → NVENC.",
+            "Hand-written colour-space kernels and HDR10 metadata.",
+            "The portfolio reports approximately 120fps for real-time 4K HDR conversion; performance depends on hardware and input."
+          ]
+        }
+      ],
+      "legacyId": "X-025"
+    },
+    {
+      "id": "S-002",
+      "title": "GPU Compute Benchmark",
+      "en": "Multi-Graphics-API GPU Compute Benchmark",
+      "department": "C++17 / Vulkan / DirectX 12",
+      "category": "Systems & Hardware",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "abstract": "C++17 benchmark with five backends — Vulkan, DX12, DX11, OpenGL, Metal — profiling 10+ AMD and NVIDIA GPUs, including six generations of AMD architectures; a headless compute mode uncovered 12x hidden throughput. 2,300-line technical report.",
+      "findings": [
+        "Stack: C++17 · Vulkan · DirectX 12 · Metal · RenderDoc · Python",
+        "Details carried over from the existing portfolio."
+      ],
+      "source": "https://github.com/Fairchild2333/Multi-Graphics-API-GPU-Benchmark",
+      "sourceLabel": "View source",
+      "stack": [
+        "C++17",
+        "Vulkan",
+        "DirectX 12",
+        "Metal",
+        "RenderDoc",
+        "Python"
+      ],
+      "links": [
+        {
+          "label": "View source",
+          "href": "https://github.com/Fairchild2333/Multi-Graphics-API-GPU-Benchmark"
+        }
+      ],
+      "sections": [
+        {
+          "id": "X-032",
+          "title": "Cross-API performance",
+          "abstract": "Compare consistent compute workloads across graphics APIs and GPU generations.",
+          "findings": [
+            "Five backends: Vulkan, DirectX 12, DirectX 11, OpenGL and Metal.",
+            "Tests cover more than ten GPUs and six AMD architecture generations.",
+            "Headless compute revealed throughput hidden by the rendering path; the technical report spans around 2,300 lines."
+          ]
+        }
+      ],
+      "legacyId": "X-026"
+    },
+    {
+      "id": "S-003",
+      "title": "C++20 Generic Graph",
+      "en": "GDWG — Generic Directed Weighted Graph Library",
+      "department": "C++20 / STL / Templates",
+      "category": "Systems & Hardware",
+      "date": "2025",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "CODE PRIVATE",
+      "abstract": "Modern C++20 generic graph container with value semantics, a polymorphic edge hierarchy, deterministic ordering and full Catch2 unit-test coverage.",
+      "findings": [
+        "Stack: C++20 · STL · Templates · Catch2",
+        "Source code is not public. This record describes work I contributed to."
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "Author’s GitHub",
+      "stack": [
+        "C++20",
+        "STL",
+        "Templates",
+        "Catch2"
+      ],
+      "links": [],
+      "legacyId": "X-027"
+    },
+    {
+      "id": "S-004",
+      "title": "FPGA Audio Pipeline",
+      "en": "FPGA Audio Capture & Gain EQ — AMD Kria KV260",
+      "department": "VHDL / Vivado / AXI4 / DMA",
+      "category": "Systems & Hardware",
+      "date": "2023",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "CODE PRIVATE",
+      "abstract": "VHDL I2S receiver in programmable logic streaming 48kHz/24-bit audio through AXI4-Stream + DMA into Linux, with Device Tree integration and an AXI-Lite controlled gain/EQ stage.",
+      "findings": [
+        "Stack: VHDL · Vivado · AXI4 / DMA · PetaLinux · C/C++",
+        "Source code is not public. This record describes work I contributed to."
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "Author’s GitHub",
+      "stack": [
+        "VHDL",
+        "Vivado",
+        "AXI4 / DMA",
+        "PetaLinux",
+        "C/C++"
+      ],
+      "links": [],
+      "legacyId": "X-028"
+    },
+    {
+      "id": "S-005",
+      "title": "CDN Node Probing",
+      "en": "Bili CDN DNS Pin — Streaming Network Tuner",
+      "department": "Shell / DNS / OpenWrt",
+      "category": "Systems & Hardware",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "abstract": "Fixes overseas Bilibili buffering by probing CDN edge nodes and pinning the fastest via DNS — periodic re-checks, threshold protection and candidate-IP refresh across Windows, macOS, OpenWrt and AdGuard Home.",
+      "findings": [
+        "Stack: Shell · DNS · OpenWrt · AdGuard Home",
+        "Details carried over from the existing portfolio."
+      ],
+      "source": "https://github.com/zizhenliu0427/bili-cdn-dns-pin",
+      "sourceLabel": "View source",
+      "stack": [
+        "Shell",
+        "DNS",
+        "OpenWrt",
+        "AdGuard Home"
+      ],
+      "links": [
+        {
+          "label": "View source",
+          "href": "https://github.com/zizhenliu0427/bili-cdn-dns-pin"
+        }
+      ],
+      "legacyId": "X-029"
+    },
+    {
+      "id": "S-006",
+      "title": "Home Lab",
+      "en": "Home Lab — Server, NAS & Device Restoration",
+      "department": "Windows Server / Active Directory / Synology",
+      "category": "Systems & Hardware",
+      "date": "ONGOING",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "CASE STUDY",
+      "abstract": "Windows Server 2025 + Active Directory lab in VMware WorkStation, a Synology NAS with remote access and IPv6, and low-level device work: Hackintosh EFI/ACPI bring-up, kext injection and Android custom-ROM recovery.",
+      "findings": [
+        "Stack: Windows Server · Active Directory · Synology · EFI/ACPI · ADB",
+        "Details carried over from the existing portfolio."
+      ],
+      "source": "https://github.com/zizhenliu0427",
+      "sourceLabel": "Author’s GitHub",
+      "stack": [
+        "Windows Server",
+        "Active Directory",
+        "Synology",
+        "EFI/ACPI",
+        "ADB"
+      ],
+      "links": [],
+      "legacyId": "X-030"
+    },
+    {
+      "id": "I-001",
+      "title": "Codritium",
+      "en": "CODRITIUM",
+      "department": "Software Developer Intern",
+      "category": "Internships",
+      "date": "MAR 2026 — PRESENT",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "EXPERIENCE",
+      "abstract": "Building Marketing Simplified (MediaJira), a campaign-management platform for media-buying teams — a Next.js/TypeScript front end over a Django REST + Channels backend.",
+      "findings": [
+        "Building Marketing Simplified (MediaJira), a campaign-management platform for media-buying teams — a Next.js/TypeScript front end over a Django REST + Channels backend.",
+        "Made real-time chat reliable under load (idempotent sends, a transactional outbox, PgBouncer pooling: 9,900/9,900 messages delivered at 100 concurrent users) and built multi-user spreadsheet collaboration over Django Channels with ~145ms peer updates.",
+        "Shipped Calendly-style booking links, a 373-file slug-URL migration and IDOR fixes; cut CI from 57 to 20 minutes and recovered a production 521 outage by restoring 144 migrations."
+      ],
+      "source": "https://zmarkio.com/",
+      "sourceLabel": "Company / project website",
+      "links": [
+        {
+          "label": "Related website",
+          "href": "https://zmarkio.com/"
+        }
+      ],
+      "legacyId": "X-033"
+    },
+    {
+      "id": "I-002",
+      "title": "Intelli New Technologies",
+      "en": "INTELLI NEW TECHNOLOGIES",
+      "department": "IT / Business Analysis Intern",
+      "category": "Internships",
+      "date": "OCT 2023 — JAN 2024",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "EXPERIENCE",
+      "abstract": "Built Python scrapers and Pandas ETL pipelines to collect, validate and normalise semi-structured web data for downstream features.",
+      "findings": [
+        "Built Python scrapers and Pandas ETL pipelines to collect, validate and normalise semi-structured web data for downstream features.",
+        "Translated business requirements into user stories and API contracts, verifying React components in Agile sprint reviews via Jira/Confluence.",
+        "Produced and validated data-dashboard wireframes, supporting responsive implementation across the frontend/backend boundary."
+      ],
+      "source": "https://intellinew.com.au/",
+      "sourceLabel": "Company / project website",
+      "links": [
+        {
+          "label": "Related website",
+          "href": "https://intellinew.com.au/"
+        }
+      ],
+      "sections": [
+        {
+          "id": "X-024",
+          "title": "Data collection & ETL",
+          "abstract": "Data collection and ETL work during the Intelli New Technologies internship.",
+          "findings": [
+            "Built Python scrapers and Pandas ETL pipelines to collect, validate and normalise semi-structured web data for downstream features.",
+            "Translated business requirements into user stories and API contracts, verifying React components in Agile sprint reviews via Jira/Confluence.",
+            "Produced and validated data-dashboard wireframes, supporting responsive implementation across the frontend/backend boundary."
+          ]
+        }
+      ],
+      "legacyId": "X-034"
+    },
+    {
+      "id": "I-003",
+      "title": "Golden Lady Photography",
+      "en": "GOLDEN LADY PHOTOGRAPHY",
+      "department": "IT Support Intern",
+      "category": "Internships",
+      "date": "MAY 2021 — AUG 2021",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "EXPERIENCE",
+      "abstract": "Maintained a Vue.js corporate site in production, shipping responsive UI and content updates safely.",
+      "findings": [
+        "Maintained a Vue.js corporate site in production, shipping responsive UI and content updates safely.",
+        "Diagnosed workstation hardware and configured operating systems and creative software for heavy-workload use."
+      ],
+      "source": "https://goldenladies.com/",
+      "sourceLabel": "Company / project website",
+      "links": [
+        {
+          "label": "Related website",
+          "href": "https://goldenladies.com/"
+        }
+      ],
+      "legacyId": "X-035"
+    },
+    {
+      "id": "P-009",
+      "title": "University of New South Wales (UNSW)",
+      "en": "UNSW",
+      "department": "Master of Information Technology",
+      "category": "About me",
+      "date": "2024 — 2025",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "EDUCATION",
+      "abstract": "Master of Information Technology",
+      "findings": [
+        "Capstone Project (85)",
+        "Artificial Intelligence (81)",
+        "Advanced C++ (81)"
+      ],
+      "source": "https://www.unsw.edu.au/",
+      "sourceLabel": "University website",
+      "legacyId": "X-036"
+    },
+    {
+      "id": "P-010",
+      "title": "University of Technology Sydney (UTS)",
+      "en": "UTS",
+      "department": "Bachelor of Software Engineering (Honours)",
+      "category": "About me",
+      "date": "2021 — 2024",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "EDUCATION",
+      "abstract": "Bachelor of Software Engineering (Honours)",
+      "findings": [
+        "Database Fundamentals (94)",
+        "Systems Testing & QM (90)",
+        "Data Structures & Algorithms (84)"
+      ],
+      "source": "https://www.uts.edu.au/",
+      "sourceLabel": "University website",
+      "legacyId": "X-037"
+    }
+  ],
+  "redirects": {
+    "X-021": "A-001",
+    "X-022": "A-001",
+    "X-023": "A-003",
+    "X-024": "I-002",
+    "X-031": "S-001",
+    "X-032": "S-002",
+    "X-038": "W-003",
+    "X-039": "W-003",
+    "X-040": "W-003",
+    "X-001": "P-001",
+    "X-002": "P-002",
+    "X-003": "P-003",
+    "X-004": "P-004",
+    "X-005": "P-005",
+    "X-006": "P-006",
+    "X-007": "P-007",
+    "X-008": "P-008",
+    "X-009": "W-001",
+    "X-010": "W-002",
+    "X-011": "W-003",
+    "X-012": "W-004",
+    "X-013": "W-005",
+    "X-014": "W-006",
+    "X-015": "W-007",
+    "X-016": "W-008",
+    "X-017": "A-001",
+    "X-018": "A-002",
+    "X-019": "A-003",
+    "X-020": "A-004",
+    "X-025": "S-001",
+    "X-026": "S-002",
+    "X-027": "S-003",
+    "X-028": "S-004",
+    "X-029": "S-005",
+    "X-030": "S-006",
+    "X-033": "I-001",
+    "X-034": "I-002",
+    "X-035": "I-003",
+    "X-036": "P-009",
+    "X-037": "P-010"
+  }
+}

@@ -1,0 +1,17 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE W-004 / Lanely · 协作看板
+Lanely — Kanban Project Management
+
+方向：FastAPI / SQLAlchemy / React
+时间：2026
+作者：Zizhen Liu / Lance
+访问范围：PROJECT
+
+全栈看板工具:拖拽式面板、基于 WebSocket 的多人实时协作、项目数据统计。后端 FastAPI + SQLAlchemy,前端 React/TypeScript。
+
+实现记录
+1. 技术栈：FastAPI · SQLAlchemy · React · TypeScript · WebSocket · Docker
+2. 项目内容整理自已有个人作品集。
+
+相关链接：https://github.com/zizhenliu0427/lanely
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

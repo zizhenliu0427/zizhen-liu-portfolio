@@ -1,0 +1,17 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE A-002 / 皮肤镜图像分类
+Skin Lesion Classification — ISIC2018
+
+方向：PyTorch / Albumentations / scikit-learn
+时间：2024
+作者：Zizhen Liu / Lance
+访问范围：CODE PRIVATE
+
+在类别严重失衡的皮肤镜数据上微调 DenseNet/EfficientNet/ResNet,并手写实现 Squeeze-and-Excitation 注意力模块,macro F1 达到 83%;用 Grad-CAM 验证模型看的是不是该看的区域。
+
+实现记录
+1. 技术栈：PyTorch · Albumentations · scikit-learn · OpenCV
+2. 代码未公开；此档案介绍本人参与的实现。
+
+相关链接：https://github.com/zizhenliu0427
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

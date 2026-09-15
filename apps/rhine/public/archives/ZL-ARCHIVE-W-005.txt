@@ -1,0 +1,17 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE W-005 / Whale · 海运平台
+Whale Logistics CMS — Sea-Freight Microservices
+
+方向：Java / Spring Cloud / RabbitMQ
+时间：2026
+作者：Zizhen Liu / Lance
+访问范围：PROJECT
+
+用 Spring Cloud 微服务重做海运货代的全流程:把集装箱从码头到还空箱的全程可见性自动化,替掉原来靠邮件人工协调的方式,降低滞箱风险。
+
+实现记录
+1. 技术栈：Java · Spring Cloud · RabbitMQ · React · TypeScript · Docker
+2. 项目内容整理自已有个人作品集。
+
+相关链接：https://github.com/Fairchild2333/whale-logistics-cms
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

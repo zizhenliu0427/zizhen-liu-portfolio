@@ -1,0 +1,16 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE A-002 / Skin Lesion Classification
+Skin Lesion Classification — ISIC2018
+
+Focus: PyTorch / Albumentations / scikit-learn
+Period: 2024
+Author: Zizhen Liu / Lance
+Access: CODE PRIVATE
+
+Fine-tuned DenseNet/EfficientNet/ResNet backbones with a hand-implemented Squeeze-and-Excitation attention module, reaching 83% macro F1 on severely imbalanced dermoscopy data; Grad-CAM interpretability.
+
+Engineering notes
+1. Stack: PyTorch · Albumentations · scikit-learn · OpenCV
+2. Source code is not public. This record describes work I contributed to.
+
+Related link: https://github.com/zizhenliu0427

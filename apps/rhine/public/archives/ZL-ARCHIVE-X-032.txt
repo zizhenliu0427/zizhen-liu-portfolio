@@ -1,0 +1,23 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE S-002 / 跨 API GPU 基准
+Multi-Graphics-API GPU Compute Benchmark
+
+方向：C++17 / Vulkan / DirectX 12
+时间：2026
+作者：Zizhen Liu / Lance
+访问范围：PROJECT
+
+C++17 写的五后端基准测试(Vulkan、DX12、DX11、OpenGL、Metal),实测 10 多张 AMD 与 NVIDIA 显卡,覆盖六代 AMD 架构;无窗口计算模式挖出了被渲染路径掩盖的 12 倍吞吐差异。附 2,300 行技术报告。
+
+实现记录
+1. 技术栈：C++17 · Vulkan · DirectX 12 · Metal · RenderDoc · Python
+2. 项目内容整理自已有个人作品集。
+
+跨图形 API 的性能观察
+通过一致的计算任务理解不同 GPU 和图形 API 的性能行为。
+1. 五个后端：Vulkan、DirectX 12、DirectX 11、OpenGL、Metal。
+2. 测试覆盖十余张显卡与六代 AMD 架构。
+3. 无窗口计算路径揭示了被渲染路径掩盖的吞吐差异；技术报告约 2,300 行。
+
+相关链接：https://github.com/Fairchild2333/Multi-Graphics-API-GPU-Benchmark
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

@@ -1,0 +1,23 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE S-001 / SDR → HDR
+sdr2hdr — GPU SDR-to-HDR / Super-Resolution Pipeline
+
+方向：C++17 / CUDA / NVENC/NVDEC
+时间：2026
+作者：Zizhen Liu / Lance
+访问范围：PROJECT
+
+全程驻留 GPU 的视频管线(NVDEC → CUDA → RTX TrueHDR/VSR → NVENC),4K HDR 实时转换稳定在 ~120fps。色彩空间转换 kernel 手写,支持 HDR10 元数据标记,配中英双语命令行。
+
+实现记录
+1. 技术栈：C++17 · CUDA · NVENC/NVDEC · RTX Video SDK · FFmpeg
+2. 项目内容整理自已有个人作品集。
+
+GPU 视频处理路径
+sdr2hdr 项目的端到端 GPU 视频处理路径。
+1. NVDEC → CUDA → RTX TrueHDR / VSR → NVENC。
+2. 手写色彩空间转换 kernel，支持 HDR10 元数据。
+3. 作品集记录约 120fps 的实时 4K HDR 转换；具体性能取决于设备与输入。
+
+相关链接：https://github.com/zizhenliu0427/sdr2hdr
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

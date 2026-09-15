@@ -1,0 +1,743 @@
+{
+  "P-001": {
+    "key": "profile",
+    "kind": "profile",
+    "heading": "ZIZHEN LIU",
+    "nodes": [
+      "LANCE",
+      "WEB",
+      "AI + DATA",
+      "SYSTEMS"
+    ],
+    "caption": "FULL-STACK ENGINEER",
+    "title": "Zizhen Liu · Full-stack Engineer",
+    "zh": "刘子箴 · 全栈工程师",
+    "source": "https://github.com/zizhenliu0427",
+    "sourceKind": "profile",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-001",
+    "explanation": "我构建完整的产品 — 响应式界面、数据与 AI 后端、以及深入 GPU 层级的系统代码。",
+    "notes": [
+      "也可以叫我 Lance。",
+      "关注 Web 产品、AI 数据应用，以及深入 GPU 的系统工程。",
+      "目前寻求软件开发工作机会。"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "P-002": {
+    "key": "contact",
+    "kind": "contact",
+    "heading": "LET US BUILD",
+    "nodes": [
+      "EMAIL",
+      "GITHUB",
+      "LINKEDIN"
+    ],
+    "caption": "lzz288898@gmail.com",
+    "title": "Contact & collaboration",
+    "zh": "联系与合作",
+    "source": "https://github.com/zizhenliu0427",
+    "sourceKind": "profile",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-002",
+    "explanation": "欢迎交流软件开发机会、项目合作，或聊聊正在做的产品。",
+    "notes": [
+      "Email：lzz288898@gmail.com",
+      "GitHub：https://github.com/zizhenliu0427",
+      "LinkedIn：https://www.linkedin.com/in/zizhen-liu-580a40258/"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "P-003": {
+    "key": "skills",
+    "kind": "stack",
+    "heading": "WEB / AI / SYSTEMS",
+    "nodes": [
+      "REACT",
+      "FASTAPI",
+      "C++",
+      "NEXT.JS",
+      "POSTGRES",
+      "CUDA",
+      "TYPESCRIPT",
+      "PYTORCH",
+      "VULKAN"
+    ],
+    "caption": "PRODUCT TO GPU",
+    "title": "WEB · AI · SYSTEMS",
+    "zh": "从界面到 GPU",
+    "source": "https://github.com/zizhenliu0427",
+    "sourceKind": "profile",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-003",
+    "explanation": "从交互界面、服务端和数据管线，到 C++ 与 CUDA，沿着产品的实际问题深入不同技术层。",
+    "notes": [
+      "Interface：React 19 · Next.js · TypeScript · Tailwind CSS · ECharts / D3 · Android (Kotlin)",
+      "Server & data：FastAPI · Django REST · Node.js / Express · PostgreSQL / MySQL · Kafka · RAG / Qdrant · PyTorch",
+      "Metal：C++17/20 · CUDA · Vulkan / DX12 / Metal · NVENC / NVDEC · VHDL / FPGA · Linux",
+      "Delivery：Docker · Git · Vercel / Cloudflare · Vitest / Catch2 · Jira / Confluence · Agile"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "P-004": {
+    "key": "frontend",
+    "kind": "devices",
+    "heading": "INTERFACE ENGINEERING",
+    "nodes": [
+      "REACT",
+      "NEXT.JS",
+      "TYPESCRIPT",
+      "KOTLIN"
+    ],
+    "caption": "WEB + MOBILE",
+    "title": "INTERFACE ENGINEERING",
+    "zh": "界面与交互",
+    "source": "https://github.com/zizhenliu0427",
+    "sourceKind": "profile",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-004",
+    "explanation": "构建面向真实用户的 Web 与移动端界面。",
+    "notes": [
+      "技术与工具：React 19",
+      "技术与工具：Next.js",
+      "技术与工具：TypeScript",
+      "技术与工具：Tailwind CSS",
+      "技术与工具：ECharts / D3",
+      "技术与工具：Android (Kotlin)"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "P-005": {
+    "key": "backend",
+    "kind": "branch",
+    "heading": "SERVER / DATA",
+    "nodes": [
+      "API",
+      "POSTGRES",
+      "KAFKA",
+      "QDRANT",
+      "PYTORCH"
+    ],
+    "caption": "INGEST / QUERY / LEARN",
+    "title": "SERVER & DATA",
+    "zh": "服务端与数据",
+    "source": "https://github.com/zizhenliu0427",
+    "sourceKind": "profile",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-005",
+    "explanation": "实现 API、数据接入、检索与支撑产品的后端服务。",
+    "notes": [
+      "技术与工具：FastAPI",
+      "技术与工具：Django REST",
+      "技术与工具：Node.js / Express",
+      "技术与工具：PostgreSQL / MySQL",
+      "技术与工具：Kafka",
+      "技术与工具：RAG / Qdrant",
+      "技术与工具：PyTorch"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "P-006": {
+    "key": "delivery",
+    "kind": "flow",
+    "heading": "BUILD / TEST / SHIP",
+    "nodes": [
+      "GIT",
+      "TEST",
+      "DOCKER",
+      "DEPLOY"
+    ],
+    "caption": "VITEST / CATCH2 / CLOUDFLARE",
+    "title": "BUILD & SHIP",
+    "zh": "开发与交付",
+    "source": "https://github.com/zizhenliu0427",
+    "sourceKind": "profile",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-006",
+    "explanation": "将原型推进到可以部署、验证和持续维护的软件。",
+    "notes": [
+      "技术与工具：Docker",
+      "技术与工具：Git",
+      "技术与工具：Vercel / Cloudflare",
+      "技术与工具：Vitest / Catch2",
+      "技术与工具：Jira / Confluence",
+      "技术与工具：Agile"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "P-007": {
+    "key": "photography",
+    "kind": "photo",
+    "heading": "PHOTOGRAPHY",
+    "nodes": [
+      "CAPTURE",
+      "PROCESS",
+      "DISPLAY"
+    ],
+    "caption": "PERSONAL GALLERY IN CURATION",
+    "title": "Photography & observation",
+    "zh": "摄影与观察",
+    "source": "https://github.com/zizhenliu0427",
+    "sourceKind": "profile",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-007",
+    "explanation": "喜欢风景与 HDR 摄影，也喜欢研究影像从采集、处理到显示的整个过程。",
+    "notes": [
+      "个人摄影作品集仍在整理。",
+      "对色彩、动态范围和显示设备的兴趣，也延伸到了 GPU 视频处理项目。"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "P-008": {
+    "key": "driving-languages",
+    "kind": "gear",
+    "heading": "DRIVING / LANGUAGES",
+    "nodes": [
+      "MANDARIN / NATIVE",
+      "ENGLISH / PROFICIENT",
+      "JAPANESE / BEGINNER"
+    ],
+    "caption": "FK8 / MANUAL / AD09",
+    "title": "Driving & languages",
+    "zh": "驾驶与语言",
+    "source": "https://github.com/zizhenliu0427",
+    "sourceKind": "profile",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-008",
+    "explanation": "代码之外，喜欢汽车、日本文化与语言学习。",
+    "notes": [
+      "Honda Civic Type R FK8，手动挡。",
+      "ADVAN GT Beyond 轮毂与 Neova AD09 轮胎。",
+      "母语中文，熟练英语，正在学习日语。"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "P-009": {
+    "key": "unsw",
+    "kind": "scores",
+    "heading": "UNSW / 2024-2025",
+    "nodes": [
+      "CAPSTONE",
+      "AI",
+      "ADVANCED C++"
+    ],
+    "caption": "MASTER OF IT",
+    "values": [
+      85,
+      81,
+      81
+    ],
+    "title": "University of New South Wales (UNSW)",
+    "zh": "新南威尔士大学(UNSW)",
+    "source": "https://www.unsw.edu.au/",
+    "sourceKind": "profile",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-036",
+    "explanation": "信息技术硕士",
+    "notes": [
+      "毕业项目 (85)",
+      "人工智能 (81)",
+      "高级 C++ (81)"
+    ],
+    "notice": "数值取自现有个人档案；并非本次重新测试。"
+  },
+  "P-010": {
+    "key": "uts",
+    "kind": "scores",
+    "heading": "UTS / 2021-2024",
+    "nodes": [
+      "DATABASES",
+      "SYSTEMS TESTING",
+      "DATA STRUCTURES"
+    ],
+    "caption": "BSE / HONOURS",
+    "values": [
+      94,
+      90,
+      84
+    ],
+    "title": "University of Technology Sydney (UTS)",
+    "zh": "悉尼科技大学(UTS)",
+    "source": "https://www.uts.edu.au/",
+    "sourceKind": "profile",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-037",
+    "explanation": "软件工程学士(荣誉)",
+    "notes": [
+      "数据库基础 (94)",
+      "系统测试与质量管理 (90)",
+      "数据结构与算法 (84)"
+    ],
+    "notice": "数值取自现有个人档案；并非本次重新测试。"
+  },
+  "I-001": {
+    "key": "codritium",
+    "kind": "bars",
+    "heading": "CODRITIUM / 2026",
+    "nodes": [
+      "CI BEFORE",
+      "CI AFTER"
+    ],
+    "caption": "PIPELINE DURATION / MINUTES",
+    "values": [
+      57,
+      20
+    ],
+    "title": "Codritium",
+    "zh": "Codritium · 实习",
+    "source": "https://zmarkio.com/",
+    "sourceKind": "experience",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-033",
+    "explanation": "开发 Marketing Simplified(MediaJira)——面向媒介采购团队的广告投放管理平台,Next.js/TypeScript 前端搭配 Django REST + Channels 后端。",
+    "notes": [
+      "开发 Marketing Simplified(MediaJira)——面向媒介采购团队的广告投放管理平台,Next.js/TypeScript 前端搭配 Django REST + Channels 后端。",
+      "让实时聊天在高并发下稳定送达(幂等发送、transactional outbox、PgBouncer 连接池),100 人并发时 9,900/9,900 条全部送达;并基于 Django Channels 做了多人实时协作表格,协作编辑约 145ms 同步。",
+      "交付 Calendly 式预约链接、373 个文件的 slug-URL 迁移和 IDOR 越权修复;CI 从 57 分钟压到 20 分钟;生产环境出现 521 故障时恢复 144 个数据库迁移,让服务重新上线。"
+    ],
+    "notice": "数值取自现有个人档案；并非本次重新测试。"
+  },
+  "I-002": {
+    "key": "intelli-new",
+    "kind": "etl",
+    "heading": "INTELLI NEW",
+    "nodes": [
+      "COLLECT",
+      "VALIDATE",
+      "NORMALISE",
+      "DATA"
+    ],
+    "caption": "PYTHON / PANDAS / API CONTRACTS",
+    "title": "Intelli New Technologies",
+    "zh": "Intelli New Technologies · 实习",
+    "source": "https://intellinew.com.au/",
+    "sourceKind": "experience",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-034",
+    "explanation": "用 Python 爬虫和 Pandas ETL 管线采集、校验并规范化半结构化的网页数据,供下游功能使用。",
+    "notes": [
+      "用 Python 爬虫和 Pandas ETL 管线采集、校验并规范化半结构化的网页数据,供下游功能使用。",
+      "把业务需求转成用户故事和 API 约定,并在敏捷冲刺评审中对照设计稿验证 React 组件。",
+      "产出并验证数据看板的线框图,支撑前后端交界处的响应式实现。"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "I-003": {
+    "key": "golden-lady",
+    "kind": "workstation",
+    "heading": "GOLDEN LADY / 2021",
+    "nodes": [
+      "VUE.JS",
+      "RESPONSIVE",
+      "WORKSTATIONS"
+    ],
+    "caption": "SITE UPDATES + TECHNICAL SUPPORT",
+    "title": "Golden Lady Photography",
+    "zh": "Golden Lady Photography · 实习",
+    "source": "https://goldenladies.com/",
+    "sourceKind": "experience",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-035",
+    "explanation": "维护线上的 Vue.js 企业官网,稳妥地交付响应式界面调整与内容更新。",
+    "notes": [
+      "维护线上的 Vue.js 企业官网,稳妥地交付响应式界面调整与内容更新。",
+      "排查工作站硬件故障,为高负载场景配置操作系统与创意设计软件。"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "W-001": {
+    "key": "equipment-database",
+    "kind": "schema",
+    "heading": "CMO-DB",
+    "nodes": [
+      "EQUIPMENT",
+      "SENSORS",
+      "WEAPONS",
+      "QUERY"
+    ],
+    "caption": "29,000+ RECORDS / 6-TABLE JOINS",
+    "title": "CMO-DB",
+    "zh": "CMO-DB · 装备数据库",
+    "source": "https://www.cmo-db.com/",
+    "sourceKind": "documented-design",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-009",
+    "explanation": "一个 wiki 式的装备数据库。前台做中英双语路由和 D3 可视化,后台是 Node/Express + Sequelize 的无服务器架构,在 29,000 多条记录上跑最多六表联查。",
+    "notes": [
+      "29,000+ 条记录 · 参数化多表联查",
+      "迁移到 Vercel 无服务器架构,基础设施零维护",
+      "中英文 URL 路由 · 自制 D3 传感器扇形图"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "W-003": {
+    "key": "mediajira",
+    "kind": "bars",
+    "heading": "MEDIAJIRA / CHAT",
+    "nodes": [
+      "P95 BEFORE",
+      "P95 AFTER"
+    ],
+    "caption": "WEBSOCKET LATENCY / SECONDS",
+    "values": [
+      47.5,
+      5
+    ],
+    "title": "MediaJira",
+    "zh": "MediaJira · 广告平台",
+    "source": "https://github.com/quanwangniuniu/marketing-simplified",
+    "sourceKind": "documented-design",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-011",
+    "explanation": "Codritium 实习期间开发的广告投放管理平台。让实时聊天在 100 人并发下稳定送达,做了多人实时协作表格和 Calendly 式预约链接,完成横跨 12 个模块、涉及 373 个文件的 slug-URL 迁移,并把 CI 从 57 分钟压到 20 分钟。",
+    "notes": [
+      "100 人并发聊天:送达从 83–89% 提到 9,900/9,900,WebSocket p95 从 47.5 秒降到 5.0 秒",
+      "多人实时协作表格:在线状态、他人光标,协作编辑约 145ms 同步",
+      "CI 耗时 −66%(找回 597 个被跳过的测试)· 12 模块 slug-URL 迁移 + IDOR 越权修复"
+    ],
+    "notice": "数值取自现有个人档案；并非本次重新测试。"
+  },
+  "W-004": {
+    "key": "lanely",
+    "kind": "kanban",
+    "heading": "LANELY",
+    "nodes": [
+      "TODO",
+      "IN PROGRESS",
+      "REVIEW",
+      "DONE"
+    ],
+    "caption": "TASK STATES / SOURCE README",
+    "title": "Lanely",
+    "zh": "Lanely · 协作看板",
+    "source": "https://github.com/zizhenliu0427/lanely",
+    "sourceKind": "documented-design",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-012",
+    "explanation": "全栈看板工具:拖拽式面板、基于 WebSocket 的多人实时协作、项目数据统计。后端 FastAPI + SQLAlchemy,前端 React/TypeScript。",
+    "notes": [
+      "技术栈：FastAPI · SQLAlchemy · React · TypeScript · WebSocket · Docker",
+      "项目内容整理自已有个人作品集。"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "W-005": {
+    "key": "whale",
+    "kind": "route",
+    "heading": "WHALE LOGISTICS",
+    "nodes": [
+      "REGISTER",
+      "SCHEDULE",
+      "DELIVER",
+      "DEHIRE"
+    ],
+    "caption": "CONTAINER LIFECYCLE",
+    "title": "Whale Logistics",
+    "zh": "Whale · 海运平台",
+    "source": "https://github.com/Fairchild2333/whale-logistics-cms",
+    "sourceKind": "documented-design",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-013",
+    "explanation": "用 Spring Cloud 微服务重做海运货代的全流程:把集装箱从码头到还空箱的全程可见性自动化,替掉原来靠邮件人工协调的方式,降低滞箱风险。",
+    "notes": [
+      "技术栈：Java · Spring Cloud · RabbitMQ · React · TypeScript · Docker",
+      "项目内容整理自已有个人作品集。"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "W-006": {
+    "key": "breaktime",
+    "kind": "room",
+    "heading": "BREAKTIME ARCADE",
+    "nodes": [
+      "HOST",
+      "JOIN",
+      "PLAY",
+      "VOTE"
+    ],
+    "caption": "WHO IS UNDERCOVER / ROOM FLOW",
+    "title": "Breaktime Arcade",
+    "zh": "Breaktime · 派对游戏",
+    "source": "https://github.com/zizhenliu0427/breaktime-arcade",
+    "sourceKind": "documented-design",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-014",
+    "explanation": "Kahoot 式的多人派对游戏平台:主持端投屏,玩家用手机加入。Socket.IO 撑起实时房间,Vue 3 + TypeScript 单仓结构,可作为 PWA 安装。",
+    "notes": [
+      "技术栈：Vue 3 · TypeScript · Socket.IO · Express · PWA",
+      "项目内容整理自已有个人作品集。"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "W-007": {
+    "key": "good360",
+    "kind": "chat",
+    "heading": "GOOD360",
+    "nodes": [
+      "VIEW",
+      "VIEWMODEL",
+      "FIREBASE"
+    ],
+    "caption": "TEXT + IMAGE / MVVM",
+    "title": "Good360",
+    "zh": "Good360 · 移动聊天",
+    "source": "https://github.com/zizhenliu0427",
+    "sourceKind": "documented-design",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-015",
+    "explanation": "为 Good360 Australia 的捐赠 App 做的聊天模块,Kotlin/MVVM:多类型 RecyclerView 消息流、Firebase 实时同步、图片消息,以及可复现的聊天室 ID 生成。",
+    "notes": [
+      "技术栈：Kotlin · MVVM · Firebase · RecyclerView",
+      "代码未公开；此档案介绍本人参与的实现。"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "W-008": {
+    "key": "hls-keeper",
+    "kind": "tracks",
+    "heading": "WEB KEEPER",
+    "nodes": [
+      "BROWSER",
+      "WORKSPACE",
+      "DOWNLOADS",
+      "PYTHON",
+      "FFMPEG",
+      "ARCHIVE"
+    ],
+    "caption": "BROWSER + LEGACY ARCHIVE PATHS",
+    "title": "HLS Keeper",
+    "zh": "HLS Keeper · 流媒体归档",
+    "source": "https://github.com/zizhenliu0427/hls-keeper",
+    "sourceKind": "documented-design",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-016",
+    "explanation": "浏览器扩展抓取 HLS 流和站内附件,与本地 Python 服务通信,配网页控制台;FFmpeg 把切片合成可播放的文件。全程在本机完成。",
+    "notes": [
+      "技术栈：Python · Chrome Extension · FFmpeg · HLS",
+      "项目内容整理自已有个人作品集。"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "A-001": {
+    "key": "building-ai",
+    "kind": "sensor",
+    "heading": "BUILDING SENSOR AI",
+    "nodes": [
+      "CO2",
+      "TEMP",
+      "HUMIDITY",
+      "KAFKA",
+      "SQL",
+      "RAG"
+    ],
+    "caption": "SENSOR DATA TO CONVERSATION",
+    "title": "Building Sensor AI",
+    "zh": "楼宇传感器 AI",
+    "source": "https://github.com/zizhenliu0427",
+    "sourceKind": "documented-design",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-017",
+    "explanation": "一个物联网分析平台,楼宇管理者可以直接用自然语言查询实时传感器数据。覆盖 React 前端、FastAPI + Kafka 后端,以及对话背后的 RAG 检索管线。",
+    "notes": [
+      "React 19 单页应用 · CSV/Excel 解析交给 Web Workers",
+      "Kafka 数据接入 + PostgreSQL UPSERT 批量写入",
+      "Qdrant 向量检索 + 本地大模型(Ollama)与 NL2SQL"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "A-002": {
+    "key": "dermoscopy",
+    "kind": "classifier",
+    "heading": "SKIN LESION AI",
+    "nodes": [
+      "DENSENET",
+      "EFFICIENTNET",
+      "RESNET",
+      "SE ATTENTION",
+      "GRAD-CAM"
+    ],
+    "caption": "83% MACRO F1 / PORTFOLIO RESULT",
+    "title": "Skin Lesion Classification",
+    "zh": "皮肤镜图像分类",
+    "source": "https://github.com/zizhenliu0427",
+    "sourceKind": "documented-design",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-018",
+    "explanation": "在类别严重失衡的皮肤镜数据上微调 DenseNet/EfficientNet/ResNet,并手写实现 Squeeze-and-Excitation 注意力模块,macro F1 达到 83%;用 Grad-CAM 验证模型看的是不是该看的区域。",
+    "notes": [
+      "技术栈：PyTorch · Albumentations · scikit-learn · OpenCV",
+      "代码未公开；此档案介绍本人参与的实现。"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "A-003": {
+    "key": "ctv",
+    "kind": "cameras",
+    "heading": "CTV / YOLOv8",
+    "nodes": [
+      "CAMERAS",
+      "OPENCV",
+      "MJPEG",
+      "REACT"
+    ],
+    "caption": "10,025 FRAMES / 85% mAP50",
+    "title": "CTV Violence Detection",
+    "zh": "CTV · 视觉检测",
+    "source": "https://github.com/zizhenliu0427",
+    "sourceKind": "documented-design",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-019",
+    "explanation": "实时监控平台:YOLOv8 在 10,025 张人工标注的画面上训练,经 Django REST + MJPEG 推流,送到多路摄像头的 React 面板。",
+    "notes": [
+      "在 RTX 4090 上把 YOLOv8 训到 85% mAP50",
+      "OpenCV → MJPEG 实时推流,延迟低于 200ms",
+      "JWT 鉴权的 React 单页应用,支持 1/2/4/6 分屏"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "A-004": {
+    "key": "transcription",
+    "kind": "speech",
+    "heading": "AUDIO / VIDEO TO TEXT",
+    "nodes": [
+      "FFMPEG",
+      "ASR",
+      "TEXT",
+      "CLI / WEB / DESKTOP"
+    ],
+    "caption": "SPEAKER DIARISATION",
+    "title": "Audio / Video Transcription",
+    "zh": "音视频 AI 转写",
+    "source": "https://github.com/zizhenliu0427/Audio-Video2Text-AI",
+    "sourceKind": "documented-design",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-020",
+    "explanation": "AI 音视频转写,带说话人分离。以三种形态交付:命令行、网页应用和 Electron 桌面端,前置 FFmpeg 预处理,后接 Whisper 系语音识别模型。",
+    "notes": [
+      "技术栈：Python · Whisper · FFmpeg · FastAPI · Next.js · Electron",
+      "项目内容整理自已有个人作品集。"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "S-001": {
+    "key": "sdr-hdr",
+    "kind": "codec",
+    "heading": "SDR TO HDR",
+    "nodes": [
+      "NVDEC",
+      "CUDA",
+      "RTX VIDEO",
+      "NVENC"
+    ],
+    "caption": "BT.709 TO HDR10 / GPU PIPELINE",
+    "title": "SDR to HDR",
+    "zh": "SDR → HDR",
+    "source": "https://github.com/zizhenliu0427/sdr2hdr",
+    "sourceKind": "documented-design",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-025",
+    "explanation": "全程驻留 GPU 的视频管线(NVDEC → CUDA → RTX TrueHDR/VSR → NVENC),4K HDR 实时转换稳定在 ~120fps。色彩空间转换 kernel 手写,支持 HDR10 元数据标记,配中英双语命令行。",
+    "notes": [
+      "技术栈：C++17 · CUDA · NVENC/NVDEC · RTX Video SDK · FFmpeg",
+      "项目内容整理自已有个人作品集。"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "S-003": {
+    "key": "generic-graph",
+    "kind": "hierarchy",
+    "heading": "C++20 / GENERIC GRAPH",
+    "nodes": [
+      "EDGE<N,E>",
+      "WEIGHTED",
+      "UNWEIGHTED"
+    ],
+    "caption": "VALUE SEMANTICS / CATCH2",
+    "title": "C++20 Generic Graph",
+    "zh": "C++20 泛型图",
+    "source": "https://github.com/zizhenliu0427",
+    "sourceKind": "documented-design",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-027",
+    "explanation": "现代 C++20 泛型图容器:值语义、多态边类型层级、确定性排序,Catch2 单元测试全覆盖。",
+    "notes": [
+      "技术栈：C++20 · STL · Templates · Catch2",
+      "代码未公开；此档案介绍本人参与的实现。"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "S-004": {
+    "key": "fpga-audio",
+    "kind": "audio",
+    "heading": "FPGA AUDIO",
+    "nodes": [
+      "I2S",
+      "AXI STREAM",
+      "DMA",
+      "LINUX"
+    ],
+    "caption": "48 kHz / 24-bit / VHDL",
+    "title": "FPGA Audio Pipeline",
+    "zh": "FPGA 音频管线",
+    "source": "https://github.com/zizhenliu0427",
+    "sourceKind": "documented-design",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-028",
+    "explanation": "在可编程逻辑里用 VHDL 写 I2S 接收器,48kHz/24-bit 音频经 AXI4-Stream + DMA 送进 Linux,配 Device Tree 集成和一级 AXI-Lite 控制的增益/EQ。",
+    "notes": [
+      "技术栈：VHDL · Vivado · AXI4 / DMA · PetaLinux · C/C++",
+      "代码未公开；此档案介绍本人参与的实现。"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "S-005": {
+    "key": "cdn-probe",
+    "kind": "dns",
+    "heading": "CDN NODE PROBING",
+    "nodes": [
+      "CANDIDATES",
+      "TCP 443",
+      "THRESHOLD",
+      "DNS PIN"
+    ],
+    "caption": "RECHECK / RETAIN / REPLACE",
+    "title": "CDN Node Probing",
+    "zh": "CDN 节点探测",
+    "source": "https://github.com/zizhenliu0427/bili-cdn-dns-pin",
+    "sourceKind": "documented-design",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-029",
+    "explanation": "解决海外看 B 站卡顿:探测 CDN 边缘节点,把最快的那个用 DNS 固定下来。带定时复测、阈值保护和候选 IP 刷新,支持 Windows、macOS、OpenWrt 和 AdGuard Home。",
+    "notes": [
+      "技术栈：Shell · DNS · OpenWrt · AdGuard Home",
+      "项目内容整理自已有个人作品集。"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  },
+  "S-006": {
+    "key": "home-lab",
+    "kind": "lab",
+    "heading": "HOME LAB",
+    "nodes": [
+      "VMWARE",
+      "SERVER 2025",
+      "ACTIVE DIR",
+      "SYNOLOGY",
+      "EFI / ACPI",
+      "ANDROID"
+    ],
+    "caption": "IDENTITY / STORAGE / DEVICES",
+    "title": "Home Lab",
+    "zh": "家庭服务器实验室",
+    "source": "https://github.com/zizhenliu0427",
+    "sourceKind": "documented-design",
+    "sourceFile": "content/archives.en.json",
+    "legacyId": "X-030",
+    "explanation": "VMware Workstation 里搭的 Windows Server 2025 + Active Directory 实验环境,一台支持远程访问和 IPv6 的群晖 NAS,外加一些底层折腾:黑苹果 EFI/ACPI 引导、kext 注入,以及安卓第三方 ROM 救砖。",
+    "notes": [
+      "技术栈：Windows Server · Active Directory · Synology · EFI/ACPI · ADB",
+      "项目内容整理自已有个人作品集。"
+    ],
+    "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
+  }
+}
