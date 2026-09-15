@@ -13,6 +13,7 @@ import CinematicEntry from "@/components/CinematicEntry";
 import Decode from "@/components/Decode";
 import MatrixRain from "@/components/MatrixRain";
 import LanguageToggle from "@/components/LanguageToggle";
+import InterfaceSwitcher from "@/components/InterfaceSwitcher";
 import { useLanguage } from "@/contexts/LanguageContext";
 import styles from "@/app/page.module.css";
 
@@ -268,11 +269,13 @@ export default function Home() {
           <a href="#contact"><span>06</span> {t('nav.contact')}</a>
         </nav>
 
-        <LanguageToggle />
-
-        <div className={styles.availability}>
+        <div className={styles.headerTools}>
+          <LanguageToggle />
+          <InterfaceSwitcher current="matrix" />
+          <div className={styles.availability}>
           <i aria-hidden="true" />
           {t('nav.openToWork')}
+          </div>
         </div>
       </header>
 

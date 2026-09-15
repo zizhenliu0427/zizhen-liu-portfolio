@@ -16,6 +16,7 @@ import {
 import GlassFilter from "./GlassFilter";
 import OobeApp from "./OobeApp";
 import RotateGate from "./RotateGate";
+import InterfaceSwitcher from "./InterfaceSwitcher";
 import WallpaperPicker, { type Wallpaper } from "./WallpaperPicker";
 import Win7Window from "./Win7Window";
 
@@ -393,6 +394,7 @@ export default function Win7Desktop() {
       {/* SVG filters for the Aero glass refraction (taskbar / picker glass). */}
       <GlassFilter />
       <RotateGate />
+      <InterfaceSwitcher current="aero" floating />
       <div
       className="win7"
       style={{

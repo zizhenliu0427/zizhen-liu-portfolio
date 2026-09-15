@@ -75,6 +75,7 @@
 :is([data-layout="compact"], [data-layout="portrait"]) .column-navigation > div { min-width: 100px; gap: 4px; }
 :is([data-layout="compact"], [data-layout="portrait"]) .column-navigation strong { font-size: 13px; }
 :is([data-layout="compact"], [data-layout="portrait"]) .column-navigation > div > span { font-size: 8px; }
+:is([data-layout="compact"], [data-layout="portrait"]) .column-navigation > portfolio-interface-switcher { margin-left: 0; }
 :is([data-layout="compact"], [data-layout="portrait"]) .back-button { left: var(--edge); top: 84px; min-height: 44px; gap: 8px; }
 :is([data-layout="compact"], [data-layout="portrait"]) .back-button span { font-size: 10px; }
 :is([data-layout="compact"], [data-layout="portrait"]) .back-button small { display: none; }

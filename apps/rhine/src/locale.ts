@@ -10,6 +10,8 @@ export function detectLanguage(languages: readonly string[]): 'zh' | 'en' {
 }
 export function readLanguagePreference(): LanguagePreference {
   try {
+    const shared = localStorage.getItem('zl-portfolio-locale');
+    if (shared === 'en' || shared === 'zh') return shared;
     const value = localStorage.getItem('zl-archive-language');
     return value === 'en' || value === 'zh' ? value : 'auto';
   } catch { return 'auto'; }
@@ -48,6 +50,11 @@ export function setLanguage(preference: LanguagePreference, root: HTMLElement) {
   languagePreference = preference;
   language = preference === 'auto' ? detectLanguage(navigator.languages) : preference;
   try { localStorage.setItem('zl-archive-language', preference); } catch {}
+  try {
+    if (preference === 'auto') localStorage.removeItem('zl-portfolio-locale');
+    else localStorage.setItem('zl-portfolio-locale', preference);
+  } catch {}
+  document.querySelectorAll('portfolio-interface-switcher').forEach(element => element.setAttribute('lang', language));
   document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en-AU';
   if (language === previous) return;
   // Translate directly between displayed phrases in one pass. Reversing short

@@ -1,4 +1,5 @@
 import { motionDuration, motionTime, motionSpeed, setMotionSpeed, normaliseMotionSpeed } from './motion-speed';
+import { registerInterfaceSwitcher } from '../../../shared/interface-switcher';
 import { t as translateUi } from './locale';
 import { language, languagePreference, languageControl, setLanguage } from './locale';
 import { createRollingClock } from "./rolling-clock";
@@ -54,6 +55,10 @@ const $ = <T extends HTMLElement = HTMLElement>(selector: string) =>
   document.querySelector<T>(selector)!;
 import { logo, brandHeading } from "./brand";
 
+if (!isWallpaper) {
+  registerInterfaceSwitcher();
+}
+
 $("#stage").innerHTML = translateUi(`
   <div id="three-scene" class="three-scene"></div>
   <div class="scene-atmosphere archive-atmosphere"></div>
@@ -95,6 +100,17 @@ $("#stage").innerHTML = translateUi(`
   <div id="modal-root"></div><div id="toast" class="toast" role="status"></div>
   <div id="loading" class="loading"><div class="loading-mark">${logo}</div><span>CONNECTING TO PERSONAL ARCHIVE</span><i></i></div>
 `);
+
+// Treat the other visual systems as destinations in the same category/model
+// control instead of adding another floating toolbar. The archive remains the
+// current selection while the menu exposes Matrix and Aero as sibling views.
+if (!isWallpaper) {
+  const switcher = document.createElement('portfolio-interface-switcher');
+  switcher.setAttribute('current', 'rhine');
+  switcher.setAttribute('lang', language);
+  switcher.setAttribute('integrated', '');
+  $(".column-navigation").append(switcher);
+}
 
 $("#boot-background").insertAdjacentHTML(
   "beforeend",

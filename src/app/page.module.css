@@ -200,6 +200,10 @@
   animation: headerIn 620ms 80ms var(--ease-out) both;
 }
 
+.headerTools { display: flex; align-items: center; justify-content: flex-end; gap: 14px; }
+@media (max-width: 1400px) { .headerTools .availability { display: none; } }
+@media (max-width: 620px) { .headerTools { gap: 8px; } }
+
 .brand {
   display: inline-flex;
   align-items: center;
