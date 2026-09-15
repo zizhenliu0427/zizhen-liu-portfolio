@@ -21,7 +21,7 @@ Personal portfolio website built to showcase my software engineering skills and 
 
 Three visual systems in one repository and deployment:
 
-- **Rhine archive (`/` → `/rhine/index.html`)** — the default home page, with
+- **Rhine archive (`/`)** — the default home page, with
   31 bilingual archives, category-specific IDs and documentary 3D interiors.
   Sources and editable Blender projects live in `apps/rhine`. Adapted from
   [LBEILC/RhineLabUI](https://github.com/LBEILC/RhineLabUI); its MIT licence and
@@ -71,7 +71,7 @@ on the same origin. The generated output is not committed.
 
 For live editing of the archive, run `npm run dev:rhine` (port 5174), then
 `npm run build:rhine` to refresh it in the main site's preview. The model gallery
-is at `/rhine/art/project-previews/index.html`. Archive offline caching is scoped
+is at `/rhine/art/project-previews`. Archive offline caching is scoped
 to `/rhine/` and does not take control of Matrix or Aero pages.
 
 ## Type Checking

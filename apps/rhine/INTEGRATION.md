@@ -2,7 +2,8 @@
 
 The main portfolio builds this directory with Vite's `portfolio` mode, using
 `/rhine/` for assets, manifest and service worker scope. Run `npm run build:rhine`
-from the root to refresh `/rhine/index.html`; the portfolio's default `/` entry
+from the root to refresh the generated `/` Rhine entry; the standalone source
+file remains under `/rhine/index.html` for the static archive build.
 redirects there. `npm run dev:rhine` retains the independent port 5174 preview.
 
 Imported from the working tree of https://github.com/zizhenliu0427/zizhen-liu-portfolio-rhine, based on commit c939303, including the authorised bilingual archive, 31 models and category IDs.

@@ -1,4 +1,4 @@
-import { cp, mkdir, readFile, rm, access } from 'node:fs/promises';
+import { cp, mkdir, readFile, rm, access, writeFile } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import { dirname, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -26,9 +26,14 @@ run('scripts/build-pwa.mjs');
 // Check the build before replacing the previous working preview.
 const html = await readFile(resolve(source, 'dist/index.html'), 'utf8');
 if (!html.includes('/rhine/assets/index-')) throw new Error('Rhine build is missing its URL prefix');
+const scriptPath = html.match(/<script type="module" crossorigin src="([^"]+)"><\/script>/)?.[1];
+const stylePath = html.match(/<link rel="stylesheet" crossorigin href="([^"]+)">/)?.[1];
+if (!scriptPath || !stylePath) throw new Error('Rhine build is missing stable root entry assets');
 await rm(target, { recursive: true, force: true });
 await mkdir(target, { recursive: true });
 await cp(resolve(source, 'dist'), target, { recursive: true });
 await cp(resolve(source, 'art/project-previews'), resolve(target, 'art/project-previews'), { recursive: true });
 await cp(resolve(source, 'art/project-evidence'), resolve(target, 'art/project-evidence'), { recursive: true });
-console.log('Rhine is ready at /rhine/index.html (service worker scoped to /rhine/).');
+await cp(resolve(source, 'dist', stylePath.replace(/^\/rhine\//, '')), resolve(root, 'public/rhine-root.css'));
+await writeFile(resolve(root, 'public/rhine-root.js'), `import ${JSON.stringify(scriptPath)};\n`);
+console.log('Rhine is mounted at / (standalone source remains /rhine/index.html; service worker scoped to /rhine/).');

@@ -17,6 +17,8 @@
 /.next/
 /out/
 /public/rhine/
+/public/rhine-root.js
+/public/rhine-root.css
 /test-results/
 /playwright-report/
 

@@ -1,6 +1,6 @@
 /** Shared by React and the standalone archive; no 3D application is preloaded. */
 export const interfaceRoutes = {
-  rhine: '/rhine/index.html',
+  rhine: '/',
   matrix: '/matrix',
   aero: '/desktop',
 } as const;
