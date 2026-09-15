@@ -21,11 +21,11 @@ export default function ProjectsPage() {
       </div>
 
       <header className={styles.header}>
-        <Link className={styles.brand} href="/" aria-label="Zizhen Liu — home">
+        <Link className={styles.brand} href="/matrix" aria-label="Zizhen Liu — home">
           ZL
         </Link>
         <LanguageToggle />
-        <Link className={styles.backLink} href="/">
+        <Link className={styles.backLink} href="/matrix">
           {t('projectsPage.backHome')}
         </Link>
       </header>
@@ -58,7 +58,7 @@ export default function ProjectsPage() {
 
       <footer className={styles.footer}>
         <span>{t('footer.copyright')}</span>
-        <Link href="/">{t('projectsPage.returnToMain')}</Link>
+        <Link href="/matrix">{t('projectsPage.returnToMain')}</Link>
       </footer>
     </main>
   );

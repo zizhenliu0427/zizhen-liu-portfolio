@@ -4,6 +4,18 @@
 
 个人网站，用于展示软件工程技能和项目经验。
 
+## 三套界面
+
+- `/` 默认进入 Rhine 档案界面（`/rhine/index.html`）。
+- `/matrix` 保留黑客帝国界面，`/desktop` 保留 Aero 桌面。
+- Rhine 完整源码、31 款模型与 Blender 工程位于 `apps/rhine`。保留
+  [LBEILC/RhineLabUI](https://github.com/LBEILC/RhineLabUI) 的 MIT 许可及第三方资源声明。
+- 根目录 `npm ci` 自动安装 Rhine 的独立依赖；`npm run dev` 和 `npm run build`
+  自动构建并整合三套界面。生成的 `public/rhine` 不提交到 Git。
+- 编辑 Rhine 可用 `npm run dev:rhine` 热更新预览，再用 `npm run build:rhine`
+  更新主项目预览。模型画廊位于 `/rhine/art/project-previews/index.html`。
+- Rhine 的离线缓存限制在 `/rhine/`，不会接管其他界面的页面。
+
 ## 技术栈
 
 - **基础环境：** Node.js 24.2

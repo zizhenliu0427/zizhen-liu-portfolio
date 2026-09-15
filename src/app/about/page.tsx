@@ -28,11 +28,11 @@ export default function AboutPage() {
       </div>
 
       <header className={styles.header}>
-        <Link className={styles.brand} href="/" aria-label="Zizhen Liu — home">
+        <Link className={styles.brand} href="/matrix" aria-label="Zizhen Liu — home">
           ZL
         </Link>
         <LanguageToggle />
-        <Link className={styles.backLink} href="/">
+        <Link className={styles.backLink} href="/matrix">
           {t('about.backHome')}
         </Link>
       </header>
@@ -128,7 +128,7 @@ export default function AboutPage() {
 
       <footer className={styles.footer}>
         <span>{t('footer.copyright')}</span>
-        <Link href="/">{t('about.returnToMain')}</Link>
+        <Link href="/matrix">{t('about.returnToMain')}</Link>
       </footer>
     </main>
   );

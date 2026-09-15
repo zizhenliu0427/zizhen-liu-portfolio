@@ -16,6 +16,9 @@
 # next.js
 /.next/
 /out/
+/public/rhine/
+/test-results/
+/playwright-report/
 
 # production
 /build

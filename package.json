@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "npm ci --prefix apps/rhine --no-audit --no-fund",
+    "predev": "node scripts/build-rhine.mjs",
+    "prebuild": "node scripts/build-rhine.mjs",
+    "build:rhine": "node scripts/build-rhine.mjs",
+    "dev:rhine": "npm --prefix apps/rhine run dev",
     "build": "next build",
     "dev": "next dev",
     "start": "next start",

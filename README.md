@@ -19,9 +19,15 @@ Personal portfolio website built to showcase my software engineering skills and 
 
 ## Design
 
-Two distinct visual systems:
+Three visual systems in one repository and deployment:
 
-- **Main site (`/`)** — a Matrix-inspired CRT operator terminal: near-black
+- **Rhine archive (`/` → `/rhine/index.html`)** — the default home page, with
+  31 bilingual archives, category-specific IDs and documentary 3D interiors.
+  Sources and editable Blender projects live in `apps/rhine`. Adapted from
+  [LBEILC/RhineLabUI](https://github.com/LBEILC/RhineLabUI); its MIT licence and
+  third-party asset notices are retained in that directory.
+
+- **Matrix (`/matrix`)** — a Matrix-inspired CRT operator terminal: near-black
   surfaces, phosphor-green accents, canvas code-rain, scanlines and bloom,
   with reduced-motion and low-power fallbacks. The recruiter journey stays
   first; the spectacle stays behind the content.
@@ -57,6 +63,16 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view it locally.
+
+`npm install` / `npm ci` also installs Rhine's pinned dependencies separately
+from Next.js. `npm run dev` and `npm run build` first compile Rhine into the
+ignored `public/rhine` directory. Next.js then serves/exports all three interfaces
+on the same origin. The generated output is not committed.
+
+For live editing of the archive, run `npm run dev:rhine` (port 5174), then
+`npm run build:rhine` to refresh it in the main site's preview. The model gallery
+is at `/rhine/art/project-previews/index.html`. Archive offline caching is scoped
+to `/rhine/` and does not take control of Matrix or Aero pages.
 
 ## Type Checking
 

@@ -4,7 +4,7 @@
   "short_name": "ZL Archive",
   "description": "刘子箴的交互式个人作品集",
   "lang": "zh-CN",
-  "start_url": "./?source=pwa",
+  "start_url": "./index.html?source=pwa",
   "scope": "./",
   "display": "standalone",
   "background_color": "#e8e5e1",
