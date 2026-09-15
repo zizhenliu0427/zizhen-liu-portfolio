@@ -115,14 +115,14 @@ export const projects: readonly FeaturedProject[] = [
     title: "Marketing Simplified (MediaJira)",
     type: "Codritium internship · Platform engineering across the stack",
     summary:
-      "The campaign-management platform I build at Codritium — a 373-file slug-URL migration across 12 Django/Next.js modules, a CI pipeline rebuilt from 57 to 20 minutes, a production outage diagnosed and recovered on GCP, and CSM features shipped end to end.",
+      "The campaign-management platform I build at Codritium — real-time chat made reliable under 100-user load, multi-user spreadsheet collaboration, Calendly-style booking links, a 373-file slug-URL migration across 12 modules and a CI pipeline cut from 57 to 20 minutes.",
     highlights: [
-      "12-module slug-URL architecture + IDOR access-control hardening",
-      "CI −66%: pytest config fix (+597 recovered tests), xdist, blocking quality gates",
-      "Prod 521 recovery — 144 migrations restored, migration guard + health polling",
+      "Chat under 100-user load: 83–89% → 9,900/9,900 delivered, WebSocket p95 47.5s → 5.0s",
+      "Real-time spreadsheet collaboration · presence, remote cursors, ~145ms peer edits",
+      "CI −66% (+597 recovered tests) · 12-module slug-URL migration + IDOR fixes",
     ],
-    stack: ["Next.js", "TypeScript", "Django REST", "PostgreSQL", "GitHub Actions", "Docker"],
-    metric: "4,758 TESTS GREEN",
+    stack: ["Next.js", "TypeScript", "Django Channels", "PostgreSQL", "Redis", "GitHub Actions"],
+    metric: "9,900/9,900 DELIVERED",
     visual: "campaign",
     href: "https://zmarkio.com/",
     github: "https://github.com/quanwangniuniu/marketing-simplified",
@@ -196,8 +196,8 @@ export const archive: readonly ArchiveEntry[] = [
     title: "Marketing Simplified — Campaign Management Platform",
     domains: ["WEB"],
     summary:
-      "Codritium internship product (MediaJira): a campaign-management platform for media-buying teams — Next.js/TypeScript over Django REST + Channels, with Kafka event streaming, Celery jobs, ad-platform integrations and a Prometheus/Grafana/Loki/Jaeger observability stack.",
-    stack: ["Next.js", "TypeScript", "Django REST", "Kafka", "Celery", "PostgreSQL"],
+      "Codritium internship product (MediaJira): a campaign-management platform for media-buying teams — Next.js/TypeScript over Django REST + Channels, with Celery jobs, PostgreSQL/Redis, ad-platform integrations, real-time chat and collaborative spreadsheets.",
+    stack: ["Next.js", "TypeScript", "Django REST", "Channels", "Celery", "PostgreSQL"],
     access: {
       kind: "live",
       href: "https://zmarkio.com/",
@@ -419,8 +419,8 @@ export const experience: readonly ExperienceItem[] = [
     role: "Software Developer Intern",
     bullets: [
       "Building Marketing Simplified (MediaJira), a campaign-management platform for media-buying teams — a Next.js/TypeScript front end over a Django REST + Channels backend.",
-      "Working across an event-driven, containerised stack: Kafka event pipelines, Celery background jobs, PostgreSQL/Redis, Nginx and Docker Compose.",
-      "Shipping with production-grade observability (OpenTelemetry → Prometheus/Grafana/Loki/Jaeger) and a Jest/pytest/K6 test pipeline in GitHub Actions CI.",
+      "Made real-time chat reliable under load (idempotent sends, a transactional outbox, PgBouncer pooling: 9,900/9,900 messages delivered at 100 concurrent users) and built multi-user spreadsheet collaboration over Django Channels with ~145ms peer updates.",
+      "Shipped Calendly-style booking links, a 373-file slug-URL migration and IDOR fixes; cut CI from 57 to 20 minutes and recovered a production 521 outage by restoring 144 migrations.",
     ],
     links: [
       { label: "FEATURED_05", href: "#project-mediajira", internal: true },

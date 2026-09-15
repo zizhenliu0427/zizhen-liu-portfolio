@@ -449,13 +449,13 @@ export const zh = {
     mediajira: {
       type: "Codritium 实习 \u00b7 跨全栈的平台工程",
       summary:
-        "Codritium 实习期间的广告投放管理平台。横跨 12 个 Django/Next.js 模块、涉及 373 个文件的 slug-URL 架构迁移,CI 从 57 分钟重建到 20 分钟,一次 GCP 生产事故的诊断与恢复,以及端到端交付的 CSM 功能。",
+        "Codritium 实习期间开发的广告投放管理平台。让实时聊天在 100 人并发下稳定送达,做了多人实时协作表格和 Calendly 式预约链接,完成横跨 12 个模块、涉及 373 个文件的 slug-URL 迁移,并把 CI 从 57 分钟压到 20 分钟。",
       highlights: [
-        "12 模块 slug-URL 架构改造 + IDOR 越权加固",
-        "CI 耗时 \u221266%:修复 pytest 配置(找回 597 个被跳过的测试)、xdist 并行、强制质量门禁",
-        "生产 521 事故恢复:修复 144 个数据库迁移,补上迁移守卫与健康轮询",
+        "100 人并发聊天:送达从 83\u201389% 提到 9,900/9,900,WebSocket p95 从 47.5 秒降到 5.0 秒",
+        "多人实时协作表格:在线状态、他人光标,协作编辑约 145ms 同步",
+        "CI 耗时 \u221266%(找回 597 个被跳过的测试)\u00b7 12 模块 slug-URL 迁移 + IDOR 越权修复",
       ],
-      metric: "4,758 个测试全绿",
+      metric: "9,900/9,900 条送达",
     },
   },
 
@@ -466,7 +466,7 @@ export const zh = {
     "sdr2hdr": { summary: "全程驻留 GPU 的视频管线(NVDEC \u2192 CUDA \u2192 RTX TrueHDR/VSR \u2192 NVENC),4K HDR 实时转换稳定在 ~120fps。色彩空间转换 kernel 手写,支持 HDR10 元数据标记,配中英双语命令行。" },
     "portfolio": { summary: "你正在看的这个站点:Next.js 静态构建,canvas 代码雨、CRT 氛围层,以及 /desktop 下一套手写的 Windows 7 Aero 窗口管理器。" },
     "gpu-benchmark": { summary: "C++17 写的五后端基准测试(Vulkan、DX12、DX11、OpenGL、Metal),实测 10 多张 AMD 与 NVIDIA 显卡,覆盖六代 AMD 架构;无窗口计算模式挖出了被渲染路径掩盖的 12 倍吞吐差异。附 2,300 行技术报告。" },
-    "mediajira-archive": { summary: "Codritium 实习期的产品(MediaJira):面向媒介采购团队的广告投放管理平台。Next.js/TypeScript 前端,Django REST + Channels 后端,配 Kafka 事件流、Celery 任务、广告平台对接,以及 Prometheus/Grafana/Loki/Jaeger 可观测性栈。" },
+    "mediajira-archive": { summary: "Codritium 实习期的产品(MediaJira):面向媒介采购团队的广告投放管理平台。Next.js/TypeScript 前端,Django REST + Channels 后端,配 Celery 任务、PostgreSQL/Redis、广告平台对接,以及实时聊天和多人协作表格。" },
     "novacart-archive": { summary: "开发中的移动优先电商平台:ASP.NET Core + PostgreSQL 后端,含可配置订单状态机、Stripe 支付、Redis 缓存与服务端购物车持久化;前台是带后台看板的 Next.js PWA 店面。" },
     "lanely": { summary: "全栈看板工具:拖拽式面板、基于 WebSocket 的多人实时协作、项目数据统计。后端 FastAPI + SQLAlchemy,前端 React/TypeScript。" },
     "whale-logistics": { summary: "用 Spring Cloud 微服务重做海运货代的全流程:把集装箱从码头到还空箱的全程可见性自动化,替掉原来靠邮件人工协调的方式,降低滞箱风险。" },
@@ -495,8 +495,8 @@ export const zh = {
       role: "软件开发实习生",
       bullets: [
         "开发 Marketing Simplified(MediaJira)——面向媒介采购团队的广告投放管理平台,Next.js/TypeScript 前端搭配 Django REST + Channels 后端。",
-        "工作覆盖整套事件驱动的容器化技术栈:Kafka 事件管线、Celery 后台任务、PostgreSQL/Redis、Nginx 与 Docker Compose。",
-        "交付时配齐生产级可观测性(OpenTelemetry \u2192 Prometheus/Grafana/Loki/Jaeger),以及跑在 GitHub Actions CI 上的 Jest/pytest/K6 测试流水线。",
+        "让实时聊天在高并发下稳定送达(幂等发送、transactional outbox、PgBouncer 连接池),100 人并发时 9,900/9,900 条全部送达;并基于 Django Channels 做了多人实时协作表格,协作编辑约 145ms 同步。",
+        "交付 Calendly 式预约链接、373 个文件的 slug-URL 迁移和 IDOR 越权修复;CI 从 57 分钟压到 20 分钟;生产环境出现 521 故障时恢复 144 个数据库迁移,让服务重新上线。",
       ],
     },
     intelli: {

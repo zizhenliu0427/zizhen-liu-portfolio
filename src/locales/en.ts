@@ -447,13 +447,13 @@ export const en = {
     mediajira: {
       type: "Codritium internship \u00b7 Platform engineering across the stack",
       summary:
-        "The campaign-management platform built at Codritium \u2014 a 373-file slug-URL migration across 12 Django/Next.js modules, a CI pipeline rebuilt from 57 to 20 minutes, a production outage diagnosed and recovered on GCP, and CSM features shipped end to end.",
+        "The campaign-management platform built at Codritium \u2014 real-time chat made reliable under 100-user load, multi-user spreadsheet collaboration, Calendly-style booking links, a 373-file slug-URL migration across 12 modules and a CI pipeline cut from 57 to 20 minutes.",
       highlights: [
-        "12-module slug-URL architecture + IDOR access-control hardening",
-        "CI \u221266%: pytest config fix (+597 recovered tests), xdist, blocking quality gates",
-        "Prod 521 recovery \u2014 144 migrations restored, migration guard + health polling",
+        "Chat under 100-user load: 83\u201389% \u2192 9,900/9,900 delivered, WebSocket p95 47.5s \u2192 5.0s",
+        "Real-time spreadsheet collaboration \u00b7 presence, remote cursors, ~145ms peer edits",
+        "CI \u221266% (+597 recovered tests) \u00b7 12-module slug-URL migration + IDOR fixes",
       ],
-      metric: "4,758 TESTS GREEN",
+      metric: "9,900/9,900 DELIVERED",
     },
   },
 
@@ -464,7 +464,7 @@ export const en = {
     "sdr2hdr": { summary: "Fully GPU-resident video pipeline (NVDEC \u2192 CUDA \u2192 RTX TrueHDR/VSR \u2192 NVENC) sustaining ~120fps real-time 4K HDR conversion, with hand-written colour-space kernels, HDR10 metadata signalling and a bilingual CLI." },
     "portfolio": { summary: "The site you are reading: a Next.js static build with a canvas code-rain, CRT ambient layers and a hand-built Windows 7 Aero window manager living at /desktop." },
     "gpu-benchmark": { summary: "C++17 benchmark with five backends \u2014 Vulkan, DX12, DX11, OpenGL, Metal \u2014 profiling 10+ AMD and NVIDIA GPUs, including six generations of AMD architectures; a headless compute mode uncovered 12x hidden throughput. 2,300-line technical report." },
-    "mediajira-archive": { summary: "Codritium internship product (MediaJira): a campaign-management platform for media-buying teams \u2014 Next.js/TypeScript over Django REST + Channels, with Kafka event streaming, Celery jobs, ad-platform integrations and a Prometheus/Grafana/Loki/Jaeger observability stack." },
+    "mediajira-archive": { summary: "Codritium internship product (MediaJira): a campaign-management platform for media-buying teams \u2014 Next.js/TypeScript over Django REST + Channels, with Celery jobs, PostgreSQL/Redis, ad-platform integrations, real-time chat and collaborative spreadsheets." },
     "novacart-archive": { summary: "Mobile-first e-commerce platform in active development: an ASP.NET Core + PostgreSQL backend with a configurable order state machine, Stripe payments, Redis caching and server-side cart persistence, behind a Next.js PWA storefront with admin analytics." },
     "lanely": { summary: "Full-stack Kanban tool \u2014 drag-and-drop boards, real-time collaboration over WebSockets and project analytics, with a FastAPI + SQLAlchemy backend behind a React/TypeScript front end." },
     "whale-logistics": { summary: "Spring Cloud microservices platform modernising end-to-end sea-freight workflows: automates container visibility from the wharf to empty dehire, replacing manual email coordination and mitigating detention risk." },
@@ -492,8 +492,8 @@ export const en = {
       role: "Software Developer Intern",
       bullets: [
         "Building Marketing Simplified (MediaJira), a campaign-management platform for media-buying teams \u2014 a Next.js/TypeScript front end over a Django REST + Channels backend.",
-        "Working across an event-driven, containerised stack: Kafka event pipelines, Celery background jobs, PostgreSQL/Redis, Nginx and Docker Compose.",
-        "Shipping with production-grade observability (OpenTelemetry \u2192 Prometheus/Grafana/Loki/Jaeger) and a Jest/pytest/K6 test pipeline in GitHub Actions CI.",
+        "Made real-time chat reliable under load (idempotent sends, a transactional outbox, PgBouncer pooling: 9,900/9,900 messages delivered at 100 concurrent users) and built multi-user spreadsheet collaboration over Django Channels with ~145ms peer updates.",
+        "Shipped Calendly-style booking links, a 373-file slug-URL migration and IDOR fixes; cut CI from 57 to 20 minutes and recovered a production 521 outage by restoring 144 migrations.",
       ],
     },
     intelli: {
