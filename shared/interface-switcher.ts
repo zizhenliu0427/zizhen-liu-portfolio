@@ -60,6 +60,7 @@ export function registerInterfaceSwitcher() {
         :host([floating][current="rhine"]){right:max(112px,calc(env(safe-area-inset-right) + 100px));z-index:60}
         :host([integrated]){align-self:center;flex:none}
         :host([integrated]) button{min-height:40px;padding:0 9px;background:transparent;border-color:var(--edge);font-size:11px}
+        :host([integrated]) nav{top:auto;bottom:calc(100% + 8px)}
         *{box-sizing:border-box}button{display:flex;align-items:center;gap:8px;min-height:44px;padding:0 12px;border:1px solid var(--edge);border-radius:3px;background:var(--panel);color:var(--ink);font:inherit;cursor:pointer;white-space:nowrap}
         button span{font-size:16px}button:hover,a:hover{filter:brightness(1.1)}
         nav{position:absolute;right:0;top:calc(100% + 8px);width:220px;max-width:calc(100vw - 32px);padding:6px;background:var(--panel);border:1px solid var(--edge);border-radius:4px;box-shadow:0 12px 36px #0004}

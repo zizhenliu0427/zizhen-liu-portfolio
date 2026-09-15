@@ -541,6 +541,7 @@ button {
   display: none;
   align-items: center;
   gap: 24px;
+  z-index: 31;
 }
 [data-mode="archive"] .column-navigation {
   display: flex;
