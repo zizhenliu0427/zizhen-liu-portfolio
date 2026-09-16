@@ -227,5 +227,15 @@
   "模型已载入": "Model loaded",
   "显示帧率": "Show frame rate",
   "帧率": "Frame rate",
-  "在三维界面显示 FPS，每秒更新一次": "Show FPS in the 3D view, updated once per second"
+  "在三维界面显示 FPS，每秒更新一次": "Show FPS in the 3D view, updated once per second",
+  "自适应画质": "Adaptive quality",
+  "估算屏幕刷新率，持续掉帧时逐档降低画质；稳定后缓慢恢复": "Estimate the display refresh rate; reduce quality gradually under sustained load and restore it slowly when stable",
+  "自适应已关闭 · 使用固定画质": "Adaptive quality off · fixed quality",
+  "估算刷新率": "Estimated refresh rate",
+  "原画质设置作为上限，关闭后恢复": "Your saved quality is the ceiling and is restored when switched off",
+  "正在估算屏幕刷新率…": "Estimating the display refresh rate…",
+  "保持原画质": "Original quality retained",
+  "轻度调整特效": "Effects slightly reduced",
+  "适度降低渲染清晰度": "Rendering resolution moderately reduced",
+  "优先保持流畅": "Prioritising smooth motion"
 }
