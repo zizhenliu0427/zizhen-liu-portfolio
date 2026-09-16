@@ -8,12 +8,14 @@ export class DocumentDecryption {
   private covers: Cover[] = [];
   private started: number | null = null;
   private progress = 0;
+  private allFields = false;
 
-  reset(root: HTMLElement, clear: boolean) {
+  reset(root: HTMLElement, clear: boolean, allFields = false) {
     this.remove();
     this.root = root;
     this.started = null;
     this.progress = clear ? 1 : 0;
+    this.allFields = allFields;
     this.refresh();
   }
 
@@ -23,7 +25,9 @@ export class DocumentDecryption {
     // Measure text fragments, including wrapped lines, without splitting or
     // replacing the actual text. Stage scaling cancels out in local coordinates.
     const targets = this.root.querySelectorAll<HTMLElement>(
-      "h2, .detail-title-cn, .metadata dd, .tab-panel p, .research-notes li, .log-row",
+      this.allFields
+        ? "h2, h3, .detail-kicker, .detail-title-cn, .metadata dt, .metadata dd, .detail-tabs button, .panel-label, .tab-panel p, .research-notes li, .log-row, .portfolio-stack span, .detail-actions a, .detail-actions button, .detail-footnote"
+        : "h2, .detail-title-cn, .metadata dd, .tab-panel p, .research-notes li, .log-row",
     );
     targets.forEach((target) => {
       target.classList.add("document-redacted");

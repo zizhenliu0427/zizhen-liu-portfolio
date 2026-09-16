@@ -1,7 +1,7 @@
-import { motionDuration, motionTime, motionSpeed, setMotionSpeed, normaliseMotionSpeed } from './motion-speed';
+import { motionDuration, motionTime, motionSpeed, setMotionSpeed, normaliseMotionSpeed, openingTime, seekOpeningTime, pauseOpeningTime } from './motion-speed';
 import { registerInterfaceSwitcher } from '../../../shared/interface-switcher';
 import { t as translateUi } from './locale';
-import { language, languagePreference, languageControl, setLanguage } from './locale';
+import { language, languagePreference, languageControl, setLanguage, revealTranslation } from './locale';
 import { createRollingClock } from "./rolling-clock";
 import { InspectionOverlay } from "./inspection-overlay";
 import { DocumentDecryption } from "./document-decryption";
@@ -90,7 +90,7 @@ $("#stage").innerHTML = translateUi(`
     <div class="archive-hint"><kbd>←</kbd> <kbd>→</kbd> 切换列 <span>／</span> <kbd>↑</kbd> <kbd>↓</kbd> 前后档案 <span>／</span> <kbd>ENTER</kbd> 读取</div>
   </section>
   <section id="detail-ui" class="detail-ui" aria-label="档案内容" hidden>
-    <button class="back-button" data-action="back">← <span>ARCHIVE OVERVIEW</span><small>ESC</small></button>
+    <button class="back-button" data-action="back"><i class="back-arrow" aria-hidden="true">←</i> <span>ARCHIVE OVERVIEW</span><small>ESC</small></button>
     <div class="object-caption"><span id="object-id">NO.001</span><div>PERSONAL ARCHIVE</div><small>DRAG TO INSPECT <span>↔</span></small><button class="viewer-open" data-action="model-viewer">360° 查看文档模型 <span>↗</span></button></div>
     <article id="detail-content" class="detail-content"></article>
   </section>
@@ -122,7 +122,6 @@ $("#viewport").insertAdjacentHTML("beforeend", translateUi('<button class="mobil
 type Mode = "boot" | "archive" | "detail";
 let mode: Mode = "boot",
   selected = 0,
-  bootStart = 0,
   lastStep = "",
   ready = false;
 let modal: "search" | "saved" | "settings" | null = null,
@@ -464,6 +463,11 @@ function setMode(next: Mode) {
     audioPreviewRequest++;
     configureAudio();
   }
+  if (next === "archive") {
+    $("#stage").dataset.archiveCard = "true";
+    $(".callout-rule").style.removeProperty("transform");
+  }
+  else if (next === "boot") delete $("#stage").dataset.archiveCard;
   $("#stage").dataset.mode = next;
   workbench?.syncVisibility();
   if (previousMode !== next) fit();
@@ -577,7 +581,7 @@ function replayBoot(forcePreview = false) {
   closeModal(() => replayBootAfterModal(forcePreview));
 }
 function replayBootAfterModal(forcePreview: boolean) {
-  bootStart = motionTime() - 1.76;
+  seekOpeningTime(1.76);
   frozenTime = null;
   lastStep = "";
   setMode(prefs.reduced && !forcePreview ? "archive" : "boot");
@@ -1088,7 +1092,7 @@ function frame(ms: number) {
   playground?.tick(time);
   const cinema =
     mode === "boot" && ready
-      ? bootFrame(frozenTime ?? motionTime() - bootStart)
+      ? bootFrame(frozenTime ?? openingTime())
       : undefined;
   wallpaperEffects?.update(time, prefs.reduced);
   // The calibrated 2D opening fully covers the scene until array entry.
@@ -1281,15 +1285,14 @@ function completeStartup(silent: boolean) {
   const fade = prefs.reduced ? 0 : motionDuration(600);
   $('#viewport').append(openingControls);
   openingControls.querySelector('details')!.open = false;
-  bootStart = motionTime() - (reviewParams.has("time") ? Number(reviewParams.get("time")) : 1.76);
-  if (!reviewParams.has("time")) bootStart += fade / 1000 * motionSpeed;
+  seekOpeningTime(reviewParams.has("time") ? Number(reviewParams.get("time")) : 1.76 - fade / 1000 * motionSpeed);
   setMode("boot");
   if (reviewParams.get("scene") === "archive" || (prefs.reduced && !reviewParams.has("time"))) setMode("archive");
   if (reviewParams.get("scene") === "detail") setMode("detail");
   if (isWallpaper && wallpaperHost()?.properties.boot?.value === false) setMode("archive");
   if (resumeLocale?.started) {
     setMode(resumeLocale.mode === 'detail' ? 'detail' : resumeLocale.mode === 'boot' ? 'boot' : 'archive');
-    if (mode === 'boot') bootStart = motionTime() - (resumeLocale.bootPosition ?? 1.76);
+    if (mode === 'boot') seekOpeningTime(resumeLocale.bootPosition ?? 1.76);
     if (mode === 'detail' && ['overview', 'notes', 'history'].includes(resumeLocale.tab)) setTab(resumeLocale.tab, false);
   }
   $("#stage").inert = false;
@@ -1348,7 +1351,7 @@ if (isWallpaper) {
     const paused = wallpaperHost()?.paused ?? false;
     if (paused && pausedAt === undefined) pausedAt = performance.now();
     if (!paused && pausedAt !== undefined) {
-      if (started && mode === "boot") bootStart += (performance.now() - pausedAt) / 1000 * motionSpeed;
+      if (started && mode === "boot") pauseOpeningTime((performance.now() - pausedAt) / 1000);
       pausedAt = undefined;
     }
     audio.setHostPaused(paused);
@@ -1394,7 +1397,7 @@ Object.assign(window, {
     },
     seek: (t: number) => {
       setMode("boot");
-      bootStart = motionTime() - t;
+      seekOpeningTime(t);
       lastStep = "";
     },
     archive: () => setMode("archive"),
@@ -1408,7 +1411,7 @@ Object.assign(window, {
       ready,
       startup: started ? "started" : entry?.phase ?? "loading",
       motion: { speed: motionSpeed, reduced: prefs.reduced, systemReduced: matchMedia("(prefers-reduced-motion: reduce)").matches },
-      bootTime: mode === "boot" ? started ? (frozenTime ?? motionTime() - bootStart) + 5 : 6.76 : null,
+      bootTime: mode === "boot" ? started ? (frozenTime ?? openingTime()) + 5 : 6.76 : null,
       selected: records[selected].id,
       saved: [...saved],
       audio: audio.stats(),
@@ -1439,15 +1442,18 @@ function changeLanguage(value: string) {
   openingControls.innerHTML = openingSettingsMarkup();
   openingControls.querySelector('details')!.open = expanded;
   syncOpeningControls();
+  openingControls.querySelectorAll<HTMLElement>('.entry-language-row, label, [data-entry-mute]').forEach(revealTranslation);
   $('#language-toggle').outerHTML = languageControl();
   updateSelection();
   if (mode === 'detail') {
     renderDetail();
     setTab(tab, false);
     $('#detail-content').scrollTop = panelScroll;
+    documentDecryption.reset($('#detail-content'), prefs.reduced || !scene, true);
   }
   if (modal) {
     renderModal();
+    $('#modal-root').querySelectorAll<HTMLElement>('h2, h3, label, button, p, .result-header, .modal-bottom').forEach(revealTranslation);
     const input = document.querySelector<HTMLInputElement>('#archive-search');
     if (input) input.value = searchQuery;
   }

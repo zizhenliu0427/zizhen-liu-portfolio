@@ -42,7 +42,16 @@ export function t(value: string): string {
   return replacePhrases(value, language === 'en' ? english : chinese);
 }
 export function languageControl(id = 'language-toggle') {
-  return `<button type="button" id="${id}" class="language-toggle" data-toggle-language aria-label="${language === 'zh' ? 'Switch to English' : '切换为中文'}" title="${language === 'zh' ? 'Switch to English' : '切换为中文'}"><span ${language === 'zh' ? 'class="active"' : ''}>中</span><i>/</i><span ${language === 'en' ? 'class="active"' : ''}>EN</span></button>`;
+  return `<button type="button" id="${id}" class="language-toggle" data-toggle-language aria-label="${language === 'zh' ? 'Switch to English' : '切换为中文'}" title="${language === 'zh' ? 'Switch to English' : '切换为中文'}"><span ${language === 'en' ? 'class="active"' : ''}>EN</span><i>/</i><span ${language === 'zh' ? 'class="active"' : ''}>中</span></button>`;
+}
+const languageAnimations = new WeakMap<HTMLElement, Animation>();
+export function revealTranslation(element: HTMLElement) {
+  languageAnimations.get(element)?.cancel();
+  if (document.querySelector('#stage.reduce-motion') || !element.getClientRects().length) return;
+  languageAnimations.set(element, element.animate(
+    [{ opacity: .15, translate: '0 5px' }, { opacity: 1, translate: '0 0' }],
+    { duration: 460, easing: 'cubic-bezier(.22,1,.36,1)' },
+  ));
 }
 /** One pass on explicit language changes; existing canvas, focus and listeners survive. */
 export function setLanguage(preference: LanguagePreference, root: HTMLElement) {
@@ -64,9 +73,17 @@ export function setLanguage(preference: LanguagePreference, root: HTMLElement) {
     : { ...chinese, ...Object.fromEntries(Object.entries(english).map(([key, value]) => [value, chinese[key] ?? key])) };
   const translate = (value: string) => replacePhrases(value, dictionary);
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  const changed = new Set<HTMLElement>();
   for (let node = walker.nextNode(); node; node = walker.nextNode()) {
     if (node.parentElement?.closest('script, style, svg, .boot, [data-toggle-language], #detail-content, #hover-label, #selected-title, #archive-category, #selected-clearance, #column-name')) continue;
-    if (node.textContent?.trim()) node.textContent = translate(node.textContent);
+    if (node.textContent?.trim()) {
+      const next = translate(node.textContent);
+      if (next !== node.textContent && node.parentElement) changed.add(node.parentElement);
+      node.textContent = next;
+    }
+  }
+  for (const element of changed) {
+    if (![...changed].some(parent => parent !== element && parent.contains(element))) revealTranslation(element);
   }
   for (const element of root.querySelectorAll<HTMLElement>('[aria-label], [title], [placeholder]')) {
     if (element.closest('[data-toggle-language]')) continue;
