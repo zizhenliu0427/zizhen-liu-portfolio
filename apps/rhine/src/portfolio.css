@@ -148,3 +148,15 @@
 @media (prefers-reduced-motion: reduce) {
   .back-arrow, .read-file > span { animation: none !important; }
 }
+
+/* One scroll surface per archive; tabs grow with the document. */
+#stage .detail-content { overflow-x: hidden; scrollbar-width: thin; scrollbar-color: var(--theme-line) transparent; scrollbar-gutter: stable; padding-right: 12px; padding-bottom: 20px; overscroll-behavior: contain; }
+#stage .detail-content .tab-panel { height: auto; overflow: visible; min-height: 100px; }
+#stage .detail-content::-webkit-scrollbar { width: 5px; }
+#stage .detail-content::-webkit-scrollbar-track { background: transparent; }
+#stage .detail-content::-webkit-scrollbar-thumb { background: var(--theme-line); border-radius: 8px; }
+#stage .detail-content::-webkit-scrollbar-button { display: none; }
+/* Keep the decorative signature below the document, outside its action row. */
+#stage[data-layout="desktop"] .detail-content { max-height: calc(100% - 439px); }
+#stage[data-layout="desktop"][data-mode="detail"] .powered { bottom: 78px; font-size: 16px; pointer-events: none; }
+#stage .detail-actions { justify-content: flex-start; }

@@ -36,7 +36,7 @@ test('complete opening reaches the personal profile; navigation and viewer remai
   expect(errors).toEqual([]);
 });
 
-test('project search, links, notes, saved records and UTF-8 export use portfolio data', async ({ page, request }) => {
+test('project search, links, notes and saved records use portfolio data', async ({ page, request }) => {
   await enter(page);
   await page.locator('[data-action="search"]').click();
   await page.locator('#archive-search').fill('Novacart');
@@ -57,11 +57,7 @@ test('project search, links, notes, saved records and UTF-8 export use portfolio
   await expect(page.locator('#tab-panel')).toContainText('Stripe');
   await page.locator('[data-action="bookmark"]').click();
   await expect(page.locator('#saved-count')).toHaveText('01');
-  const download = await request.get((await page.locator('.export-button').getAttribute('href'))!);
-  expect(download.ok()).toBeTruthy();
-  expect(await download.text()).toContain('ZIZHEN LIU · PERSONAL ARCHIVE');
-  expect(await download.text()).toContain('Novacart');
-  expect(await download.text()).not.toContain('游戏');
+  await expect(page.locator('.export-button')).toHaveCount(0);
   await page.locator('[data-action="saved"]').click();
   await expect(page.locator('.result-row')).toHaveCount(1);
   await expect(page.locator('.result-row')).toContainText('Novacart');

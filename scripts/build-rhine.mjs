@@ -22,7 +22,6 @@ run('scripts/export-records.mjs');
 run('scripts/prepare-webfonts.mjs');
 run('node_modules/typescript/bin/tsc');
 run('node_modules/vite/bin/vite.js', ['build', '--mode', 'portfolio']);
-run('scripts/build-pwa.mjs');
 // Check the build before replacing the previous working preview.
 const html = await readFile(resolve(source, 'dist/index.html'), 'utf8');
 if (!html.includes('/rhine/assets/index-')) throw new Error('Rhine build is missing its URL prefix');
@@ -36,4 +35,4 @@ await cp(resolve(source, 'art/project-previews'), resolve(target, 'art/project-p
 await cp(resolve(source, 'art/project-evidence'), resolve(target, 'art/project-evidence'), { recursive: true });
 await cp(resolve(source, 'dist', stylePath.replace(/^\/rhine\//, '')), resolve(root, 'public/rhine-root.css'));
 await writeFile(resolve(root, 'public/rhine-root.js'), `import ${JSON.stringify(scriptPath)};\n`);
-console.log('Rhine is mounted at / (standalone source remains /rhine/index.html; service worker scoped to /rhine/).');
+console.log('Rhine is mounted at / (standalone source remains /rhine/index.html).');

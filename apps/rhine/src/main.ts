@@ -18,7 +18,7 @@ import "./responsive.css";
 import "./portfolio.css";
 import { viewportLayout, openingLayout } from "./viewport-layout";
 import { assetUrl } from "./asset-url";
-import { initPwa, pwaSettingsMarkup } from "./pwa";
+import { retireOfflineCache } from "./retire-offline-cache";
 import { createRollingNumber, createRollingText } from "@kitlangton/rolling-number";
 import { ArchiveScene } from "./scene";
 import { ModelViewer } from "./model-viewer";
@@ -96,7 +96,6 @@ $("#stage").innerHTML = translateUi(`
   </section>
   <div class="powered">POWERED BY <b>ZL ARCHIVE</b><i></i></div>
   <footer class="system-footer"><span><i class="status-light"></i> PORTFOLIO ONLINE${isWallpaper ? translateUi('<button type="button" class="three-toggle" data-action="toggle-three" aria-pressed="true" title="卸载三维模型，保留 2D 界面">3D 开启</button>') : ''}</span><span>ZIZHEN LIU <i>／</i> <span id="clock">00:00:00</span></span><button data-action="replay" title="重播启动流程">REINITIALIZE ↗</button></footer>
-  <div id="pwa-update-notice" class="pwa-update-notice" role="status" hidden><span>新版本已就绪</span><button data-pwa-action="update">更新并重启 ↻</button></div>
   <div id="modal-root"></div><div id="toast" class="toast" role="status"></div>
   <div id="loading" class="loading"><div class="loading-mark">${logo}</div><span>CONNECTING TO PERSONAL ARCHIVE</span><i></i></div>
 `);
@@ -630,11 +629,10 @@ function renderDetail() {
   <dl class="metadata"><div><dt>FOCUS / 方向</dt><dd>${escapeHtml(r.department)}</dd></div><div><dt>PERIOD / 时间</dt><dd>${escapeHtml(r.date)}</dd></div><div><dt>AUTHOR / 作者</dt><dd>${escapeHtml(r.lead)}</dd></div><div><dt>STATUS / 状态</dt><dd><i></i>${r.clearance === "RESTRICTED" ? translateUi("目录访问") : translateUi("已归档 · 可读取")}</dd></div></dl>
   <div class="detail-tabs" role="tablist"><button id="tab-overview" class="active" role="tab" aria-controls="tab-panel" aria-selected="true" data-tab="overview">01 <span>概述</span></button><button id="tab-notes" role="tab" aria-controls="tab-panel" aria-selected="false" data-tab="notes">02 <span>实现记录</span></button><button id="tab-history" role="tab" aria-controls="tab-panel" aria-selected="false" data-tab="history">03 <span>访问日志</span></button><i class="tab-indicator" aria-hidden="true"></i></div>
   <div id="tab-panel" class="tab-panel" role="tabpanel">${overview()}</div>
-  <div class="detail-actions">${portfolioLinks()}<button class="solid-button ${r.links?.length ? "portfolio-save" : ""}" data-action="bookmark" aria-label="收藏档案" title="收藏档案">${saved.has(r.id) ? translateUi("− REMOVE FROM SAVED") : translateUi("＋ SAVE ARCHIVE")}<span>${saved.has(r.id) ? translateUi("已收藏") : translateUi("收藏档案")}</span></button><a class="export-button" href="${assetUrl(`archives/ZL-ARCHIVE-${r.id}${language === "en" ? "-en" : ""}.txt`)}" download="ZL-ARCHIVE-${r.id}${language === "en" ? "-en" : ""}.txt" aria-label="导出 ${r.id} 档案">EXPORT <span>↓</span></a></div>
+  <div class="detail-actions">${portfolioLinks()}<button class="solid-button ${r.links?.length ? "portfolio-save" : ""}" data-action="bookmark" aria-label="收藏档案" title="收藏档案">${saved.has(r.id) ? translateUi("− REMOVE FROM SAVED") : translateUi("＋ SAVE ARCHIVE")}<span>${saved.has(r.id) ? translateUi("已收藏") : translateUi("收藏档案")}</span></button></div>
   <div class="detail-footnote"><a href="${escapeHtml(r.source)}" target="_blank" rel="noopener">${escapeHtml(r.sourceLabel ?? translateUi("相关链接"))} ↗</a><span>${String(selected + 1).padStart(3, "0")} / ${String(records.length).padStart(3, "0")}</span></div>`);
   $("#detail-content").setAttribute("tabindex", "-1");
   $('#detail-content').insertAdjacentHTML('afterbegin', translateUi('<div class="project-model-status" role="status" hidden><span></span><button data-action="retry-project-model" hidden>重新载入 ↗</button></div>'));
-  $('.export-button').setAttribute('aria-label', language === 'en' ? `Export archive ${r.id}` : `导出 ${r.id} 档案`);
   $('[data-action="bookmark"]').setAttribute("aria-pressed", String(saved.has(r.id)));
   documentDecryption.reset($("#detail-content"), prefs.reduced || !scene || scene.decryptionFrame.phase === "clear");
   setTab(activeTab, false);
@@ -789,7 +787,7 @@ function motionSettingsMarkup() {
     : translateUi("当前使用完整动效。")}</p>${prefs.reduced ? translateUi('<button data-action="enable-motion">启用完整动效并重播 ↻</button>') : ""}</div>`;
 }
 function settingsMarkup() {
-  return translateUi(`<h2>SYSTEM SETTINGS<small>终端偏好设置</small></h2><p class="settings-intro">ZIZHEN LIU <span>·</span> PORTFOLIO ONLINE</p>${isWallpaper ? translateUi('<p class="wallpaper-settings-note">每次启动都会读取 Wallpaper Engine 中的设置。在此修改仅对当前运行生效，无法持久保存；如需保留，请在 Wallpaper Engine 的壁纸属性中调整。</p>') : ""}<div class="settings-list">${themeSettingsMarkup(themePreference)}${!isWallpaper ? translateUi(`<label><div><strong>SUPER PERFORMANCE</strong><span>降低三维画质和渲染分辨率，保留完整动效；关闭后恢复原画质</span></div><input type="checkbox" data-pref="superPerformance" ${prefs.superPerformance ? "checked" : ""}/><i class="toggle"></i></label>`) : ""}${workbench?.settingsMarkup() ?? ""}${audioSettingsMarkup(prefs)}<label><div><strong>REDUCED MOTION</strong><span>跳过开机动画，简化选档、镜头和文字动效</span></div><input type="checkbox" data-pref="reduced" ${prefs.reduced ? "checked" : ""}/><i class="toggle"></i></label></div>${motionSettingsMarkup()}${speedSettingsMarkup()}${qualityMarkup(prefs.rendering)}${pwaSettingsMarkup()}<div class="settings-shortcuts">${isWallpaper ? translateUi('<span>DESKTOP CONTROLS</span><p>拖动阵列或点击界面按钮浏览档案。桌面模式下，方向键与滚轮可能无法传入壁纸。</p>') : translateUi('<span>KEYBOARD CONTROLS</span><p><kbd>←</kbd><kbd>→</kbd> 切列 <kbd>↑</kbd><kbd>↓</kbd> 选档 <kbd>ENTER</kbd> 读取 <kbd>/</kbd> 检索 <kbd>ESC</kbd> 返回</p>')}</div><div class="settings-bottom">${!isWallpaper && document.fullscreenEnabled ? '<button data-action="fullscreen">FULLSCREEN <span>↗</span></button>' : ''}<button data-action="restart">REINITIALIZE SYSTEM <span>↻</span></button></div><div class="modal-bottom"><span>ANALYSIS OS / 1.0 · 使用 MiSans 字体（小米） <a href="${assetUrl("fonts/MiSans-license.pdf")}" target="_blank" rel="noopener">字体许可</a></span><span>UI BASED ON <a href="https://github.com/LBEILC/RhineLabUI" target="_blank" rel="noopener">LBEILC / RhineLabUI</a> · <a href="/licenses/RhineLabUI-MIT.txt" target="_blank" rel="noopener">MIT</a></span></div>`);
+  return translateUi(`<h2>SYSTEM SETTINGS<small>终端偏好设置</small></h2><p class="settings-intro">ZIZHEN LIU <span>·</span> PORTFOLIO ONLINE</p>${isWallpaper ? translateUi('<p class="wallpaper-settings-note">每次启动都会读取 Wallpaper Engine 中的设置。在此修改仅对当前运行生效，无法持久保存；如需保留，请在 Wallpaper Engine 的壁纸属性中调整。</p>') : ""}<div class="settings-list">${themeSettingsMarkup(themePreference)}${!isWallpaper ? translateUi(`<label><div><strong>SUPER PERFORMANCE</strong><span>降低三维画质和渲染分辨率，保留完整动效；关闭后恢复原画质</span></div><input type="checkbox" data-pref="superPerformance" ${prefs.superPerformance ? "checked" : ""}/><i class="toggle"></i></label>`) : ""}${workbench?.settingsMarkup() ?? ""}${audioSettingsMarkup(prefs)}<label><div><strong>REDUCED MOTION</strong><span>跳过开机动画，简化选档、镜头和文字动效</span></div><input type="checkbox" data-pref="reduced" ${prefs.reduced ? "checked" : ""}/><i class="toggle"></i></label></div>${motionSettingsMarkup()}${speedSettingsMarkup()}${qualityMarkup(prefs.rendering)}<div class="settings-shortcuts">${isWallpaper ? translateUi('<span>DESKTOP CONTROLS</span><p>拖动阵列或点击界面按钮浏览档案。桌面模式下，方向键与滚轮可能无法传入壁纸。</p>') : translateUi('<span>KEYBOARD CONTROLS</span><p><kbd>←</kbd><kbd>→</kbd> 切列 <kbd>↑</kbd><kbd>↓</kbd> 选档 <kbd>ENTER</kbd> 读取 <kbd>/</kbd> 检索 <kbd>ESC</kbd> 返回</p>')}</div><div class="settings-bottom">${!isWallpaper && document.fullscreenEnabled ? '<button data-action="fullscreen">FULLSCREEN <span>↗</span></button>' : ''}<button data-action="restart">REINITIALIZE SYSTEM <span>↻</span></button></div><div class="modal-bottom"><span>ANALYSIS OS / 1.0 · 使用 MiSans 字体（小米） <a href="${assetUrl("fonts/MiSans-license.pdf")}" target="_blank" rel="noopener">字体许可</a></span><span>UI BASED ON <a href="https://github.com/LBEILC/RhineLabUI" target="_blank" rel="noopener">LBEILC / RhineLabUI</a> · <a href="/licenses/RhineLabUI-MIT.txt" target="_blank" rel="noopener">MIT</a></span></div>`);
 }
 
 document.addEventListener("input", (e) => {
@@ -1309,9 +1307,8 @@ function completeStartup(silent: boolean) {
     }
   }, fade);
   requestAnimationFrame(frame);
-  // Do not compete with entry audio/font downloads. Full offline installation
-  // begins after startup is complete and remains atomic.
-  setTimeout(() => void initPwa(notify), 1500);
+  // Retire earlier offline releases without restarting the current visit.
+  void retireOfflineCache();
 }
 updateSelection();
 const customBackground = isWallpaper ? new WallpaperBackground($("#stage"), notify) : undefined;

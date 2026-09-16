@@ -13,7 +13,7 @@ test('category prefixes are consistent on selection, search, downloads and saved
     await page.locator('.read-file').click();
     await expect(page.locator('#object-id')).toHaveText(id);
     await expect(page.locator('.detail-kicker')).toContainText(id);
-    await expect(page.locator('.export-button')).toHaveAttribute('href',new RegExp(`ZL-ARCHIVE-${id}\\.txt$`));
+    await expect(page.locator('.export-button')).toHaveCount(0);
     await page.locator('[data-action="back"]').click();
   }
   await page.locator('[data-action="saved"]').click();

@@ -71,8 +71,8 @@ on the same origin. The generated output is not committed.
 
 For live editing of the archive, run `npm run dev:rhine` (port 5174), then
 `npm run build:rhine` to refresh it in the main site's preview. The model gallery
-is at `/rhine/art/project-previews`. Archive offline caching is scoped
-to `/rhine/` and does not take control of Matrix or Aero pages.
+is at `/rhine/art/project-previews`. The site uses normal browser caching;
+legacy Rhine offline workers retire automatically without refreshing the page.
 
 ## Type Checking
 
