@@ -3,7 +3,7 @@ FILE S-006 / 家庭服务器实验室
 Home Lab — Server, NAS & Device Restoration
 
 方向：Windows Server / Active Directory / Synology
-时间：ONGOING
+时间：持续进行中
 作者：Zizhen Liu / Lance
 访问范围：CASE STUDY
 

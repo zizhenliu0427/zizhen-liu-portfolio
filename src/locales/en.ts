@@ -488,6 +488,8 @@ export const en = {
   /* ------------------------------------------------------------------ */
   experienceContent: {
     codritium: {
+      company: "Codritium",
+      period: "MAR 2026 — PRESENT",
       location: "Sydney, Australia",
       role: "Software Developer Intern",
       bullets: [
@@ -497,6 +499,8 @@ export const en = {
       ],
     },
     intelli: {
+      company: "Intelli New Technologies",
+      period: "OCT 2023 — JAN 2024",
       location: "Sydney, Australia",
       role: "IT / Business Analysis Intern",
       bullets: [
@@ -506,6 +510,8 @@ export const en = {
       ],
     },
     goldenlady: {
+      company: "Golden Lady Photography",
+      period: "MAY 2021 — AUG 2021",
       location: "Chongqing, China",
       role: "IT Support Intern",
       bullets: [

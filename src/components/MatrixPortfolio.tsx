@@ -453,11 +453,11 @@ export default function Home() {
                   <i />
                 </div>
                 <div className={styles.timelineMeta}>
-                  <span>{item.period}</span>
+                  <span>{t(`experienceContent.${item.id}.period`)}</span>
                   <span>{t(`experienceContent.${item.id}.location`)}</span>
                 </div>
                 <div className={styles.timelineBody}>
-                  <h3>{item.company}</h3>
+                  <h3>{t(`experienceContent.${item.id}.company`)}</h3>
                   <p>{t(`experienceContent.${item.id}.role`)}</p>
                   <ul>
                     {tList(`experienceContent.${item.id}.bullets`).map((bullet) => (

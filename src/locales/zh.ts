@@ -248,7 +248,7 @@ export const zh = {
     intelliRole: "IT / 商业分析实习生 · 2023年10月 – 2024年1月",
     intelliDesc:
       "Figma 原型设计、响应式 UI 开发、Agile 交付、React 组件验证、Python 数据爬虫。",
-    goldenCompany: "金夫人摄影 — 重庆",
+    goldenCompany: "重庆金夫人实业有限公司",
     goldenRole: "IT 支持实习生 · 2021年5月 – 2021年8月",
     goldenDesc:
       "维护 Vue.js 企业网站；响应式 UI 优化；系统配置。",
@@ -491,6 +491,8 @@ export const zh = {
   /* ------------------------------------------------------------------ */
   experienceContent: {
     codritium: {
+      company: "Codritium",
+      period: "2026年3月 — 至今",
       location: "悉尼,澳大利亚",
       role: "软件开发实习生",
       bullets: [
@@ -500,6 +502,8 @@ export const zh = {
       ],
     },
     intelli: {
+      company: "Intelli New Technologies",
+      period: "2023年10月 — 2024年1月",
       location: "悉尼,澳大利亚",
       role: "IT / 业务分析实习生",
       bullets: [
@@ -509,6 +513,8 @@ export const zh = {
       ],
     },
     goldenlady: {
+      company: "重庆金夫人实业有限公司",
+      period: "2021年5月 — 2021年8月",
       location: "重庆,中国",
       role: "IT 支持实习生",
       bullets: [
