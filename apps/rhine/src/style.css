@@ -631,7 +631,14 @@ button {
   left: 60px;
   bottom: 264px;
   font-size: 13px;
-  color: #6f675b;
+  color: var(--theme-ink, #080a08);
+  background: var(--theme-panel, #edebe4);
+  border: 1px solid var(--theme-line, #aaa59a);
+  border-radius: 3px;
+  padding: 9px 12px;
+  max-width: calc(100% - 120px);
+  box-shadow: 0 3px 12px #0002;
+  pointer-events: none;
   letter-spacing: 1px;
 }
 .system-footer {

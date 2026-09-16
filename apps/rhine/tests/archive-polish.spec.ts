@@ -12,6 +12,62 @@ test.beforeEach(async ({ page }) => {
   await page.locator('#skip').click();
 });
 
+test('native theme stays readable independently of the host system colour scheme', async ({ page }) => {
+  await page.emulateMedia({ colorScheme: 'dark', reducedMotion: 'reduce' });
+  await page.locator('.read-file').click();
+  await expect(page.locator('#inspection-marks')).toHaveAttribute('data-phase', 'clear');
+  await page.locator('[data-action="settings"]').click();
+  await page.locator('[data-color-theme="light"]').click();
+  await expect(page.locator('html')).toHaveAttribute('data-dark-surface', 'false');
+  // Run against the integrated Next build: its body colour follows the OS.
+  // Rhine must own inherited text colour even when the host remains dark.
+  for (const selector of ['#viewport', '.brand', '#detail-content h2', '.metadata dd', '.powered']) {
+    await expect(page.locator(selector).first()).toHaveCSS('color', 'rgb(8, 10, 8)');
+  }
+  await expect(page.locator('#viewport')).toHaveCSS('color-scheme', 'light');
+  await page.locator('[data-color-theme="dark"]').click();
+  await page.emulateMedia({ colorScheme: 'light' });
+  await expect(page.locator('.brand')).toHaveCSS('color', 'rgb(224, 227, 220)');
+  await expect(page.locator('#viewport')).toHaveCSS('color-scheme', 'dark');
+  await page.locator('[data-color-theme="auto"]').click();
+  await expect(page.locator('.brand')).toHaveCSS('color', 'rgb(8, 10, 8)');
+  await page.emulateMedia({ colorScheme: 'dark' });
+  await expect(page.locator('.brand')).toHaveCSS('color', 'rgb(224, 227, 220)');
+  await page.locator('[data-color-theme="light"]').click();
+  await page.reload();
+  await expect(page.locator('html')).toHaveAttribute('data-dark-surface', 'false');
+  await expect(page.locator('.brand')).toHaveCSS('color', 'rgb(8, 10, 8)');
+});
+
+test('hover caption has a theme-aware opaque panel with readable text', async ({ page }) => {
+  for (const theme of ['dark', 'light'] as const) {
+    await page.emulateMedia({ colorScheme: theme });
+    await expect(page.locator('html')).toHaveAttribute('data-dark-surface', String(theme === 'dark'));
+    await expect(page.locator('.brand')).toHaveCSS('color', theme === 'dark' ? 'rgb(224, 227, 220)' : 'rgb(8, 10, 8)');
+    // Move across the actual canvas to trigger its picking and rolling label.
+    for (const [x,y] of [[800,450],[1000,600],[650,650],[1150,450]]) {
+      await page.mouse.move(x,y);
+      if (await page.locator('#hover-label').isVisible()) break;
+    }
+    await expect(page.locator('#hover-label')).toBeVisible();
+    const contrast = await page.locator('#hover-label').evaluate(el => {
+      const luminance = (colour: string) => {
+        const channels = colour.match(/[\d.]+/g)!.slice(0,3).map(v => {
+          const c = Number(v)/255;
+          return c <= .04045 ? c/12.92 : ((c+.055)/1.055)**2.4;
+        });
+        return channels[0]*.2126 + channels[1]*.7152 + channels[2]*.0722;
+      };
+      const style = getComputedStyle(el);
+      const fg = luminance(style.color), bg = luminance(style.backgroundColor);
+      return { ratio: (Math.max(fg,bg)+.05)/(Math.min(fg,bg)+.05), background: style.backgroundColor };
+    });
+    expect(contrast.background).not.toContain('rgba');
+    expect(contrast.ratio).toBeGreaterThanOrEqual(7);
+    await page.locator('#hover-label').screenshot({path:`test-results/hover-${theme}.png`});
+  }
+});
+
 test('category order, full language decryption and removed utility controls', async ({ page }) => {
   for (const [index, name] of ['个人资料', '实习经历', 'Web 与应用', 'AI 与数据', '系统与硬件'].entries()) {
     await expect(page.locator('#column-name')).toContainText(name);

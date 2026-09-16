@@ -1,3 +1,8 @@
+/* Own inherited text in both themes: the host page's body can follow a
+   different OS colour scheme from Rhine's explicit preference. */
+#viewport { color: var(--theme-ink, #080a08); color-scheme: light; }
+[data-dark-surface="true"] #viewport { color-scheme: dark; }
+
 .theme-settings { padding: 16px 0; border-bottom: 1px solid #bdb8ad; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
 .theme-settings strong { display: block; font-size: 14px; }
 .theme-settings span { display: block; margin-top: 6px; font-size: 12px; color: #77756d; }
