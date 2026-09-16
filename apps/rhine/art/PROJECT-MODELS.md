@@ -1,27 +1,26 @@
-# Archive interiors
+# Original project interiors — restored 16 September 2026
 
-The active collection contains **31 interiors**: 10 personal, 3 internship, 8 web, 4 AI/data and 6 systems/hardware records. All use category-specific P/I/W/A/S identifiers.
+The active set is the first **18 symbolic project models** requested by the user: 8 Web & Apps, 4 AI & Data and 6 Systems & Hardware. Personal information and internships retain Rhine's original optical interior. Every record keeps its current category ID, personal label and bilingual HTML content.
 
-See [ARCHIVE-EXHIBITS.md](ARCHIVE-EXHIBITS.md) for the complete catalogue, meanings, provenance, reproduction, numbering migration and validation. [PROJECT-EVIDENCE.md](PROJECT-EVIDENCE.md) retains the detailed source documentation for Novacart's actual UI and the GPU report.
+Examples: Novacart shelves and product modules; Whale cargo ship, containers and routes; GPU compute core and memory array; Building AI buildings and sensor network. These are conceptual structures, not source screenshots or measured data.
 
-## Current sources
+## Reproduction
 
-- `build_archive_exhibits.py` and `archive-exhibits.blend`: 29 documentary interiors.
-- `build_evidence_models.py` and `project-evidence.blend`: two evidence interiors.
-- `../content/project-models.json`: all 31 canonical IDs, asset keys and bilingual assembly labels.
-- `../content/archive-exhibits.json`: documentary content and per-record source notices.
-- `../public/assets/projects/*.glb`: current runtime interiors.
-- `project-models-report.json`: combined triangle, mesh and file-size measurements.
-- `project-previews/index.html`: local review with all five categories; regenerate using `node scripts/project-model-gallery.mjs`.
+The original scene names and `design` metadata in `project-models.blend` identify the first collection. `content/project-models.json` maps these designs to current W/A/S IDs. Geometry comes from the original `build_project_models.py` design functions; labels are regenerated with current identifiers.
 
-The original `project-models.blend` contains the historical symbolic studies. It remains editable but is not the current runtime collection. Its generator now supplies shared machining helpers and skips the replacement designs.
+```powershell
+blender --background --factory-startup --python art/build_project_models.py -- --render
+node scripts/project-model-gallery.mjs
+```
 
-## Runtime
+- `art/project-models.blend`: editable restored source scenes and studio setup.
+- `art/build_project_models.py`: reproducible geometry, labels and export.
+- `art/project-models-report.json`: only the 18 active models' measurements.
+- `public/assets/projects/*.glb`: interiors, loaded on selection; other unused study assets remain historical.
+- `art/project-previews/index.html`: the 18-model gallery with regenerated previews.
 
-Models load only when selected. The introductory profile is approximately 107 KB; the entire 31-model collection totals about 6 MB. All interiors remain under 15,000 triangles. Novacart embeds its three screenshots, while the other models use geometry without external textures. No extra lights or animation clips are loaded.
+Both the main archive and six-layer assembly viewer use the selected project's interior. Mobile retains the lightweight cover in performance mode. Original extraction, camera and decryption motion are unchanged. The extra dark documentary backboard is absent; small graphite parts remain part of the original design in light mode.
 
-The original exterior cassette, extraction and camera movement remain shared. Every interior supplies two compatible assembly layers to the six-part viewer. Mobile devices retain the performance-mode default, and no animation speeds were changed.
+## Verification
 
-Production GLBs have content-hashed URLs. They are excluded from initial PWA precaching and cached on first use. Unopened models need a network connection. Legacy X identifiers remain searchable and downloadable and resolve to their new record when restored from saved archives.
-
-The source scenes and studio previews are local development artifacts. Upstream archive shells and third-party resources retain their existing notices and restrictions.
+Integrated tests cover the asset bounds, 18 distinct models with two assembly layers and no textures; all 31 record selections; native fallback for personal/internship records; desktop and mobile layouts; both themes and language changes; and the assembly viewer. Main-scene models are fetched once on demand, not at initial profile entry. The historical documentary and evidence studies have separate source files and reports.

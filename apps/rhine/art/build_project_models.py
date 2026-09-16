@@ -281,8 +281,8 @@ for identifier, spec in CATALOG.items():
     if '--render' in sys.argv:bpy.ops.render.render(write_still=True)
     print('PROJECT_MODEL',identifier,spec['key'],triangles,output.stat().st_size,flush=True)
 
-evidence_report=ROOT/'art/project-evidence/report.json'
-if evidence_report.exists():report+=json.loads(evidence_report.read_text(encoding='utf-8'))
+# This report describes only the active first-generation designs. Documentary
+# and evidence studies have their own reports and must not replace these rows.
 (ROOT/'art/project-models-report.json').write_text(json.dumps(sorted(report,key=lambda entry:entry['id']),indent=2)+'\n',encoding='utf-8')
 bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'art/project-models.blend'),compress=True)
 print('Completed',len(report),'project interiors.',flush=True)

@@ -1,127 +1,15 @@
 {
-  "P-001": {
-    "key": "profile",
-    "title": "ZIZHEN LIU",
-    "zh": "刘子箴 · 全栈工程师",
-    "design": "documentary-profile",
-    "layers": [
-      "资料标注",
-      "个人档案"
-    ],
-    "layersEn": [
-      "Profile notes",
-      "Personal record"
-    ]
-  },
-  "P-002": {
-    "key": "contact",
-    "title": "LET US BUILD",
-    "zh": "联系与合作",
-    "design": "documentary-contact",
-    "layers": [
-      "资料标注",
-      "个人档案"
-    ],
-    "layersEn": [
-      "Profile notes",
-      "Personal record"
-    ]
-  },
-  "P-003": {
-    "key": "skills",
-    "title": "WEB / AI / SYSTEMS",
-    "zh": "从界面到 GPU",
-    "design": "documentary-stack",
-    "layers": [
-      "资料标注",
-      "个人档案"
-    ],
-    "layersEn": [
-      "Profile notes",
-      "Personal record"
-    ]
-  },
-  "P-004": {
-    "key": "frontend",
-    "title": "INTERFACE ENGINEERING",
-    "zh": "界面与交互",
-    "design": "documentary-devices",
-    "layers": [
-      "资料标注",
-      "个人档案"
-    ],
-    "layersEn": [
-      "Profile notes",
-      "Personal record"
-    ]
-  },
-  "P-005": {
-    "key": "backend",
-    "title": "SERVER / DATA",
-    "zh": "服务端与数据",
-    "design": "documentary-branch",
-    "layers": [
-      "资料标注",
-      "个人档案"
-    ],
-    "layersEn": [
-      "Profile notes",
-      "Personal record"
-    ]
-  },
-  "P-006": {
-    "key": "delivery",
-    "title": "BUILD / TEST / SHIP",
-    "zh": "开发与交付",
-    "design": "documentary-flow",
-    "layers": [
-      "资料标注",
-      "个人档案"
-    ],
-    "layersEn": [
-      "Profile notes",
-      "Personal record"
-    ]
-  },
-  "P-007": {
-    "key": "photography",
-    "title": "PHOTOGRAPHY",
-    "zh": "摄影与观察",
-    "design": "documentary-photo",
-    "layers": [
-      "资料标注",
-      "个人档案"
-    ],
-    "layersEn": [
-      "Profile notes",
-      "Personal record"
-    ]
-  },
-  "P-008": {
-    "key": "driving-languages",
-    "title": "DRIVING / LANGUAGES",
-    "zh": "驾驶与语言",
-    "design": "documentary-gear",
-    "layers": [
-      "资料标注",
-      "个人档案"
-    ],
-    "layersEn": [
-      "Profile notes",
-      "Personal record"
-    ]
-  },
   "W-001": {
     "key": "equipment-database",
     "title": "CMO-DB",
     "zh": "CMO-DB · 装备数据库",
-    "design": "documentary-schema",
+    "design": "radar",
     "layers": [
-      "流程标注",
-      "项目结构"
+      "连接与信号层",
+      "项目结构模块"
     ],
     "layersEn": [
-      "Process notes",
+      "Connections & signals",
       "Project structure"
     ]
   },
@@ -129,27 +17,27 @@
     "key": "novacart",
     "title": "NOVACART / USER JOURNEY",
     "zh": "Novacart · 购物流程档案",
-    "design": "evidence-commerce",
+    "design": "commerce",
     "layers": [
-      "购物车与订单",
-      "目录与服务"
+      "连接与信号层",
+      "项目结构模块"
     ],
     "layersEn": [
-      "Cart & orders",
-      "Catalogue & services"
+      "Connections & signals",
+      "Project structure"
     ]
   },
   "W-003": {
     "key": "mediajira",
     "title": "MEDIAJIRA / CHAT",
     "zh": "MediaJira · 广告平台",
-    "design": "documentary-bars",
+    "design": "campaign",
     "layers": [
-      "流程标注",
-      "项目结构"
+      "连接与信号层",
+      "项目结构模块"
     ],
     "layersEn": [
-      "Process notes",
+      "Connections & signals",
       "Project structure"
     ]
   },
@@ -157,13 +45,13 @@
     "key": "lanely",
     "title": "LANELY",
     "zh": "Lanely · 协作看板",
-    "design": "documentary-kanban",
+    "design": "kanban",
     "layers": [
-      "流程标注",
-      "项目结构"
+      "连接与信号层",
+      "项目结构模块"
     ],
     "layersEn": [
-      "Process notes",
+      "Connections & signals",
       "Project structure"
     ]
   },
@@ -171,13 +59,13 @@
     "key": "whale",
     "title": "WHALE LOGISTICS",
     "zh": "Whale · 海运平台",
-    "design": "documentary-route",
+    "design": "shipping",
     "layers": [
-      "流程标注",
-      "项目结构"
+      "连接与信号层",
+      "项目结构模块"
     ],
     "layersEn": [
-      "Process notes",
+      "Connections & signals",
       "Project structure"
     ]
   },
@@ -185,13 +73,13 @@
     "key": "breaktime",
     "title": "BREAKTIME ARCADE",
     "zh": "Breaktime · 派对游戏",
-    "design": "documentary-room",
+    "design": "game",
     "layers": [
-      "流程标注",
-      "项目结构"
+      "连接与信号层",
+      "项目结构模块"
     ],
     "layersEn": [
-      "Process notes",
+      "Connections & signals",
       "Project structure"
     ]
   },
@@ -199,13 +87,13 @@
     "key": "good360",
     "title": "GOOD360",
     "zh": "Good360 · 移动聊天",
-    "design": "documentary-chat",
+    "design": "chat",
     "layers": [
-      "流程标注",
-      "项目结构"
+      "连接与信号层",
+      "项目结构模块"
     ],
     "layersEn": [
-      "Process notes",
+      "Connections & signals",
       "Project structure"
     ]
   },
@@ -213,13 +101,13 @@
     "key": "hls-keeper",
     "title": "WEB KEEPER",
     "zh": "HLS Keeper · 流媒体归档",
-    "design": "documentary-tracks",
+    "design": "stream",
     "layers": [
-      "流程标注",
-      "项目结构"
+      "连接与信号层",
+      "项目结构模块"
     ],
     "layersEn": [
-      "Process notes",
+      "Connections & signals",
       "Project structure"
     ]
   },
@@ -227,13 +115,13 @@
     "key": "building-ai",
     "title": "BUILDING SENSOR AI",
     "zh": "楼宇传感器 AI",
-    "design": "documentary-sensor",
+    "design": "building",
     "layers": [
-      "流程标注",
-      "项目结构"
+      "连接与信号层",
+      "项目结构模块"
     ],
     "layersEn": [
-      "Process notes",
+      "Connections & signals",
       "Project structure"
     ]
   },
@@ -241,13 +129,13 @@
     "key": "dermoscopy",
     "title": "SKIN LESION AI",
     "zh": "皮肤镜图像分类",
-    "design": "documentary-classifier",
+    "design": "classifier",
     "layers": [
-      "流程标注",
-      "项目结构"
+      "连接与信号层",
+      "项目结构模块"
     ],
     "layersEn": [
-      "Process notes",
+      "Connections & signals",
       "Project structure"
     ]
   },
@@ -255,13 +143,13 @@
     "key": "ctv",
     "title": "CTV / YOLOv8",
     "zh": "CTV · 视觉检测",
-    "design": "documentary-cameras",
+    "design": "vision",
     "layers": [
-      "流程标注",
-      "项目结构"
+      "连接与信号层",
+      "项目结构模块"
     ],
     "layersEn": [
-      "Process notes",
+      "Connections & signals",
       "Project structure"
     ]
   },
@@ -269,13 +157,13 @@
     "key": "transcription",
     "title": "AUDIO / VIDEO TO TEXT",
     "zh": "音视频 AI 转写",
-    "design": "documentary-speech",
+    "design": "speech",
     "layers": [
-      "流程标注",
-      "项目结构"
+      "连接与信号层",
+      "项目结构模块"
     ],
     "layersEn": [
-      "Process notes",
+      "Connections & signals",
       "Project structure"
     ]
   },
@@ -283,13 +171,13 @@
     "key": "sdr-hdr",
     "title": "SDR TO HDR",
     "zh": "SDR → HDR",
-    "design": "documentary-codec",
+    "design": "colour",
     "layers": [
-      "流程标注",
-      "项目结构"
+      "连接与信号层",
+      "项目结构模块"
     ],
     "layersEn": [
-      "Process notes",
+      "Connections & signals",
       "Project structure"
     ]
   },
@@ -297,27 +185,27 @@
     "key": "gpu-benchmark",
     "title": "GPU / MEASURED THROUGHPUT",
     "zh": "GPU · 实测吞吐量档案",
-    "design": "evidence-gpu",
+    "design": "gpu",
     "layers": [
-      "模式与耗时",
-      "吞吐量对比"
+      "连接与信号层",
+      "项目结构模块"
     ],
     "layersEn": [
-      "Modes & timings",
-      "GPU throughput"
+      "Connections & signals",
+      "Project structure"
     ]
   },
   "S-003": {
     "key": "generic-graph",
     "title": "C++20 / GENERIC GRAPH",
     "zh": "C++20 泛型图",
-    "design": "documentary-hierarchy",
+    "design": "graph",
     "layers": [
-      "流程标注",
-      "项目结构"
+      "连接与信号层",
+      "项目结构模块"
     ],
     "layersEn": [
-      "Process notes",
+      "Connections & signals",
       "Project structure"
     ]
   },
@@ -325,13 +213,13 @@
     "key": "fpga-audio",
     "title": "FPGA AUDIO",
     "zh": "FPGA 音频管线",
-    "design": "documentary-audio",
+    "design": "fpga",
     "layers": [
-      "流程标注",
-      "项目结构"
+      "连接与信号层",
+      "项目结构模块"
     ],
     "layersEn": [
-      "Process notes",
+      "Connections & signals",
       "Project structure"
     ]
   },
@@ -339,13 +227,13 @@
     "key": "cdn-probe",
     "title": "CDN NODE PROBING",
     "zh": "CDN 节点探测",
-    "design": "documentary-dns",
+    "design": "cdn",
     "layers": [
-      "流程标注",
-      "项目结构"
+      "连接与信号层",
+      "项目结构模块"
     ],
     "layersEn": [
-      "Process notes",
+      "Connections & signals",
       "Project structure"
     ]
   },
@@ -353,84 +241,14 @@
     "key": "home-lab",
     "title": "HOME LAB",
     "zh": "家庭服务器实验室",
-    "design": "documentary-lab",
+    "design": "server",
     "layers": [
-      "流程标注",
-      "项目结构"
+      "连接与信号层",
+      "项目结构模块"
     ],
     "layersEn": [
-      "Process notes",
+      "Connections & signals",
       "Project structure"
-    ]
-  },
-  "I-001": {
-    "key": "codritium",
-    "title": "CODRITIUM / 2026",
-    "zh": "Codritium · 实习",
-    "design": "documentary-bars",
-    "layers": [
-      "职责与成果",
-      "工作流程"
-    ],
-    "layersEn": [
-      "Work & outcomes",
-      "Work process"
-    ]
-  },
-  "I-002": {
-    "key": "intelli-new",
-    "title": "INTELLI NEW",
-    "zh": "Intelli New Technologies · 实习",
-    "design": "documentary-etl",
-    "layers": [
-      "职责与成果",
-      "工作流程"
-    ],
-    "layersEn": [
-      "Work & outcomes",
-      "Work process"
-    ]
-  },
-  "I-003": {
-    "key": "golden-lady",
-    "title": "GOLDEN LADY / 2021",
-    "zh": "重庆金夫人实业有限公司 · 实习",
-    "design": "documentary-workstation",
-    "layers": [
-      "职责与成果",
-      "工作流程"
-    ],
-    "layersEn": [
-      "Work & outcomes",
-      "Work process"
-    ]
-  },
-  "P-009": {
-    "key": "unsw",
-    "title": "UNSW / 2024-2025",
-    "zh": "新南威尔士大学(UNSW)",
-    "design": "documentary-scores",
-    "layers": [
-      "资料标注",
-      "个人档案"
-    ],
-    "layersEn": [
-      "Profile notes",
-      "Personal record"
-    ]
-  },
-  "P-010": {
-    "key": "uts",
-    "title": "UTS / 2021-2024",
-    "zh": "悉尼科技大学(UTS)",
-    "design": "documentary-scores",
-    "layers": [
-      "资料标注",
-      "个人档案"
-    ],
-    "layersEn": [
-      "Profile notes",
-      "Personal record"
     ]
   }
 }

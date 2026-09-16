@@ -1,5 +1,11 @@
 # Complete archive collection
 
+## Current website (16 September 2026)
+
+The user clarified that the desired collection is the first **18 symbolic project interiors**, preserved in `project-models.blend` and its generator. These are restored with current W/A/S IDs; personal and internship records use the native Rhine optics. The 31 documentary/evidence designs described below are historical studies, no longer the active runtime collection. See [PROJECT-MODELS.md](PROJECT-MODELS.md) for current assets and reproduction.
+
+## Historical documentary collection
+
 All 31 records now have their own interior, including personal information, education, interests and internships. The shared archive shell, camera motion, loading controls and six-part assembly viewer remain in place.
 
 ## Numbering

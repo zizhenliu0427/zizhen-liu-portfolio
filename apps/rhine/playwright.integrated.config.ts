@@ -3,7 +3,7 @@ import { defineConfig } from '@playwright/test';
 // Run npm run build in the repository root before this suite.
 export default defineConfig({
   testDir: './tests',
-  testMatch: 'archive-polish.spec.ts',
+  testMatch: ['archive-polish.spec.ts', 'project-models.spec.ts'],
   timeout: 60000,
   expect: { timeout: 15000 },
   workers: 1,

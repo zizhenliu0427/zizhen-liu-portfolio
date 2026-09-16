@@ -1,219 +1,128 @@
 [
   {
-    "id": "P-001",
-    "key": "profile",
-    "meshes": 4,
-    "triangles": 1897,
-    "bytes": 106808
-  },
-  {
-    "id": "P-002",
-    "key": "contact",
-    "meshes": 5,
-    "triangles": 2381,
-    "bytes": 133284
-  },
-  {
-    "id": "P-003",
-    "key": "skills",
-    "meshes": 4,
-    "triangles": 2953,
-    "bytes": 172496
-  },
-  {
-    "id": "P-004",
-    "key": "frontend",
-    "meshes": 5,
-    "triangles": 2099,
-    "bytes": 128612
-  },
-  {
-    "id": "P-005",
-    "key": "backend",
-    "meshes": 4,
-    "triangles": 2846,
-    "bytes": 168364
-  },
-  {
-    "id": "P-006",
-    "key": "delivery",
-    "meshes": 5,
-    "triangles": 2448,
-    "bytes": 140004
-  },
-  {
-    "id": "P-007",
-    "key": "photography",
-    "meshes": 7,
-    "triangles": 2625,
-    "bytes": 123516
-  },
-  {
-    "id": "P-008",
-    "key": "driving-languages",
-    "meshes": 6,
-    "triangles": 2590,
-    "bytes": 145196
-  },
-  {
-    "id": "W-001",
-    "key": "equipment-database",
-    "meshes": 4,
-    "triangles": 2858,
-    "bytes": 165756
-  },
-  {
-    "id": "W-002",
-    "key": "novacart",
-    "meshes": 9,
-    "triangles": 8790,
-    "bytes": 845016
-  },
-  {
-    "id": "W-003",
-    "key": "mediajira",
-    "meshes": 7,
-    "triangles": 2137,
-    "bytes": 114468
-  },
-  {
-    "id": "W-004",
-    "key": "lanely",
-    "meshes": 6,
-    "triangles": 2822,
-    "bytes": 168676
-  },
-  {
-    "id": "W-005",
-    "key": "whale",
-    "meshes": 5,
-    "triangles": 2386,
-    "bytes": 138032
-  },
-  {
-    "id": "W-006",
-    "key": "breaktime",
-    "meshes": 5,
-    "triangles": 2714,
-    "bytes": 162376
-  },
-  {
-    "id": "W-007",
-    "key": "good360",
-    "meshes": 6,
-    "triangles": 2043,
-    "bytes": 124828
-  },
-  {
-    "id": "W-008",
-    "key": "hls-keeper",
-    "meshes": 5,
-    "triangles": 2782,
-    "bytes": 152784
-  },
-  {
     "id": "A-001",
     "key": "building-ai",
-    "meshes": 4,
-    "triangles": 2988,
-    "bytes": 173772
+    "meshes": 7,
+    "triangles": 12088,
+    "bytes": 681300
   },
   {
     "id": "A-002",
     "key": "dermoscopy",
-    "meshes": 4,
-    "triangles": 3083,
-    "bytes": 180388
+    "meshes": 6,
+    "triangles": 11304,
+    "bytes": 616784
   },
   {
     "id": "A-003",
     "key": "ctv",
     "meshes": 5,
-    "triangles": 3084,
-    "bytes": 186932
+    "triangles": 7972,
+    "bytes": 425080
   },
   {
     "id": "A-004",
     "key": "transcription",
-    "meshes": 5,
-    "triangles": 4403,
-    "bytes": 280172
+    "meshes": 4,
+    "triangles": 10688,
+    "bytes": 689804
   },
   {
     "id": "S-001",
     "key": "sdr-hdr",
     "meshes": 7,
-    "triangles": 3613,
-    "bytes": 223672
+    "triangles": 6356,
+    "bytes": 391260
   },
   {
     "id": "S-002",
     "key": "gpu-benchmark",
-    "meshes": 6,
-    "triangles": 12528,
-    "bytes": 544552
+    "meshes": 5,
+    "triangles": 11500,
+    "bytes": 718772
   },
   {
     "id": "S-003",
     "key": "generic-graph",
-    "meshes": 4,
-    "triangles": 2469,
-    "bytes": 140728
+    "meshes": 6,
+    "triangles": 9468,
+    "bytes": 532436
   },
   {
     "id": "S-004",
     "key": "fpga-audio",
-    "meshes": 4,
-    "triangles": 4365,
-    "bytes": 280700
+    "meshes": 6,
+    "triangles": 10336,
+    "bytes": 585852
   },
   {
     "id": "S-005",
     "key": "cdn-probe",
-    "meshes": 5,
-    "triangles": 2953,
-    "bytes": 173400
+    "meshes": 7,
+    "triangles": 11304,
+    "bytes": 583120
   },
   {
     "id": "S-006",
     "key": "home-lab",
-    "meshes": 5,
-    "triangles": 2511,
-    "bytes": 145288
+    "meshes": 6,
+    "triangles": 9988,
+    "bytes": 564372
   },
   {
-    "id": "I-001",
-    "key": "codritium",
+    "id": "W-001",
+    "key": "equipment-database",
     "meshes": 7,
-    "triangles": 2032,
-    "bytes": 110936
+    "triangles": 9412,
+    "bytes": 515132
   },
   {
-    "id": "I-002",
-    "key": "intelli-new",
-    "meshes": 5,
-    "triangles": 2806,
-    "bytes": 164324
+    "id": "W-002",
+    "key": "novacart",
+    "meshes": 6,
+    "triangles": 11064,
+    "bytes": 688224
   },
   {
-    "id": "I-003",
-    "key": "golden-lady",
-    "meshes": 5,
-    "triangles": 2447,
-    "bytes": 143324
+    "id": "W-003",
+    "key": "mediajira",
+    "meshes": 8,
+    "triangles": 5912,
+    "bytes": 353172
   },
   {
-    "id": "P-009",
-    "key": "unsw",
+    "id": "W-004",
+    "key": "lanely",
+    "meshes": 8,
+    "triangles": 7236,
+    "bytes": 449212
+  },
+  {
+    "id": "W-005",
+    "key": "whale",
+    "meshes": 6,
+    "triangles": 11512,
+    "bytes": 720024
+  },
+  {
+    "id": "W-006",
+    "key": "breaktime",
+    "meshes": 6,
+    "triangles": 6840,
+    "bytes": 376540
+  },
+  {
+    "id": "W-007",
+    "key": "good360",
     "meshes": 7,
-    "triangles": 2030,
-    "bytes": 116648
+    "triangles": 7248,
+    "bytes": 423508
   },
   {
-    "id": "P-010",
-    "key": "uts",
-    "meshes": 7,
-    "triangles": 2298,
-    "bytes": 128244
+    "id": "W-008",
+    "key": "hls-keeper",
+    "meshes": 5,
+    "triangles": 6964,
+    "bytes": 404784
   }
 ]
