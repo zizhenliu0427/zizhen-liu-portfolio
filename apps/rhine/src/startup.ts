@@ -51,7 +51,7 @@ export class StartupGate {
     this.state = "waiting";
     this.options.root.dataset.entry = "waiting";
     this.button.disabled = false;
-    this.button.textContent = translateUi("进入作品集 →");
+    this.button.textContent = translateUi("进入个人网站 →");
     this.options.root.querySelector(":scope > span")!.textContent = "PERSONAL ARCHIVE / READY";
     this.status.textContent = translateUi("轻触屏幕或按 Enter 开始");
     if (document.activeElement === document.body || document.activeElement === this.button) this.button.focus({ preventScroll: true });

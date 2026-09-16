@@ -24,7 +24,7 @@ test('system theme, explicit override, bilingual content and language persistenc
   await page.goto('/');
   await expect(page.locator('html')).toHaveAttribute('lang','en-AU');
   await expect(page.locator('html')).toHaveAttribute('data-dark-surface','true');
-  await expect(page.locator('.entry-start')).toHaveText('Enter portfolio →');
+  await expect(page.locator('.entry-start')).toHaveText('Enter website →');
   await page.locator('.entry-start').click();
   await expect(page.locator('#stage')).toHaveAttribute('data-mode','archive');
   await expect(page.locator('.read-file')).toContainText('OPEN ARCHIVE');

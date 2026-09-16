@@ -190,6 +190,7 @@ export class ArchiveScene {
   private dummy = new THREE.Object3D();
   private cells: ArchiveCell[] = [];
   private selectedCell: ArchiveCell = { lane: 2, row: 12 };
+  private openingLaneOffset = 0;
   private looping = false;
   private coordinateOrigin: ArchiveCell = { lane: 0, row: 0 };
   private lift = { value: 0, velocity: 0 };
@@ -1264,6 +1265,7 @@ export class ArchiveScene {
     if (cinematic) {
       this.scanTime = shot;
       this.scanBlend = 1;
+      this.openingLaneOffset = 2 - this.selectedCell.lane;
     } else {
       this.scanTime += dt;
       this.scanBlend *= Math.exp(-dt * 3);
@@ -1324,7 +1326,9 @@ export class ArchiveScene {
     }
     // Keep the illuminated set near the origin. Lateral navigation is a track
     // movement of the whole array, just like the existing front/back rail.
-    const trackX = cinematic ? 0 : this.columnCamera.value;
+    // The film is calibrated around the selected card at x=0. Category order
+    // changes its logical lane, not the camera's physical reference point.
+    const trackX = this.columnCamera.value;
     this.pulses = this.pulses.filter((p) => time - p.time < 3.2);
     const aligningCopy = this.outgoing.some((o) => o.returnY !== null);
     const idle =
@@ -1371,15 +1375,15 @@ export class ArchiveScene {
       if (cinematic)
         return cinematicField(
           row,
-          lane,
+          lane + this.openingLaneOffset,
           shot,
           this.shoulder.value,
-          this.laneFocus.value,
+          this.laneFocus.value + this.openingLaneOffset,
         );
       const height =
         archiveWave(
           row + this.coordinateOrigin.row,
-          lane + this.coordinateOrigin.lane,
+          lane + this.coordinateOrigin.lane + this.openingLaneOffset,
           this.scanTime,
         ) *
           this.scanBlend;
@@ -1695,7 +1699,10 @@ export class ArchiveScene {
     // Build and compact the instance set only after the actual damped camera
     // is final for this frame. Picking uses the same packed index-to-cell map.
     const fixed = (Boolean(cinematic) || !this.looping) && !responsiveOpening;
-    this.cells = fixed ? Array.from({ length: 160 }, (_, i) => poolCell(i))
+    this.cells = fixed ? Array.from({ length: 160 }, (_, i) => {
+      const cell = poolCell(i);
+      return cinematic ? { ...cell, lane: cell.lane - this.openingLaneOffset } : cell;
+    })
       : this.visibility.update(this.camera, fog.far, trackX, entryZ + this.rail.value, this.extraCoverage);
     const hidden = new Set(this.outgoing.map(o => cellKey(o.cell)));
     hidden.add(cellKey(this.selectedCell));
