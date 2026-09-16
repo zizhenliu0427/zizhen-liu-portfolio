@@ -47,6 +47,8 @@ export function languageControl(id = 'language-toggle') {
 const languageAnimations = new WeakMap<HTMLElement, Animation>();
 export function revealTranslation(element: HTMLElement) {
   languageAnimations.get(element)?.cancel();
+  // Toast visibility belongs to its notification lifecycle, not translation.
+  if (element.closest('#toast')) return;
   if (document.querySelector('#stage.reduce-motion') || !element.getClientRects().length) return;
   languageAnimations.set(element, element.animate(
     [{ opacity: .15, translate: '0 5px' }, { opacity: 1, translate: '0 0' }],

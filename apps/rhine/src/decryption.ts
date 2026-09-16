@@ -101,6 +101,7 @@ export function decryptionFrame(time: number) {
     label: smooth((time - 34.32) / 0.36) * (1 - smooth((time - 37.68) / 0.24)),
     labelValue: smooth((time - 35.64) / 0.56),
     clarity: sampleCurve(REVEAL, time),
+    refrostProgress: 0,
     phase:
       time < 34.24
         ? "waiting"
@@ -121,6 +122,7 @@ export class DecryptionController {
   clarity = 0;
   private active = false;
   private elapsed: number | null = null;
+  private refrost: { elapsed: number; clarity: number } | null = null;
   frame: DecryptionFrame = decryptionFrame(-1);
 
   enter(alreadyClear = false) {
@@ -134,6 +136,7 @@ export class DecryptionController {
   leave() {
     this.active = false;
     this.elapsed = null;
+    this.refrost = null;
     this.frame = decryptionFrame(-1);
   }
   select(clarity = 0) {
@@ -141,9 +144,17 @@ export class DecryptionController {
     this.clarity = clarity;
   }
   finish() {
+    this.refrost = null;
     this.elapsed = (DECRYPTION_END - DECRYPTION_START) / INTERACTIVE_RATE;
     this.clarity = 1;
     this.frame = decryptionFrame(DECRYPTION_END);
+  }
+  replay() {
+    if (this.refrost) return;
+    this.active = true;
+    this.elapsed = null;
+    this.refrost = { elapsed: 0, clarity: this.clarity };
+    this.frame = { ...decryptionFrame(-1), phase: 'refrosting', clarity: this.clarity };
   }
   update(dt: number, ready: boolean, reduced: boolean, referenceTime?: number, loadingSpeed = 1) {
     if (referenceTime !== undefined) {
@@ -161,6 +172,16 @@ export class DecryptionController {
     }
     if (reduced) {
       this.finish();
+      return;
+    }
+    if (this.refrost) {
+      // Close from the currently displayed material before restarting the scan.
+      // This short transition uses real time, independent of loading speed.
+      this.refrost.elapsed += Math.max(0, dt);
+      const progress = smooth(this.refrost.elapsed / 0.55);
+      this.clarity = this.refrost.clarity * (1 - progress);
+      this.frame = { ...decryptionFrame(-1), phase: 'refrosting', clarity: this.clarity, refrostProgress: progress };
+      if (progress === 1) this.refrost = null;
       return;
     }
     if (this.elapsed === null && ready) this.elapsed = 0;

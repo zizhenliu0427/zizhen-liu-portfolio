@@ -5,6 +5,7 @@ import { language, languagePreference, languageControl, setLanguage, revealTrans
 import { createRollingClock } from "./rolling-clock";
 import { InspectionOverlay } from "./inspection-overlay";
 import { DocumentDecryption } from "./document-decryption";
+import { DocumentMorph } from "./document-morph";
 import "./document-decryption.css";
 import "./decryption.css";
 import { escapeHtml } from "./html";
@@ -367,6 +368,7 @@ function savePrefs() {
   if (prefs.reduced) {
     rollingTitles.forEach(title => title.finish());
     detailTransition.finish();
+    documentMorph.finish();
     modalTransition?.finish();
     tabTransition.cancel();
     bookmarkFeedback?.cancel();
@@ -447,6 +449,7 @@ const fileTicks = [...$("#file-ticks").querySelectorAll<HTMLButtonElement>("butt
 function setMode(next: Mode) {
   if (workbench?.enabled && next === "detail") next = "archive";
   const previousMode = mode;
+  if (next !== 'detail') { pendingDetailLocale = null; documentMorph.finish(); }
   rollingTitles.forEach(title => title.update({ animated: !prefs.reduced && next === "archive" }));
   if (next !== "archive") {
     rollingTitles.forEach(title => title.finish());
@@ -1070,6 +1073,8 @@ function bootFrame(t: number) {
 
 const inspectionOverlay = new InspectionOverlay();
 const documentDecryption = new DocumentDecryption();
+const documentMorph = new DocumentMorph();
+let pendingDetailLocale: { id: string; scroll: number } | null = null;
 // A newly opened archive can introduce another font shard. Re-measure its
 // redaction lines after font swap while retaining the current reveal progress.
 document.fonts.addEventListener("loadingdone", () => documentDecryption.refresh());
@@ -1099,6 +1104,19 @@ function frame(ms: number) {
   if (threeState === "closing" && scene?.presentationHidden) releaseThree();
   playground?.position();
   if (scene && mode === "detail") {
+    if (pendingDetailLocale && (scene.decryptionFrame.phase !== 'refrosting' || scene.decryptionFrame.refrostProgress === 1)) {
+      const pending = pendingDetailLocale;
+      pendingDetailLocale = null;
+      if (pending.id === records[selected].id) {
+        const render = () => {
+          renderDetail();
+          $('#detail-content').scrollTop = pending.scroll;
+          documentDecryption.reset($('#detail-content'), prefs.reduced, true);
+        };
+        if (prefs.reduced) render();
+        else documentMorph.replace($('#detail-content'), render);
+      }
+    }
     const status = document.querySelector<HTMLElement>('.project-model-status');
     if (status && status.dataset.state !== scene.projectModelState) {
       status.dataset.state = scene.projectModelState;
@@ -1110,7 +1128,7 @@ function frame(ms: number) {
     $("#detail-content").style.opacity = String(scene.detailVisibility);
     $("#detail-content").style.translate =
       `0 ${(1 - scene.detailVisibility) * 18}px`;
-    $("#detail-content").inert = scene.detailVisibility < 0.1;
+    $("#detail-content").inert = scene.detailVisibility < 0.1 || Boolean(pendingDetailLocale);
     if (pendingDetailFocus && scene.detailVisibility >= 0.1 && !modal && !viewer?.isOpen) {
       $("#detail-content").focus({ preventScroll: true });
       pendingDetailFocus = false;
@@ -1443,10 +1461,18 @@ function changeLanguage(value: string) {
   $('#language-toggle').outerHTML = languageControl();
   updateSelection();
   if (mode === 'detail') {
-    renderDetail();
-    setTab(tab, false);
-    $('#detail-content').scrollTop = panelScroll;
-    documentDecryption.reset($('#detail-content'), prefs.reduced || !scene, true);
+    if (!prefs.reduced && scene) {
+      pendingDetailLocale ??= { id: records[selected].id, scroll: panelScroll };
+      documentMorph.finish();
+      documentDecryption.cover($('#detail-content'));
+      scene.replayDecryption();
+      $('#detail-content').inert = true;
+    } else {
+      pendingDetailLocale = null;
+      renderDetail();
+      setTab(tab, false);
+      $('#detail-content').scrollTop = panelScroll;
+    }
   }
   if (modal) {
     renderModal();

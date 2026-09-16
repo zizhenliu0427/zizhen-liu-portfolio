@@ -22,3 +22,10 @@
 .reduce-motion .document-redaction-window {
   display: none;
 }
+
+.document-morphing .document-redacted,
+.document-morphing .document-redacted * { color: transparent !important; text-shadow: none !important; }
+.document-morphing .document-redaction-window { visibility: hidden; }
+.document-morph-copy { pointer-events: none !important; }
+.document-morph-bars { position: absolute; overflow: hidden; z-index: 2; pointer-events: none; }
+.document-morph-bars > span { position: absolute; background: #20221d; transform-origin: top left; }

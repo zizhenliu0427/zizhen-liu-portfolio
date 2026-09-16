@@ -1829,6 +1829,9 @@ export class ArchiveScene {
   }
   get decryptionFrame() { return this.decryption.frame; }
   finishDecryption() { this.decryption.finish(); }
+  replayDecryption() {
+    this.decryption.replay();
+  }
   get detailVisibility() {
     return ease((this.detail - 0.25) / 0.55);
   }

@@ -9,6 +9,7 @@ export class DocumentDecryption {
   private started: number | null = null;
   private progress = 0;
   private allFields = false;
+  private closingFrom: number | null = null;
 
   reset(root: HTMLElement, clear: boolean, allFields = false) {
     this.remove();
@@ -16,12 +17,22 @@ export class DocumentDecryption {
     this.started = null;
     this.progress = clear ? 1 : 0;
     this.allFields = allFields;
+    this.closingFrom = null;
+    this.refresh();
+  }
+
+  cover(root: HTMLElement) {
+    if (this.closingFrom !== null) return;
+    this.closingFrom = this.root === root ? this.progress : 1;
+    this.root = root;
+    this.progress = this.closingFrom;
+    this.allFields = true;
     this.refresh();
   }
 
   refresh() {
     this.remove();
-    if (!this.root || this.progress === 1) return;
+    if (!this.root || (this.progress === 1 && this.closingFrom === null)) return;
     // Measure text fragments, including wrapped lines, without splitting or
     // replacing the actual text. Stage scaling cancels out in local coordinates.
     const targets = this.root.querySelectorAll<HTMLElement>(
@@ -29,7 +40,7 @@ export class DocumentDecryption {
         ? "h2, h3, .detail-kicker, .detail-title-cn, .metadata dt, .metadata dd, .detail-tabs button, .panel-label, .tab-panel p, .research-notes li, .log-row, .portfolio-stack span, .detail-actions a, .detail-actions button, .detail-footnote"
         : "h2, .detail-title-cn, .metadata dd, .tab-panel p, .research-notes li, .log-row",
     );
-    targets.forEach((target) => {
+    targets.forEach((target, targetIndex) => {
       target.classList.add("document-redacted");
       const bounds = target.getBoundingClientRect();
       const scale = bounds.width / target.offsetWidth;
@@ -56,9 +67,10 @@ export class DocumentDecryption {
           } else lines.push({ x, y, right, bottom });
         }
       }
-      for (const line of lines) {
+      for (const [lineIndex, line] of lines.entries()) {
         const window = document.createElement("span");
         window.className = "document-redaction-window";
+        window.dataset.morphKey = `${targetIndex}:${lineIndex}`;
         window.setAttribute("aria-hidden", "true");
         const left = Math.max(0, line.x - 1);
         const right = Math.min(target.clientWidth, line.right + 1);
@@ -74,6 +86,11 @@ export class DocumentDecryption {
   }
 
   update(now: number, frame: DecryptionFrame, reduced: boolean) {
+    if (this.closingFrom !== null) {
+      this.progress = this.closingFrom * (1 - frame.refrostProgress);
+      this.paint();
+      return;
+    }
     if (!this.root || this.progress === 1) return;
     if (reduced) this.progress = 1;
     else {
