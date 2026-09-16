@@ -160,3 +160,8 @@
 #stage[data-layout="desktop"] .detail-content { max-height: calc(100% - 439px); }
 #stage[data-layout="desktop"][data-mode="detail"] .powered { bottom: 78px; font-size: 16px; pointer-events: none; }
 #stage .detail-actions { justify-content: flex-start; }
+
+.fps-meter { position: absolute; z-index: 19; left: var(--edge); top: 236px; padding: 5px 9px; border: 1px solid var(--theme-line); border-radius: 3px; background: rgba(var(--theme-panel-rgb), .88); color: var(--theme-ink); font: 500 14px/1.4 Arial, Helvetica, sans-serif; font-variant-numeric: tabular-nums; letter-spacing: .4px; min-width: 78px; text-align: center; pointer-events: none; }
+.fps-meter[hidden] { display: none; }
+:is([data-layout="compact"], [data-layout="portrait"]) .fps-meter { top: 132px; font-size: 12px; }
+[data-mode="boot"] .fps-meter { top: auto; bottom: 60px; }

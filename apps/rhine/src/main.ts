@@ -97,6 +97,7 @@ $("#stage").innerHTML = translateUi(`
   </section>
   <div class="powered">POWERED BY <b>ZL ARCHIVE</b><i></i></div>
   <footer class="system-footer"><span><i class="status-light"></i> PORTFOLIO ONLINE${isWallpaper ? translateUi('<button type="button" class="three-toggle" data-action="toggle-three" aria-pressed="true" title="卸载三维模型，保留 2D 界面">3D 开启</button>') : ''}</span><span>ZIZHEN LIU <i>／</i> <span id="clock">00:00:00</span></span><button data-action="replay" title="重播启动流程">REINITIALIZE ↗</button></footer>
+  <output id="fps-meter" class="fps-meter" aria-label="帧率" aria-live="off" hidden>— FPS</output>
   <div id="modal-root"></div><div id="toast" class="toast" role="status"></div>
   <div id="loading" class="loading"><div class="loading-mark">${logo}</div><span>CONNECTING TO PERSONAL ARCHIVE</span><i></i></div>
 `);
@@ -178,7 +179,7 @@ const resumeLocale: { selected: number; mode: string; tab: string; started?: boo
     return value && Number.isInteger(value.selected) && value.selected >= 0 && value.selected < records.length ? value : null;
   } catch { return null; }
 })();
-const storedPrefs = readLocal<Partial<{ sound: boolean; music: boolean; soundVolume: number; musicVolume: number; reduced: boolean; quality: boolean; rendering: RenderQuality; superPerformance: boolean; animationSpeed: number; colorTheme: "light" | "dark" }>>("zl-archive-settings", {});
+const storedPrefs = readLocal<Partial<{ sound: boolean; music: boolean; soundVolume: number; musicVolume: number; reduced: boolean; quality: boolean; rendering: RenderQuality; superPerformance: boolean; showFps: boolean; animationSpeed: number; colorTheme: "light" | "dark" }>>("zl-archive-settings", {});
 const renderModePreference = (() => {
   try { return localStorage.getItem('zl-archive-render-mode'); } catch { return null; }
 })();
@@ -191,6 +192,7 @@ const prefs = {
   quality: true,
   ...storedPrefs,
   animationSpeed: normaliseMotionSpeed(storedPrefs.animationSpeed),
+  showFps: storedPrefs.showFps === true,
   superPerformance: renderModePreference === 'quality' ? false : renderModePreference === 'performance' || storedPrefs.superPerformance === true || matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0 && Math.min(screen.width, screen.height) <= 1024,
   rendering: normalizeQuality(storedPrefs.rendering, storedPrefs.quality !== false),
   colorTheme: (themePreference === 'auto' ? systemTheme.matches ? 'dark' : 'light' : themePreference) as 'light' | 'dark',
@@ -790,7 +792,7 @@ function motionSettingsMarkup() {
     : translateUi("当前使用完整动效。")}</p>${prefs.reduced ? translateUi('<button data-action="enable-motion">启用完整动效并重播 ↻</button>') : ""}</div>`;
 }
 function settingsMarkup() {
-  return translateUi(`<h2>SYSTEM SETTINGS<small>终端偏好设置</small></h2><p class="settings-intro">ZIZHEN LIU <span>·</span> PORTFOLIO ONLINE</p>${isWallpaper ? translateUi('<p class="wallpaper-settings-note">每次启动都会读取 Wallpaper Engine 中的设置。在此修改仅对当前运行生效，无法持久保存；如需保留，请在 Wallpaper Engine 的壁纸属性中调整。</p>') : ""}<div class="settings-list">${themeSettingsMarkup(themePreference)}${!isWallpaper ? translateUi(`<label><div><strong>SUPER PERFORMANCE</strong><span>降低三维画质和渲染分辨率，保留完整动效；关闭后恢复原画质</span></div><input type="checkbox" data-pref="superPerformance" ${prefs.superPerformance ? "checked" : ""}/><i class="toggle"></i></label>`) : ""}${workbench?.settingsMarkup() ?? ""}${audioSettingsMarkup(prefs)}<label><div><strong>REDUCED MOTION</strong><span>跳过开机动画，简化选档、镜头和文字动效</span></div><input type="checkbox" data-pref="reduced" ${prefs.reduced ? "checked" : ""}/><i class="toggle"></i></label></div>${motionSettingsMarkup()}${speedSettingsMarkup()}${qualityMarkup(prefs.rendering)}<div class="settings-shortcuts">${isWallpaper ? translateUi('<span>DESKTOP CONTROLS</span><p>拖动阵列或点击界面按钮浏览档案。桌面模式下，方向键与滚轮可能无法传入壁纸。</p>') : translateUi('<span>KEYBOARD CONTROLS</span><p><kbd>←</kbd><kbd>→</kbd> 切列 <kbd>↑</kbd><kbd>↓</kbd> 选档 <kbd>ENTER</kbd> 读取 <kbd>/</kbd> 检索 <kbd>ESC</kbd> 返回</p>')}</div><div class="settings-bottom">${!isWallpaper && document.fullscreenEnabled ? '<button data-action="fullscreen">FULLSCREEN <span>↗</span></button>' : ''}<button data-action="restart">REINITIALIZE SYSTEM <span>↻</span></button></div><div class="modal-bottom"><span>ANALYSIS OS / 1.0 · 使用 MiSans 字体（小米） <a href="${assetUrl("fonts/MiSans-license.pdf")}" target="_blank" rel="noopener">字体许可</a></span><span>UI BASED ON <a href="https://github.com/LBEILC/RhineLabUI" target="_blank" rel="noopener">LBEILC / RhineLabUI</a> · <a href="/licenses/RhineLabUI-MIT.txt" target="_blank" rel="noopener">MIT</a></span></div>`);
+  return translateUi(`<h2>SYSTEM SETTINGS<small>终端偏好设置</small></h2><p class="settings-intro">ZIZHEN LIU <span>·</span> PORTFOLIO ONLINE</p>${isWallpaper ? translateUi('<p class="wallpaper-settings-note">每次启动都会读取 Wallpaper Engine 中的设置。在此修改仅对当前运行生效，无法持久保存；如需保留，请在 Wallpaper Engine 的壁纸属性中调整。</p>') : ""}<div class="settings-list">${themeSettingsMarkup(themePreference)}${!isWallpaper ? translateUi(`<label><div><strong>SUPER PERFORMANCE</strong><span>降低三维画质和渲染分辨率，保留完整动效；关闭后恢复原画质</span></div><input type="checkbox" data-pref="superPerformance" ${prefs.superPerformance ? "checked" : ""}/><i class="toggle"></i></label>`) : ""}${workbench?.settingsMarkup() ?? ""}${audioSettingsMarkup(prefs)}<label><div><strong>显示帧率</strong><span>在三维界面显示 FPS，每秒更新一次</span></div><input type="checkbox" data-pref="showFps" ${prefs.showFps ? "checked" : ""}/><i class="toggle"></i></label><label><div><strong>REDUCED MOTION</strong><span>跳过开机动画，简化选档、镜头和文字动效</span></div><input type="checkbox" data-pref="reduced" ${prefs.reduced ? "checked" : ""}/><i class="toggle"></i></label></div>${motionSettingsMarkup()}${speedSettingsMarkup()}${qualityMarkup(prefs.rendering)}<div class="settings-shortcuts">${isWallpaper ? translateUi('<span>DESKTOP CONTROLS</span><p>拖动阵列或点击界面按钮浏览档案。桌面模式下，方向键与滚轮可能无法传入壁纸。</p>') : translateUi('<span>KEYBOARD CONTROLS</span><p><kbd>←</kbd><kbd>→</kbd> 切列 <kbd>↑</kbd><kbd>↓</kbd> 选档 <kbd>ENTER</kbd> 读取 <kbd>/</kbd> 检索 <kbd>ESC</kbd> 返回</p>')}</div><div class="settings-bottom">${!isWallpaper && document.fullscreenEnabled ? '<button data-action="fullscreen">FULLSCREEN <span>↗</span></button>' : ''}<button data-action="restart">REINITIALIZE SYSTEM <span>↻</span></button></div><div class="modal-bottom"><span>ANALYSIS OS / 1.0 · 使用 MiSans 字体（小米） <a href="${assetUrl("fonts/MiSans-license.pdf")}" target="_blank" rel="noopener">字体许可</a></span><span>UI BASED ON <a href="https://github.com/LBEILC/RhineLabUI" target="_blank" rel="noopener">LBEILC / RhineLabUI</a> · <a href="/licenses/RhineLabUI-MIT.txt" target="_blank" rel="noopener">MIT</a></span></div>`);
 }
 
 document.addEventListener("input", (e) => {
@@ -823,7 +825,7 @@ document.addEventListener("change", (e) => {
   }
   if (el.dataset.pref) {
     const key = el.dataset.pref;
-    if (key === "sound" || key === "music" || key === "reduced" || key === "quality" || key === "superPerformance") prefs[key] = el.checked;
+    if (key === "sound" || key === "music" || key === "reduced" || key === "quality" || key === "superPerformance" || key === "showFps") prefs[key] = el.checked;
     if (key === 'superPerformance') { try { localStorage.setItem('zl-archive-render-mode', prefs.superPerformance ? 'performance' : 'quality'); } catch {} }
     if (key === "sound" || key === "music") saveAudioPrefs(); else savePrefs();
     if (key === "reduced") $("#motion-preference-note").outerHTML = motionSettingsMarkup();
@@ -1083,6 +1085,7 @@ let lastTime = 0,
   frameCount = 0,
   frameStart = performance.now(),
   fps = 0;
+document.addEventListener("visibilitychange", () => { frameCount = 0; frameStart = performance.now(); });
 function frame(ms: number) {
   if (!wallpaperFrame(ms)) { requestAnimationFrame(frame); return; }
   if (document.hidden) { requestAnimationFrame(frame); return; }
@@ -1142,9 +1145,11 @@ function frame(ms: number) {
     lastTime = Math.floor(time);
     updateFooterClock(new Date(), !prefs.reduced);
   }
+  $("#fps-meter").hidden = !prefs.showFps || !scene || threeState !== "on" || (mode === "boot" && (!cinema || cinema.time < 21.9));
   frameCount++;
   if (ms - frameStart > 1000) {
     fps = (frameCount * 1000) / (ms - frameStart);
+    $("#fps-meter").textContent = `${Math.round(fps)} FPS`;
     frameStart = ms;
     frameCount = 0;
     $("#three-scene").dataset.fps = String(Math.round(fps));
@@ -1324,6 +1329,8 @@ function completeStartup(silent: boolean) {
       target.focus({ preventScroll: true });
     }
   }, fade);
+  frameCount = 0;
+  frameStart = performance.now();
   requestAnimationFrame(frame);
   // Retire earlier offline releases without restarting the current visit.
   void retireOfflineCache();

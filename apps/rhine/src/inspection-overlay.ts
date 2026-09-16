@@ -28,14 +28,16 @@ export class InspectionOverlay {
     project: (x: number, y: number) => number[],
     showLabel: boolean,
   ) {
-    const host = document.querySelector<HTMLElement>("#three-scene")!;
-    this.root.setAttribute("viewBox", `0 0 ${host.clientWidth} ${host.clientHeight}`);
-    this.root.style.opacity =
-      frame.intervals.length || frame.markers > 0 || frame.point > 0
-        ? "1"
-        : "0";
+    const visible = frame.intervals.length > 0 || frame.markers > 0 || frame.point > 0;
+    this.root.style.opacity = visible ? "1" : "0";
     this.root.dataset.phase = frame.phase;
     this.root.dataset.referenceTime = frame.time.toFixed(3);
+    this.label.style.opacity = String(showLabel ? frame.label : 0);
+    // No projection, layout reads or SVG rebuilding while the scan is hidden.
+    // The first visible frame below refreshes every geometry value.
+    if (!visible) return;
+    const host = document.querySelector<HTMLElement>("#three-scene")!;
+    this.root.setAttribute("viewBox", `0 0 ${host.clientWidth} ${host.clientHeight}`);
     this.line.setAttribute(
       "d",
       inspectionSegments(frame)

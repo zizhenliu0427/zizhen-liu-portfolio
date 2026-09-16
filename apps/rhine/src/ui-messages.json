@@ -224,5 +224,8 @@
   "已归档": "Archived",
   "工程科": "Engineering",
   "光学检查": "Optical inspection",
-  "模型已载入": "Model loaded"
+  "模型已载入": "Model loaded",
+  "显示帧率": "Show frame rate",
+  "帧率": "Frame rate",
+  "在三维界面显示 FPS，每秒更新一次": "Show FPS in the 3D view, updated once per second"
 }
