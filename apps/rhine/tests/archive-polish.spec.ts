@@ -69,10 +69,10 @@ test('hover caption has a theme-aware opaque panel with readable text', async ({
 });
 
 test('category order, full language decryption and removed utility controls', async ({ page }) => {
-  for (const [index, name] of ['个人资料', '实习经历', 'Web 与应用', 'AI 与数据', '系统与硬件'].entries()) {
+  for (const [index, name] of ['个人资料', '实习经历', 'Web 与应用', 'AI 与数据', '系统与硬件', '致谢'].entries()) {
     await expect(page.locator('#column-name')).toContainText(name);
     await expect(page.locator('#column-index')).toContainText(String(index + 1).padStart(2, '0'));
-    if (index < 4) await page.locator('[data-action="column-next"]').click();
+    if (index < 5) await page.locator('[data-action="column-next"]').click();
   }
   await page.locator('.read-file').click();
   await expect(page.locator('#inspection-marks')).toHaveAttribute('data-phase', 'clear');

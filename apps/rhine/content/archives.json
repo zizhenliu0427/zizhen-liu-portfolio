@@ -4,14 +4,16 @@
     "实习经历",
     "Web 与应用",
     "AI 与数据",
-    "系统与硬件"
+    "系统与硬件",
+    "致谢"
   ],
   "columns": [
     "个人资料",
     "实习经历",
     "Web 与应用",
     "AI 与数据",
-    "系统与硬件"
+    "系统与硬件",
+    "致谢"
   ],
   "records": [
     {
@@ -980,6 +982,66 @@
       "source": "https://www.uts.edu.au/",
       "sourceLabel": "学校网站",
       "legacyId": "X-037"
+    },
+    {
+      "id": "C-001",
+      "title": "致谢 · 灵感与共创",
+      "en": "ACKNOWLEDGEMENTS",
+      "department": "开源 · 视觉灵感 · AI 协作",
+      "category": "致谢",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "CREDITS",
+      "abstract": "这个个人网站来自开源社区的分享、对莱茵生命视觉世界的喜爱，以及人与 AI 的共同探索。将最后一份档案留给这些灵感与帮助。",
+      "findings": [
+        "感谢 LBEILC 开源 RhineLabUI，让莱茵生命风格的三维档案界面成为可以继续学习和创作的起点。",
+        "感谢鹰角网络与《明日方舟》的创作者。莱茵生命的视觉设计、玻璃档案与科研终端氛围，是这套界面的灵感来源。",
+        "感谢 OpenAI 的 GPT-6 Astra 与 Codex，在代码实现、调试、模型脚本和持续迭代中提供协作支持。",
+        "这份致谢保留最初的 Rhine 玻璃、双环内构与 RHINE LAB 字样，向作品与开源作者致意。"
+      ],
+      "sections": [
+        {
+          "id": "credits-origins",
+          "title": "开源与视觉来源",
+          "abstract": "从原作的视觉表达，到开源实现，再到个人网站的改编，每一层贡献都值得被清楚记住。",
+          "findings": [
+            "RhineLabUI：LBEILC 的开源界面项目，本网站沿用其界面与三维交互基础。",
+            "《明日方舟》与莱茵生命：鹰角网络创造的作品与视觉世界。",
+            "GPT-6 Astra 与 Codex：本网站开发过程中使用的 AI 协作工具。"
+          ]
+        }
+      ],
+      "source": "https://github.com/LBEILC/RhineLabUI",
+      "sourceLabel": "原开源项目 · LBEILC / RhineLabUI",
+      "stack": [
+        "RhineLabUI",
+        "Arknights",
+        "Rhine Lab",
+        "GPT-6 Astra",
+        "Codex"
+      ],
+      "links": [
+        {
+          "label": "RhineLabUI · GitHub",
+          "href": "https://github.com/LBEILC/RhineLabUI"
+        },
+        {
+          "label": "鹰角网络",
+          "href": "https://www.hypergryph.com/"
+        },
+        {
+          "label": "明日方舟",
+          "href": "https://ak.hypergryph.com/"
+        },
+        {
+          "label": "OpenAI",
+          "href": "https://openai.com/"
+        },
+        {
+          "label": "Codex",
+          "href": "https://openai.com/codex/"
+        }
+      ]
     }
   ],
   "redirects": {

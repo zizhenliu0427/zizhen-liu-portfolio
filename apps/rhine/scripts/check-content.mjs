@@ -10,7 +10,7 @@ import { escapeHtml } from "../src/html.ts";
 
 const content = await loadContent();
 test('education stays with personal details and technical notes stay inside their parent', () => {
-  assert.equal(content.records.length, 31);
+  assert.equal(content.records.length, 32);
   assert.ok(content.records.filter(r=>r.clearance === 'EDUCATION').every(r=>r.category === '个人资料'));
   assert.equal(content.records.filter(r=>r.category === '实习经历').length, 3);
   assert.ok(content.records.every(r=>r.clearance !== 'ENGINEERING NOTE'));
@@ -163,7 +163,7 @@ const invalidCases = [
     (c) => {
       c.columns[0] = "其他";
     },
-    /相同的五个分类/,
+    /相同的六个分类/,
   ],
 ];
 for (const [name, mutate, error] of invalidCases) {

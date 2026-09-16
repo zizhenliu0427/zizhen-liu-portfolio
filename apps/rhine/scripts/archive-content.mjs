@@ -14,7 +14,7 @@ const requiredFields = [
 ];
 const isText = (value) => typeof value === "string" && value.trim().length > 0;
 export function categoryPrefix(name) {
-  return ({'个人资料':'P','About me':'P','实习经历':'I','Internships':'I','Web 与应用':'W','Web & Apps':'W','AI 与数据':'A','AI & Data':'A','系统与硬件':'S','Systems & Hardware':'S'})[name];
+  return ({'个人资料':'P','About me':'P','实习经历':'I','Internships':'I','Web 与应用':'W','Web & Apps':'W','AI 与数据':'A','AI & Data':'A','系统与硬件':'S','Systems & Hardware':'S','致谢':'C','Acknowledgements':'C'})[name];
 }
 
 export function validateContent(content) {
@@ -24,9 +24,9 @@ export function validateContent(content) {
   }
   for (const key of ["categories", "columns"]) {
     const names = content[key];
-    if (!Array.isArray(names) || names.length !== 5 || !names.every(isText)) {
-      errors.push(`${key}：必须包含五个非空分类名称`);
-    } else if (new Set(names).size !== 5 || names.includes("全部档案")) {
+    if (!Array.isArray(names) || names.length !== 6 || !names.every(isText)) {
+      errors.push(`${key}：必须包含六个非空分类名称`);
+    } else if (new Set(names).size !== 6 || names.includes("全部档案")) {
       errors.push(`${key}：分类名称不能重复，也不能使用“全部档案”`);
     }
   }
@@ -38,7 +38,7 @@ export function validateContent(content) {
     categories.some((name) => !columns.includes(name)) ||
     columns.some((name) => !categories.includes(name))
   ) {
-    errors.push("categories 与 columns 必须包含相同的五个分类（顺序可以不同）");
+    errors.push("categories 与 columns 必须包含相同的六个分类（顺序可以不同）");
   }
   const records = Array.isArray(content.records) ? content.records : [];
   if (!records.length) errors.push("records：必须包含档案");
@@ -56,7 +56,7 @@ export function validateContent(content) {
     const prefix = categoryPrefix(record.category);
     const sequence = counters[prefix] = (counters[prefix] ?? 0) + 1;
     if (record.id !== `${prefix}-${String(sequence).padStart(3,'0')}`)
-      errors.push(`${label}.id：分类编号须使用 P/I/W/A/S 前缀并在分类内按顺序排列`);
+      errors.push(`${label}.id：分类编号须使用 P/I/W/A/S/C 前缀并在分类内按顺序排列`);
     if (ids.has(record.id)) errors.push(`${label}.id：重复编号 ${record.id}`);
     ids.add(record.id);
     if (!categories.includes(record.category))

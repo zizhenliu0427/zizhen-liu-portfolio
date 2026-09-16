@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { motionSpeed } from './motion-speed';
 import { t } from './locale';
-import { ProjectModels, projectModel, isOriginalInterior } from './project-models';
+import { ProjectModels, projectModel, isOriginalInterior, usesProjectGlass } from './project-models';
 import { ArchiveVisibility } from "./archive-visibility";
 import { InstanceUpdates } from "./instance-updates";
 import { RenderState } from "./render-state";
@@ -22,7 +22,7 @@ import { applyTextureQuality, resizeQuality } from "./quality-renderer";
 import { CardAppearance } from "./appearance";
 import { configureInternalOptics } from "./internal-optics";
 import { DecryptionController } from "./decryption";
-import { fileAtSlot, fileLocation, archiveRowPeriod, records } from "./data";
+import { fileAtSlot, fileLocation, archiveRowPeriod, archiveColumns, records } from "./data";
 import {
   cellKey,
   sameCell,
@@ -115,8 +115,8 @@ export class ArchiveScene {
       inst.material = enabled ? inst.userData.fastMaterial : original;
       inst.visible = !enabled || original.name.replace(/\.\d+$/, "") !== "Titanium_Fasteners";
     }
-    this.appearance.setProjectPerformanceGlass(this.model, enabled && Boolean(projectModel(this.projectId)));
-    for (const old of this.outgoing) this.appearance.setProjectPerformanceGlass(old.group, enabled && old.group.children.some(child => child.userData.portfolioInterior));
+    this.appearance.setProjectPerformanceGlass(this.model, enabled && usesProjectGlass(this.projectId));
+    for (const old of this.outgoing) this.appearance.setProjectPerformanceGlass(old.group, enabled && old.group.children.some(child => child.userData.portfolioInterior && child.userData.projectKey !== 'rhine-tribute'));
     this.resize();
   }
   setSelectedIndexAccent(onlySelected: boolean) { this.selectedIndexOnly = onlySelected; }
@@ -538,10 +538,10 @@ export class ArchiveScene {
       if (child.userData.portfolioInterior) {
         this.model.remove(child);
         ((child as THREE.Mesh).material as THREE.Material).dispose();
-      } else if (isOriginalInterior(child)) child.visible = !spec;
+      } else if (isOriginalInterior(child)) child.visible = !spec || Boolean(spec.nativeInterior);
     }
     this.projectModelState = spec ? 'loading' : 'default';
-    this.appearance.setProjectPerformanceGlass(this.model, this.superPerformance && Boolean(spec));
+    this.appearance.setProjectPerformanceGlass(this.model, this.superPerformance && usesProjectGlass(id));
     this.renderState.invalidate();
     if (!spec) return;
     try {
@@ -586,7 +586,7 @@ export class ArchiveScene {
         /\.\d+$/,
         "",
       );
-      if (spec && isOriginalInterior({ userData: { surface: name } })) return;
+      if (spec && !spec.nativeInterior && isOriginalInterior({ userData: { surface: name } })) return;
       const mesh = new THREE.Mesh(
         object.geometry.clone().applyMatrix4(object.matrixWorld),
         object.material,
@@ -602,7 +602,7 @@ export class ArchiveScene {
       for (const mesh of interior) { model.add(mesh); meshes.push(mesh); }
     }
     this.appearance.apply(model, 1);
-    this.appearance.setProjectPerformanceGlass(model, this.superPerformance && Boolean(spec));
+    this.appearance.setProjectPerformanceGlass(model, this.superPerformance && usesProjectGlass(this.projectId));
     this.appearance.setClarity(model, this.decryption.clarity);
     this.appearance.setTheme(model, this.themeAmount);
     const canvas = document.createElement("canvas");
@@ -629,7 +629,7 @@ export class ArchiveScene {
     meshes.push(label);
     return {
       model,
-      project: spec,
+      project: spec?.nativeInterior ? undefined : spec,
       setClarity: (value: number) => this.appearance.setClarity(model, value),
       dispose: () => {
         for (const mesh of meshes) {
@@ -722,7 +722,7 @@ export class ArchiveScene {
     const shift = {
       lane:
         Math.abs(this.selectedCell.lane) > 2048
-          ? Math.round((this.selectedCell.lane - 2) / 5) * 5
+          ? Math.round((this.selectedCell.lane - 2) / archiveColumns.length) * archiveColumns.length
           : 0,
       row:
         Math.abs(this.selectedCell.row) > 2048
@@ -784,7 +784,7 @@ export class ArchiveScene {
       this.appearance.prepare(group);
       // prepare() installs fresh materials; reapply this copy's glass mode.
       for (const child of group.children) child.userData.projectPerformanceGlass = false;
-      this.appearance.setProjectPerformanceGlass(group, this.superPerformance && Boolean(projectModel(this.projectId)));
+      this.appearance.setProjectPerformanceGlass(group, this.superPerformance && usesProjectGlass(this.projectId));
       this.appearance.apply(group, ease(this.lift.value / 0.4));
       this.appearance.setClarity(group, this.decryption.clarity);
       this.scene.add(group);

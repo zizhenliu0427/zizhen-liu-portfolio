@@ -1,4 +1,116 @@
 {
+  "P-001": {
+    "key": "profile",
+    "title": "PERSONAL PROFILE",
+    "zh": "刘子箴 · 全栈工程师",
+    "design": "identity",
+    "layers": [
+      "连接与信号层",
+      "档案结构模块"
+    ],
+    "layersEn": [
+      "Connections & signals",
+      "Archive structure"
+    ]
+  },
+  "P-002": {
+    "key": "contact",
+    "title": "CONTACT",
+    "zh": "联系与合作",
+    "design": "contact",
+    "layers": [
+      "连接与信号层",
+      "档案结构模块"
+    ],
+    "layersEn": [
+      "Connections & signals",
+      "Archive structure"
+    ]
+  },
+  "P-003": {
+    "key": "skills",
+    "title": "ENGINEERING STACK",
+    "zh": "从界面到 GPU",
+    "design": "stack",
+    "layers": [
+      "连接与信号层",
+      "档案结构模块"
+    ],
+    "layersEn": [
+      "Connections & signals",
+      "Archive structure"
+    ]
+  },
+  "P-004": {
+    "key": "frontend",
+    "title": "INTERFACE",
+    "zh": "界面与交互",
+    "design": "interface",
+    "layers": [
+      "连接与信号层",
+      "档案结构模块"
+    ],
+    "layersEn": [
+      "Connections & signals",
+      "Archive structure"
+    ]
+  },
+  "P-005": {
+    "key": "backend",
+    "title": "SERVER AND DATA",
+    "zh": "服务端与数据",
+    "design": "backend",
+    "layers": [
+      "连接与信号层",
+      "档案结构模块"
+    ],
+    "layersEn": [
+      "Connections & signals",
+      "Archive structure"
+    ]
+  },
+  "P-006": {
+    "key": "delivery",
+    "title": "BUILD AND SHIP",
+    "zh": "开发与交付",
+    "design": "delivery",
+    "layers": [
+      "连接与信号层",
+      "档案结构模块"
+    ],
+    "layersEn": [
+      "Connections & signals",
+      "Archive structure"
+    ]
+  },
+  "P-007": {
+    "key": "photography",
+    "title": "PHOTOGRAPHY",
+    "zh": "摄影与观察",
+    "design": "camera",
+    "layers": [
+      "连接与信号层",
+      "档案结构模块"
+    ],
+    "layersEn": [
+      "Connections & signals",
+      "Archive structure"
+    ]
+  },
+  "P-008": {
+    "key": "driving-languages",
+    "title": "OFFLINE / ONLINE",
+    "zh": "驾驶与语言",
+    "design": "mobility",
+    "layers": [
+      "连接与信号层",
+      "档案结构模块"
+    ],
+    "layersEn": [
+      "Connections & signals",
+      "Archive structure"
+    ]
+  },
   "W-001": {
     "key": "equipment-database",
     "title": "CMO-DB",
@@ -250,5 +362,84 @@
       "Connections & signals",
       "Project structure"
     ]
+  },
+  "I-001": {
+    "key": "codritium",
+    "title": "CODRITIUM",
+    "zh": "Codritium · 实习",
+    "design": "ci-workbench",
+    "layers": [
+      "连接与信号层",
+      "档案结构模块"
+    ],
+    "layersEn": [
+      "Connections & signals",
+      "Archive structure"
+    ]
+  },
+  "I-002": {
+    "key": "intelli-new",
+    "title": "INTELLI NEW",
+    "zh": "Intelli New Technologies · 实习",
+    "design": "etl-workbench",
+    "layers": [
+      "连接与信号层",
+      "档案结构模块"
+    ],
+    "layersEn": [
+      "Connections & signals",
+      "Archive structure"
+    ]
+  },
+  "I-003": {
+    "key": "golden-lady",
+    "title": "GOLDEN LADY",
+    "zh": "重庆金夫人实业有限公司 · 实习",
+    "design": "support-workbench",
+    "layers": [
+      "连接与信号层",
+      "档案结构模块"
+    ],
+    "layersEn": [
+      "Connections & signals",
+      "Archive structure"
+    ]
+  },
+  "P-009": {
+    "key": "unsw",
+    "title": "UNSW / RESEARCH",
+    "zh": "新南威尔士大学(UNSW)",
+    "design": "research",
+    "layers": [
+      "连接与信号层",
+      "档案结构模块"
+    ],
+    "layersEn": [
+      "Connections & signals",
+      "Archive structure"
+    ]
+  },
+  "P-010": {
+    "key": "uts",
+    "title": "UTS / ENGINEERING",
+    "zh": "悉尼科技大学(UTS)",
+    "design": "engineering-study",
+    "layers": [
+      "连接与信号层",
+      "档案结构模块"
+    ],
+    "layersEn": [
+      "Connections & signals",
+      "Archive structure"
+    ]
+  },
+  "C-001": {
+    "key": "rhine-tribute",
+    "title": "ACKNOWLEDGEMENTS",
+    "zh": "致谢",
+    "design": "native-tribute",
+    "nativeInterior": true,
+    "layers": [],
+    "layersEn": []
   }
 }

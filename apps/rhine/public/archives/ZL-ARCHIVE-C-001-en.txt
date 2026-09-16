@@ -1,0 +1,24 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE C-001 / Acknowledgements · Inspiration & collaboration
+ACKNOWLEDGEMENTS
+
+Focus: OPEN SOURCE · VISUAL INSPIRATION · AI COLLABORATION
+Period: 2026
+Author: Zizhen Liu / Lance
+Access: CREDITS
+
+This personal website grew from open-source generosity, an appreciation of Rhine Lab’s visual world, and collaboration between a person and AI. This final archive is a thank-you to those inspirations and contributions.
+
+Engineering notes
+1. Thank you to LBEILC for sharing RhineLabUI, providing an open-source foundation to learn from and build upon.
+2. Thank you to HYPERGRYPH and the creators of Arknights. Rhine Lab’s visual design, glass archives and research-terminal atmosphere inspired this interface.
+3. Thank you to OpenAI’s GPT-6 Astra and Codex for supporting implementation, debugging, modelling scripts and ongoing iteration.
+4. This tribute retains the original Rhine glass, twin-ring interior and RHINE LAB lettering as a nod to the original work and its open-source adaptation.
+
+Open-source and visual origins
+From the original visual work to its open-source recreation and this personal adaptation, each contribution deserves acknowledgement.
+1. RhineLabUI: the open-source interface by LBEILC, providing the foundation for this website’s interface and 3D interactions.
+2. Arknights and Rhine Lab: the work and visual world created by HYPERGRYPH.
+3. GPT-6 Astra and Codex: AI collaboration tools used in developing this personal website.
+
+Related link: https://github.com/LBEILC/RhineLabUI

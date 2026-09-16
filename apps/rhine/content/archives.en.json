@@ -4,14 +4,16 @@
     "Internships",
     "Web & Apps",
     "AI & Data",
-    "Systems & Hardware"
+    "Systems & Hardware",
+    "Acknowledgements"
   ],
   "columns": [
     "About me",
     "Internships",
     "Web & Apps",
     "AI & Data",
-    "Systems & Hardware"
+    "Systems & Hardware",
+    "Acknowledgements"
   ],
   "records": [
     {
@@ -980,6 +982,66 @@
       "source": "https://www.uts.edu.au/",
       "sourceLabel": "University website",
       "legacyId": "X-037"
+    },
+    {
+      "id": "C-001",
+      "title": "Acknowledgements · Inspiration & collaboration",
+      "en": "ACKNOWLEDGEMENTS",
+      "department": "OPEN SOURCE · VISUAL INSPIRATION · AI COLLABORATION",
+      "category": "Acknowledgements",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "CREDITS",
+      "abstract": "This personal website grew from open-source generosity, an appreciation of Rhine Lab’s visual world, and collaboration between a person and AI. This final archive is a thank-you to those inspirations and contributions.",
+      "findings": [
+        "Thank you to LBEILC for sharing RhineLabUI, providing an open-source foundation to learn from and build upon.",
+        "Thank you to HYPERGRYPH and the creators of Arknights. Rhine Lab’s visual design, glass archives and research-terminal atmosphere inspired this interface.",
+        "Thank you to OpenAI’s GPT-6 Astra and Codex for supporting implementation, debugging, modelling scripts and ongoing iteration.",
+        "This tribute retains the original Rhine glass, twin-ring interior and RHINE LAB lettering as a nod to the original work and its open-source adaptation."
+      ],
+      "sections": [
+        {
+          "id": "credits-origins",
+          "title": "Open-source and visual origins",
+          "abstract": "From the original visual work to its open-source recreation and this personal adaptation, each contribution deserves acknowledgement.",
+          "findings": [
+            "RhineLabUI: the open-source interface by LBEILC, providing the foundation for this website’s interface and 3D interactions.",
+            "Arknights and Rhine Lab: the work and visual world created by HYPERGRYPH.",
+            "GPT-6 Astra and Codex: AI collaboration tools used in developing this personal website."
+          ]
+        }
+      ],
+      "source": "https://github.com/LBEILC/RhineLabUI",
+      "sourceLabel": "Original open-source project · LBEILC / RhineLabUI",
+      "stack": [
+        "RhineLabUI",
+        "Arknights",
+        "Rhine Lab",
+        "GPT-6 Astra",
+        "Codex"
+      ],
+      "links": [
+        {
+          "label": "RhineLabUI · GitHub",
+          "href": "https://github.com/LBEILC/RhineLabUI"
+        },
+        {
+          "label": "HYPERGRYPH",
+          "href": "https://www.hypergryph.com/"
+        },
+        {
+          "label": "Arknights",
+          "href": "https://ak.hypergryph.com/"
+        },
+        {
+          "label": "OpenAI",
+          "href": "https://openai.com/"
+        },
+        {
+          "label": "Codex",
+          "href": "https://openai.com/codex/"
+        }
+      ]
     }
   ],
   "redirects": {

@@ -26,13 +26,14 @@ exec(compile(shell_script.read_text(encoding='utf-8'),str(shell_script),'exec'))
 for route in [[(681,470),(681,899),(1061,899),(1061,821),(1310,821),(1310,464),(1028,464),(1028,406)]]:
     mould('Information substrate fine route',route,.014,.0018,core)
 
-# Embossed vertical company inscription belongs to the inner cover, not the ink label.
-inscription=text('Moulded vertical lettering','RHINE LAB, LLC.',0,0,.155,emboss)
-# Text baseline follows Blender local X; rotate it down the left edge in the X/Z plane.
-inscription.location=(-2.27,-.078,2.29)
-inscription.rotation_euler=(math.pi/2,math.pi/2,0)
-inscription.data.extrude=.003;inscription.data.bevel_depth=.0015;inscription.data.bevel_resolution=1
-inscription.data.space_character=1.10
+# The portfolio shell leaves this edge unlettered. Attribution lives in the
+# website credits; no upstream company name is embossed into personal records.
+if globals().get('TRIBUTE_LETTERING', False):
+    inscription=text('Moulded vertical lettering','RHINE LAB, LLC.',0,0,.155,emboss)
+    inscription.location=(-2.27,-.078,2.29)
+    inscription.rotation_euler=(math.pi/2,math.pi/2,0)
+    inscription.data.extrude=.003;inscription.data.bevel_depth=.0015;inscription.data.bevel_resolution=1
+    inscription.data.space_character=1.10
 # Two small registration pads under the floating tabs.
 for x in [-1.61,-1.45]:cube('Information substrate registration pad',(x,-.029,.53),(.014,.009,.038),gold,.002)
 

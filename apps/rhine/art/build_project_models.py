@@ -84,6 +84,17 @@ def rack(x,y,w=.8,h=1.35,rows=5):
         disc(x+w*.29,yy,.025,'amber',depth=.018,z=.144,vertices=12)
         line([(x-w*.32,yy),(x+w*.1,yy)],'graphite',.025,z=.141,part='optical-core')
 
+def monitor(x,y,w=1.4,h=.95):
+    box(x,y,w,h,'silver',depth=.09,z=.035)
+    box(x,y,w-.12,h-.12,'graphite',depth=.035,z=.103)
+    box(x,y-h/2-.13,.12,.26,'silver',depth=.07,z=.025)
+    box(x,y-h/2-.27,w*.55,.075,'ceramic',depth=.08,z=.02)
+
+def book(x,y,w=.4,h=1.35,colour='ceramic',angle=0):
+    box(x,y,w,h,colour,depth=.12,z=.055,angle=angle)
+    for offset in [-.4,.4]:
+        box(x,y+offset*h,w*.75,.033,'silver',depth=.015,z=.125)
+
 def build(design):
     if design=='radar':
         for r in [.28,.53,.8]: ring(-.8,1.68,r,'trace',.019)
@@ -235,11 +246,139 @@ def build(design):
             box(1.06,1.25+i*.52,.79,.36,'graphite');ring(1.06,1.25+i*.52,.12,'silver',.03,z=.12)
         line([(-1.17,.98),(-1.17,.58),(1.07,.58),(1.07,.98)],'trace',.035)
         box(-.1,.58,1.0,.2,'silver',depth=.05)
+    elif design=='identity':
+        # Three small engineering modules orbit a central identity medallion.
+        ring(0,1.77,.63,'silver',.042)
+        ring(0,1.77,.51,'trace',.022)
+        disc(0,1.97,.17,'ceramic',depth=.065,z=.08)
+        box(0,1.58,.56,.32,'ceramic',depth=.075,z=.07)
+        for x,y in [(-1.36,2.42),(1.36,2.42),(0,.79)]:
+            line([(0,1.77),(x,y)],'trace',.025,z=.005)
+            box(x,y,.61,.43,'graphite',depth=.07,z=.075)
+            for dx in [-.18,0,.18]:
+                for side in [-1,1]:box(x+dx,y+side*.28,.04,.12,'silver',depth=.022,z=.04,part='optical-lenses')
+            disc(x,y,.09,'amber',z=.13,depth=.02)
+    elif design=='contact':
+        # Envelope, connector and broadcast rings, without decorative metrics.
+        box(-.59,1.89,2.04,1.19,'ceramic',depth=.10,z=.04)
+        line([(-1.54,2.42),(-.59,1.78),(.36,2.42)],'silver',.035,z=.103)
+        line([(-1.54,1.35),(-.85,1.87)],'trace',.024,z=.106)
+        line([(.36,1.35),(-.34,1.87)],'trace',.024,z=.106)
+        ring(1.23,2.12,.37,'trace',.028)
+        ring(1.23,2.12,.20,'silver',.022)
+        node(1.23,2.12,.075)
+        line([(.43,1.61),(.83,1.61),(.83,.87),(1.48,.87)],'amber',.035)
+        box(1.52,.87,.27,.24,'silver',depth=.07,z=.03)
+    elif design=='stack':
+        # Layered compute package links client, data and accelerated computing.
+        for i,(w,c) in enumerate([(1.43,'graphite'),(1.10,'silver'),(.76,'ceramic')]):
+            box(-.53,1.79,w,w,c,depth=.042,z=.025+i*.048,angle=.08)
+        pins(-.53,1.79,1.43,1.43)
+        for y in [2.5,1.79,1.08]:
+            line([(.27,y),(1.0,y)],'trace',.03)
+            box(1.38,y,.60,.43,'graphite',depth=.07)
+            for dx in [-.17,0,.17]:box(1.38+dx,y,.08,.23,'amber',depth=.02,z=.113)
+    elif design=='interface':
+        monitor(-.56,2.00,2.17,1.39)
+        for y in [2.33,2.03,1.73]:
+            box(-1.27,y,.24,.18,'amber' if y==2.33 else 'trace',depth=.018,z=.133)
+            box(-.42,y,1.14,.12,'ceramic',depth=.018,z=.133)
+        box(1.2,1.64,.68,1.26,'silver',depth=.12,z=.05)
+        box(1.2,1.68,.54,1.04,'graphite',depth=.02,z=.121)
+        for y in [1.92,1.63,1.34]:box(1.2,y,.37,.17,'trace',depth=.02,z=.143)
+        line([(-.2,.92),(.34,.92),(.34,.73),(1.2,.73)],'amber',.024)
+    elif design=='backend':
+        rack(-1.24,1.90,.84,1.59,5)
+        box(.03,1.94,.66,.64,'ceramic',depth=.10,z=.06);pins(.03,1.94,.66,.64)
+        for y in [1.27,1.70,2.13,2.56]:
+            box(1.25,y,.90,.26,'graphite',depth=.11,z=.035)
+            box(1.25,y+.08,.90,.07,'silver',depth=.12,z=.073)
+        line([(-.8,1.91),(-.36,1.91)],'trace',.035)
+        line([(.40,1.91),(.64,1.91),(.64,1.28),(1.25,1.28)],'amber',.035)
+        line([(-1.24,.91),(-1.24,.66),(1.25,.66),(1.25,1.09)],'trace',.028)
+    elif design=='delivery':
+        # Branch, automated checks and a release crate.
+        line([(-1.57,.89),(-1.57,2.54),(-.67,2.54),(-.67,1.83),(.23,1.83)],'trace',.043)
+        line([(-1.57,1.35),(-.95,1.35),(-.67,1.83)],'silver',.035)
+        for x,y in [(-1.57,.89),(-1.57,2.54),(-.67,2.54)]:node(x,y,.10)
+        ring(.22,1.83,.29,'silver',.04)
+        line([(.07,1.82),(.18,1.69),(.42,2.01)],'amber',.06,z=.13)
+        box(1.27,1.83,.92,1.05,'ceramic',depth=.13,z=.06)
+        box(1.27,1.83,.14,1.07,'amber',depth=.025,z=.139)
+        line([(.52,1.83),(.8,1.83)],'trace',.03)
+    elif design=='camera':
+        box(-.24,1.73,2.35,1.35,'graphite',depth=.12,z=.026)
+        box(-.29,2.49,.81,.23,'silver',depth=.10,z=.03)
+        box(.96,1.73,.24,1.16,'ceramic',depth=.045,z=.11)
+        ring(-.35,1.76,.54,'silver',.05,z=.102)
+        ring(-.35,1.76,.40,'trace',.035,z=.128)
+        disc(-.35,1.76,.28,'graphite',depth=.036,z=.134)
+        ring(-.35,1.76,.22,'amber',.018,z=.15)
+        box(-1.0,2.13,.22,.12,'ceramic',depth=.022,z=.127)
+        for x in [-1.57,1.47]:
+            line([(x,1.07),(x,.77),(x+(.38 if x<0 else -.38),.77)],'trace',.026)
+    elif design=='mobility':
+        # Steering wheel and linked speech channels reflect the archive's two interests.
+        ring(-.66,1.84,.82,'graphite',.077)
+        ring(-.66,1.84,.70,'silver',.024)
+        disc(-.66,1.84,.22,'ceramic',depth=.085,z=.075)
+        for a in [30,150,270]:
+            rad=math.radians(a)
+            line([(-.66,1.84),(-.66+.67*math.cos(rad),1.84+.67*math.sin(rad))],'silver',.075,z=.06)
+        for x,y in [(1.12,2.26),(1.28,1.25)]:
+            box(x,y,.83,.47,'ceramic',depth=.06,z=.045)
+            line([(x-.23,y-.24),(x-.23,y-.38),(x,y-.24)],'trace',.024,z=.075)
+            for dx in [-.21,0,.21]:disc(x+dx,y,.034,'amber',depth=.025,z=.094,vertices=16)
+    elif design=='research':
+        # Books plus a connected research lattice; no invented marks or scores.
+        for x,h,c in [(-1.60,1.33,'ceramic'),(-1.13,1.64,'silver'),(-.66,1.47,'ceramic')]:book(x,1.52,.32,h,c)
+        box(-1.15,.64,1.59,.10,'silver',depth=.10)
+        for x,y in [(.31,1.05),(1.34,1.03),(.82,1.83),(.28,2.55),(1.51,2.5)]:node(x,y,.12)
+        for points in [[(.31,1.05),(.82,1.83),(1.34,1.03)],[(.28,2.55),(.82,1.83),(1.51,2.5)],[(.28,2.55),(1.51,2.5)]]:line(points,'trace',.027)
+    elif design=='engineering-study':
+        for x,h,c in [(-1.60,1.48,'silver'),(-1.12,1.26,'ceramic')]:book(x,1.52,.35,h,c)
+        box(.55,1.68,1.64,1.35,'graphite',depth=.07)
+        box(.55,1.68,.70,.70,'ceramic',depth=.08,z=.083);pins(.55,1.68,.70,.70)
+        for y in [1.23,2.13]:line([(-.15,y),(1.24,y)],'trace',.026,z=.082)
+        # Mortarboard sits above the circuit package.
+        box(.55,2.55,1.11,.44,'silver',depth=.055,z=.08,angle=.10)
+        line([(1.10,2.55),(1.30,2.35),(1.30,2.19)],'amber',.026,z=.125)
+    elif design=='ci-workbench':
+        monitor(-.66,2.10,1.75,1.12)
+        line([(-1.28,2.34),(-.92,2.34),(-.92,1.92),(-.40,1.92),(-.40,2.25)],'trace',.027,z=.137)
+        for x,y in [(-1.28,2.34),(-.40,2.25)]:disc(x,y,.055,'amber',depth=.015,z=.15)
+        for y in [2.45,1.77,1.09]:
+            ring(1.2,y,.23,'silver',.03)
+            line([(1.09,y),(1.17,y-.08),(1.34,y+.11)],'trace',.04,z=.12)
+        line([(1.2,2.2),(1.2,2.0)],'amber',.025)
+        line([(1.2,1.52),(1.2,1.34)],'amber',.025)
+        box(-.66,.90,1.44,.21,'ceramic',depth=.08)
+    elif design=='etl-workbench':
+        for y in [2.47,1.91,1.35]:
+            box(-1.37,y,.64,.39,'silver',depth=.05)
+            for offset in [-.08,.06]:box(-1.37,y+offset,.46,.034,'graphite',depth=.012,z=.09)
+            line([(-1.01,y),(-.66,y),(-.66,1.91),(-.33,1.91)],'trace',.024)
+        box(.07,1.91,.59,.71,'ceramic',depth=.12,z=.07);pins(.07,1.91,.59,.71)
+        line([(.43,1.91),(.88,1.91)],'amber',.04)
+        for y in [1.33,1.77,2.21,2.65]:box(1.34,y,.78,.23,'silver',depth=.11,z=.035)
+        ring(.07,.88,.23,'trace',.035)
+    elif design=='support-workbench':
+        monitor(-.73,2.01,1.82,1.18)
+        for x in [-1.26,-.75,-.24]:box(x,2.04,.36,.54,'trace' if x==-.75 else 'ceramic',depth=.02,z=.133)
+        rack(1.25,2.02,.76,1.43,4)
+        line([(-.73,1.09),(-.73,.77),(1.25,.77),(1.25,1.19)],'trace',.033)
+        ring(.37,1.28,.21,'silver',.035)
+        line([(.21,1.12),(-.04,.89)],'silver',.09)
+        disc(.37,1.28,.065,'amber',depth=.024,z=.09)
+    else:
+        raise ValueError('Unknown model design: '+design)
 
 report=[]
+supplement = '--supplement' in sys.argv
 for identifier, spec in CATALOG.items():
+    if supplement and identifier[0] not in 'PI': continue
     # Evidence prototypes have their own source scenes and embedded captures.
-    if spec['design'].startswith(('evidence-','documentary-')): continue
+    if spec.get('nativeInterior') or spec['design'].startswith(('evidence-','documentary-')): continue
     scene=bpy.data.scenes.new(spec['key']); bpy.context.window.scene=scene
     # Four mounting lands and a calibrated edge scale unify the collection.
     for x in [-1.94,1.94]:
@@ -261,7 +400,10 @@ for identifier, spec in CATALOG.items():
     scene['archiveId']=identifier;scene['design']=spec['design']
     bpy.ops.object.select_all(action='SELECT')
     output=OUTPUT/(spec['key']+'.glb')
-    bpy.ops.export_scene.gltf(filepath=str(output),export_format='GLB',use_selection=True,use_active_scene=True,export_apply=True,export_extras=True,export_cameras=False,export_lights=False)
+    staged=ROOT/'art/.cache'/(spec['key']+'.glb')
+    staged.parent.mkdir(parents=True,exist_ok=True)
+    bpy.ops.export_scene.gltf(filepath=str(staged),export_format='GLB',use_selection=True,use_active_scene=True,export_apply=True,export_extras=True,export_cameras=False,export_lights=False)
+    staged.replace(output)
     triangles=sum(len(p.vertices)-2 for obj in scene.objects for p in obj.data.polygons)
     report.append(dict(id=identifier,key=spec['key'],meshes=len(scene.objects),triangles=triangles,bytes=output.stat().st_size))
     # A separate studio exists only in the editable .blend, never in the GLBs.
@@ -278,11 +420,20 @@ for identifier, spec in CATALOG.items():
     # Neutral studio plate behind the entire assembly.
     box(0,1.7,4.5,3.4,'graphite',depth=.035,z=-.1,part='studio')
     scene.render.image_settings.file_format='PNG';scene.render.filepath=str(RENDERS/(spec['key']+'.png'))
-    if '--render' in sys.argv:bpy.ops.render.render(write_still=True)
+    if '--render' in sys.argv:
+        preview=Path(scene.render.filepath)
+        scene.render.filepath=str(ROOT/'art/.cache'/(spec['key']+'.png'))
+        bpy.ops.render.render(write_still=True)
+        Path(scene.render.filepath).replace(preview)
+        scene.render.filepath=str(preview)
     print('PROJECT_MODEL',identifier,spec['key'],triangles,output.stat().st_size,flush=True)
 
 # This report describes only the active first-generation designs. Documentary
 # and evidence studies have their own reports and must not replace these rows.
-(ROOT/'art/project-models-report.json').write_text(json.dumps(sorted(report,key=lambda entry:entry['id']),indent=2)+'\n',encoding='utf-8')
-bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'art/project-models.blend'),compress=True)
+report_path=ROOT/'art/project-models-report.json'
+if supplement and report_path.exists():
+    replaced={entry['id'] for entry in report}
+    report += [entry for entry in json.loads(report_path.read_text(encoding='utf-8')) if entry['id'] not in replaced]
+report_path.write_text(json.dumps(sorted(report,key=lambda entry:entry['id']),indent=2)+'\n',encoding='utf-8')
+bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'art'/('profile-models.blend' if supplement else 'project-models.blend')),compress=True)
 print('Completed',len(report),'project interiors.',flush=True)

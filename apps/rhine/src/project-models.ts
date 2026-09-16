@@ -4,9 +4,13 @@ import catalog from '../content/project-models.json';
 import { assetUrl } from './asset-url';
 import { disposeThreeTree } from './three-resources';
 
-export type ProjectModel = { key: string; title: string; zh: string; design: string; layers: string[]; layersEn?: string[] };
+export type ProjectModel = { key: string; title: string; zh: string; design: string; layers: string[]; layersEn?: string[]; nativeInterior?: boolean };
 export function projectModel(id: string): ProjectModel | undefined {
   return (catalog as Record<string, ProjectModel>)[id];
+}
+export function usesProjectGlass(id: string) {
+  const model = projectModel(id);
+  return Boolean(model && !model.nativeInterior);
 }
 
 // The old inner optics are merged by surface in the original cassette GLB.
@@ -29,7 +33,7 @@ async function loadInterior(key: string) {
 }
 
 /** Lazy CPU templates; clones share geometry but own materials/appearance state.
- * The finite 31-model catalogue bounds this cache. Only the selected archive loads.
+ * The finite archive-model catalogue bounds this cache. Only the selected archive loads.
  */
 export class ProjectModels {
   private templates = new Map<string, Promise<THREE.Group>>();
