@@ -301,6 +301,7 @@
     },
     {
       "id": "W-003",
+      "relatedArchives": [{ "id": "I-001", "label": "查看 Codritium 实习经历" }],
       "title": "MediaJira · 广告平台",
       "en": "Marketing Simplified (MediaJira)",
       "department": "Next.js / TypeScript / Django Channels",
@@ -517,6 +518,47 @@
         }
       ],
       "legacyId": "X-016"
+    },
+    {
+      "id": "W-009",
+      "en": "STICKYBEAK",
+      "department": "Java 17 / Spring Cloud / React",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "source": "https://github.com/zizhenliu0427/stickybeak",
+      "stack": [
+        "Java 17",
+        "Spring Boot",
+        "Spring Cloud",
+        "React 18",
+        "MySQL",
+        "Redis",
+        "RabbitMQ",
+        "Stripe",
+        "Docker"
+      ],
+      "title": "Stickybeak · 微服务电商平台",
+      "category": "Web 与应用",
+      "abstract": "面向澳大利亚主题纪念品与地方特产的电商平台。React 商城与管理后台连接 Spring Cloud 微服务，覆盖商品检索、购物车、Stripe 沙盒支付及订单履约流程。",
+      "findings": [
+        "React 18、Redux Toolkit 与 Tailwind CSS 构建商城，Ant Design 提供管理后台。",
+        "Spring Cloud Gateway 连接认证、商品、购物车、订单、支付和通知服务；结合 MySQL、Redis 与 Elasticsearch 管理数据、缓存和检索。",
+        "Stripe 沙盒支付校验 Webhook 签名，通过数据库事件记录处理重复通知。",
+        "订单状态机约束支付、发货、完成和取消流程；RabbitMQ 传递订单事件并支持超时取消与邮件通知。",
+        "提供 Docker Compose 环境、后端测试及 Playwright 端到端检查脚本。"
+      ],
+      "sourceLabel": "项目源码",
+      "links": [
+        {
+          "label": "查看源码",
+          "href": "https://github.com/zizhenliu0427/stickybeak"
+        },
+        {
+          "label": "项目说明",
+          "href": "https://github.com/zizhenliu0427/stickybeak/blob/main/README_CN.md"
+        }
+      ]
     },
     {
       "id": "A-001",
@@ -861,6 +903,7 @@
     },
     {
       "id": "I-001",
+      "relatedArchives": [{ "id": "W-003", "label": "查看 Marketing Simplified 项目" }],
       "title": "Codritium · 实习",
       "en": "CODRITIUM",
       "department": "软件开发实习生",

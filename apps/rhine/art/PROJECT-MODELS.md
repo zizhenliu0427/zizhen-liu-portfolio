@@ -1,6 +1,26 @@
 # Original project interiors — restored 16 September 2026
 
-The active set contains **31 symbolic models**: the restored first 18 project designs plus 10 personal/education/interests and 3 internship interiors in the same style. The original 18 GLBs are unchanged by the supplement. Every record keeps its current category ID, personal label and bilingual HTML content.
+The active set contains **32 symbolic models**: the restored first 18 project designs, 10 personal/education/interests, 3 internship interiors and Stickybeak in the same style. The original 18 GLBs are unchanged by the supplement. Every record keeps its current category ID, personal label and bilingual HTML content.
+
+## Stickybeak / W-009
+
+The microservices commerce model connects a storefront, payment token and parcel
+to three service modules on an event bus. It uses the existing ceramic, graphite,
+amber and teal materials and two assembly layers. This is a conceptual structure,
+not an application screenshot or a claim about deployment or throughput.
+
+The bilingual content was checked against the local Stickybeak README, frontend
+package, Stripe webhook implementation and order state machine on 17 September
+2026. It identifies payments as sandbox integration and makes no unverified
+performance or production-usage claims.
+
+Generate only this model with
+`blender --background --factory-startup --python-exit-code 1 --python art/build_project_models.py -- --only W-009 --render`.
+The command preserves other assets and merges the report. Source:
+`art/stickybeak-model.blend`; output: `public/assets/projects/stickybeak.glb`
+(496,388 bytes, 8,308 triangles, no textures). The collection now has 33 archives,
+including the separate C-001 original-optics acknowledgement. Historical counts
+in the implementation notes below describe their respective earlier checks.
 
 Examples: Novacart shelves and product modules; Whale cargo ship, containers and routes; GPU compute core and memory array; Building AI buildings and sensor network. These are conceptual structures, not source screenshots or measured data.
 

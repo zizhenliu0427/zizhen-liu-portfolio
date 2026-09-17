@@ -152,6 +152,19 @@ export type ArchiveEntry = {
 
 export const archive: readonly ArchiveEntry[] = [
   {
+    id: "stickybeak",
+    year: "2026",
+    title: "Stickybeak — Microservices E-Commerce Platform",
+    domains: ["WEB"],
+    summary:
+      "An Australian souvenir and regional-speciality shop with a React storefront and administration console, Spring Cloud microservices, Stripe sandbox payments, an order state machine and RabbitMQ fulfilment events.",
+    stack: ["Java 17", "Spring Boot", "Spring Cloud", "React", "MySQL", "Redis", "RabbitMQ", "Stripe"],
+    access: {
+      kind: "github",
+      href: "https://github.com/zizhenliu0427/stickybeak",
+    },
+  },
+  {
     id: "sdr2hdr",
     year: "2026",
     title: "sdr2hdr — GPU SDR-to-HDR / Super-Resolution Pipeline",

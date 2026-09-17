@@ -685,6 +685,7 @@ function renderDetail() {
   <dl class="metadata"><div><dt>FOCUS / 方向</dt><dd>${escapeHtml(r.department)}</dd></div><div><dt>PERIOD / 时间</dt><dd>${escapeHtml(r.date)}</dd></div><div><dt>AUTHOR / 作者</dt><dd>${escapeHtml(r.lead)}</dd></div><div><dt>STATUS / 状态</dt><dd><i></i>${r.clearance === "RESTRICTED" ? translateUi("目录访问") : translateUi("已归档 · 可读取")}</dd></div></dl>
   <div class="detail-tabs" role="tablist"><button id="tab-overview" class="active" role="tab" aria-controls="tab-panel" aria-selected="true" data-tab="overview">01 <span>概述</span></button><button id="tab-notes" role="tab" aria-controls="tab-panel" aria-selected="false" data-tab="notes">02 <span>实现记录</span></button><button id="tab-history" role="tab" aria-controls="tab-panel" aria-selected="false" data-tab="history">03 <span>访问日志</span></button><i class="tab-indicator" aria-hidden="true"></i></div>
   <div id="tab-panel" class="tab-panel" role="tabpanel">${overview()}</div>
+  ${relatedArchiveLinks()}
   <div class="detail-actions">${portfolioLinks()}<button class="solid-button ${r.links?.length ? "portfolio-save" : ""}" data-action="bookmark" aria-label="收藏档案" title="收藏档案">${saved.has(r.id) ? translateUi("− REMOVE FROM SAVED") : translateUi("＋ SAVE ARCHIVE")}<span>${saved.has(r.id) ? translateUi("已收藏") : translateUi("收藏档案")}</span></button></div>
   <div class="detail-footnote"><a href="${escapeHtml(r.source)}" target="_blank" rel="noopener">${escapeHtml(r.sourceLabel ?? translateUi("相关链接"))} ↗</a><span>${String(selected + 1).padStart(3, "0")} / ${String(records.length).padStart(3, "0")}</span></div>`);
   $("#detail-content").setAttribute("tabindex", "-1");
@@ -696,6 +697,10 @@ function renderDetail() {
 function portfolioLinks() {
   const links = records[selected].links;
   return links?.length ? `<div class="portfolio-links">${links.map(link => `<a href="${escapeHtml(link.href)}"${link.href.startsWith("mailto:") ? "" : ' target="_blank" rel="noopener noreferrer"'}>${escapeHtml(link.label)} <span>↗</span></a>`).join("")}</div>` : "";
+}
+function relatedArchiveLinks() {
+  const links = records[selected].relatedArchives;
+  return links?.length ? `<div class="portfolio-links related-archives">${links.map(link => `<button type="button" data-related-archive="${escapeHtml(link.id)}">${escapeHtml(link.label)}<span>${escapeHtml(link.id)} →</span></button>`).join('')}</div>` : '';
 }
 function overview() {
   const r = records[selected];
@@ -900,6 +905,14 @@ document.addEventListener("click", (e) => {
   if (modalClosing) return;
   const el = (e.target as Element).closest<HTMLElement>("button");
   if (!el) return;
+  if (el.dataset.relatedArchive) {
+    const index = records.findIndex(record => record.id === el.dataset.relatedArchive);
+    if (index >= 0 && index !== selected) {
+      select(index);
+      openFile();
+    }
+    return;
+  }
   if (el.dataset.select) {
     select(Number(el.dataset.select));
     return;

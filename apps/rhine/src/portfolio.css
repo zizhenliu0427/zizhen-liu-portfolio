@@ -29,6 +29,11 @@
 .portfolio-links a { display: inline-flex; gap: 24px; align-items: center; min-height: 42px; padding: 0 14px; border: 1px solid currentColor; color: inherit; text-decoration: none; font-size: 12px; }
 .portfolio-links a:hover { background: #9b72471a; }
 .portfolio-links a:focus-visible, .contact-link:focus-visible { outline: 2px solid #ad681c; outline-offset: 4px; }
+.related-archives { margin: 20px 0 0; }
+.related-archives button { display: inline-flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 44px; max-width: 100%; padding: 10px 14px; border: 1px solid var(--theme-muted); background: transparent; color: var(--theme-ink); font: inherit; font-size: 12px; text-align: left; cursor: pointer; }
+.related-archives button span { white-space: nowrap; }
+.related-archives button:hover { background: #9b72471a; border-color: var(--theme-ink); }
+.related-archives button:focus-visible { outline: 2px solid var(--theme-accent); outline-offset: 3px; }
 .detail-content h2 { overflow-wrap: anywhere; }
 .metadata dd { overflow-wrap: anywhere; }
 .brand h1.boot-lettering-fallback { font-size: 44px; letter-spacing: -1.5px; }

@@ -223,6 +223,20 @@
       "Project structure"
     ]
   },
+  "W-009": {
+    "key": "stickybeak",
+    "title": "STICKYBEAK",
+    "zh": "Stickybeak · 微服务电商平台",
+    "design": "microcommerce",
+    "layers": [
+      "事件与服务连接",
+      "商城、支付与包裹"
+    ],
+    "layersEn": [
+      "Events & service connections",
+      "Storefront, payment & parcel"
+    ]
+  },
   "A-001": {
     "key": "building-ai",
     "title": "BUILDING SENSOR AI",

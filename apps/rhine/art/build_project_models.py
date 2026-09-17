@@ -118,6 +118,27 @@ def build(design):
                     line([(xx,yy-.15),(xx,yy+.15)],'graphite',.02,z=.133,part='optical-core')
         line([(-1.65,.68),(1.65,.68)],'trace',.045)
         for x in [-1.3,-.65,0,.65,1.3]: disc(x,.68,.06,'silver',z=.075)
+    elif design=='microcommerce':
+        # Storefront, payment token and parcel linked by an event bus.
+        # Symbolic architecture, not a screenshot or a throughput claim.
+        monitor(-1.10,2.14,1.20,.86)
+        for i in range(3):
+            box(-1.46+i*.36,2.39,.32,.12,'amber' if i%2==0 else 'ceramic',depth=.02,z=.133)
+            box(-1.46+i*.36,2.09,.23,.24,'trace',depth=.02,z=.133)
+        ring(.15,2.14,.39,'silver',.035)
+        disc(.15,2.14,.29,'amber',z=.065,depth=.06)
+        line([(-.01,2.14),(.10,2.02),(.33,2.29)],'ceramic',.045,z=.107,part='optical-core')
+        box(1.26,2.14,.82,.80,'ceramic',depth=.12,z=.06)
+        box(1.26,2.14,.13,.81,'amber',depth=.018,z=.131)
+        box(1.06,1.96,.22,.10,'graphite',depth=.014,z=.132)
+        line([(-.47,2.14),(-.25,2.14)],'trace',.04)
+        line([(.54,2.14),(.84,2.14)],'trace',.04)
+        line([(-1.10,1.35),(-1.10,1.14),(1.26,1.14),(1.26,1.70)],'trace',.035)
+        line([(.15,1.75),(.15,1.14)],'trace',.035)
+        for x in [-1.10,.15,1.26]:
+            line([(x,1.14),(x,.98)],'silver',.028)
+            box(x,.82,.66,.30,'graphite',depth=.07,z=.04)
+            for dx in [-.18,0,.18]:disc(x+dx,.82,.035,'amber',depth=.018,z=.086,vertices=12)
     elif design=='campaign':
         box(-.75,2.05,1.6,1.08,'graphite',depth=.075)
         box(-.75,2.05,1.38,.87,'ceramic',depth=.025,z=.12)
@@ -375,7 +396,10 @@ def build(design):
 
 report=[]
 supplement = '--supplement' in sys.argv
+only = sys.argv[sys.argv.index('--only')+1] if '--only' in sys.argv else None
+if only and only not in CATALOG: raise ValueError('Unknown archive: '+only)
 for identifier, spec in CATALOG.items():
+    if only and identifier != only: continue
     if supplement and identifier[0] not in 'PI': continue
     # Evidence prototypes have their own source scenes and embedded captures.
     if spec.get('nativeInterior') or spec['design'].startswith(('evidence-','documentary-')): continue
@@ -431,9 +455,10 @@ for identifier, spec in CATALOG.items():
 # This report describes only the active first-generation designs. Documentary
 # and evidence studies have their own reports and must not replace these rows.
 report_path=ROOT/'art/project-models-report.json'
-if supplement and report_path.exists():
+if (supplement or only) and report_path.exists():
     replaced={entry['id'] for entry in report}
     report += [entry for entry in json.loads(report_path.read_text(encoding='utf-8')) if entry['id'] not in replaced]
 report_path.write_text(json.dumps(sorted(report,key=lambda entry:entry['id']),indent=2)+'\n',encoding='utf-8')
-bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'art'/('profile-models.blend' if supplement else 'project-models.blend')),compress=True)
+source_name = CATALOG[only]['key']+'-model.blend' if only else 'profile-models.blend' if supplement else 'project-models.blend'
+bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'art'/source_name),compress=True)
 print('Completed',len(report),'project interiors.',flush=True)

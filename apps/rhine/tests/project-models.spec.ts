@@ -50,7 +50,7 @@ test('every project has a distinct bounded Blender asset with two assembly layer
     expect(report.find((entry:any) => entry.id === id)).toMatchObject({ key: spec.key, bytes: bytes.length, triangles });
     hashes.add(bytes.toString('base64'));
   }
-  expect(hashes.size).toBe(31);
+  expect(hashes.size).toBe(32);
   expect(Object.keys(catalog).sort()).toEqual(archives.records.map(r=>r.id).sort());
 });
 
@@ -87,7 +87,7 @@ for (const [name, width, height, performance] of [
         expect(model.visibleOriginalInteriors).toBeGreaterThan(0);
       }
     }
-    for (const id of ['P-001', 'P-007', 'P-009', 'P-010', 'I-001', 'I-002', 'I-003', 'W-002', 'A-001', 'S-001']) {
+    for (const id of ['P-001', 'P-007', 'P-009', 'P-010', 'I-001', 'I-002', 'I-003', 'W-002', 'W-009', 'A-001', 'S-001']) {
       await select(page, id);
       await page.locator('.read-file').click();
       await expect(page.locator('#object-id')).toHaveText(id);
@@ -96,11 +96,11 @@ for (const [name, width, height, performance] of [
       await expect.poll(async () => (await state(page)).cameraDetail).toBeGreaterThan(.999);
       await expect.poll(() => page.locator('#detail-content').evaluate(el => Number(getComputedStyle(el).opacity))).toBeGreaterThan(.99);
       await page.screenshot({path:`test-results/complete-${name}-${id}.png`});
-      if (/^[PI]-/.test(id)) {
+      if (/^[PI]-/.test(id) || id === 'W-009') {
         await page.locator('[data-action="model-viewer"]').click();
         await expect(page.locator('.viewer-loading')).toBeHidden();
         await expect(page.locator('.model-viewer')).toHaveAttribute('data-project-model', (catalog as Record<string, {key: string}>)[id].key);
-        await expect(page.locator('.viewer-parts')).toContainText('档案结构模块');
+        await expect(page.locator('.viewer-parts')).toContainText(catalog[id as keyof typeof catalog].layers[1]);
         await page.locator('[data-viewer="close"]').click();
         await expect(page.locator('.model-viewer')).toBeHidden();
       }
@@ -131,8 +131,8 @@ for (const [name, width, height, performance] of [
     await expect(page.locator('html')).toHaveAttribute('lang', 'en-AU');
     await expect(page.locator('#object-id')).toHaveText('W-005');
     expect((await state(page)).projectModel.key).toBe('whale');
-    expect(projects).toHaveLength(32);
-    expect(new Set(projects).size).toBe(32);
+    expect(projects).toHaveLength(33);
+    expect(new Set(projects).size).toBe(33);
     expect(errors).toEqual([]);
   });
 }

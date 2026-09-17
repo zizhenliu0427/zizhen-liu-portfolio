@@ -151,6 +151,9 @@ export default function Win7Desktop() {
       content: (
         <ul className="tree-view">
           <li>
+            <a href="https://github.com/zizhenliu0427/stickybeak" target="_blank" rel="noopener noreferrer"><strong>Stickybeak</strong></a> — {t('archiveContent.stickybeak.summary')}
+          </li>
+          <li>
             <strong>Conversational-AI Sensor Analytics</strong> — {t('desktop.sensorProject')}
           </li>
           <li>

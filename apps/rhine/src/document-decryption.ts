@@ -37,7 +37,7 @@ export class DocumentDecryption {
     // replacing the actual text. Stage scaling cancels out in local coordinates.
     const targets = this.root.querySelectorAll<HTMLElement>(
       this.allFields
-        ? "h2, h3, .detail-kicker, .detail-title-cn, .metadata dt, .metadata dd, .detail-tabs button, .panel-label, .tab-panel p, .research-notes li, .log-row, .portfolio-stack span, .detail-actions a, .detail-actions button, .detail-footnote"
+        ? "h2, h3, .detail-kicker, .detail-title-cn, .metadata dt, .metadata dd, .detail-tabs button, .panel-label, .tab-panel p, .research-notes li, .log-row, .portfolio-stack span, .related-archives button, .detail-actions a, .detail-actions button, .detail-footnote"
         : "h2, .detail-title-cn, .metadata dd, .tab-panel p, .research-notes li, .log-row",
     );
     // Separate layout reads from DOM writes. Inserting each line immediately

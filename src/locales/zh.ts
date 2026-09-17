@@ -463,6 +463,7 @@ export const zh = {
   /*  项目归档文案(键对应 data/portfolio.ts 里的 archive id)              */
   /* ------------------------------------------------------------------ */
   archiveContent: {
+    stickybeak: { summary: "面向澳大利亚主题纪念品与地方特产的电商平台：React 商城与管理后台，配套 Spring Cloud 微服务、Stripe 沙盒支付、订单状态机和 RabbitMQ 履约事件。" },
     "sdr2hdr": { summary: "全程驻留 GPU 的视频管线(NVDEC \u2192 CUDA \u2192 RTX TrueHDR/VSR \u2192 NVENC),4K HDR 实时转换稳定在 ~120fps。色彩空间转换 kernel 手写,支持 HDR10 元数据标记,配中英双语命令行。" },
     "portfolio": { summary: "你正在看的这个站点:Next.js 静态构建,canvas 代码雨、CRT 氛围层,以及 /desktop 下一套手写的 Windows 7 Aero 窗口管理器。" },
     "gpu-benchmark": { summary: "C++17 写的五后端基准测试(Vulkan、DX12、DX11、OpenGL、Metal),实测 10 多张 AMD 与 NVIDIA 显卡,覆盖六代 AMD 架构;无窗口计算模式挖出了被渲染路径掩盖的 12 倍吞吐差异。附 2,300 行技术报告。" },

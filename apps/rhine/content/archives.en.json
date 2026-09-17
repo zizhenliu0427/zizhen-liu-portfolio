@@ -301,6 +301,7 @@
     },
     {
       "id": "W-003",
+      "relatedArchives": [{ "id": "I-001", "label": "Open Codritium internship" }],
       "title": "MediaJira",
       "en": "Marketing Simplified (MediaJira)",
       "department": "Next.js / TypeScript / Django Channels",
@@ -517,6 +518,47 @@
         }
       ],
       "legacyId": "X-016"
+    },
+    {
+      "id": "W-009",
+      "en": "STICKYBEAK",
+      "department": "Java 17 / Spring Cloud / React",
+      "date": "2026",
+      "lead": "Zizhen Liu / Lance",
+      "clearance": "PROJECT",
+      "source": "https://github.com/zizhenliu0427/stickybeak",
+      "stack": [
+        "Java 17",
+        "Spring Boot",
+        "Spring Cloud",
+        "React 18",
+        "MySQL",
+        "Redis",
+        "RabbitMQ",
+        "Stripe",
+        "Docker"
+      ],
+      "title": "Stickybeak · Microservices Commerce",
+      "category": "Web & Apps",
+      "abstract": "An e-commerce platform for Australian souvenirs and regional specialities. A React storefront and administration console connect to Spring Cloud microservices for product search, carts, Stripe sandbox payments and order fulfilment.",
+      "findings": [
+        "React 18, Redux Toolkit and Tailwind CSS power the storefront; Ant Design provides the administration console.",
+        "Spring Cloud Gateway connects authentication, product, cart, order, payment and notification services, with MySQL, Redis and Elasticsearch for storage, caching and search.",
+        "Stripe sandbox payments validate webhook signatures and track events in the database to handle duplicate notifications.",
+        "An order state machine governs payment, dispatch, completion and cancellation; RabbitMQ carries order events for timeout cancellation and email notifications.",
+        "Includes Docker Compose environments, backend tests and Playwright end-to-end check scripts."
+      ],
+      "sourceLabel": "Project source",
+      "links": [
+        {
+          "label": "View source",
+          "href": "https://github.com/zizhenliu0427/stickybeak"
+        },
+        {
+          "label": "Project guide",
+          "href": "https://github.com/zizhenliu0427/stickybeak/blob/main/README.md"
+        }
+      ]
     },
     {
       "id": "A-001",
@@ -861,6 +903,7 @@
     },
     {
       "id": "I-001",
+      "relatedArchives": [{ "id": "W-003", "label": "Open Marketing Simplified project" }],
       "title": "Codritium",
       "en": "CODRITIUM",
       "department": "Software Developer Intern",

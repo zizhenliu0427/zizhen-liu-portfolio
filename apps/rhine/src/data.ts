@@ -20,6 +20,7 @@ export interface ArchiveRecord {
   sourceLabel?: string;
   stack?: string[];
   links?: { label: string; href: string }[];
+  relatedArchives?: { id: string; label: string }[];
 }
 
 export let records: ArchiveRecord[] = content.records;

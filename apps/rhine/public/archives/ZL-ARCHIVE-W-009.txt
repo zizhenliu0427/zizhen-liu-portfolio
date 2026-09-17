@@ -1,0 +1,20 @@
+﻿ZIZHEN LIU · PERSONAL ARCHIVE
+FILE W-009 / Stickybeak · 微服务电商平台
+STICKYBEAK
+
+方向：Java 17 / Spring Cloud / React
+时间：2026
+作者：Zizhen Liu / Lance
+访问范围：PROJECT
+
+面向澳大利亚主题纪念品与地方特产的电商平台。React 商城与管理后台连接 Spring Cloud 微服务，覆盖商品检索、购物车、Stripe 沙盒支付及订单履约流程。
+
+实现记录
+1. React 18、Redux Toolkit 与 Tailwind CSS 构建商城，Ant Design 提供管理后台。
+2. Spring Cloud Gateway 连接认证、商品、购物车、订单、支付和通知服务；结合 MySQL、Redis 与 Elasticsearch 管理数据、缓存和检索。
+3. Stripe 沙盒支付校验 Webhook 签名，通过数据库事件记录处理重复通知。
+4. 订单状态机约束支付、发货、完成和取消流程；RabbitMQ 传递订单事件并支持超时取消与邮件通知。
+5. 提供 Docker Compose 环境、后端测试及 Playwright 端到端检查脚本。
+
+相关链接：https://github.com/zizhenliu0427/stickybeak
+内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

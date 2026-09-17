@@ -461,6 +461,7 @@ export const en = {
   /*  Archive copy (keyed by archive id in data/portfolio.ts)             */
   /* ------------------------------------------------------------------ */
   archiveContent: {
+    stickybeak: { summary: "An Australian souvenir and regional-speciality shop with a React storefront and administration console, Spring Cloud microservices, Stripe sandbox payments, an order state machine and RabbitMQ fulfilment events." },
     "sdr2hdr": { summary: "Fully GPU-resident video pipeline (NVDEC \u2192 CUDA \u2192 RTX TrueHDR/VSR \u2192 NVENC) sustaining ~120fps real-time 4K HDR conversion, with hand-written colour-space kernels, HDR10 metadata signalling and a bilingual CLI." },
     "portfolio": { summary: "The site you are reading: a Next.js static build with a canvas code-rain, CRT ambient layers and a hand-built Windows 7 Aero window manager living at /desktop." },
     "gpu-benchmark": { summary: "C++17 benchmark with five backends \u2014 Vulkan, DX12, DX11, OpenGL, Metal \u2014 profiling 10+ AMD and NVIDIA GPUs, including six generations of AMD architectures; a headless compute mode uncovered 12x hidden throughput. 2,300-line technical report." },

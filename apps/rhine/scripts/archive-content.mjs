@@ -78,6 +78,9 @@ export function validateContent(content) {
   for (const [index, record] of records.entries()) {
     if (!record || typeof record !== 'object') continue;
     const label = `records[${index}]`;
+    if (record.relatedArchives !== undefined && (!Array.isArray(record.relatedArchives) || record.relatedArchives.some(link => !link || !isText(link.label) || !ids.has(link.id) || link.id === record.id))) {
+      errors.push(`${label}.relatedArchives：关联档案必须包含标签并指向其他现有档案`);
+    }
     if (record.sourceLabel !== undefined && !isText(record.sourceLabel)) errors.push(`${label}.sourceLabel：必须是非空文本`);
     if (record.stack !== undefined && (!Array.isArray(record.stack) || !record.stack.every(isText))) errors.push(`${label}.stack：必须是文本数组`);
     if (record.links !== undefined) {

@@ -10,7 +10,7 @@ import { escapeHtml } from "../src/html.ts";
 
 const content = await loadContent();
 test('education stays with personal details and technical notes stay inside their parent', () => {
-  assert.equal(content.records.length, 32);
+  assert.equal(content.records.length, 33);
   assert.ok(content.records.filter(r=>r.clearance === 'EDUCATION').every(r=>r.category === '个人资料'));
   assert.equal(content.records.filter(r=>r.category === '实习经历').length, 3);
   assert.ok(content.records.every(r=>r.clearance !== 'ENGINEERING NOTE'));
@@ -50,6 +50,16 @@ test("all downloads match the shared content, including the UTF-8 BOM", async ()
 });
 
 const invalidCases = [
+  [
+    "unknown related archive",
+    (c) => { c.records[0].relatedArchives = [{ id: 'W-999', label: 'Project' }]; },
+    /relatedArchives/,
+  ],
+  [
+    "self-referencing archive",
+    (c) => { c.records[0].relatedArchives = [{ id: c.records[0].id, label: 'Project' }]; },
+    /relatedArchives/,
+  ],
   [
     "unsafe portfolio action URL",
     (c) => { c.records[0].links = [{ label: 'Source', href: 'javascript:alert(1)' }]; },

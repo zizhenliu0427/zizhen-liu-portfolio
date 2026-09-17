@@ -215,5 +215,12 @@
     "meshes": 5,
     "triangles": 6964,
     "bytes": 404784
+  },
+  {
+    "id": "W-009",
+    "key": "stickybeak",
+    "meshes": 7,
+    "triangles": 8308,
+    "bytes": 496388
   }
 ]
