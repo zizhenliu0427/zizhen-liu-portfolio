@@ -112,7 +112,7 @@ export class BootSequence {
       "identity", "request", "processing", "processingGlitch",
     ]);
     for (const [selector, key, text] of [
-      [".scan > span", "permission", "PERMISSION AUTHORIZED"],
+      [".scan > span", "permission", "PERMISSION AUTHORISED"],
       [".welcome-heading", "welcome", "WELCOME TO"],
       [".welcome-database", "database", "PERSONAL ARCHIVE"],
     ] as const) new BootLettering(this.el(selector), [key]).setText(text);

@@ -2,6 +2,8 @@ import { test, expect, type Page } from '@playwright/test';
 import catalog from '../content/project-models.json' with { type: 'json' };
 import archives from '../content/archives.json' with { type: 'json' };
 import { readFileSync } from 'node:fs';
+import lettering from '../src/boot-lettering-art.json' with { type: 'json' };
+import { bootMotion } from '../src/boot-motion';
 
 const state = (page: Page) => page.evaluate(() => (window as any).rhine.stats());
 const select = (page: Page, id: string) => page.evaluate(index => (window as any).rhine.select(index), archives.records.findIndex(record => record.id === id));
@@ -239,3 +241,42 @@ for (const reduced of [false, true]) {
     } finally { release(); }
   });
 }
+
+
+test('every typed opening frame has matching authored lettering', () => {
+  for (let frame = 169; frame <= 487; frame++) {
+    const motion = bootMotion(frame / 25 - 5);
+    for (const [text, keys] of [
+      [motion.auth, ['identity','request','processing','processingGlitch']],
+      [motion.access, ['access']],
+    ] as const) {
+      if (!text) continue;
+      expect(keys.some(key => (lettering as any)[key].text.startsWith(text)), `frame ${frame}: ${text}`).toBe(true);
+    }
+  }
+  expect(lettering.identity.text).toBe('ID CONFIRMED : GUEST VISITOR');
+  expect(lettering.permission.text).toBe('PERMISSION AUTHORISED');
+});
+
+test('opening identity retains its font through the visitor name and uses British English', async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem('zl-portfolio-locale','en');
+    localStorage.setItem('zl-archive-settings',JSON.stringify({sound:false,music:false,superPerformance:true}));
+  });
+  await page.goto('/?review=1&freeze=1&time=7.8');
+  await expect.poll(() => page.evaluate(() => (window as any).rhine?.stats().openingPrepared)).toBe(true);
+  for (const [frame, text] of [[319,'ID CONFIRMED'],[339,'ID CONFIRMED : GUEST VISITOR']] as const) {
+    await page.evaluate(time => window.postMessage({type:'rhine-review-frame',time},location.origin), frame/25-5);
+    await expect(page.locator('#auth-message .boot-phrase-label')).toHaveText(text);
+    await expect(page.locator('#auth-message')).not.toHaveClass(/boot-lettering-fallback/);
+    await expect(page.locator('#auth-message .boot-phrase:not([hidden])')).toHaveAttribute('data-weight','Normal');
+    await page.screenshot({path:`test-results/boot-identity-${frame}.png`});
+  }
+  await page.evaluate(() => window.postMessage({type:'rhine-review-frame',time:15.8},location.origin));
+  await expect(page.locator('.scan > span .boot-phrase-label')).toHaveText('PERMISSION AUTHORISED');
+  await expect(page.locator('.scan > span')).not.toHaveClass(/boot-lettering-fallback/);
+  await page.evaluate(() => (window as any).rhine.archive());
+  await expect(page.locator('[data-action="replay"]')).toContainText('REINITIALISE');
+  await page.locator('[data-action="settings"]').click();
+  await expect(page.locator('[data-action="restart"]')).toContainText('REINITIALISE SYSTEM');
+});

@@ -78,7 +78,7 @@ $("#stage").innerHTML = translateUi(`
     <div class="access-text">ACCESS</div>
     <div class="boot-logo">${logo}</div>
     <div class="auth-status"><span>▪</span> <span id="auth-message"></span><i></i></div>
-    <div class="scan"><svg viewBox="0 0 1920 1080" aria-hidden="true"><g fill="none" stroke="#080a08" stroke-width="2" stroke-linecap="round"><path/><path stroke="#fff"/><path/><path/><path/><path/><circle class="orbit-dot" r="8" fill="#ed821b" stroke="none"/><circle class="orbit-dot" r="8" fill="#ed821b" stroke="none"/><circle class="scan-core" cx="960" cy="540" r="5" fill="#080a08" stroke="none"/></g></svg><span>PERMISSION AUTHORIZED</span></div>
+    <div class="scan"><svg viewBox="0 0 1920 1080" aria-hidden="true"><g fill="none" stroke="#080a08" stroke-width="2" stroke-linecap="round"><path/><path stroke="#fff"/><path/><path/><path/><path/><circle class="orbit-dot" r="8" fill="#ed821b" stroke="none"/><circle class="orbit-dot" r="8" fill="#ed821b" stroke="none"/><circle class="scan-core" cx="960" cy="540" r="5" fill="#080a08" stroke="none"/></g></svg><span>PERMISSION AUTHORISED</span></div>
     <div class="welcome"><div class="welcome-panel"></div><div class="welcome-heading">WELCOME TO</div><div class="welcome-company"><strong>ZIZHEN LIU</strong><strong class="welcome-highlight" aria-hidden="true">ZIZHEN LIU</strong></div><div class="welcome-database">PERSONAL ARCHIVE</div><div class="welcome-logo">${logo}</div></div>
   </section>
   <svg id="inspection-marks" viewBox="0 0 1920 1080" aria-hidden="true"><path id="inspection-lines"/><g id="inspection-corners"></g><circle id="inspection-point" r="1.8"/></svg>
@@ -97,7 +97,7 @@ $("#stage").innerHTML = translateUi(`
     <article id="detail-content" class="detail-content"></article>
   </section>
   <div class="powered">POWERED BY <b>ZL ARCHIVE</b><i></i></div>
-  <footer class="system-footer"><span><i class="status-light"></i> PORTFOLIO ONLINE${isWallpaper ? translateUi('<button type="button" class="three-toggle" data-action="toggle-three" aria-pressed="true" title="卸载三维模型，保留 2D 界面">3D 开启</button>') : ''}</span><span>ZIZHEN LIU <i>／</i> <span id="clock">00:00:00</span></span><button data-action="replay" title="重播启动流程">REINITIALIZE ↗</button></footer>
+  <footer class="system-footer"><span><i class="status-light"></i> PORTFOLIO ONLINE${isWallpaper ? translateUi('<button type="button" class="three-toggle" data-action="toggle-three" aria-pressed="true" title="卸载三维模型，保留 2D 界面">3D 开启</button>') : ''}</span><span>ZIZHEN LIU <i>／</i> <span id="clock">00:00:00</span></span><button data-action="replay" title="重播启动流程">REINITIALISE ↗</button></footer>
   <output id="fps-meter" class="fps-meter" aria-label="帧率" aria-live="off" hidden>— FPS</output>
   <div id="modal-root"></div><div id="toast" class="toast" role="status"></div>
   <div id="loading" class="loading"><div class="loading-mark">${logo}</div><span>CONNECTING TO PERSONAL ARCHIVE</span><i></i></div>
@@ -213,7 +213,7 @@ const rollingMotion = {
 const updateFooterClock = createRollingClock($("#clock"));
 const numberOptions = {
   ...rollingMotion,
-  locales: "en-US",
+  locales: "en-AU",
   format: { minimumIntegerDigits: 2, useGrouping: false },
 };
 const fileCounter = createRollingNumber($("#selected-number"), {
@@ -822,7 +822,7 @@ function renderResults() {
     ? results
         .map(
           ({ r, i }) =>
-            `<button class="result-row" data-result="${i}"><span class="result-name"><b>${r.id}</b><span>${escapeHtml(r.title)}<small>${escapeHtml(r.en)}</small></span>${saved.has(r.id) ? "<i>＋</i>" : ""}</span><span>${escapeHtml(r.department)}</span><span>${r.clearance === "RESTRICTED" ? "CATALOG ONLY" : "AUTHORIZED"} <i>↗</i></span></button>`,
+            `<button class="result-row" data-result="${i}"><span class="result-name"><b>${r.id}</b><span>${escapeHtml(r.title)}<small>${escapeHtml(r.en)}</small></span>${saved.has(r.id) ? "<i>＋</i>" : ""}</span><span>${escapeHtml(r.department)}</span><span>${r.clearance === "RESTRICTED" ? "CATALOGUE ONLY" : "AUTHORISED"} <i>↗</i></span></button>`,
         )
         .join("")
     : `<div class="empty-results"><span>∅</span><strong>${modal === "saved" && !searchQuery ? translateUi("尚无收藏档案") : translateUi("没有匹配的档案")}</strong><p>${modal === "saved" && !searchQuery ? translateUi("读取档案时，选择 SAVE ARCHIVE 将其保存在此处。") : translateUi("尝试其他名称、档案编号，或切换科室分类。")}</p><button data-action="reset-search">${modal === "saved" ? translateUi("查看全部档案 →") : translateUi("重置检索 →")}</button></div>`;
@@ -846,7 +846,7 @@ function motionSettingsMarkup() {
     : translateUi("当前使用完整动效。")}</p>${prefs.reduced ? translateUi('<button data-action="enable-motion">启用完整动效并重播 ↻</button>') : ""}</div>`;
 }
 function settingsMarkup() {
-  return translateUi(`<h2>SYSTEM SETTINGS<small>终端偏好设置</small></h2><p class="settings-intro">ZIZHEN LIU <span>·</span> PORTFOLIO ONLINE</p>${isWallpaper ? translateUi('<p class="wallpaper-settings-note">每次启动都会读取 Wallpaper Engine 中的设置。在此修改仅对当前运行生效，无法持久保存；如需保留，请在 Wallpaper Engine 的壁纸属性中调整。</p>') : ""}<div class="settings-list">${themeSettingsMarkup(themePreference)}${!isWallpaper ? translateUi(`<label><div><strong>SUPER PERFORMANCE</strong><span>降低三维画质和渲染分辨率，保留完整动效；关闭后恢复原画质</span></div><input type="checkbox" data-pref="superPerformance" ${prefs.superPerformance ? "checked" : ""}/><i class="toggle"></i></label>`) : ""}${workbench?.settingsMarkup() ?? ""}${audioSettingsMarkup(prefs)}${adaptiveSettingsMarkup()}<label><div><strong>显示帧率</strong><span>在三维界面显示 FPS，每秒更新一次</span></div><input type="checkbox" data-pref="showFps" ${prefs.showFps ? "checked" : ""}/><i class="toggle"></i></label><label><div><strong>REDUCED MOTION</strong><span>跳过开机动画，简化选档、镜头和文字动效</span></div><input type="checkbox" data-pref="reduced" ${prefs.reduced ? "checked" : ""}/><i class="toggle"></i></label></div>${motionSettingsMarkup()}${speedSettingsMarkup()}${qualityMarkup(prefs.rendering)}<div class="settings-shortcuts">${isWallpaper ? translateUi('<span>DESKTOP CONTROLS</span><p>拖动阵列或点击界面按钮浏览档案。桌面模式下，方向键与滚轮可能无法传入壁纸。</p>') : translateUi('<span>KEYBOARD CONTROLS</span><p><kbd>←</kbd><kbd>→</kbd> 切列 <kbd>↑</kbd><kbd>↓</kbd> 选档 <kbd>ENTER</kbd> 读取 <kbd>/</kbd> 检索 <kbd>ESC</kbd> 返回</p>')}</div><div class="settings-bottom">${!isWallpaper && document.fullscreenEnabled ? '<button data-action="fullscreen">FULLSCREEN <span>↗</span></button>' : ''}<button data-action="restart">REINITIALIZE SYSTEM <span>↻</span></button></div><div class="modal-bottom"><span>ANALYSIS OS / 1.0 · 使用 MiSans 字体（小米） <a href="${assetUrl("fonts/MiSans-license.pdf")}" target="_blank" rel="noopener">字体许可</a></span><span>UI BASED ON <a href="https://github.com/LBEILC/RhineLabUI" target="_blank" rel="noopener">LBEILC / RhineLabUI</a> · <a href="/licenses/RhineLabUI-MIT.txt" target="_blank" rel="noopener">MIT</a></span></div>`);
+  return translateUi(`<h2>SYSTEM SETTINGS<small>终端偏好设置</small></h2><p class="settings-intro">ZIZHEN LIU <span>·</span> PORTFOLIO ONLINE</p>${isWallpaper ? translateUi('<p class="wallpaper-settings-note">每次启动都会读取 Wallpaper Engine 中的设置。在此修改仅对当前运行生效，无法持久保存；如需保留，请在 Wallpaper Engine 的壁纸属性中调整。</p>') : ""}<div class="settings-list">${themeSettingsMarkup(themePreference)}${!isWallpaper ? translateUi(`<label><div><strong>SUPER PERFORMANCE</strong><span>降低三维画质和渲染分辨率，保留完整动效；关闭后恢复原画质</span></div><input type="checkbox" data-pref="superPerformance" ${prefs.superPerformance ? "checked" : ""}/><i class="toggle"></i></label>`) : ""}${workbench?.settingsMarkup() ?? ""}${audioSettingsMarkup(prefs)}${adaptiveSettingsMarkup()}<label><div><strong>显示帧率</strong><span>在三维界面显示 FPS，每秒更新一次</span></div><input type="checkbox" data-pref="showFps" ${prefs.showFps ? "checked" : ""}/><i class="toggle"></i></label><label><div><strong>REDUCED MOTION</strong><span>跳过开机动画，简化选档、镜头和文字动效</span></div><input type="checkbox" data-pref="reduced" ${prefs.reduced ? "checked" : ""}/><i class="toggle"></i></label></div>${motionSettingsMarkup()}${speedSettingsMarkup()}${qualityMarkup(prefs.rendering)}<div class="settings-shortcuts">${isWallpaper ? translateUi('<span>DESKTOP CONTROLS</span><p>拖动阵列或点击界面按钮浏览档案。桌面模式下，方向键与滚轮可能无法传入壁纸。</p>') : translateUi('<span>KEYBOARD CONTROLS</span><p><kbd>←</kbd><kbd>→</kbd> 切列 <kbd>↑</kbd><kbd>↓</kbd> 选档 <kbd>ENTER</kbd> 读取 <kbd>/</kbd> 检索 <kbd>ESC</kbd> 返回</p>')}</div><div class="settings-bottom">${!isWallpaper && document.fullscreenEnabled ? '<button data-action="fullscreen">FULLSCREEN <span>↗</span></button>' : ''}<button data-action="restart">REINITIALISE SYSTEM <span>↻</span></button></div><div class="modal-bottom"><span>ANALYSIS OS / 1.0 · 使用 MiSans 字体（小米） <a href="${assetUrl("fonts/MiSans-license.pdf")}" target="_blank" rel="noopener">字体许可</a></span><span>UI BASED ON <a href="https://github.com/LBEILC/RhineLabUI" target="_blank" rel="noopener">LBEILC / RhineLabUI</a> · <a href="/licenses/RhineLabUI-MIT.txt" target="_blank" rel="noopener">MIT</a></span></div>`);
 }
 
 document.addEventListener("input", (e) => {
@@ -1348,7 +1348,7 @@ async function start() {
       // not every font shard. Other archive text loads on demand.
       document.fonts.load("300 20px MiSans", "ACCESS WELCOME TO PERSONAL ARCHIVE"),
       document.fonts.load("400 20px MiSans", translateUi("身份信息确认请求已接收开始处理权限验证通过欢迎访问刘子箴内部资料档案编号保密级别商业区选择档案：0123456789 ZIZHEN LIU")),
-      document.fonts.load("600 20px MiSans", "SYNTHESIZE INFORMATION ANALYSIS OS"),
+      document.fonts.load("600 20px MiSans", "SYNTHESISE INFORMATION ANALYSIS OS"),
       document.fonts.load("700 20px MiSans", "ZL ARCHIVE WELCOME TO PERSONAL ARCHIVE"),
     ]);
     if (scene) bindScene(scene);

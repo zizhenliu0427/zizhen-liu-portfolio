@@ -1,9 +1,11 @@
 """Export only the fixed opening phrases as outlined graphic artwork.
 
-Requires Pillow and fonttools==4.59.2. Supply locally licensed OTFs; neither
+Full font export requires Pillow and fonttools==4.59.2. Supply licensed OTFs; neither
 the fonts nor a reusable character/font table are included in the output.
 Example:
   python scripts/make-boot-lettering.py --fonts .tools/font-comparison/fonts
+Existing fixed-art phrases can be recomposed without source fonts:
+  python scripts/make-boot-lettering.py --reuse-art --phrases identity permission
 """
 import argparse
 import hashlib
@@ -13,28 +15,50 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / '.tools/font-comparison/python'))
-from fontTools.ttLib import TTFont
-from fontTools.pens.svgPathPen import SVGPathPen
-from fontTools.pens.transformPen import TransformPen
-from PIL import ImageFont
 
 PHRASES = [
-    ('brand', 'RHINE LAB', 'DemiBold'),
+    ('brand', 'ZL ARCHIVE', 'DemiBold'),
     ('access', 'ACCESS PERMISSION REQUIRED', 'Normal'),
-    ('identity', 'ID CONFIRMED : JOYCE MOORE', 'Normal'),
+    ('identity', 'ID CONFIRMED : GUEST VISITOR', 'Normal'),
     ('request', 'REQUEST RECEIVED', 'Normal'),
     ('processing', 'START PROCESSING...', 'Normal'),
     ('processingGlitch', '              SING...', 'Normal'),
-    ('permission', 'PERMISSION AUTHORIZED', 'Normal'),
+    ('permission', 'PERMISSION AUTHORISED', 'Normal'),
     ('welcome', 'WELCOME TO', 'Bold'),
-    ('company', 'RHINE LAB.LLC.', 'Bold'),
-    ('database', 'INTERNAL DATABASE', 'Bold'),
+    ('company', 'ZIZHEN LIU', 'Bold'),
+    ('database', 'PERSONAL ARCHIVE', 'Bold'),
 ]
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--fonts', required=True, type=Path)
+    source = parser.add_mutually_exclusive_group(required=True)
+    source.add_argument('--fonts', type=Path)
+    source.add_argument('--reuse-art', action='store_true', help='Recompose named phrases from existing outlined letters; emits no font files')
+    parser.add_argument('--phrases', nargs='+', choices=[key for key, _, _ in PHRASES])
     args = parser.parse_args()
+    target = ROOT / 'src/boot-lettering-art.json'
+    if args.reuse_art:
+        if not args.phrases:
+            parser.error('--reuse-art requires explicit --phrases')
+        art = json.loads(target.read_text(encoding='utf-8'))
+        glyphs = {}
+        for phrase in art.values():
+            for char, cell in zip(phrase['text'], phrase['letters']):
+                identity = (phrase['weight'], char)
+                if identity in glyphs and glyphs[identity] != cell:
+                    raise ValueError(f'Ambiguous letter metrics for {identity}; use the licensed source font')
+                glyphs[identity] = cell
+        for key, text, weight in PHRASES:
+            if key not in args.phrases:
+                continue
+            art[key] = {**art[key], 'text': text, 'letters': [glyphs[(weight, char)].copy() for char in text]}
+        target.write_text(json.dumps(art, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+        print(f'Recomposed {args.phrases} using existing fixed artwork; no font files emitted.')
+        return
+    from fontTools.ttLib import TTFont
+    from fontTools.pens.svgPathPen import SVGPathPen
+    from fontTools.pens.transformPen import TransformPen
+    from PIL import ImageFont
     art, sources = {}, {}
     for weight in ('Normal', 'DemiBold', 'Bold'):
         path = args.fonts / f'Novecentosanswide-{weight}.otf'

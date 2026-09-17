@@ -25,7 +25,7 @@ const chinese: Record<string, string> = {
   'ACCESS FILE': '打开档案', 'ENTER SYSTEM': '跳过开场', 'ARCHIVE INDEX': '档案检索',
   'CONTACT': '联系', 'SAVED': '收藏', 'ARCHIVE OVERVIEW': '返回档案列表',
   'FILE NUMBER:': '档案编号：', 'SAVE ARCHIVE': '收藏档案', 'REMOVE FROM SAVED': '取消收藏',
-  'EXPORT': '导出', 'CLOSE': '关闭', 'REINITIALIZE': '重播开场',
+  'EXPORT': '导出', 'CLOSE': '关闭', 'REINITIALISE': '重播开场',
 };
 const matchers = new WeakMap<Record<string, string>, RegExp>();
 function replacePhrases(value: string, dictionary: Record<string, string>): string {
