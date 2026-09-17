@@ -306,6 +306,30 @@ if (entry) {
 }
 let audioPreview = false, audioPreviewRequest = 0;
 let scene: ArchiveScene | undefined;
+let openingPreparation: Promise<void> | null = null;
+let preparingOpening = false;
+let pendingPreparedMode: Mode | null = null;
+let starting = false;
+
+function prepareOpeningInBackground() {
+  const target = scene;
+  if (!target) return;
+  preparingOpening = true;
+  openingPreparation = target.prepareOpening().catch(error => {
+    // A failed warm-up must not trap the visitor in the 2D opening.
+    console.warn('Opening preparation failed; falling back to normal rendering', error);
+  }).finally(() => {
+    if (scene !== target) return;
+    preparingOpening = false;
+    const requested = pendingPreparedMode;
+    pendingPreparedMode = null;
+    document.querySelectorAll<HTMLButtonElement>('[data-action="skip"]').forEach(button => {
+      button.disabled = false;
+      button.removeAttribute('aria-busy');
+    });
+    if (started && requested) setMode(requested);
+  });
+}
 let threeState: "on" | "closing" | "off" | "loading" = "on";
 let resumeCell: { lane: number; row: number } | undefined;
 let resumeSelection = -1;
@@ -468,6 +492,14 @@ $("#file-ticks").innerHTML = Array.from({ length: Math.max(...archiveColumns.map
 const fileTicks = [...$("#file-ticks").querySelectorAll<HTMLButtonElement>("button")];
 
 function setMode(next: Mode) {
+  if (preparingOpening && started && next !== 'boot') {
+    pendingPreparedMode = next;
+    document.querySelectorAll<HTMLButtonElement>('[data-action="skip"]').forEach(button => {
+      button.disabled = true;
+      button.setAttribute('aria-busy', 'true');
+    });
+    return;
+  }
   if (workbench?.enabled && next === "detail") next = "archive";
   const previousMode = mode;
   if (next !== 'detail') { pendingDetailLocale = null; documentMorph.finish(); }
@@ -1056,7 +1088,14 @@ function bootFrame(t: number) {
     setMode("archive");
     return undefined;
   }
-  audio.updateBoot(t, frozenTime !== null);
+  // Hold the completed welcome card only if a slow device exhausts the 2D
+  // sequence before warm-up completes. Never expose a half-prepared 3D canvas.
+  const waitingForScene = preparingOpening && t >= 21.5;
+  if (waitingForScene) {
+    t = 21.5;
+    if (frozenTime === null) seekOpeningTime(t);
+  }
+  audio.updateBoot(t, frozenTime !== null || waitingForScene);
   const motion = bootSequence.update(t);
   if (workbench?.enabled && frozenTime === null) {
     const end = openingShowsDetail(wallpaperHost()?.properties.openingdetail?.value, true) ? 35 : ARRAY_OPENING_END;
@@ -1132,7 +1171,7 @@ function frame(ms: number) {
   wallpaperEffects?.update(time, prefs.reduced);
   const submittedBefore = scene?.submittedFrames ?? 0;
   // The calibrated 2D opening fully covers the scene until array entry.
-  if (!viewer?.isOpen && (!cinema || cinema.time >= 21.9)) scene?.update(time, cinema);
+  if (!preparingOpening && !viewer?.isOpen && (!cinema || cinema.time >= 21.9)) scene?.update(time, cinema);
   viewer?.update(time);
   if (threeState === "closing" && scene?.presentationHidden) releaseThree();
   playground?.position();
@@ -1314,9 +1353,9 @@ async function start() {
     ]);
     if (scene) bindScene(scene);
     savePrefs();
-    await scene?.prepareOpening();
     ready = true;
     select(resumeLocale?.selected ?? 0);
+    prepareOpeningInBackground();
     if (entry) entry.ready();
     else {
       if (isWallpaper) {
@@ -1331,9 +1370,17 @@ async function start() {
       translateUi('<div class="error-state"><strong>CONNECTION INTERRUPTED</strong><p>三维档案资源未能载入。请确认浏览器已启用硬件加速，然后重新连接。</p><button onclick="location.reload()">RECONNECT →</button></div>');
   }
 }
-function completeStartup(silent: boolean) {
-  if (started || !ready) return;
+async function completeStartup(silent: boolean) {
+  if (started || starting || !ready) return;
+  starting = true;
+  // Reduced-motion/direct-entry visits have no 2D sequence to cover preparation.
+  // Keep their existing entry screen until the requested scene is ready.
+  if (prefs.reduced || reviewParams.has('scene') || resumeLocale?.started ||
+      (isWallpaper && wallpaperHost()?.properties.boot?.value === false)) {
+    await openingPreparation;
+  }
   started = true;
+  starting = false;
   if (silent) {
     prefs.sound = false;
     prefs.music = false;
@@ -1469,7 +1516,9 @@ Object.assign(window, {
       fps: Math.round(fps),
       mode,
       ready,
-      startup: started ? "started" : entry?.phase ?? "loading",
+      startup: started ? "started" : starting ? "preparing" : entry?.phase ?? "loading",
+      preparingOpening,
+      pendingPreparedMode,
       motion: { speed: motionSpeed, reduced: prefs.reduced, systemReduced: matchMedia("(prefers-reduced-motion: reduce)").matches },
       bootTime: mode === "boot" ? started ? (frozenTime ?? openingTime()) + 5 : 6.76 : null,
       selected: records[selected].id,

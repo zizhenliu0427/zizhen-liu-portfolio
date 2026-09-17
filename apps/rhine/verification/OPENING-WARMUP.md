@@ -8,18 +8,18 @@ The main scene and model viewer have different workloads: the sampled main detai
 
 ## Changes
 
-- Await the initial selected project asset before enabling the entry button.
-- Prepare four representative opening poses behind the entry screen, compile their shaders asynchronously, and execute the actual render pipeline to initialise uploads, shadows and post-processing targets.
+- Enable the entry button after the core resources load; prepare the selected project and GPU pipeline concurrently with the 2D opening.
+- Prepare four representative opening poses behind the entry/2D overlay, compile visible meshes separately with paint opportunities between them, and execute the actual render pipeline to initialise uploads, shadows and post-processing targets.
 - Wait for queued GPU work using a polled WebGL fence, never blocking with `gl.finish()`. Restore the starting pose/decryption afterwards; preserve motion and quality.
 - Avoid resetting unchanged renderer canvas dimensions and composer sizes when only HUD layout changes.
 - Batch redaction line measurements before appending overlays, avoiding a forced layout for every field during the detail handoff and language switch.
 - Expose preparation status/program count through the existing review statistics.
 
-This moves cold rendering preparation into loading. It does not reduce steady-state scene complexity or guarantee a target frame rate. Changing rendering settings after preparation can still introduce new variants.
+Normal entry overlaps cold rendering preparation with the existing 2D opening. If preparation outlasts it, hold the welcome card before the 3D boundary. Early skip requests queue until preparation completes; reduced-motion/direct-entry visitors keep the entry screen because they have no 2D sequence to cover the work. It does not reduce steady-state scene complexity or guarantee a target frame rate. Changing rendering settings after preparation can still introduce new variants.
 
 ## Validation
 
-Root production build and integrated Edge tests cover startup preparation, no new programs during the visible opening, camera composition across all categories, handoff, desktop/phone archive models, theme/language changes, credits and the FPS setting.
+Root production build and integrated Edge tests cover concurrent startup preparation, slow-asset/early-skip and reduced-motion paths, no new programs during the visible opening, camera composition across all categories, handoff, desktop/phone archive models, theme/language changes, credits and the FPS setting.
 
 Diagnostic command from apps/rhine, with root out/ served on port 3100:
 

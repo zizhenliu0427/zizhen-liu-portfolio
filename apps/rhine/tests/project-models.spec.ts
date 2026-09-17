@@ -178,7 +178,7 @@ test('final acknowledgements retain original optics, lettering and bilingual cre
 });
 
 
-test('opening shaders are prepared before entry instead of during camera transitions', async ({ page }) => {
+test('opening shaders prepare under the 2D sequence before camera transitions', async ({ page }) => {
   await page.addInitScript(() => {
     localStorage.setItem('zl-archive-settings', JSON.stringify({sound:false,music:false,reduced:false,adaptive:false,superPerformance:false}));
     (window as any).programCreates = 0;
@@ -190,9 +190,10 @@ test('opening shaders are prepared before entry instead of during camera transit
   });
   await page.goto('/');
   await expect(page.locator('.entry-start')).toBeEnabled();
+  await page.locator('.entry-start').click();
+  await expect(page.locator('#stage')).toHaveAttribute('data-mode','boot');
   await expect.poll(async () => (await state(page)).openingPrepared).toBe(true);
   const prepared = await page.evaluate(() => (window as any).programCreates);
-  await page.locator('.entry-start').click();
   await page.evaluate(() => (window as any).rhine.seek(21.85));
   await expect(page.locator('#stage')).toHaveAttribute('data-mode','detail',{timeout:25000});
   // Compilation is the source of cold transition stalls; don't assert a
@@ -200,3 +201,41 @@ test('opening shaders are prepared before entry instead of during camera transit
   expect(await page.evaluate(() => (window as any).programCreates)).toBe(prepared);
   await expect(page.locator('#object-id')).toHaveText('P-001');
 });
+
+
+for (const reduced of [false, true]) {
+  test(`slow preparation keeps entry safe with reduced motion ${reduced}`, async ({ page }) => {
+    let release!: () => void;
+    const held = new Promise<void>(resolve => { release = resolve; });
+    await page.route('**/assets/projects/profile.*.glb', async route => { await held; await route.continue(); });
+    await page.addInitScript(reduced => {
+      localStorage.setItem('zl-archive-settings', JSON.stringify({sound:false,music:false,reduced,superPerformance:true}));
+    }, reduced);
+    try {
+      await page.goto('/');
+      await expect(page.locator('.entry-start')).toBeEnabled();
+      expect((await state(page)).openingPrepared).toBe(false);
+      await page.locator('.entry-start').click();
+      if (reduced) {
+        await expect(page.locator('#loading')).not.toHaveClass(/loaded/);
+        expect((await state(page)).startup).not.toBe('started');
+      } else {
+        await expect(page.locator('#stage')).toHaveAttribute('data-mode','boot');
+        const time = (await state(page)).bootTime;
+        await expect.poll(async () => (await state(page)).bootTime).toBeGreaterThan(time + .3);
+        await page.evaluate(() => (window as any).rhine.seek(21.85));
+        await expect.poll(async () => (await state(page)).bootTime).toBeLessThan(26.8);
+        expect((await state(page)).preparingOpening).toBe(true);
+        await page.keyboard.press('Escape');
+        await expect.poll(async () => (await state(page)).pendingPreparedMode).toBe('archive');
+        await expect(page.locator('#stage')).toHaveAttribute('data-mode','boot');
+      }
+      release();
+      await expect(page.locator('#stage')).toHaveAttribute('data-mode','archive');
+      expect((await state(page)).openingPrepared).toBe(true);
+      await expect(page.locator('#loading')).toBeHidden();
+      await page.locator('.read-file').click();
+      await expect(page.locator('#object-id')).toHaveText('P-001');
+    } finally { release(); }
+  });
+}

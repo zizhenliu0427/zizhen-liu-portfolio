@@ -502,11 +502,15 @@ export class ArchiveScene {
     this.setSuperPerformance(this.superPerformance, true);
   }
 
-  /** Prepare shader variants, uploads and post-processing while the entry covers
-   * the canvas. Do not spend the first visible camera shot compiling them.
+  /** Prepare shader variants, uploads and post-processing under the 2D opening.
+   * Yield between materials so the opening can paint while preparation advances.
    */
   async prepareOpening() {
     if (!this.loaded || this.openingPrepared) return;
+    // A task after rAF lets the entry/2D overlay paint before GPU preparation.
+    const yieldToOpening = () => new Promise<void>(resolve =>
+      requestAnimationFrame(() => setTimeout(resolve, 0)));
+    await yieldToOpening();
     await this.pendingProject;
     const canvas = this.renderer.domElement;
     const visibility = canvas.style.visibility;
@@ -518,7 +522,12 @@ export class ArchiveScene {
           time: shot, reveal: ease((shot - 22) / .4), lift: ease((shot - 26) / 1.8),
           zoom: .55 * ease((shot - 27.3) / 1.65) + .45 * ease((shot - 29) / 5),
         }, true);
-        await this.renderer.compileAsync(this.scene, this.camera);
+        const meshes: THREE.Mesh[] = [];
+        this.scene.traverseVisible(object => { if (object instanceof THREE.Mesh) meshes.push(object); });
+        for (const mesh of meshes) {
+          await this.renderer.compileAsync(mesh, this.camera, this.scene);
+          await yieldToOpening();
+        }
         this.renderer.shadowMap.needsUpdate = true;
         if (this.superPerformance) this.renderer.render(this.scene, this.camera);
         else this.composer.render();
