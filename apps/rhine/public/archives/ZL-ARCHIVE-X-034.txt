@@ -11,20 +11,29 @@ INTELLI NEW TECHNOLOGIES
 
 实现记录
 1. 用 Python 爬虫和 Pandas ETL 管线采集、校验并规范化半结构化的网页数据,供下游功能使用。
-2. 把业务需求转成用户故事和 API 约定,并在敏捷冲刺评审中对照设计稿验证 React 组件。
-3. 产出并验证数据看板的线框图,支撑前后端交界处的响应式实现。
+2. 把业务需求转成用户故事和 API 约定,在敏捷冲刺评审中对照设计稿验证 React 组件,并编写覆盖角色、工件、冲刺事件与规模化框架的 Scrum 内训教材。
+3. 对比 Pencil Project 与 Figma、Adobe XD 的功能、协作与成本后选定原型工具,产出并验证线框图,支撑前后端交界处的响应式实现。
 
 数据采集与 ETL
 Intelli New Technologies 实习期间的数据工作。
 1. 用 Python 爬虫和 Pandas ETL 管线采集、校验并规范化半结构化的网页数据,供下游功能使用。
-2. 把业务需求转成用户故事和 API 约定,并在敏捷冲刺评审中对照设计稿验证 React 组件。
-3. 产出并验证数据看板的线框图,支撑前后端交界处的响应式实现。
+2. 把业务需求转成用户故事和 API 约定,在敏捷冲刺评审中对照设计稿验证 React 组件,并编写覆盖角色、工件、冲刺事件与规模化框架的 Scrum 内训教材。
+3. 对比 Pencil Project 与 Figma、Adobe XD 的功能、协作与成本后选定原型工具,产出并验证线框图,支撑前后端交界处的响应式实现。
 
 测试与逆向工程
 Intelli New Technologies 实习期间的网站测试与逆向工程工作。
 1. 从 HTML 源码、Wireshark 抓包到 BuiltWith 指纹逐层逆向线上站点,定位出爬虫抓不到图片是因为页面使用了 CSS 背景图与 JavaScript 动态注入,而非标准的图片标签。
-2. 搭建跨平台兼容性矩阵,覆盖 Windows 11、macOS 12 与 Android 13 上的 Edge、Chrome 与 Safari,并在各响应式断点配合 Lighthouse 做性能与可访问性审计。
+2. 搭建跨平台兼容性矩阵,覆盖 Windows、macOS 与 Android 上的 Edge、Chrome、Firefox 与 Safari,并在各响应式断点配合 Lighthouse 做性能与可访问性审计。
 3. 按统一的严重度/优先级模板记录并分级缺陷,将一次线上站点完全不可访问的故障按最高等级上报。
+4. 用 Nikto 扫描客户站点,报告缺失的 X-Frame-Options、HSTS 与 X-Content-Type-Options 响应头以及 TLS 与证书问题,并为每一项给出可直接落地的修复指令。
+5. 对同一客户站点做 100 至 10,000 并发用户的梯度压测,跟踪响应时间、错误率与吞吐量,测出 500 并发时错误率已达 83%,据此判定站点无法承载高负载。
+6. 在多种机型上做响应式测试,覆盖 iPhone、Galaxy、Pixel、iPad 与 Kindle Fire,定位出某款 Kindle Fire 平板上布局失效。
+7. 把上述测试整理成 12 页正式报告,按摘要、方法、结果与结论组织,并对每项问题给出改进建议。
+
+敏捷方法论与原型设计
+Intelli New Technologies 实习期间的方法论与设计工具工作。
+1. 编写 8 页 Scrum 内训教材,覆盖角色与工件、冲刺事件、Scrum 与 Kanban 的取舍,以及 SAFe、LeSS、Scrum@Scale 等规模化路径。
+2. 对比 Pencil Project 与 Figma、Adobe XD 的功能深度、界面、协作能力与成本,选定开源方案并产出公司论坛页线框,含富文本编辑、图片上传进度与发帖流。
 
 相关链接：https://intellinew.com.au/
 内容整理自 Zizhen Liu 的个人作品集；技术笔记归属于对应项目。

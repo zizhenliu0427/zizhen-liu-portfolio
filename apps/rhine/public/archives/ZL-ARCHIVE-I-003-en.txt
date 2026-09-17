@@ -2,15 +2,19 @@
 FILE I-003 / Golden Lady Photography
 GOLDEN LADY PHOTOGRAPHY
 
-Focus: IT Support Intern
-Period: MAY 2021 — AUG 2021
+Focus: Software Development Intern
+Period: MAR 2024 — JUL 2024
 Author: Zizhen Liu / Lance
 Access: EXPERIENCE
 
-Maintained a Vue.js corporate site in production, shipping responsive UI and content updates safely.
+Rebuilt the Guangzhou branch's website frontend on Next.js (Pages Router) and React: 9 page templates serving roughly 300 reachable URLs across 9 navigation sections and 9 store locations.
 
 Engineering notes
-1. Maintained a Vue.js corporate site in production, shipping responsive UI and content updates safely.
-2. Diagnosed workstation hardware and configured operating systems and creative software for heavy-workload use.
+1. Rebuilt the Guangzhou branch's website frontend on Next.js (Pages Router) and React: 9 page templates serving roughly 300 reachable URLs across 9 navigation sections and 9 store locations.
+2. Drove roughly 295 CMS entries through Axios against the category, article and appointment APIs, pairing Ant Design and SWR for the appointment form and handling list pagination, the category tree and image CDN delivery.
+3. Rendered pages server-side with getServerSideProps so Baidu and WeChat could index titles and body copy — with no sitemap in place, server-rendered markup was the only way search engines could reach the content; detail pages render CMS rich text with images and video, and bundles are split per route.
+4. Audited the legacy DedeCMS PHP site page by page for missing pages, broken routes and 301s, mobile breakpoints, failing form submissions and style drift.
+5. Aligned CMS field contracts (tid/bid/rid) with the backend and filled in edge pages the spec had missed, keeping the site live throughout.
+6. Diagnosed workstation hardware and configured operating systems and creative software for heavy-workload use.
 
 Related link: https://goldenladies.com/

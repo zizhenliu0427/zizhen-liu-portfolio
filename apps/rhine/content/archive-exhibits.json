@@ -289,11 +289,11 @@
     "sourceKind": "experience",
     "sourceFile": "content/archives.en.json",
     "legacyId": "X-033",
-    "explanation": "开发 Marketing Simplified(MediaJira)——面向媒介采购团队的广告投放管理平台,Next.js/TypeScript 前端搭配 Django REST + Channels 后端。",
+    "explanation": "开发 Marketing Simplified (MediaJira)——面向媒介采购团队的广告投放管理平台,Next.js/TypeScript 前端搭配 Django REST + Channels 后端。",
     "notes": [
-      "开发 Marketing Simplified(MediaJira)——面向媒介采购团队的广告投放管理平台,Next.js/TypeScript 前端搭配 Django REST + Channels 后端。",
-      "让实时聊天在高并发下稳定送达(幂等发送、transactional outbox、PgBouncer 连接池),100 人并发时 9,900/9,900 条全部送达;并基于 Django Channels 做了多人实时协作表格,协作编辑约 145ms 同步。",
-      "交付 Calendly 式预约链接、373 个文件的 slug-URL 迁移和 IDOR 越权修复;CI 从 57 分钟压到 20 分钟;生产环境出现 521 故障时恢复 144 个数据库迁移,让服务重新上线。"
+      "开发 Marketing Simplified (MediaJira)——面向媒介采购团队的广告投放管理平台,Next.js/TypeScript 前端搭配 Django REST + Channels 后端。",
+      "用幂等发送、transactional outbox、独立聊天队列与 PgBouncer 连接池让实时聊天在高并发下稳定送达:100 人并发时 100 条消息与全部 9,900 条投递状态无一丢失,连接建立耗时从 50.88ms 降到 2.96ms。",
+      "在 Django Channels 上实现多人协同表格——在线状态、远端光标与单元格提交,配合 Redis 原子消费的一次性 WebSocket 票据、Lua 脚本清理在线状态,以及带抖动的指数退避重连;实测端到端传播 p95 为 155ms、光标路由 p95 为 3ms,错峰接入时 50 人并发编辑保持稳定。"
     ],
     "notice": "数值取自现有个人档案；并非本次重新测试。"
   },
@@ -317,31 +317,35 @@
     "explanation": "用 Python 爬虫和 Pandas ETL 管线采集、校验并规范化半结构化的网页数据,供下游功能使用。",
     "notes": [
       "用 Python 爬虫和 Pandas ETL 管线采集、校验并规范化半结构化的网页数据,供下游功能使用。",
-      "把业务需求转成用户故事和 API 约定,并在敏捷冲刺评审中对照设计稿验证 React 组件。",
-      "产出并验证数据看板的线框图,支撑前后端交界处的响应式实现。"
+      "把业务需求转成用户故事和 API 约定,在敏捷冲刺评审中对照设计稿验证 React 组件,并编写覆盖角色、工件、冲刺事件与规模化框架的 Scrum 内训教材。",
+      "对比 Pencil Project 与 Figma、Adobe XD 的功能、协作与成本后选定原型工具,产出并验证线框图,支撑前后端交界处的响应式实现。"
     ],
     "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
   },
   "I-003": {
     "key": "golden-lady",
     "kind": "workstation",
-    "heading": "GOLDEN LADY / 2021",
+    "heading": "GOLDEN LADY / 2024",
     "nodes": [
-      "VUE.JS",
-      "RESPONSIVE",
-      "WORKSTATIONS"
+      "NEXT.JS",
+      "CMS API",
+      "SSR"
     ],
-    "caption": "SITE UPDATES + TECHNICAL SUPPORT",
+    "caption": "CMS FRONTEND + LEGACY MIGRATION",
     "title": "Golden Lady Photography",
     "zh": "重庆金夫人实业有限公司 · 实习",
     "source": "https://goldenladies.com/",
     "sourceKind": "experience",
     "sourceFile": "content/archives.en.json",
     "legacyId": "X-035",
-    "explanation": "维护线上的 Vue.js 企业官网,稳妥地交付响应式界面调整与内容更新。",
+    "explanation": "基于 Next.js (Pages Router) 与 React 重做广州分公司官网前台:9 套页面模板支撑约 300 个可访问网址,覆盖 9 个导航栏目与 9 家门店。",
     "notes": [
-      "维护线上的 Vue.js 企业官网,稳妥地交付响应式界面调整与内容更新。",
-      "排查工作站硬件故障,为高负载场景配置操作系统与创意设计软件。"
+      "基于 Next.js (Pages Router) 与 React 重做广州分公司官网前台:9 套页面模板支撑约 300 个可访问网址,覆盖 9 个导航栏目与 9 家门店。",
+      "用 Axios 对接栏目、文章与预约接口,承载约 295 条 CMS 内容;并配合 Ant Design 与 SWR 完成预约表单,处理列表分页、栏目树与图片 CDN。",
+      "用 getServerSideProps 做服务端渲染,让百度与微信能抓到页面标题与正文——该站没有 sitemap,服务端直出的 HTML 是搜索引擎收录的唯一入口;详情页渲染带图片与视频的 CMS 富文本,并按路由做代码拆分。",
+      "对照旧织梦 (DedeCMS) PHP 站逐页查漏:缺页、路由与 301、移动端适配、表单提交失败与样式不一致。",
+      "与后端对齐 CMS 字段 (tid/bid/rid),补上文档未覆盖的边角页面,站点全程保持在线。",
+      "排查工作站硬件故障,为高负载的创意设计场景配置操作系统与相关软件。"
     ],
     "notice": "依据现有档案与项目文档制作的结构示意，不是原始界面截图。"
   },
@@ -392,7 +396,7 @@
     "explanation": "Codritium 实习期间开发的广告投放管理平台。让实时聊天在 100 人并发下稳定送达,做了多人实时协作表格和 Calendly 式预约链接,完成横跨 12 个模块、涉及 373 个文件的 slug-URL 迁移,并把 CI 从 57 分钟压到 20 分钟。",
     "notes": [
       "100 人并发聊天:送达从 83–89% 提到 9,900/9,900,WebSocket p95 从 47.5 秒降到 5.0 秒",
-      "多人实时协作表格:在线状态、他人光标,协作编辑约 145ms 同步",
+      "多人实时协作表格:在线状态、他人光标,协作编辑约 155ms 同步",
       "CI 耗时 −66%(找回 597 个被跳过的测试)· 12 模块 slug-URL 迁移 + IDOR 越权修复"
     ],
     "notice": "数值取自现有个人档案；并非本次重新测试。"

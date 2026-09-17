@@ -11,19 +11,28 @@ Built Python scrapers and Pandas ETL pipelines to collect, validate and normalis
 
 Engineering notes
 1. Built Python scrapers and Pandas ETL pipelines to collect, validate and normalise semi-structured web data for downstream features.
-2. Translated business requirements into user stories and API contracts, verifying React components in Agile sprint reviews via Jira/Confluence.
-3. Produced and validated data-dashboard wireframes, supporting responsive implementation across the frontend/backend boundary.
+2. Translated business requirements into user stories and API contracts, verifying React components in Agile sprint reviews via Jira/Confluence, and authored an internal Scrum training course covering roles, artifacts, events and scaling frameworks.
+3. Evaluated Pencil Project against Figma and Adobe XD on capability, collaboration and cost, then produced and validated wireframes in the chosen tool to support responsive implementation across the frontend/backend boundary.
 
 Data collection & ETL
 Data collection and ETL work during the Intelli New Technologies internship.
 1. Built Python scrapers and Pandas ETL pipelines to collect, validate and normalise semi-structured web data for downstream features.
-2. Translated business requirements into user stories and API contracts, verifying React components in Agile sprint reviews via Jira/Confluence.
-3. Produced and validated data-dashboard wireframes, supporting responsive implementation across the frontend/backend boundary.
+2. Translated business requirements into user stories and API contracts, verifying React components in Agile sprint reviews via Jira/Confluence, and authored an internal Scrum training course covering roles, artifacts, events and scaling frameworks.
+3. Evaluated Pencil Project against Figma and Adobe XD on capability, collaboration and cost, then produced and validated wireframes in the chosen tool to support responsive implementation across the frontend/backend boundary.
 
 Testing & reverse engineering
 Website testing and reverse-engineering work during the Intelli New Technologies internship.
 1. Reverse-engineered live sites end to end — HTML source, Wireshark packet captures and BuiltWith fingerprinting — tracing a scraper's empty image results to CSS backgrounds and JavaScript-injected assets rather than standard image tags.
-2. Ran a cross-platform compatibility matrix across Windows 11, macOS 12 and Android 13 on Edge, Chrome and Safari, paired with Lighthouse performance and accessibility audits at each responsive breakpoint.
+2. Ran a cross-platform compatibility matrix across Windows, macOS and Android on Edge, Chrome, Firefox and Safari, paired with Lighthouse performance and accessibility audits at each responsive breakpoint.
 3. Logged and triaged defects on a shared severity/priority template, escalating a full production outage at the highest rating.
+4. Scanned a client site with Nikto and reported missing X-Frame-Options, HSTS and X-Content-Type-Options headers alongside TLS and certificate findings, pairing each with a concrete remediation directive.
+5. Load-tested the same client site from 100 to 10,000 concurrent users, tracking response time, error rate and throughput, showing the error rate reaching 83% at 500 users and concluding the site could not carry high load.
+6. Ran responsive testing across iPhone, Galaxy, Pixel, iPad and Kindle Fire form factors, isolating a layout failure on one Kindle Fire tablet.
+7. Wrote the results up as a 12-page formal report structured around abstract, method, results and conclusions, pairing every issue with a recommendation.
+
+Agile practice and prototyping
+Methodology and design-tool work during the Intelli New Technologies internship.
+1. Authored an 8-page internal Scrum course covering roles and artifacts, sprint events, the Scrum/Kanban trade-off, and scaling paths including SAFe, LeSS and Scrum@Scale.
+2. Compared Pencil Project with Figma and Adobe XD on capability, interface, collaboration and cost, selected the open-source option and produced a company forum wireframe covering rich-text editing, upload progress and the posting flow.
 
 Related link: https://intellinew.com.au/

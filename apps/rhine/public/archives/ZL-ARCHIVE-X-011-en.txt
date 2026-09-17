@@ -11,7 +11,7 @@ The campaign-management platform I build at Codritium — real-time chat made re
 
 Engineering notes
 1. Chat under 100-user load: 83–89% → 9,900/9,900 delivered, WebSocket p95 47.5s → 5.0s
-2. Real-time spreadsheet collaboration · presence, remote cursors, ~145ms peer edits
+2. Real-time spreadsheet collaboration · presence, remote cursors, ~155ms peer edits
 3. CI −66% (+597 recovered tests) · 12-module slug-URL migration + IDOR fixes
 
 Reliable chat under load
@@ -24,7 +24,7 @@ Collaborative spreadsheets
 Multi-user spreadsheet collaboration in MediaJira.
 1. Django Channels supports live synchronisation.
 2. Presence, remote cursors and collaborative edits.
-3. The existing portfolio reports approximately 145ms peer updates.
+3. The existing portfolio reports approximately 155ms peer updates.
 
 Migrations, recovery & CI
 Cross-module migration and delivery improvements during the Codritium internship.

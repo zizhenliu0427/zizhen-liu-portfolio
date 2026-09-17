@@ -312,7 +312,7 @@
       "abstract": "Codritium 实习期间开发的广告投放管理平台。让实时聊天在 100 人并发下稳定送达,做了多人实时协作表格和 Calendly 式预约链接,完成横跨 12 个模块、涉及 373 个文件的 slug-URL 迁移,并把 CI 从 57 分钟压到 20 分钟。",
       "findings": [
         "100 人并发聊天:送达从 83–89% 提到 9,900/9,900,WebSocket p95 从 47.5 秒降到 5.0 秒",
-        "多人实时协作表格:在线状态、他人光标,协作编辑约 145ms 同步",
+        "多人实时协作表格:在线状态、他人光标,协作编辑约 155ms 同步",
         "CI 耗时 −66%(找回 597 个被跳过的测试)· 12 模块 slug-URL 迁移 + IDOR 越权修复"
       ],
       "source": "https://github.com/quanwangniuniu/marketing-simplified",
@@ -353,7 +353,7 @@
           "findings": [
             "Django Channels 支撑实时同步。",
             "在线状态、其他用户的光标与协作编辑。",
-            "作品集记录约 145ms 的协作更新延迟。"
+            "作品集记录约 155ms 的协作更新延迟。"
           ]
         },
         {
@@ -913,9 +913,9 @@
       "clearance": "EXPERIENCE",
       "abstract": "开发 Marketing Simplified(MediaJira)——面向媒介采购团队的广告投放管理平台,Next.js/TypeScript 前端搭配 Django REST + Channels 后端。",
       "findings": [
-        "开发 Marketing Simplified(MediaJira)——面向媒介采购团队的广告投放管理平台,Next.js/TypeScript 前端搭配 Django REST + Channels 后端。",
-        "让实时聊天在高并发下稳定送达(幂等发送、transactional outbox、PgBouncer 连接池),100 人并发时 9,900/9,900 条全部送达;并基于 Django Channels 做了多人实时协作表格,协作编辑约 145ms 同步。",
-        "交付 Calendly 式预约链接、373 个文件的 slug-URL 迁移和 IDOR 越权修复;CI 从 57 分钟压到 20 分钟;生产环境出现 521 故障时恢复 144 个数据库迁移,让服务重新上线。"
+        "开发 Marketing Simplified (MediaJira)——面向媒介采购团队的广告投放管理平台,Next.js/TypeScript 前端搭配 Django REST + Channels 后端。",
+        "用幂等发送、transactional outbox、独立聊天队列与 PgBouncer 连接池让实时聊天在高并发下稳定送达:100 人并发时 100 条消息与全部 9,900 条投递状态无一丢失,连接建立耗时从 50.88ms 降到 2.96ms。",
+        "在 Django Channels 上实现多人协同表格——在线状态、远端光标与单元格提交,配合 Redis 原子消费的一次性 WebSocket 票据、Lua 脚本清理在线状态,以及带抖动的指数退避重连;实测端到端传播 p95 为 155ms、光标路由 p95 为 3ms,错峰接入时 50 人并发编辑保持稳定。"
       ],
       "source": "https://zmarkio.com/",
       "sourceLabel": "公司 / 项目网站",
@@ -923,6 +923,41 @@
         {
           "label": "相关网站",
           "href": "https://zmarkio.com/"
+        }
+      ],
+      "sections": [
+        {
+          "id": "codritium-realtime",
+          "title": "实时系统与可靠性",
+          "abstract": "Codritium 实习期间的实时通信、协作与可观测性工作。",
+          "findings": [
+            "用幂等发送、transactional outbox、独立聊天队列与 PgBouncer 连接池让实时聊天在高并发下稳定送达:100 人并发时 100 条消息与全部 9,900 条投递状态无一丢失,连接建立耗时从 50.88ms 降到 2.96ms。",
+            "诊断超出该容量后的行为,测出积压超过窗口时约 148,500 次投递中有 12,000 次悄无声息地消失,定位到通道层缺陷会丢弃消息且不报错、不记日志。",
+            "在 Django Channels 上实现多人协同表格——在线状态、远端光标与单元格提交,配合 Redis 原子消费的一次性 WebSocket 票据、Lua 脚本清理在线状态,以及带抖动的指数退避重连;实测端到端传播 p95 为 155ms、光标路由 p95 为 3ms,错峰接入时 50 人并发编辑保持稳定。",
+            "接入实时 WebSocket 会话数指标,经 Prometheus 导出并配套 Grafana 看板;通过 Channels 消费者基类让全部 7 个消费者无需改动自身生命周期即可上报,并让计数在握手被拒、接受后崩溃与重复关闭等路径上都保持准确。"
+          ]
+        },
+        {
+          "id": "codritium-product",
+          "title": "产品功能交付",
+          "abstract": "Codritium 实习期间面向用户的功能交付。",
+          "findings": [
+            "交付 Calendly 式预约链接,外部客户无需注册即可选择时段并生成应用内会议,并正确处理每周可用时间窗、缓冲时间、最短预约提前量与时区。",
+            "交付客服会话工作台与快捷回复模板库——服务端强制的团队可见性、管理员维护的标签词表、每次保存的编辑历史——以及按频道置顶消息与实时同步。"
+          ]
+        },
+        {
+          "id": "codritium-platform",
+          "title": "安全、基建与可访问性",
+          "abstract": "Codritium 实习期间的安全加固、工程基建与可访问性工作。",
+          "findings": [
+            "收紧越权访问:把归属型接口限定到请求者本人,堵住改 URL 里的 id 就能读到他人数据的漏洞;并修复会话过期后无限重试刷新令牌、却始终不登出的问题。",
+            "把 12 个核心模块的数字型 URL id 迁移为可读 slug,涉及 373 个文件,每个模块走新增、回填、非空三步迁移,同时保持深链向后兼容。",
+            "把 CI 从 57 分钟压到 20 分钟;并通过并行执行,在 pytest 收集用例从 3,808 条增加到 4,405 条的同时,把运行时间从约 22 分钟减半到 11 分钟。",
+            "疏通了卡在 10GB 配额上、实际占用 10.31GB 的 GitHub Actions 缓存——89 个条目里有 79 个是合计 9.81GB 的 buildkit 层——把镜像层迁到 GHCR 并按分支隔离缓存标签,重复构建的缓存命中从 4 次 0 中变为每次都中;同时把前端 lint、类型检查与 jest 从静默放行改为阻断式门禁。",
+            "把一次线上故障恢复过来:将 144 个迁移以空操作形式还原,随后补上部署后健康轮询,以及一道会让任何删除或重命名迁移文件的 PR 直接失败的 CI 关卡。",
+            "修复表格网格违反 WCAG 2.1.2 的键盘陷阱——Tab 与 Shift+Tab 现在会在边界处把焦点交还,Esc 将焦点移到工具栏,并加入跳转链接与工具栏语义,使其无需鼠标即可到达。"
+          ]
         }
       ],
       "legacyId": "X-033"
@@ -939,8 +974,8 @@
       "abstract": "用 Python 爬虫和 Pandas ETL 管线采集、校验并规范化半结构化的网页数据,供下游功能使用。",
       "findings": [
         "用 Python 爬虫和 Pandas ETL 管线采集、校验并规范化半结构化的网页数据,供下游功能使用。",
-        "把业务需求转成用户故事和 API 约定,并在敏捷冲刺评审中对照设计稿验证 React 组件。",
-        "产出并验证数据看板的线框图,支撑前后端交界处的响应式实现。"
+        "把业务需求转成用户故事和 API 约定,在敏捷冲刺评审中对照设计稿验证 React 组件,并编写覆盖角色、工件、冲刺事件与规模化框架的 Scrum 内训教材。",
+        "对比 Pencil Project 与 Figma、Adobe XD 的功能、协作与成本后选定原型工具,产出并验证线框图,支撑前后端交界处的响应式实现。"
       ],
       "source": "https://intellinew.com.au/",
       "sourceLabel": "公司 / 项目网站",
@@ -957,8 +992,8 @@
           "abstract": "Intelli New Technologies 实习期间的数据工作。",
           "findings": [
             "用 Python 爬虫和 Pandas ETL 管线采集、校验并规范化半结构化的网页数据,供下游功能使用。",
-            "把业务需求转成用户故事和 API 约定,并在敏捷冲刺评审中对照设计稿验证 React 组件。",
-            "产出并验证数据看板的线框图,支撑前后端交界处的响应式实现。"
+            "把业务需求转成用户故事和 API 约定,在敏捷冲刺评审中对照设计稿验证 React 组件,并编写覆盖角色、工件、冲刺事件与规模化框架的 Scrum 内训教材。",
+            "对比 Pencil Project 与 Figma、Adobe XD 的功能、协作与成本后选定原型工具,产出并验证线框图,支撑前后端交界处的响应式实现。"
           ]
         },
         {
@@ -967,8 +1002,21 @@
           "abstract": "Intelli New Technologies 实习期间的网站测试与逆向工程工作。",
           "findings": [
             "从 HTML 源码、Wireshark 抓包到 BuiltWith 指纹逐层逆向线上站点,定位出爬虫抓不到图片是因为页面使用了 CSS 背景图与 JavaScript 动态注入,而非标准的图片标签。",
-            "搭建跨平台兼容性矩阵,覆盖 Windows 11、macOS 12 与 Android 13 上的 Edge、Chrome 与 Safari,并在各响应式断点配合 Lighthouse 做性能与可访问性审计。",
-            "按统一的严重度/优先级模板记录并分级缺陷,将一次线上站点完全不可访问的故障按最高等级上报。"
+            "搭建跨平台兼容性矩阵,覆盖 Windows、macOS 与 Android 上的 Edge、Chrome、Firefox 与 Safari,并在各响应式断点配合 Lighthouse 做性能与可访问性审计。",
+            "按统一的严重度/优先级模板记录并分级缺陷,将一次线上站点完全不可访问的故障按最高等级上报。",
+            "用 Nikto 扫描客户站点,报告缺失的 X-Frame-Options、HSTS 与 X-Content-Type-Options 响应头以及 TLS 与证书问题,并为每一项给出可直接落地的修复指令。",
+            "对同一客户站点做 100 至 10,000 并发用户的梯度压测,跟踪响应时间、错误率与吞吐量,测出 500 并发时错误率已达 83%,据此判定站点无法承载高负载。",
+            "在多种机型上做响应式测试,覆盖 iPhone、Galaxy、Pixel、iPad 与 Kindle Fire,定位出某款 Kindle Fire 平板上布局失效。",
+            "把上述测试整理成 12 页正式报告,按摘要、方法、结果与结论组织,并对每项问题给出改进建议。"
+          ]
+        },
+        {
+          "id": "intelli-agile",
+          "title": "敏捷方法论与原型设计",
+          "abstract": "Intelli New Technologies 实习期间的方法论与设计工具工作。",
+          "findings": [
+            "编写 8 页 Scrum 内训教材,覆盖角色与工件、冲刺事件、Scrum 与 Kanban 的取舍,以及 SAFe、LeSS、Scrum@Scale 等规模化路径。",
+            "对比 Pencil Project 与 Figma、Adobe XD 的功能深度、界面、协作能力与成本,选定开源方案并产出公司论坛页线框,含富文本编辑、图片上传进度与发帖流。"
           ]
         }
       ],
@@ -978,15 +1026,19 @@
       "id": "I-003",
       "title": "重庆金夫人实业有限公司 · 实习",
       "en": "GOLDEN LADY PHOTOGRAPHY",
-      "department": "IT 支持实习生",
+      "department": "软件开发实习生",
       "category": "实习经历",
-      "date": "2021年5月 — 2021年8月",
+      "date": "2024年3月 — 2024年7月",
       "lead": "Zizhen Liu / Lance",
       "clearance": "EXPERIENCE",
-      "abstract": "维护线上的 Vue.js 企业官网,稳妥地交付响应式界面调整与内容更新。",
+      "abstract": "基于 Next.js (Pages Router) 与 React 重做广州分公司官网前台:9 套页面模板支撑约 300 个可访问网址,覆盖 9 个导航栏目与 9 家门店。",
       "findings": [
-        "维护线上的 Vue.js 企业官网,稳妥地交付响应式界面调整与内容更新。",
-        "排查工作站硬件故障,为高负载场景配置操作系统与创意设计软件。"
+        "基于 Next.js (Pages Router) 与 React 重做广州分公司官网前台:9 套页面模板支撑约 300 个可访问网址,覆盖 9 个导航栏目与 9 家门店。",
+        "用 Axios 对接栏目、文章与预约接口,承载约 295 条 CMS 内容;并配合 Ant Design 与 SWR 完成预约表单,处理列表分页、栏目树与图片 CDN。",
+        "用 getServerSideProps 做服务端渲染,让百度与微信能抓到页面标题与正文——该站没有 sitemap,服务端直出的 HTML 是搜索引擎收录的唯一入口;详情页渲染带图片与视频的 CMS 富文本,并按路由做代码拆分。",
+        "对照旧织梦 (DedeCMS) PHP 站逐页查漏:缺页、路由与 301、移动端适配、表单提交失败与样式不一致。",
+        "与后端对齐 CMS 字段 (tid/bid/rid),补上文档未覆盖的边角页面,站点全程保持在线。",
+        "排查工作站硬件故障,为高负载的创意设计场景配置操作系统与相关软件。"
       ],
       "source": "https://goldenladies.com/",
       "sourceLabel": "公司 / 项目网站",

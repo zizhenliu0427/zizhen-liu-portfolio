@@ -11,7 +11,28 @@ Building Marketing Simplified (MediaJira), a campaign-management platform for me
 
 Engineering notes
 1. Building Marketing Simplified (MediaJira), a campaign-management platform for media-buying teams — a Next.js/TypeScript front end over a Django REST + Channels backend.
-2. Made real-time chat reliable under load (idempotent sends, a transactional outbox, PgBouncer pooling: 9,900/9,900 messages delivered at 100 concurrent users) and built multi-user spreadsheet collaboration over Django Channels with ~145ms peer updates.
-3. Shipped Calendly-style booking links, a 373-file slug-URL migration and IDOR fixes; cut CI from 57 to 20 minutes and recovered a production 521 outage by restoring 144 migrations.
+2. Made real-time chat reliable under load with idempotent sends, a transactional outbox, isolated chat queues and PgBouncer pooling: 100 messages and all 9,900 delivery statuses landed at 100 concurrent users, and connection setup fell from 50.88ms to 2.96ms.
+3. Built multi-user spreadsheet collaboration on Django Channels — presence, remote cursors and committed cell edits, with one-time WebSocket tickets consumed atomically in Redis, Lua-script presence cleanup and jittered exponential-backoff reconnection — measuring 155ms p95 end-to-end propagation and 3ms p95 cursor routing, stable at 50 concurrent editors on staggered arrival.
+
+Real-time systems and reliability
+Real-time messaging, collaboration and observability work during the Codritium internship.
+1. Made real-time chat reliable under load with idempotent sends, a transactional outbox, isolated chat queues and PgBouncer pooling: 100 messages and all 9,900 delivery statuses landed at 100 concurrent users, and connection setup fell from 50.88ms to 2.96ms.
+2. Diagnosed behaviour beyond that capacity, showing roughly 12,000 of 148,500 deliveries vanishing once the backlog outgrew its window, and traced it to channel-layer defects that discarded messages with no error and no log.
+3. Built multi-user spreadsheet collaboration on Django Channels — presence, remote cursors and committed cell edits, with one-time WebSocket tickets consumed atomically in Redis, Lua-script presence cleanup and jittered exponential-backoff reconnection — measuring 155ms p95 end-to-end propagation and 3ms p95 cursor routing, stable at 50 concurrent editors on staggered arrival.
+4. Added a live WebSocket session gauge exported through Prometheus with a Grafana board, via a Channels consumer base class so all seven consumers report without touching their own lifecycle code, and made the count correct across rejected handshakes, post-accept crashes and repeated closes.
+
+Product delivery
+User-facing feature delivery during the Codritium internship.
+1. Shipped Calendly-style booking links that let an external prospect pick a slot and create an in-app meeting without an account, honouring weekly availability windows, buffers, minimum notice and timezones.
+2. Delivered the agent conversation workspace and a quick-reply template library — server-side team-scoped visibility, an admin-managed tag vocabulary and per-save edit history — plus per-channel pinned messages with live propagation.
+
+Security, platform and accessibility
+Security hardening, platform engineering and accessibility work during the Codritium internship.
+1. Hardened access control by scoping owner-owned endpoints to the requesting user, closing cases where changing an id in the URL exposed another account's data, and fixed an expired session that retried token refresh forever instead of signing the user out.
+2. Migrated 12 core modules from numeric URL ids to human-readable slugs in a 373-file change, using a three-step add/backfill/not-null migration per module and keeping deep links backwards compatible.
+3. Cut CI from 57 to 20 minutes and raised the collected pytest suite from 3,808 to 4,405 tests while halving its runtime from roughly 22 to 11 minutes through parallel execution.
+4. Freed a GitHub Actions cache stuck at 10.31GB against a 10GB quota — 79 of its 89 entries were 9.81GB of buildkit layer blobs — by moving image layers to GHCR and scoping cache tags per branch, taking repeat builds from 0 of 4 cache hits to a hit every time, and made frontend lint, type-check and jest gates blocking instead of silently passing.
+5. Recovered a production outage by restoring 144 migrations as no-ops, then added post-deploy health polling and a CI guard that fails any pull request deleting or renaming a migration.
+6. Fixed a keyboard trap in the spreadsheet grid that violated WCAG 2.1.2 — Tab and Shift+Tab now release focus at the boundaries, Esc moves focus to the toolbar, and a skip link plus toolbar semantics make it reachable without a mouse.
 
 Related link: https://zmarkio.com/

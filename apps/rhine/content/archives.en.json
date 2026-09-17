@@ -312,7 +312,7 @@
       "abstract": "The campaign-management platform I build at Codritium — real-time chat made reliable under 100-user load, multi-user spreadsheet collaboration, Calendly-style booking links, a 373-file slug-URL migration across 12 modules and a CI pipeline cut from 57 to 20 minutes.",
       "findings": [
         "Chat under 100-user load: 83–89% → 9,900/9,900 delivered, WebSocket p95 47.5s → 5.0s",
-        "Real-time spreadsheet collaboration · presence, remote cursors, ~145ms peer edits",
+        "Real-time spreadsheet collaboration · presence, remote cursors, ~155ms peer edits",
         "CI −66% (+597 recovered tests) · 12-module slug-URL migration + IDOR fixes"
       ],
       "source": "https://github.com/quanwangniuniu/marketing-simplified",
@@ -353,7 +353,7 @@
           "findings": [
             "Django Channels supports live synchronisation.",
             "Presence, remote cursors and collaborative edits.",
-            "The existing portfolio reports approximately 145ms peer updates."
+            "The existing portfolio reports approximately 155ms peer updates."
           ]
         },
         {
@@ -914,8 +914,8 @@
       "abstract": "Building Marketing Simplified (MediaJira), a campaign-management platform for media-buying teams — a Next.js/TypeScript front end over a Django REST + Channels backend.",
       "findings": [
         "Building Marketing Simplified (MediaJira), a campaign-management platform for media-buying teams — a Next.js/TypeScript front end over a Django REST + Channels backend.",
-        "Made real-time chat reliable under load (idempotent sends, a transactional outbox, PgBouncer pooling: 9,900/9,900 messages delivered at 100 concurrent users) and built multi-user spreadsheet collaboration over Django Channels with ~145ms peer updates.",
-        "Shipped Calendly-style booking links, a 373-file slug-URL migration and IDOR fixes; cut CI from 57 to 20 minutes and recovered a production 521 outage by restoring 144 migrations."
+        "Made real-time chat reliable under load with idempotent sends, a transactional outbox, isolated chat queues and PgBouncer pooling: 100 messages and all 9,900 delivery statuses landed at 100 concurrent users, and connection setup fell from 50.88ms to 2.96ms.",
+        "Built multi-user spreadsheet collaboration on Django Channels — presence, remote cursors and committed cell edits, with one-time WebSocket tickets consumed atomically in Redis, Lua-script presence cleanup and jittered exponential-backoff reconnection — measuring 155ms p95 end-to-end propagation and 3ms p95 cursor routing, stable at 50 concurrent editors on staggered arrival."
       ],
       "source": "https://zmarkio.com/",
       "sourceLabel": "Company / project website",
@@ -923,6 +923,41 @@
         {
           "label": "Related website",
           "href": "https://zmarkio.com/"
+        }
+      ],
+      "sections": [
+        {
+          "id": "codritium-realtime",
+          "title": "Real-time systems and reliability",
+          "abstract": "Real-time messaging, collaboration and observability work during the Codritium internship.",
+          "findings": [
+            "Made real-time chat reliable under load with idempotent sends, a transactional outbox, isolated chat queues and PgBouncer pooling: 100 messages and all 9,900 delivery statuses landed at 100 concurrent users, and connection setup fell from 50.88ms to 2.96ms.",
+            "Diagnosed behaviour beyond that capacity, showing roughly 12,000 of 148,500 deliveries vanishing once the backlog outgrew its window, and traced it to channel-layer defects that discarded messages with no error and no log.",
+            "Built multi-user spreadsheet collaboration on Django Channels — presence, remote cursors and committed cell edits, with one-time WebSocket tickets consumed atomically in Redis, Lua-script presence cleanup and jittered exponential-backoff reconnection — measuring 155ms p95 end-to-end propagation and 3ms p95 cursor routing, stable at 50 concurrent editors on staggered arrival.",
+            "Added a live WebSocket session gauge exported through Prometheus with a Grafana board, via a Channels consumer base class so all seven consumers report without touching their own lifecycle code, and made the count correct across rejected handshakes, post-accept crashes and repeated closes."
+          ]
+        },
+        {
+          "id": "codritium-product",
+          "title": "Product delivery",
+          "abstract": "User-facing feature delivery during the Codritium internship.",
+          "findings": [
+            "Shipped Calendly-style booking links that let an external prospect pick a slot and create an in-app meeting without an account, honouring weekly availability windows, buffers, minimum notice and timezones.",
+            "Delivered the agent conversation workspace and a quick-reply template library — server-side team-scoped visibility, an admin-managed tag vocabulary and per-save edit history — plus per-channel pinned messages with live propagation."
+          ]
+        },
+        {
+          "id": "codritium-platform",
+          "title": "Security, platform and accessibility",
+          "abstract": "Security hardening, platform engineering and accessibility work during the Codritium internship.",
+          "findings": [
+            "Hardened access control by scoping owner-owned endpoints to the requesting user, closing cases where changing an id in the URL exposed another account's data, and fixed an expired session that retried token refresh forever instead of signing the user out.",
+            "Migrated 12 core modules from numeric URL ids to human-readable slugs in a 373-file change, using a three-step add/backfill/not-null migration per module and keeping deep links backwards compatible.",
+            "Cut CI from 57 to 20 minutes and raised the collected pytest suite from 3,808 to 4,405 tests while halving its runtime from roughly 22 to 11 minutes through parallel execution.",
+            "Freed a GitHub Actions cache stuck at 10.31GB against a 10GB quota — 79 of its 89 entries were 9.81GB of buildkit layer blobs — by moving image layers to GHCR and scoping cache tags per branch, taking repeat builds from 0 of 4 cache hits to a hit every time, and made frontend lint, type-check and jest gates blocking instead of silently passing.",
+            "Recovered a production outage by restoring 144 migrations as no-ops, then added post-deploy health polling and a CI guard that fails any pull request deleting or renaming a migration.",
+            "Fixed a keyboard trap in the spreadsheet grid that violated WCAG 2.1.2 — Tab and Shift+Tab now release focus at the boundaries, Esc moves focus to the toolbar, and a skip link plus toolbar semantics make it reachable without a mouse."
+          ]
         }
       ],
       "legacyId": "X-033"
@@ -939,8 +974,8 @@
       "abstract": "Built Python scrapers and Pandas ETL pipelines to collect, validate and normalise semi-structured web data for downstream features.",
       "findings": [
         "Built Python scrapers and Pandas ETL pipelines to collect, validate and normalise semi-structured web data for downstream features.",
-        "Translated business requirements into user stories and API contracts, verifying React components in Agile sprint reviews via Jira/Confluence.",
-        "Produced and validated data-dashboard wireframes, supporting responsive implementation across the frontend/backend boundary."
+        "Translated business requirements into user stories and API contracts, verifying React components in Agile sprint reviews via Jira/Confluence, and authored an internal Scrum training course covering roles, artifacts, events and scaling frameworks.",
+        "Evaluated Pencil Project against Figma and Adobe XD on capability, collaboration and cost, then produced and validated wireframes in the chosen tool to support responsive implementation across the frontend/backend boundary."
       ],
       "source": "https://intellinew.com.au/",
       "sourceLabel": "Company / project website",
@@ -957,8 +992,8 @@
           "abstract": "Data collection and ETL work during the Intelli New Technologies internship.",
           "findings": [
             "Built Python scrapers and Pandas ETL pipelines to collect, validate and normalise semi-structured web data for downstream features.",
-            "Translated business requirements into user stories and API contracts, verifying React components in Agile sprint reviews via Jira/Confluence.",
-            "Produced and validated data-dashboard wireframes, supporting responsive implementation across the frontend/backend boundary."
+            "Translated business requirements into user stories and API contracts, verifying React components in Agile sprint reviews via Jira/Confluence, and authored an internal Scrum training course covering roles, artifacts, events and scaling frameworks.",
+            "Evaluated Pencil Project against Figma and Adobe XD on capability, collaboration and cost, then produced and validated wireframes in the chosen tool to support responsive implementation across the frontend/backend boundary."
           ]
         },
         {
@@ -967,8 +1002,21 @@
           "abstract": "Website testing and reverse-engineering work during the Intelli New Technologies internship.",
           "findings": [
             "Reverse-engineered live sites end to end — HTML source, Wireshark packet captures and BuiltWith fingerprinting — tracing a scraper's empty image results to CSS backgrounds and JavaScript-injected assets rather than standard image tags.",
-            "Ran a cross-platform compatibility matrix across Windows 11, macOS 12 and Android 13 on Edge, Chrome and Safari, paired with Lighthouse performance and accessibility audits at each responsive breakpoint.",
-            "Logged and triaged defects on a shared severity/priority template, escalating a full production outage at the highest rating."
+            "Ran a cross-platform compatibility matrix across Windows, macOS and Android on Edge, Chrome, Firefox and Safari, paired with Lighthouse performance and accessibility audits at each responsive breakpoint.",
+            "Logged and triaged defects on a shared severity/priority template, escalating a full production outage at the highest rating.",
+            "Scanned a client site with Nikto and reported missing X-Frame-Options, HSTS and X-Content-Type-Options headers alongside TLS and certificate findings, pairing each with a concrete remediation directive.",
+            "Load-tested the same client site from 100 to 10,000 concurrent users, tracking response time, error rate and throughput, showing the error rate reaching 83% at 500 users and concluding the site could not carry high load.",
+            "Ran responsive testing across iPhone, Galaxy, Pixel, iPad and Kindle Fire form factors, isolating a layout failure on one Kindle Fire tablet.",
+            "Wrote the results up as a 12-page formal report structured around abstract, method, results and conclusions, pairing every issue with a recommendation."
+          ]
+        },
+        {
+          "id": "intelli-agile",
+          "title": "Agile practice and prototyping",
+          "abstract": "Methodology and design-tool work during the Intelli New Technologies internship.",
+          "findings": [
+            "Authored an 8-page internal Scrum course covering roles and artifacts, sprint events, the Scrum/Kanban trade-off, and scaling paths including SAFe, LeSS and Scrum@Scale.",
+            "Compared Pencil Project with Figma and Adobe XD on capability, interface, collaboration and cost, selected the open-source option and produced a company forum wireframe covering rich-text editing, upload progress and the posting flow."
           ]
         }
       ],
@@ -978,14 +1026,18 @@
       "id": "I-003",
       "title": "Golden Lady Photography",
       "en": "GOLDEN LADY PHOTOGRAPHY",
-      "department": "IT Support Intern",
+      "department": "Software Development Intern",
       "category": "Internships",
-      "date": "MAY 2021 — AUG 2021",
+      "date": "MAR 2024 — JUL 2024",
       "lead": "Zizhen Liu / Lance",
       "clearance": "EXPERIENCE",
-      "abstract": "Maintained a Vue.js corporate site in production, shipping responsive UI and content updates safely.",
+      "abstract": "Rebuilt the Guangzhou branch's website frontend on Next.js (Pages Router) and React: 9 page templates serving roughly 300 reachable URLs across 9 navigation sections and 9 store locations.",
       "findings": [
-        "Maintained a Vue.js corporate site in production, shipping responsive UI and content updates safely.",
+        "Rebuilt the Guangzhou branch's website frontend on Next.js (Pages Router) and React: 9 page templates serving roughly 300 reachable URLs across 9 navigation sections and 9 store locations.",
+        "Drove roughly 295 CMS entries through Axios against the category, article and appointment APIs, pairing Ant Design and SWR for the appointment form and handling list pagination, the category tree and image CDN delivery.",
+        "Rendered pages server-side with getServerSideProps so Baidu and WeChat could index titles and body copy — with no sitemap in place, server-rendered markup was the only way search engines could reach the content; detail pages render CMS rich text with images and video, and bundles are split per route.",
+        "Audited the legacy DedeCMS PHP site page by page for missing pages, broken routes and 301s, mobile breakpoints, failing form submissions and style drift.",
+        "Aligned CMS field contracts (tid/bid/rid) with the backend and filled in edge pages the spec had missed, keeping the site live throughout.",
         "Diagnosed workstation hardware and configured operating systems and creative software for heavy-workload use."
       ],
       "source": "https://goldenladies.com/",
