@@ -34,6 +34,17 @@ export const qualityPresets = {
     transmission: 1,
     anisotropy: 16,
   },
+  balanced: {
+    scale: 100,
+    pixelRatio: 1.5,
+    antialias: "off",
+    shadows: 2048,
+    aoSamples: 32,
+    aoResolution: 1,
+    depthOfField: 100,
+    transmission: 0.5,
+    anisotropy: 16,
+  },
   high: {
     scale: 125,
     pixelRatio: 2,
@@ -61,6 +72,7 @@ export type QualityPreset = keyof typeof qualityPresets;
 export const presetLabels: Record<QualityPreset, string> = {
   performance: "性能",
   original: "原始",
+  balanced: "平衡",
   high: "高",
   ultra: "极高",
 };

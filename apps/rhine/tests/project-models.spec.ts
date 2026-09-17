@@ -280,3 +280,31 @@ test('opening identity retains its font through the visitor name and uses Britis
   await page.locator('[data-action="settings"]').click();
   await expect(page.locator('[data-action="restart"]')).toContainText('REINITIALISE SYSTEM');
 });
+
+test('balanced quality preserves full scene resolution and persists without reloading the canvas', async ({page}) => {
+  await page.addInitScript(() => {
+    localStorage.setItem('zl-portfolio-locale','en');
+    if (!localStorage.getItem('zl-archive-settings')) localStorage.setItem('zl-archive-settings',JSON.stringify({sound:false,music:false,adaptive:false,superPerformance:false}));
+  });
+  await page.goto('/');
+  await expect.poll(() => page.evaluate(() => (window as any).rhine?.stats().openingPrepared)).toBe(true);
+  await page.locator('.entry-start').click();
+  await page.evaluate(() => (window as any).rhine.archive());
+  const canvas = await page.locator('#three-scene canvas').elementHandle();
+  await page.locator('[data-action="settings"]').click();
+  const dimensions = () => page.locator('#three-scene').evaluate(el => JSON.parse((el as HTMLElement).dataset.renderQuality!));
+  const original = await dimensions();
+  await page.locator('#quality-preset').selectOption('balanced');
+  await expect.poll(async () => (await dimensions()).transmission).toBe(.5);
+  expect(await dimensions()).toEqual({...original,transmission:.5});
+  expect(await canvas!.evaluate(el => el.isConnected)).toBe(true);
+  await expect(page.locator('#quality-preset option:checked')).toHaveText('Balanced');
+  await page.reload();
+  await expect.poll(() => page.evaluate(() => (window as any).rhine?.stats().openingPrepared)).toBe(true);
+  expect((await dimensions()).transmission).toBe(.5);
+  await page.locator('.entry-start').click();
+  await page.evaluate(() => (window as any).rhine.archive());
+  await page.locator('[data-action="settings"]').click();
+  await page.locator('#quality-preset').selectOption('original');
+  await expect.poll(async () => (await dimensions()).transmission).toBe(1);
+});

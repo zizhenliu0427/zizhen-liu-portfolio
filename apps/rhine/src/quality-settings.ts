@@ -51,6 +51,7 @@ export function qualityMarkup(quality: RenderQuality) {
   return translateUi(`<section class="quality-settings" aria-label="画质设置">
     <div class="quality-heading"><h3>RENDER QUALITY <span>渲染画质</span></h3>${choiceControl('id="quality-preset"', translateUi("画质预设"), preset, (Object.keys(presetLabels) as QualityPreset[]).map(key => [key, presetLabels[key]]))}</div>
     <p class="quality-summary" id="quality-summary" aria-live="polite"></p>
+    <p class="quality-note">平衡：保留原始主画面、阴影和景深，仅将玻璃折射分辨率降至 50%，玻璃内部细节可能稍软。</p>
     <details class="quality-advanced"><summary>精细设置 <span>清晰度 / 材质 / 阴影</span></summary><div class="quality-grid">
     ${range(quality, "scale", translateUi("渲染比例"), translateUi("相对屏幕像素，受密度上限限制；高比例改善细线"), 50, 200)}
     ${select(

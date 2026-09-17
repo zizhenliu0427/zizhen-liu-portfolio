@@ -128,6 +128,8 @@
   "自定义": "Custom",
   "性能": "Performance",
   "原始": "Original",
+  "平衡": "Balanced",
+  "平衡：保留原始主画面、阴影和景深，仅将玻璃折射分辨率降至 50%，玻璃内部细节可能稍软。": "Balanced: retains the original scene resolution, shadows and depth of field, with glass refraction at 50% resolution. Details behind glass may look slightly softer.",
   "极高": "Ultra",
   "高": "High",
   "渲染比例": "Render scale",
