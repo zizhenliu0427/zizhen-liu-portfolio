@@ -1,0 +1,133 @@
+{
+  "date": "2026-09-17",
+  "viewport": [
+    3840,
+    2160
+  ],
+  "deviceScaleFactor": 1,
+  "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5090 (0x00002B85) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "method": "Headless Edge; three alternating rounds; 60 warm-up and 240 measured frames per run; median asynchronous GPU query times",
+  "errors": [],
+  "runs": [
+    {
+      "round": 1,
+      "tier": "high",
+      "quality": "original",
+      "cpu": 0.9000000022351742,
+      "gpu": 5.057984,
+      "calls": 69,
+      "triangles": 4131843,
+      "archiveCount": 319
+    },
+    {
+      "round": 1,
+      "tier": "medium",
+      "quality": "original",
+      "cpu": 0.8999999985098839,
+      "gpu": 4.84096,
+      "calls": 69,
+      "triangles": 2108115,
+      "archiveCount": 319
+    },
+    {
+      "round": 1,
+      "tier": "high",
+      "quality": "balanced",
+      "cpu": 1,
+      "gpu": 3.957088,
+      "calls": 69,
+      "triangles": 4131843,
+      "archiveCount": 319
+    },
+    {
+      "round": 1,
+      "tier": "medium",
+      "quality": "balanced",
+      "cpu": 1,
+      "gpu": 3.85568,
+      "calls": 69,
+      "triangles": 2108115,
+      "archiveCount": 319
+    },
+    {
+      "round": 2,
+      "tier": "medium",
+      "quality": "original",
+      "cpu": 0.8999999985098839,
+      "gpu": 4.892256,
+      "calls": 69,
+      "triangles": 2108115,
+      "archiveCount": 319
+    },
+    {
+      "round": 2,
+      "tier": "high",
+      "quality": "original",
+      "cpu": 0.8999999985098839,
+      "gpu": 5.087552,
+      "calls": 69,
+      "triangles": 4131843,
+      "archiveCount": 319
+    },
+    {
+      "round": 2,
+      "tier": "medium",
+      "quality": "balanced",
+      "cpu": 1,
+      "gpu": 3.870432,
+      "calls": 69,
+      "triangles": 2108115,
+      "archiveCount": 319
+    },
+    {
+      "round": 2,
+      "tier": "high",
+      "quality": "balanced",
+      "cpu": 1,
+      "gpu": 3.938848,
+      "calls": 69,
+      "triangles": 4131843,
+      "archiveCount": 319
+    },
+    {
+      "round": 3,
+      "tier": "high",
+      "quality": "original",
+      "cpu": 0.8999999985098839,
+      "gpu": 5.074688,
+      "calls": 69,
+      "triangles": 4131843,
+      "archiveCount": 319
+    },
+    {
+      "round": 3,
+      "tier": "medium",
+      "quality": "original",
+      "cpu": 0.8999999985098839,
+      "gpu": 4.59008,
+      "calls": 69,
+      "triangles": 2108115,
+      "archiveCount": 319
+    },
+    {
+      "round": 3,
+      "tier": "high",
+      "quality": "balanced",
+      "cpu": 1,
+      "gpu": 3.886784,
+      "calls": 69,
+      "triangles": 4131843,
+      "archiveCount": 319
+    },
+    {
+      "round": 3,
+      "tier": "medium",
+      "quality": "balanced",
+      "cpu": 1,
+      "gpu": 3.829984,
+      "calls": 69,
+      "triangles": 2108115,
+      "archiveCount": 319
+    }
+  ]
+}

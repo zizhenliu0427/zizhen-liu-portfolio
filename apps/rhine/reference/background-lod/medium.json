@@ -1,0 +1,15 @@
+{
+  "sourceSha256": "ef8d92f6e3f3aa85b3f813a603d7d36ea70cf0aa309454091876558a13ef64f8",
+  "parts": [
+    {
+      "surface": "Ivory_Edges",
+      "before": 940,
+      "after": 564
+    },
+    {
+      "surface": "Titanium_Fasteners",
+      "before": 2136,
+      "after": 384
+    }
+  ]
+}
