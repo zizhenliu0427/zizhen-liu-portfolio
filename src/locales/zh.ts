@@ -511,6 +511,9 @@ export const zh = {
         "用 Python 爬虫和 Pandas ETL 管线采集、校验并规范化半结构化的网页数据,供下游功能使用。",
         "把业务需求转成用户故事和 API 约定,并在敏捷冲刺评审中对照设计稿验证 React 组件。",
         "产出并验证数据看板的线框图,支撑前后端交界处的响应式实现。",
+        "从 HTML 源码、Wireshark 抓包到 BuiltWith 指纹逐层逆向线上站点,定位出爬虫抓不到图片是因为页面使用了 CSS 背景图与 JavaScript 动态注入,而非标准的图片标签。",
+        "搭建跨平台兼容性矩阵,覆盖 Windows 11、macOS 12 与 Android 13 上的 Edge、Chrome 与 Safari,并在各响应式断点配合 Lighthouse 做性能与可访问性审计。",
+        "按统一的严重度/优先级模板记录并分级缺陷,将一次线上站点完全不可访问的故障按最高等级上报。",
       ],
     },
     goldenlady: {

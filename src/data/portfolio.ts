@@ -459,6 +459,9 @@ export const experience: readonly ExperienceItem[] = [
       "Built Python scrapers and Pandas ETL pipelines to collect, validate and normalise semi-structured web data for downstream features.",
       "Translated business requirements into user stories and API contracts, verifying React components in Agile sprint reviews via Jira/Confluence.",
       "Produced and validated data-dashboard wireframes, supporting responsive implementation across the frontend/backend boundary.",
+      "Reverse-engineered live sites end to end — HTML source, Wireshark packet captures and BuiltWith fingerprinting — tracing a scraper's empty image results to CSS backgrounds and JavaScript-injected assets rather than standard image tags.",
+      "Ran a cross-platform compatibility matrix across Windows 11, macOS 12 and Android 13 on Edge, Chrome and Safari, paired with Lighthouse performance and accessibility audits at each responsive breakpoint.",
+      "Logged and triaged defects on a shared severity/priority template, escalating a full production outage at the highest rating.",
     ],
     links: [
       { label: "INTELLINEW.COM.AU", href: "https://intellinew.com.au/" },

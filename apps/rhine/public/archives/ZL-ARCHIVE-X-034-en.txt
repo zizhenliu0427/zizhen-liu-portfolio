@@ -20,4 +20,10 @@ Data collection and ETL work during the Intelli New Technologies internship.
 2. Translated business requirements into user stories and API contracts, verifying React components in Agile sprint reviews via Jira/Confluence.
 3. Produced and validated data-dashboard wireframes, supporting responsive implementation across the frontend/backend boundary.
 
+Testing & reverse engineering
+Website testing and reverse-engineering work during the Intelli New Technologies internship.
+1. Reverse-engineered live sites end to end — HTML source, Wireshark packet captures and BuiltWith fingerprinting — tracing a scraper's empty image results to CSS backgrounds and JavaScript-injected assets rather than standard image tags.
+2. Ran a cross-platform compatibility matrix across Windows 11, macOS 12 and Android 13 on Edge, Chrome and Safari, paired with Lighthouse performance and accessibility audits at each responsive breakpoint.
+3. Logged and triaged defects on a shared severity/priority template, escalating a full production outage at the highest rating.
+
 Related link: https://intellinew.com.au/
