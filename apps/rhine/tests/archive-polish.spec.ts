@@ -140,7 +140,7 @@ test('leaving during refrost cancels the pending document replacement', async ({
 
 test('opening composition stays identical across category order and hands off without a lateral jump', async ({ page }) => {
   await page.goto('/?review=1&freeze=1&time=22');
-  await expect.poll(() => page.evaluate(() => (window as any).rhine?.stats().loaded)).toBe(true);
+  await expect.poll(() => page.evaluate(() => (window as any).rhine?.stats().ready)).toBe(true);
   const sample = async (id: string, time: number) => page.evaluate(async ({ index, time }) => {
     (window as any).rhine.select(index);
     window.postMessage({ type: 'rhine-review-frame', time }, location.origin);

@@ -1314,6 +1314,7 @@ async function start() {
     ]);
     if (scene) bindScene(scene);
     savePrefs();
+    await scene?.prepareOpening();
     ready = true;
     select(resumeLocale?.selected ?? 0);
     if (entry) entry.ready();

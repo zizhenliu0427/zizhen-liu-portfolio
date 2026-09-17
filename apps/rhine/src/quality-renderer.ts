@@ -33,6 +33,8 @@ export function applyTextureQuality(
   }
 }
 
+const composerSizes = new WeakMap<EffectComposer, string>();
+
 export function resizeQuality(
   renderer: THREE.WebGLRenderer,
   composer: EffectComposer,
@@ -51,10 +53,17 @@ export function resizeQuality(
     renderer.capabilities.maxTextureSize,
     superPerformance ? 921_600 : 8_294_400,
   );
-  renderer.setPixelRatio(dimensions.ratio);
-  renderer.setSize(width, height);
-  composer.setPixelRatio(dimensions.ratio);
-  composer.setSize(width, height);
+  // Mode changes can alter the HUD layout without changing render dimensions.
+  // Reassigning an unchanged canvas size still clears/reallocates its buffer.
+  if (renderer.getPixelRatio() !== dimensions.ratio) renderer.setPixelRatio(dimensions.ratio);
+  const size = renderer.getSize(new THREE.Vector2());
+  if (size.x !== width || size.y !== height) renderer.setSize(width, height);
+  const key = `${width}:${height}:${dimensions.ratio}`;
+  if (composerSizes.get(composer) !== key) {
+    composer.setPixelRatio(dimensions.ratio);
+    composer.setSize(width, height);
+    composerSizes.set(composer, key);
+  }
   renderer.transmissionResolutionScale = quality.transmission;
   host.dataset.renderQuality = JSON.stringify({
     ...dimensions,

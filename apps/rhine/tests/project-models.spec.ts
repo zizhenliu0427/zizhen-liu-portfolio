@@ -176,3 +176,27 @@ test('final acknowledgements retain original optics, lettering and bilingual cre
   await select(page,'P-001');
   await expect.poll(async () => (await state(page)).projectModel).toMatchObject({key:'profile',state:'ready',visibleOriginalInteriors:0});
 });
+
+
+test('opening shaders are prepared before entry instead of during camera transitions', async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem('zl-archive-settings', JSON.stringify({sound:false,music:false,reduced:false,adaptive:false,superPerformance:false}));
+    (window as any).programCreates = 0;
+    const create = WebGL2RenderingContext.prototype.createProgram;
+    WebGL2RenderingContext.prototype.createProgram = function () {
+      (window as any).programCreates++;
+      return create.call(this);
+    };
+  });
+  await page.goto('/');
+  await expect(page.locator('.entry-start')).toBeEnabled();
+  await expect.poll(async () => (await state(page)).openingPrepared).toBe(true);
+  const prepared = await page.evaluate(() => (window as any).programCreates);
+  await page.locator('.entry-start').click();
+  await page.evaluate(() => (window as any).rhine.seek(21.85));
+  await expect(page.locator('#stage')).toHaveAttribute('data-mode','detail',{timeout:25000});
+  // Compilation is the source of cold transition stalls; don't assert a
+  // hardware-dependent frame time in an automated browser.
+  expect(await page.evaluate(() => (window as any).programCreates)).toBe(prepared);
+  await expect(page.locator('#object-id')).toHaveText('P-001');
+});

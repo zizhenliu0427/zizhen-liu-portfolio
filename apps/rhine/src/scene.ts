@@ -502,10 +502,58 @@ export class ArchiveScene {
     this.setSuperPerformance(this.superPerformance, true);
   }
 
+  /** Prepare shader variants, uploads and post-processing while the entry covers
+   * the canvas. Do not spend the first visible camera shot compiling them.
+   */
+  async prepareOpening() {
+    if (!this.loaded || this.openingPrepared) return;
+    await this.pendingProject;
+    const canvas = this.renderer.domElement;
+    const visibility = canvas.style.visibility;
+    canvas.style.visibility = 'hidden';
+    const time = performance.now() / 1000;
+    try {
+      for (const shot of [22, 24, 26.5, 34.9]) {
+        this.update(time, {
+          time: shot, reveal: ease((shot - 22) / .4), lift: ease((shot - 26) / 1.8),
+          zoom: .55 * ease((shot - 27.3) / 1.65) + .45 * ease((shot - 29) / 5),
+        }, true);
+        await this.renderer.compileAsync(this.scene, this.camera);
+        this.renderer.shadowMap.needsUpdate = true;
+        if (this.superPerformance) this.renderer.render(this.scene, this.camera);
+        else this.composer.render();
+        await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
+      }
+      // Let queued uploads/draws finish without gl.finish() blocking the UI.
+      const gl = this.renderer.getContext() as WebGL2RenderingContext;
+      const fence = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0);
+      if (fence) {
+        gl.flush();
+        const deadline = performance.now() + 5000;
+        try {
+          while (!gl.isContextLost() && performance.now() < deadline &&
+            gl.clientWaitSync(fence, 0, 0) === gl.TIMEOUT_EXPIRED) {
+            await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
+          }
+        } finally { gl.deleteSync(fence); }
+      }
+      this.openingPrepared = true;
+    } finally {
+      // Restore the opening pose and decryption before either play or skip.
+      this.decryption.select();
+      this.update(time, {time:21.9, reveal:0, lift:0, zoom:0}, true);
+      this.last = 0;
+      this.renderState.invalidate();
+      canvas.style.visibility = visibility;
+    }
+  }
+
   private assemblyTemplate?: Promise<THREE.Group>;
   private projectModels = new ProjectModels();
   private projectPalettes = new Set<string>();
   private projectRequest = 0;
+  private pendingProject: Promise<void> = Promise.resolve();
+  private openingPrepared = false;
   private projectId = '';
   projectModelState: 'default' | 'loading' | 'ready' | 'error' = 'default';
   get projectModelKey() { return projectModel(this.projectId)?.key ?? null; }
@@ -822,7 +870,7 @@ export class ArchiveScene {
     } else this.emitPulse(cell);
     this.targetRotation = 0;
     this.drawLabel(index);
-    void this.loadProject(records[index].id);
+    if (this.projectId !== records[index].id) this.pendingProject = this.loadProject(records[index].id);
   }
   private emitPulse(cell: ArchiveCell) {
     this.pulses.push({ ...cell, time: this.clock });
@@ -1244,6 +1292,7 @@ export class ArchiveScene {
   update(
     time: number,
     cinematic?: { reveal: number; lift: number; zoom: number; time: number },
+    prepareOnly = false,
   ) {
     const elapsed = Math.max(0, time - this.last || 0.016);
     const dt = Math.min(elapsed, 0.05);
@@ -1779,11 +1828,12 @@ export class ArchiveScene {
       (THREE.MathUtils.lerp(0.0003, 0.0008, detail) *
         this.quality.depthOfField) /
       100;
+    this.scene.updateMatrixWorld();
+    if (prepareOnly) return;
     this.renderer.info.reset();
     // Keep all simulation and picking current. Reuse the composited canvas only
     // when its actual inputs are identical, including late textures and materials.
     const state = this.renderState;
-    this.scene.updateMatrixWorld();
     // A changed instance buffer already proves the image changed. Avoid a
     // material/matrix snapshot on those busy frames; capture when it settles.
     if (matricesChanged || cinematic) {
@@ -1861,6 +1911,8 @@ export class ArchiveScene {
         .map((v) => Math.round(v * 10000) / 10000),
       fieldOfView: this.camera.fov,
       loaded: this.loaded,
+      openingPrepared: this.openingPrepared,
+      shaderPrograms: this.renderer.info.programs?.length ?? 0,
       drawCalls: this.renderer.info.render.calls,
       renderedFrames: this.renderedFrames,
       reusedFrames: this.reusedFrames,

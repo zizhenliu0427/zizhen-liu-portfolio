@@ -40,8 +40,11 @@ export class DocumentDecryption {
         ? "h2, h3, .detail-kicker, .detail-title-cn, .metadata dt, .metadata dd, .detail-tabs button, .panel-label, .tab-panel p, .research-notes li, .log-row, .portfolio-stack span, .detail-actions a, .detail-actions button, .detail-footnote"
         : "h2, .detail-title-cn, .metadata dd, .tab-panel p, .research-notes li, .log-row",
     );
+    // Separate layout reads from DOM writes. Inserting each line immediately
+    // forced another layout for the next field during the detail handoff.
+    const pending: { target: HTMLElement; window: HTMLElement }[] = [];
+    targets.forEach(target => target.classList.add("document-redacted"));
     targets.forEach((target, targetIndex) => {
-      target.classList.add("document-redacted");
       const bounds = target.getBoundingClientRect();
       const scale = bounds.width / target.offsetWidth;
       if (!scale || !Number.isFinite(scale)) return;
@@ -78,10 +81,11 @@ export class DocumentDecryption {
         const ink = document.createElement("span");
         ink.className = "document-redaction-ink";
         window.append(ink);
-        target.append(window);
+        pending.push({ target, window });
         this.covers.push({ window, ink, order: this.covers.length });
       }
     });
+    for (const { target, window } of pending) target.append(window);
     this.paint();
   }
 
