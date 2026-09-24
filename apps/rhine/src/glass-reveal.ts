@@ -1,6 +1,7 @@
 // A feathered clearing front travels from the top to the bottom of the cover.
 // Progress endpoints are wholly frosted / wholly clear, including the rim.
 const FEATHER = 0.12;
+export const ARRAY_FROSTED_ROUGHNESS = 0.28;
 export const FROSTED_ROUGHNESS = 0.42;
 export const CLEAR_ROUGHNESS = 0.025;
 const FROST_SPAN = 0.016;

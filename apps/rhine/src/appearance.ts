@@ -1,7 +1,8 @@
 import * as THREE from "three";
-import { glassRevealGLSL, frostedTransmissionGLSL, FROSTED_ROUGHNESS } from "./glass-reveal.ts";
+import { glassRevealGLSL, frostedTransmissionGLSL, ARRAY_FROSTED_ROUGHNESS, FROSTED_ROUGHNESS, CLEAR_ROUGHNESS } from "./glass-reveal.ts";
 import { internalOpticsFragment } from "./internal-optics.ts";
 import { themeMaterial } from "./theme-material";
+import { compensateTransmission, transmissionParsFragment, type TransmissionLodBias } from "./transmission-lod.ts";
 
 type Surface = THREE.MeshPhysicalMaterial;
 type Palette = { high: Surface; low?: Surface };
@@ -19,7 +20,8 @@ export class CardAppearance {
     this.palettes.set(name, { high, low });
   }
 
-  prepare(group: THREE.Group) {
+  /** The bias belongs to the renderer drawing this group; other renderers keep 0. */
+  prepare(group: THREE.Group, transmissionLod: TransmissionLodBias = { value: 0 }) {
     for (const child of group.children) {
       const mesh = child as THREE.Mesh;
       const name = mesh.userData.surface as string;
@@ -68,9 +70,8 @@ export class CardAppearance {
           );
           shader.fragmentShader = shader.fragmentShader.replace(
             "#include <transmission_pars_fragment>",
-            frostedTransmissionGLSL + "\n" + THREE.ShaderChunk.transmission_pars_fragment.replace(
-              "float lod = log2( transmissionSamplerSize.x ) * applyIorToRoughness( roughness, ior );",
-              "float lod = archiveTransmissionLod(roughness, ior, transmissionSamplerSize);",
+            frostedTransmissionGLSL + "\n" + transmissionParsFragment(
+              "archiveTransmissionLod(roughness, ior, transmissionReferenceSize)",
             ),
           );
           shader.fragmentShader = shader.fragmentShader.replace(
@@ -79,7 +80,7 @@ export class CardAppearance {
           );
           shader.fragmentShader = shader.fragmentShader.replace(
             "#include <roughnessmap_fragment>",
-            `#include <roughnessmap_fragment>\nroughnessFactor = mix(mix(0.28, ${FROSTED_ROUGHNESS}, archiveQuality), 0.025, glassRevealAtHeight(archiveClarity, vArchiveHeight));`,
+            `#include <roughnessmap_fragment>\nroughnessFactor = mix(mix(${ARRAY_FROSTED_ROUGHNESS}, ${FROSTED_ROUGHNESS}, archiveQuality), ${CLEAR_ROUGHNESS}, glassRevealAtHeight(archiveClarity, vArchiveHeight));`,
           );
         } else if (!palette.low) {
           // Stable screen-space coverage adds internal geometry without an
@@ -89,6 +90,7 @@ export class CardAppearance {
             "#include <color_fragment>\nfloat coverage = fract(52.9829189 * fract(dot(gl_FragCoord.xy, vec2(0.06711056, 0.00583715))));\nif (archiveQuality <= coverage) discard;",
           );
         }
+        compensateTransmission(shader, transmissionLod);
       };
       mat.customProgramCacheKey = () =>
         `archive-surface-clarity-${name}-${Boolean(palette.low)}`;

@@ -95,7 +95,8 @@ const shader = {
 };
 mesh.material.onBeforeCompile(shader);
 assert.ok(shader.vertexShader.includes("vArchiveProjectedAxis = 1.85"));
-assert.ok(shader.fragmentShader.includes("float lod = archiveTransmissionLod(roughness, ior, transmissionSamplerSize);"));
+assert.ok(shader.fragmentShader.includes("archiveTransmissionLod(roughness, ior, transmissionReferenceSize) - transmissionLodBias"));
+assert.equal(shader.uniforms.transmissionLodBias.value, 0, "Other renderers keep the reference capture");
 const part = new THREE.Group();
 group.add(part);
 part.add(mesh);

@@ -21,6 +21,7 @@
 - 主场景顺序为 RenderPass → SSAO → Bokeh → SMAA → OutputPass。SMAA 按本地 Three.js 实现和[官方说明](https://threejs.org/docs/pages/SMAAPass.html)位于 OutputPass 前；旧主场景默认无额外抗锯齿。
 - AO 更换采样数时替换并 dispose 旧 pass，切换阴影尺寸时释放旧 shadow map；AO 分辨率在 composer resize 后单独设置。相同画质不重复应用，音量调节不会重建画质资源。
 - 使用 [WebGLRenderer 的 transmissionResolutionScale](https://threejs.org/docs/pages/WebGLRenderer.html)控制折射捕获精度，不改变透光率与颜色。
+- 「折射分辨率」是参考精度。浏览阵列时磨砂玻璃只读取 2–4 级 mipmap，场景自动以一半宽高捕获并将采样 LOD 精确下移一级，画面与参考精度等效，捕获像素降为 1/4；玻璃变清晰或卡片投影过小时立即恢复参考精度。详见 `HOME-RENDER-COST.md`。
 - 查看器同步清晰度、纹理过滤和折射设置。启用 SMAA 时用独立后处理管线，原始档位继续直接渲染以保留其原生抗锯齿。阴影、AO、景深只控制阵列，在设置标签中标明。
 - 设置储存在 `rhine-settings.rendering`；修改单项自动标记自定义，选预设恢复整组参数。范围滑块拖动时更新数值，释放或键盘修改提交后应用，避免拖动期间连续重建大尺寸缓冲。
 - 同步保留并行音频任务的开关、音量与场景音频接线。

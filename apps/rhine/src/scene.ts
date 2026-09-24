@@ -6,6 +6,8 @@ import { ArchiveVisibility } from "./archive-visibility";
 import { InstanceUpdates } from "./instance-updates";
 import { RenderState } from "./render-state";
 import { SharedDepthAO, SharedDepthBokeh } from "./shared-depth";
+import { ARRAY_FROSTED_ROUGHNESS } from "./glass-reveal";
+import { compensateTransmission, frostedCoverLod, nativeTransmissionLod, transmissionLodSupported } from "./transmission-lod";
 import { disposeThreeTree } from "./three-resources";
 import { ThemeWave } from "./theme-motion";
 import { themeMaterial, themeEnvironment } from "./theme-material";
@@ -120,6 +122,11 @@ export class ArchiveScene {
     this.resize();
   }
   setSelectedIndexAccent(onlySelected: boolean) { this.selectedIndexOnly = onlySelected; }
+  private transmissionLod = { value: 0 };
+  private reducedCapture = false;
+  private captureChanged = -Infinity;
+  private captureSize = new THREE.Vector2();
+  private coverView = new THREE.Matrix4();
   private themeAttribute?: THREE.InstancedBufferAttribute;
   get submittedFrames() { return this.renderedFrames; }
   get themeAmount() { return this.theme.background(performance.now() / 1000); }
@@ -446,8 +453,9 @@ export class ArchiveScene {
             "#include <color_fragment>",
             "#include <color_fragment>\ndiffuseColor.rgb *= mix(vec3(0.40, 0.30, 0.20), vec3(1.0, 0.98, 0.94), smoothstep(0.1, 1.0, vPanelHeight));",
           );
+          compensateTransmission(shader, this.transmissionLod);
         };
-        arrayMat.roughness = 0.28;
+        arrayMat.roughness = ARRAY_FROSTED_ROUGHNESS;
         arrayMat.clearcoat = 0.3;
         arrayMat.clearcoatRoughness = 0.25;
       }
@@ -493,7 +501,7 @@ export class ArchiveScene {
     );
     label.position.set(-1.36, 3.04, 0.255);
     this.model.add(label);
-    this.appearance.prepare(this.model);
+    this.appearance.prepare(this.model, this.transmissionLod);
     this.appearance.apply(this.model, 0);
     this.drawLabel(0);
     this.scene.add(this.model);
@@ -838,7 +846,7 @@ export class ArchiveScene {
       // Clone carries the selected label material by reference. Replace it
       // before installing appearance shaders, so theme hooks are not appended
       // to the original label a second time on every selection.
-      this.appearance.prepare(group);
+      this.appearance.prepare(group, this.transmissionLod);
       // prepare() installs fresh materials; reapply this copy's glass mode.
       for (const child of group.children) child.userData.projectPerformanceGlass = false;
       this.appearance.setProjectPerformanceGlass(group, this.superPerformance && usesProjectGlass(this.projectId));
@@ -950,6 +958,7 @@ export class ArchiveScene {
       this.quality,
       this.superPerformance,
     );
+    this.applyTransmissionCapture();
     this.ao.setSize(
       Math.max(1, Math.floor(dimensions.width * this.quality.aoResolution)),
       Math.max(1, Math.floor(dimensions.height * this.quality.aoResolution)),
@@ -967,6 +976,41 @@ export class ArchiveScene {
     });
     this.camera.aspect = w / h;
     this.camera.updateProjectionMatrix();
+  }
+  /** Browsing reads only frosted, mip-blurred refraction. Capture it at half
+   * size and sample one level finer: the same footprint for a quarter of the
+   * pixels. Any finer read, such as a clearing cover, restores the reference. */
+  private updateTransmissionCapture(time: number) {
+    const size = this.renderer.getDrawingBufferSize(this.captureSize).multiplyScalar(this.quality.transmission);
+    // Array shells and ivory edges are never smoother than the array frost.
+    let lod = nativeTransmissionLod(size.x, ARRAY_FROSTED_ROUGHNESS);
+    for (const group of [this.model, ...this.outgoing.map(o => o.group)]) {
+      const cover = group.children.find(child => child.userData.surface === "Frosted_Polymer");
+      if (!cover?.visible || cover.userData.projectPerformanceGlass) continue;
+      lod = Math.min(lod, frostedCoverLod(this.coverPixels(cover, size), size.x,
+        cover.userData.appearance.value, cover.userData.glassClarity.value));
+    }
+    // Hysteresis avoids reallocating the capture on every small camera change.
+    const reduce = transmissionLodSupported && this.quality.transmission >= .5 &&
+      (this.reducedCapture ? lod >= 1 : lod >= 1.1 && time - this.captureChanged >= 1);
+    if (reduce === this.reducedCapture) return;
+    this.reducedCapture = reduce;
+    this.captureChanged = time;
+    this.applyTransmissionCapture();
+  }
+  /** Mirrors vArchiveProjectedAxis at the cover's farthest plausible depth. */
+  private coverPixels(cover: THREE.Object3D, size: THREE.Vector2) {
+    const view = this.coverView.multiplyMatrices(this.camera.matrixWorldInverse, cover.matrixWorld).elements;
+    const projection = this.camera.projectionMatrix.elements;
+    const depth = Math.max(1e-4, Math.abs(view[14]) + 5);
+    return 1.85 * Math.hypot(projection[0] * view[4] * size.x, projection[5] * view[5] * size.y) / depth;
+  }
+  private applyTransmissionCapture() {
+    const reference = this.quality.transmission;
+    this.renderer.transmissionResolutionScale = this.reducedCapture ? reference / 2 : reference;
+    this.transmissionLod.value = this.reducedCapture ? 1 : 0;
+    this.container.dataset.transmissionCapture = String(this.renderer.transmissionResolutionScale);
+    this.renderState.invalidate();
   }
   private canBrowse() {
     return (
@@ -1838,6 +1882,7 @@ export class ArchiveScene {
         this.quality.depthOfField) /
       100;
     this.scene.updateMatrixWorld();
+    this.updateTransmissionCapture(time);
     if (prepareOnly) return;
     this.renderer.info.reset();
     // Keep all simulation and picking current. Reuse the composited canvas only

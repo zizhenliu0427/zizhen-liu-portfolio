@@ -57,3 +57,63 @@ unchanged, and Original restores full refraction resolution.
 Validation: root production build, quality normalisation/device-limit checks,
 and browser coverage of preset application, unchanged main render dimensions,
 canvas preservation, persistence and restoring Original.
+
+## Compensated frosted capture (2026-09-24)
+
+Every quality preset now captures refraction at half width and height while
+browsing the array, then reads it one mip level finer. Glass reads the same
+filtered footprint as the full-size capture from a quarter of the pixels, so
+Original keeps its look.
+
+Why it is equivalent: three.js picks the refraction mip as
+`log2(captureWidth) × roughness × iorFactor`. The array frost (roughness 0.28)
+and the selected frosted cover already read mip levels 2–4. For any read at
+level 1 or above, level *L* of a half-size capture is level *L + 1* of the
+full-size one. `src/transmission-lod.ts` patches the transmission chunk: it
+computes the LOD from the unreduced reference size and subtracts a shared
+`transmissionLodBias`. The frosted cover's bounded LOD uses the same
+reference size.
+
+`ArchiveScene.updateTransmissionCapture` finds the finest LOD read this frame.
+It checks the array frost plus each selected or returning cover, using its
+lift, clarity and projected height at a conservative depth. The capture is
+reduced only when that LOD is at least 1.1, and it returns to the reference
+capture below 1.0. Clearing glass in the detail view, and very small covers,
+use the reference capture. The switch waits one second before reducing again,
+so the capture is not reallocated repeatedly. The capture is never reduced when
+the reference is below 50% (for example Super Performance). The 360° viewer
+keeps bias 0 and its own full capture. `#three-scene[data-transmission-capture]`
+shows the scale in use.
+
+### Same-frame comparison
+
+A probe build froze one frame and rendered it four times in headless Chromium
+(SwiftShader): reference, reference again, compensated half capture, and an
+uncompensated half capture (the old Balanced behaviour). Differences are per-pixel
+maximum channel differences in 8-bit sRGB against the reference:
+
+| View | Compensated mean / max / >2 levels | Uncompensated mean / max / >2 levels |
+| --- | --- | --- |
+| Opening array, 1920 × 1080, light | 0.21 / 3 / 0.01% | 2.86 / 24 / 29.9% |
+| Reduced-motion archive, 960 × 540, light | 0.29 / 4 / 0.12% | 1.29 / 16 / 16.9% |
+| Reduced-motion archive, 960 × 540, dark | 0.30 / 8 / 0.13% | 1.15 / 14 / 15.7% |
+
+Repeat renders were identical (0 difference). In the standard 1080p view the
+selected cover projects to about 487 px, a reference LOD of about 3.0, well
+above the threshold. When detail was opened, the capture returned to 1.0 as
+the cover cleared, and it dropped to 0.5 after returning to the archive. No
+shader or page errors occurred.
+
+### Cost
+
+While browsing, the capture has the same size and GPU cost as the Balanced
+preset's capture. On the RTX 5090 at 4K, Balanced measured 3.83 ms against
+4.91 ms for Original (see above). A GPU time measurement for this change still
+has to be made on that machine: run `node scripts/profile-home.mjs` before and
+after this change. SwiftShader shows image differences, not GPU timings. The
+detail view, which needs clear refraction, keeps its full cost. Balanced remains
+available and now uses a quarter-width capture while browsing, compared with
+its half-width reference.
+
+`npm run check:transmission-lod` covers the shader patch, the footprint
+identity, the thresholds as covers clear, and the fallback for small covers.
