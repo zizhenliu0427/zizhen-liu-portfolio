@@ -117,3 +117,43 @@ its half-width reference.
 
 `npm run check:transmission-lod` covers the shader patch, the footprint
 identity, the thresholds as covers clear, and the fallback for small covers.
+
+## Exact pass merges and depth-pass fasteners (2026-09-24)
+
+Three more changes. Same-frame comparisons against the previous pipeline
+differ by at most 1/255 (rounding):
+
+- **SSAO blur and composite.** SSAOPass blurred AO into a target, then drew
+  another full-screen pass to multiply that target into the frame.
+  `SharedDepthAO.render` now blurs straight into the frame with the same
+  multiply blend. This applies only when AO is full resolution, because a
+  smaller AO target relies on the composite to upsample it.
+- **Bokeh and output.** When SMAA is off, the bokeh pass is the last pass and
+  draws to the canvas with three's built-in tone mapping and sRGB chunks: the
+  same ACES and transfer functions OutputPass uses. OutputPass is then disabled.
+  With SMAA on, bokeh still draws to a target and OutputPass runs as before.
+- **Fasteners omitted from the SSAO normal and depth pass.** Background fasteners
+  are half of each cassette's triangles, but only a few pixels wide. AO and
+  bokeh focus now use the surface underneath them. The beauty pass and the
+  refraction capture still draw them. This removes about 0.68 M of the 4.16 M
+  triangles per frame in the 1080p home view. The image difference matched
+  repeat-render noise (mean 0.026, 37 pixels above 8 levels).
+
+In the home view, each frame has two fewer full-screen passes. Each saved pass
+is one full-resolution HalfFloat write and read. On tile-based mobile GPUs,
+each saved pass also saves a tile store and reload.
+
+### Rejected candidates
+
+Each candidate was measured on the same frozen frame:
+
+| Candidate | Result | Decision |
+| --- | --- | --- |
+| Single-sided array glass (skip three's back-face refraction pass) | Mean 7.1, max 46, 28.7% of pixels above 8 levels | Visible; kept double-sided |
+| Omit fasteners from the refraction capture | Max 22 on screw highlights seen through the cover | Visible on close inspection; kept |
+| Bokeh early exit for sub-pixel circles of confusion | Exact at 0.1 px, but only a narrow band qualifies | No measurable gain; not shipped |
+| 16 SSAO samples instead of 32 | Mean 6.9, similar to a different random 32-sample kernel | Not demonstrably invisible; not shipped |
+
+SwiftShader times in this container are CPU rasterisation times, dominated by
+the multisampled refraction capture. They are not GPU or phone timings, so this
+note makes no FPS claim for those devices.

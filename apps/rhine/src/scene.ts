@@ -17,7 +17,6 @@ import { createArchiveLighting, type LightingLook } from "./archive-lighting";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
-import { BokehPass } from "three/addons/postprocessing/BokehPass.js";
 import { SMAAPass } from "three/addons/postprocessing/SMAAPass.js";
 import { normalizeQuality, type RenderQuality } from "./render-quality";
 import { applyTextureQuality, resizeQuality } from "./quality-renderer";
@@ -178,7 +177,7 @@ export class ArchiveScene {
   readonly camera = new THREE.PerspectiveCamera(34, 16 / 9, 5, 300);
   private composer: EffectComposer;
   private ao: SharedDepthAO;
-  private bokeh: BokehPass;
+  private bokeh: SharedDepthBokeh;
   private instances: THREE.InstancedMesh[] = [];
   private matrixUpdates?: InstanceUpdates;
   private themeUpdates?: InstanceUpdates;
@@ -253,6 +252,7 @@ export class ArchiveScene {
   private quality = normalizeQuality(undefined);
   private appliedQuality = "";
   private smaa = new SMAAPass();
+  private output = new OutputPass();
   private aoKernelSize = 32;
   private displayHeight = 0;
   private layoutKind = "";
@@ -341,7 +341,7 @@ export class ArchiveScene {
     this.composer.addPass(this.bokeh);
     this.smaa.enabled = false;
     this.composer.addPass(this.smaa);
-    this.composer.addPass(new OutputPass());
+    this.composer.addPass(this.output);
     this.bindPointer();
   }
   async load(assetUrl = publicAsset("assets/archive-cassette.glb")) {
@@ -481,6 +481,9 @@ export class ArchiveScene {
       inst.castShadow = name === "Optical_Diffuser";
       inst.receiveShadow = true;
       inst.frustumCulled = false;
+      // Background fasteners are a few pixels wide but half of each cassette's
+      // triangles; AO and focus follow the surface under them.
+      if (name === "Titanium_Fasteners") this.ao.omitted = [inst];
       this.instances.push(inst);
       this.scene.add(inst);
     }
@@ -751,6 +754,7 @@ export class ArchiveScene {
       this.ao.kernelRadius = old.kernelRadius;
       this.ao.minDistance = old.minDistance;
       this.ao.maxDistance = old.maxDistance;
+      this.ao.omitted = old.omitted;
       const index = this.composer.passes.indexOf(old);
       this.composer.removePass(old);
       this.composer.insertPass(this.ao, index);
@@ -760,6 +764,8 @@ export class ArchiveScene {
     this.ao.enabled = quality.aoSamples > 0;
     this.bokeh.enabled = quality.depthOfField > 0;
     this.smaa.enabled = quality.antialias === "smaa";
+    // Without SMAA, the last bokeh pass applies the same output transform.
+    this.output.enabled = !(this.bokeh.enabled && !this.smaa.enabled && this.bokeh.outputsToCanvas);
     this.renderer.shadowMap.enabled = quality.shadows > 0;
     const size = Math.min(
       quality.shadows || 1024,
